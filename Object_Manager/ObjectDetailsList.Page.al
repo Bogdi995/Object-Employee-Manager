@@ -111,4 +111,12 @@ page 50100 "Object Details List"
             }
         }
     }
+
+    trigger OnOpenPage()
+    var
+        ObjectDetailsManagement: Codeunit "Object Details Management";
+    begin
+        if ObjectDetailsManagement.CheckIfUpdateNeeded() then
+            ObjectDetailsManagement.UpdateObjectDetails();
+    end;
 }
