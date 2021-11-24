@@ -1,6 +1,6 @@
 page 50100 "Object Details List"
 {
-    CaptionML = DEU = 'Objektdetails Übersicht', ENU = 'Object Details List';
+    Caption = 'Object Details List';
     PageType = List;
     ApplicationArea = All;
     UsageCategory = Administration;
