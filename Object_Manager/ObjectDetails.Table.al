@@ -1,40 +1,36 @@
 table 50100 "Object Details"
 {
-    DataClassification = ToBeClassified;
+    DataClassification = CustomerContent;
     Caption = 'Object Details';
 
     fields
     {
-        field(1; ObjectType; Option)
+        field(1; ObjectType; enum "Object Type")
         {
             Caption = 'Object Type';
-            OptionMembers = "TableData","Table",,"Report",,"Codeunit","XMLport","MenuSuite","Page","Query","System","FieldNumber",,,"PageExtension","TableExtension","Enum","EnumExtension","Profile","ProfileExtension";
-            OptionCaption = 'TableData,Table,,Report,,Codeunit,XMLport,MenuSuite,Page,Query,System,FieldNumber,,,PageExtension,TableExtension,Enum,EnumExtension,Profile,ProfileExtension';
             DataClassification = CustomerContent;
         }
         field(2; ObjectNo; Integer)
         {
             Caption = 'Object No.';
             DataClassification = CustomerContent;
-            TableRelation = AllObj."Object ID" where("Object Type" = field(ObjectType));
         }
         field(10; Name; Text[30])
         {
             Caption = 'Name';
-            FieldClass = FlowField;
-            CalcFormula = lookup(AllObj."Object Name" where("Object Type" = field(ObjectType), "Object ID" = field(ObjectNo)));
+            DataClassification = CustomerContent;
+
         }
         field(20; Caption; Text[250])
         {
             Caption = 'Caption';
-            FieldClass = FlowField;
-            CalcFormula = lookup(AllObjWithCaption."Object Caption" where("Object Type" = field(ObjectType), "Object ID" = field(ObjectNo)));
+            DataClassification = CustomerContent;
+
         }
         field(25; ObjectSubtype; Text[30])
         {
             Caption = 'Object Subtype';
-            FieldClass = FlowField;
-            CalcFormula = lookup(AllObjWithCaption."Object Subtype" where("Object Type" = field(ObjectType), "Object ID" = field(ObjectNo)));
+            DataClassification = CustomerContent;
         }
         field(30; LastDateModified; Date)
         {
@@ -116,7 +112,6 @@ table 50100 "Object Details"
             Caption = 'No. of Unused Return Values';
             DataClassification = CustomerContent;
         }
-
     }
 
     keys

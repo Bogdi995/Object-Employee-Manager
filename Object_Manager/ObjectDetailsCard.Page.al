@@ -1,5 +1,6 @@
 page 50101 "Object Details Card"
 {
+    Caption = 'Object Details Card';
     PageType = Card;
     ApplicationArea = All;
     UsageCategory = Administration;
@@ -130,4 +131,10 @@ page 50101 "Object Details Card"
     var
         [InDataSet]
         ShowSubtype: Boolean;
+
+    trigger OnOpenPage()
+    var
+        ObjectDetailsManagement: Codeunit "Object Details Management";
+    begin
+    end;
 }

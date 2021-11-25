@@ -1,4 +1,4 @@
-codeunit 50145 MyCodeunit
+codeunit 50103 "Object Details Tests"
 {
     Subtype = Test;
 
