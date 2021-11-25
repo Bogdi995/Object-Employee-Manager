@@ -135,18 +135,6 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field ObjectType - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - Method 3699838397 - NamedType 85041157" size-unit="char" translate="yes" xml:space="preserve">
-          <source>"Object Details" is not updated. Do you want to update it?</source>
-          <target state="'Objektdetails' ist nicht aktualisiert. Möchten Sie sie aktualisieren?"/>
-          <note from="Developer" annotates="general" priority="2">The data is not updated, if you recently changed an object it might not be visible unless you update.</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method CheckIfUpdateNeeded - NamedType ConfirmUpdate</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - Method 4122532914 - NamedType 2476940767" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Updating the records ------&gt; #1</source>
-          <target state="needs-translation"/>
-          <note from="Developer" annotates="general" priority="2">The data is being updated...</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method UpdateObjectDetails - NamedType Text000</note>
-        </trans-unit>
         <trans-unit id="Page 683374773 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object Details Card</source>
           <target state="Objektdetails Karte"/>

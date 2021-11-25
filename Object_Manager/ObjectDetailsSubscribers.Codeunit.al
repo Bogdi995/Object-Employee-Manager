@@ -1,4 +1,4 @@
-codeunit 50102 "Object Details Subscriber"
+codeunit 50104 "Object Details Subscriber"
 {
     trigger OnRun()
     begin
