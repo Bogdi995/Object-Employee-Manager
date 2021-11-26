@@ -113,6 +113,8 @@ page 50100 "Object Details List"
     }
 
     trigger OnOpenPage()
+    var
+
     begin
 
     end;

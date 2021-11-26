@@ -59,12 +59,21 @@ codeunit 50102 "Object Details Upgrade"
         AllObj.SetRange("Object Type", ObjectTypeAllObj);
         ObjectDetails.SetRange(ObjectType, ObjectTypeObjectDetails);
         if AllObj.FindFirst() then
-            if ObjectDetails.FindFirst() then
-                repeat
-                    ObjectDetails.SetRange(ObjectNo, AllObj."Object ID");
-                    if not ObjectDetails.FindFirst() then
-                        InsertNewRecord(AllObj, ObjectTypeObjectDetails);
-                until AllObj.Next() = 0;
+            if ObjectDetails.FindFirst() then begin
+                if AllObj.Count() > ObjectDetails.Count() then
+                    repeat
+                        ObjectDetails.SetRange(ObjectNo, AllObj."Object ID");
+                        if not ObjectDetails.FindFirst() then
+                            InsertNewRecord(AllObj, ObjectTypeObjectDetails);
+                    until AllObj.Next() = 0
+                else
+                    if AllObj.Count() < ObjectDetails.Count() then
+                        repeat
+                            AllObj.SetRange("Object ID", ObjectDetails.ObjectNo);
+                            if not AllObj.FindFirst() then
+                                ObjectDetails.Delete(true);
+                        until ObjectDetails.Next() = 0;
+            end;
     end;
 
     local procedure InsertNewRecord(var AllObj: Record AllObj; TypeOfObject: enum "Object Type")
