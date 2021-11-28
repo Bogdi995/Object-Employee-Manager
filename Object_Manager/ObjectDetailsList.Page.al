@@ -5,6 +5,7 @@ page 50100 "Object Details List"
     ApplicationArea = All;
     UsageCategory = Administration;
     SourceTable = "Object Details";
+    CardPageId = "Object Details Card";
 
     layout
     {
@@ -118,4 +119,5 @@ page 50100 "Object Details List"
     begin
 
     end;
+
 }

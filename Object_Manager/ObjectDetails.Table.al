@@ -2,6 +2,8 @@ table 50100 "Object Details"
 {
     DataClassification = CustomerContent;
     Caption = 'Object Details';
+    LookupPageId = "Object Details List";
+    DrillDownPageId = "Object Details List";
 
     fields
     {

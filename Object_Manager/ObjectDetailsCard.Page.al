@@ -134,7 +134,7 @@ page 50101 "Object Details Card"
 
     trigger OnOpenPage()
     var
-        ObjectDetailsManagement: Codeunit "Object Details Management";
+
     begin
     end;
 }
