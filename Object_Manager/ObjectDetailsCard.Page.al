@@ -44,14 +44,6 @@ page 50101 "Object Details Card"
                         ApplicationArea = All;
                     }
                 }
-                field(LastDateModified; Rec.LastDateModified)
-                {
-                    ApplicationArea = All;
-                }
-                field(LastTimeModified; Rec.LastTimeModified)
-                {
-                    ApplicationArea = All;
-                }
                 field(NoTimesUsed; Rec.NoTimesUsed)
                 {
                     ApplicationArea = All;
@@ -116,13 +108,29 @@ page 50101 "Object Details Card"
     {
         area(Processing)
         {
-            action(ActionName)
+            action(Update)
             {
+                Caption = 'Update Objects';
                 ApplicationArea = All;
+                Image = UpdateDescription;
+                Promoted = true;
+                PromotedOnly = true;
+                PromotedCategory = Process;
 
                 trigger OnAction()
+                var
+                    ObjectDetailsManagement: Codeunit "Object Details Management";
+                    UpdateObjectsText: Label 'Do you want to update the objects?';
+                    AlreadyUpdatedText: Label 'Objects already updated!';
+                    SuccessfullyUpdated: Label 'Objects successfully updated!';
                 begin
-
+                    if Confirm(UpdateObjectsText, true) then
+                        if ObjectDetailsManagement.CheckIfUpdateNeeded() then begin
+                            ObjectDetailsManagement.UpdateObjectDetails();
+                            Message(SuccessfullyUpdated);
+                        end
+                        else
+                            Message(AlreadyUpdatedText);
                 end;
             }
         }
@@ -134,7 +142,8 @@ page 50101 "Object Details Card"
 
     trigger OnOpenPage()
     var
-
+        ObjectDetailsManagement: Codeunit "Object Details Management";
     begin
+        ObjectDetailsManagement.ConfirmCheckIfUpdateNeeded();
     end;
 }

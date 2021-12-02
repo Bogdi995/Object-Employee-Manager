@@ -13,16 +13,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field Caption - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Table 3526115305 - Field 4168646537 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Last Date Modified</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field LastDateModified - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 3526115305 - Field 2133235306 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Last Time Modified</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field LastTimeModified - Property Caption</note>
-        </trans-unit>
         <trans-unit id="Table 3526115305 - Field 2961552353 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Name</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -113,15 +103,70 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field ObjectType - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3526115305 - Field 2467211492 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ObjectTypeCopy</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field ObjectTypeCopy - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 3131975211 - NamedType 973351683" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The objects are not updated, do you want to update them now?</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method ConfirmCheckIfUpdateNeeded - NamedType ConfirmMessage</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 3131975211 - NamedType 2724499124" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The objects are being updated...</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method ConfirmCheckIfUpdateNeeded - NamedType ProgressText</note>
+        </trans-unit>
         <trans-unit id="Page 683374773 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object Details Card</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 683374773 - Action 642782499 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Update Objects</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action Update - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 683374773 - Action 642782499 - Method 1377591017 - NamedType 817049054" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Do you want to update the objects?</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action Update - Method OnAction - NamedType UpdateObjectsText</note>
+        </trans-unit>
+        <trans-unit id="Page 683374773 - Action 642782499 - Method 1377591017 - NamedType 1772536322" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Objects already updated!</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action Update - Method OnAction - NamedType AlreadyUpdatedText</note>
+        </trans-unit>
+        <trans-unit id="Page 683374773 - Action 642782499 - Method 1377591017 - NamedType 1840789904" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Objects successfully updated!</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action Update - Method OnAction - NamedType SuccessfullyUpdated</note>
+        </trans-unit>
         <trans-unit id="Page 2172956895 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object Details List</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2172956895 - Action 642782499 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Update Objects</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Action Update - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2172956895 - Action 642782499 - Method 1377591017 - NamedType 817049054" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Do you want to update the objects?</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Action Update - Method OnAction - NamedType UpdateObjectsText</note>
+        </trans-unit>
+        <trans-unit id="Page 2172956895 - Action 642782499 - Method 1377591017 - NamedType 1772536322" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Objects already updated!</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Action Update - Method OnAction - NamedType AlreadyUpdatedText</note>
+        </trans-unit>
+        <trans-unit id="Page 2172956895 - Action 642782499 - Method 1377591017 - NamedType 1840789904" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Objects successfully updated!</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Action Update - Method OnAction - NamedType SuccessfullyUpdated</note>
         </trans-unit>
         <trans-unit id="Enum 1085746399 - EnumValue 1392872285 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Codeunit</source>

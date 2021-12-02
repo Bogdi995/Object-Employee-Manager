@@ -11,6 +11,12 @@ table 50100 "Object Details"
         {
             Caption = 'Object Type';
             DataClassification = CustomerContent;
+            trigger OnValidate()
+            var
+                ObjectDetailsManagement: Codeunit "Object Details Management";
+            begin
+                Validate(ObjectTypeCopy, ObjectDetailsManagement.GetObjectTypeFromObjectDetails(Rec));
+            end;
         }
         field(2; ObjectNo; Integer)
         {
@@ -20,28 +26,18 @@ table 50100 "Object Details"
         field(10; Name; Text[30])
         {
             Caption = 'Name';
-            DataClassification = CustomerContent;
-
+            FieldClass = FlowField;
+            CalcFormula = lookup(AllObj."Object Name" where("Object Type" = field(ObjectTypeCopy), "Object ID" = field(ObjectNo)));
         }
         field(20; Caption; Text[250])
         {
             Caption = 'Caption';
-            DataClassification = CustomerContent;
-
+            FieldClass = FlowField;
+            CalcFormula = lookup(AllObjWithCaption."Object Caption" where("Object Type" = field(ObjectTypeCopy), "Object ID" = field(ObjectNo)));
         }
-        field(25; ObjectSubtype; Text[30])
+        field(30; ObjectSubtype; Text[30])
         {
             Caption = 'Object Subtype';
-            DataClassification = CustomerContent;
-        }
-        field(30; LastDateModified; Date)
-        {
-            Caption = 'Last Date Modified';
-            DataClassification = CustomerContent;
-        }
-        field(40; LastTimeModified; Time)
-        {
-            Caption = 'Last Time Modified';
             DataClassification = CustomerContent;
         }
         field(50; NoTimesUsed; Integer)
@@ -114,6 +110,11 @@ table 50100 "Object Details"
             Caption = 'No. of Unused Return Values';
             DataClassification = CustomerContent;
         }
+        field(190; ObjectTypeCopy; Option)
+        {
+            OptionMembers = "TableData","Table",,"Report",,"Codeunit","XMLport","MenuSuite","Page","Query","System","FieldNumber",,,"PageExtension","TableExtension","Enum","EnumExtension","Profile","ProfileExtension";
+            DataClassification = CustomerContent;
+        }
     }
 
     keys
@@ -123,4 +124,5 @@ table 50100 "Object Details"
             Clustered = true;
         }
     }
+
 }

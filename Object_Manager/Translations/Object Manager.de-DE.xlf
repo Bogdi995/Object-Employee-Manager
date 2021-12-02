@@ -135,17 +135,47 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field ObjectType - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3526115305 - Field 2467211492 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ObjectTypeCopy</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field ObjectTypeCopy - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 683374773 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object Details Card</source>
           <target state="Objektdetails Karte"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 683374773 - Method 716454850 - NamedType 973351683" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The objects are not updated, do you want to update them now?</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Method OnOpenPage - NamedType ConfirmMessage</note>
+        </trans-unit>
+        <trans-unit id="Page 683374773 - Method 716454850 - NamedType 2724499124" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The objects are being updated...</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Method OnOpenPage - NamedType ProgressText</note>
+        </trans-unit>
         <trans-unit id="Page 2172956895 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object Details List</source>
           <target state="Objektdetails Übersicht"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2172956895 - Method 716454850 - NamedType 973351683" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The objects are not updated, do you want to update them now?</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Method OnOpenPage - NamedType ConfirmMessage</note>
+        </trans-unit>
+        <trans-unit id="Page 2172956895 - Method 716454850 - NamedType 2724499124" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The objects are being updated...</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Method OnOpenPage - NamedType ProgressText</note>
         </trans-unit>
         <trans-unit id="Enum 1085746399 - EnumValue 1392872285 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Codeunit</source>
