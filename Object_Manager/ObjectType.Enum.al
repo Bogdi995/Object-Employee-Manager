@@ -1,5 +1,6 @@
 enum 50100 "Object Type"
 {
+    Caption = 'Type';
     Extensible = true;
 
     value(0; "Table")

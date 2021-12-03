@@ -108,6 +108,51 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field ObjectTypeCopy - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 2044131987 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Object Details Line</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Object Details Line - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2044131987 - Field 2879900210 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Caption</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Object Details Line - Field Caption - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2044131987 - Field 1016130111 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Entry No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Object Details Line - Field EntryNo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2044131987 - Field 3641927271 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ID</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Object Details Line - Field ID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2044131987 - Field 2961552353 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Name</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Object Details Line - Field Name - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2044131987 - Field 1292293280 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Object No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Object Details Line - Field ObjectNo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2044131987 - Field 4766335 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Object Type</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Object Details Line - Field ObjectType - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2044131987 - Field 1878130204 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Type</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Object Details Line - Field Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2044131987 - Field 1674963993 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Type Name</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Object Details Line - Field TypeName - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Codeunit 1029530680 - Method 3131975211 - NamedType 973351683" size-unit="char" translate="yes" xml:space="preserve">
           <source>The objects are not updated, do you want to update them now?</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -143,6 +188,46 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action Update - Method OnAction - NamedType SuccessfullyUpdated</note>
         </trans-unit>
+        <trans-unit id="Page 3625123773 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Object Details Line List</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3625123773 - Control 2879900210 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Caption field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Control Caption - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3625123773 - Control 3641927271 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the ID field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Control ID - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3625123773 - Control 2961552353 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Name field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Control Name - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3625123773 - Control 1292293280 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Object No. field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Control ObjectNo - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3625123773 - Control 4766335 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Object Type field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Control ObjectType - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3625123773 - Control 1878130204 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Type field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Control Type - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3625123773 - Control 1674963993 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Type Name field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Control TypeName - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 2172956895 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object Details List</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -167,6 +252,11 @@
           <source>Objects successfully updated!</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Action Update - Method OnAction - NamedType SuccessfullyUpdated</note>
+        </trans-unit>
+        <trans-unit id="Enum 1085746399 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Type</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Object Type - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 1085746399 - EnumValue 1392872285 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Codeunit</source>
@@ -222,6 +312,61 @@
           <source>XMLPort</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Object Type - EnumValue XMLPort - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 2388510493 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Type</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Types - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 2388510493 - EnumValue 1884737638 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Field</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Types - EnumValue Field - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 2388510493 - EnumValue 1874936451 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Global Function</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Types - EnumValue Global Function - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 2388510493 - EnumValue 2775910383 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Global Function</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Types - EnumValue Global Variable - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 2388510493 - EnumValue 3348941625 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Key</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Types - EnumValue Key - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 2388510493 - EnumValue 3826061569 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Local Function</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Types - EnumValue Local Function - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 2388510493 - EnumValue 1438539573 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Local Variable</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Types - EnumValue Local Variable - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 2388510493 - EnumValue 2123958759 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Object</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Types - EnumValue Object - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 2388510493 - EnumValue 75106347 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Parameter</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Types - EnumValue Parameter - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 2388510493 - EnumValue 3599159403 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Return Value</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Types - EnumValue Return Value - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 2388510493 - EnumValue 3570832196 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Trigger</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Types - EnumValue Trigger - Property Caption</note>
         </trans-unit>
       </group>
     </body>

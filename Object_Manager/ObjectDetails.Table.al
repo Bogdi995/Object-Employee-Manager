@@ -1,13 +1,13 @@
 table 50100 "Object Details"
 {
-    DataClassification = CustomerContent;
     Caption = 'Object Details';
+    DataClassification = CustomerContent;
     LookupPageId = "Object Details List";
     DrillDownPageId = "Object Details List";
 
     fields
     {
-        field(1; ObjectType; enum "Object Type")
+        field(1; ObjectType; Enum "Object Type")
         {
             Caption = 'Object Type';
             DataClassification = CustomerContent;
@@ -58,7 +58,8 @@ table 50100 "Object Details"
         field(80; NoFields; Integer)
         {
             Caption = 'No. of fields';
-            DataClassification = CustomerContent;
+            FieldClass = FlowField;
+            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const(Field)));
         }
         field(90; NoGlobalFunctions; Integer)
         {
@@ -125,4 +126,47 @@ table 50100 "Object Details"
         }
     }
 
+    trigger OnInsert()
+    begin
+        InsertObjectDetailsLine(Rec);
+    end;
+
+    trigger OnDelete()
+    begin
+        DeleteObjectDetailsLine(Rec);
+    end;
+
+    local procedure DeleteObjectDetailsLine(var ObjectDetails: Record "Object Details")
+    var
+        ObjectDetailsLine: Record "Object Details Line";
+    begin
+        ObjectDetailsLine.SetCurrentKey(ObjectType, ObjectNo);
+        ObjectDetailsLine.SetRange(ObjectType, ObjectDetails.ObjectType);
+        ObjectDetailsLine.SetRange(ObjectNo, ObjectDetails.ObjectNo);
+        ObjectDetailsLine.DeleteAll();
+    end;
+
+    local procedure InsertObjectDetailsLine(var ObjectDetails: Record "Object Details")
+    var
+        ObjectDetailsLine: Record "Object Details Line";
+        Field: Record Field;
+        SystemTableIDs: Integer;
+    begin
+        SystemTableIDs := 2000000000;
+        if ObjectDetails.ObjectType = "Object Type"::Table then begin
+            Field.SetRange(TableNo, ObjectDetails.ObjectNo);
+            if Field.FindFirst() then
+                repeat
+                    if Field."No." < SystemTableIDs then begin
+                        ObjectDetailsLine.Init();
+                        ObjectDetailsLine.EntryNo := 0;
+                        ObjectDetailsLine.Validate(ObjectType, ObjectDetails.ObjectType);
+                        ObjectDetailsLine.Validate(ObjectNo, ObjectDetails.ObjectNo);
+                        ObjectDetailsLine.Validate(Type, Types::Field);
+                        ObjectDetailsLine.Validate(ID, Field."No.");
+                        ObjectDetailsLine.Insert(true);
+                    end;
+                until Field.Next() = 0;
+        end;
+    end;
 }
