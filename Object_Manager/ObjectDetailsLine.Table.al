@@ -46,7 +46,11 @@ table 50101 "Object Details Line"
         field(50; TypeName; Text[30])
         {
             Caption = 'Type Name';
-            DataClassification = ToBeClassified;
+            DataClassification = CustomerContent;
+        }
+        field(70; TEST; Integer)
+        {
+
         }
     }
 

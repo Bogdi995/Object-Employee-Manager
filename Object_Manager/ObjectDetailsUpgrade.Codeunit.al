@@ -9,8 +9,10 @@ codeunit 50102 "Object Details Upgrade"
     begin
         NavApp.GetCurrentModuleInfo(Module);
         if Module.DataVersion.Major = 1 then begin
-            if ObjectDetailsManagement.CheckIfUpdateNeeded() then
+            if ObjectDetailsManagement.CheckUpdateObjectDetails() then
                 ObjectDetailsManagement.UpdateObjectDetails();
+            if ObjectDetailsManagement.CheckUpdateObjectDetailsLine() then
+                ObjectDetailsManagement.UpdateObjectDetailsLine();
         end;
     end;
 

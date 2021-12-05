@@ -15,74 +15,92 @@ page 50100 "Object Details List"
             {
                 field(ObjectType; Rec.ObjectType)
                 {
+                    ToolTip = 'Specifies the value of the Name field.';
                     ApplicationArea = All;
                 }
                 field(ObjectNo; Rec.ObjectNo)
                 {
+                    ToolTip = 'Specifies the value of the Name field.';
                     ApplicationArea = All;
                 }
                 field(Name; Rec.Name)
                 {
+                    ToolTip = 'Specifies the value of the Name field.';
                     ApplicationArea = All;
                 }
                 field(Caption; Rec.Caption)
                 {
+                    ToolTip = 'Specifies the value of the Name field.';
                     ApplicationArea = All;
                 }
                 field(NoTimesUsed; Rec.NoTimesUsed)
                 {
+                    ToolTip = 'Specifies the value of the Name field.';
                     ApplicationArea = All;
                 }
                 field(NoPrimaryKeys; Rec.NoPrimaryKeys)
                 {
+                    ToolTip = 'Specifies the value of the Name field.';
                     ApplicationArea = All;
                 }
                 field(NoKeys; Rec.NoKeys)
                 {
+                    ToolTip = 'Specifies the value of the Name field.';
                     ApplicationArea = All;
                 }
                 field(NoFields; Rec.NoFields)
                 {
+                    ToolTip = 'Specifies the value of the Name field.';
                     ApplicationArea = All;
                 }
                 field(NoGlobalFunctions; Rec.NoGlobalFunctions)
                 {
+                    ToolTip = 'Specifies the value of the Name field.';
                     ApplicationArea = All;
                 }
                 field(NoUnusedGlobalFunctions; Rec.NoUnusedGlobalFunctions)
                 {
+                    ToolTip = 'Specifies the value of the Name field.';
                     ApplicationArea = All;
                 }
                 field(NoLocalFuntions; Rec.NoLocalFuntions)
                 {
+                    ToolTip = 'Specifies the value of the Name field.';
                     ApplicationArea = All;
                 }
                 field(NoUnusedLocalFunctions; Rec.NoUnusedLocalFunctions)
                 {
+                    ToolTip = 'Specifies the value of the Name field.';
                     ApplicationArea = All;
                 }
                 field(NoTotalVariables; Rec.NoTotalVariables)
                 {
+                    ToolTip = 'Specifies the value of the Name field.';
                     ApplicationArea = All;
                 }
                 field(NoUnusedTotalVariables; Rec.NoUnusedTotalVariables)
                 {
+                    ToolTip = 'Specifies the value of the Name field.';
                     ApplicationArea = All;
                 }
                 field(NoGlobalVariables; Rec.NoGlobalVariables)
                 {
+                    ToolTip = 'Specifies the value of the Name field.';
                     ApplicationArea = All;
                 }
                 field(NoUnusedGlobalVariables; Rec.NoUnusedGlobalVariables)
                 {
+                    ToolTip = 'Specifies the value of the Name field.';
                     ApplicationArea = All;
                 }
                 field(NoUnusedParameters; Rec.NoUnusedParameters)
                 {
+                    ToolTip = 'Specifies the value of the Name field.';
                     ApplicationArea = All;
                 }
                 field(NoUnusedReturnValues; Rec.NoUnusedReturnValues)
                 {
+                    ToolTip = 'Specifies the value of the Name field.';
                     ApplicationArea = All;
                 }
             }
@@ -110,7 +128,7 @@ page 50100 "Object Details List"
                     SuccessfullyUpdated: Label 'Objects successfully updated!';
                 begin
                     if Confirm(UpdateObjectsText, true) then
-                        if ObjectDetailsManagement.CheckIfUpdateNeeded() then begin
+                        if ObjectDetailsManagement.CheckUpdateObjectDetails() then begin
                             ObjectDetailsManagement.UpdateObjectDetails();
                             Message(SuccessfullyUpdated);
                         end

@@ -47,6 +47,7 @@ codeunit 50101 "Object Details Install"
         AllObj: Record AllObj;
         Field: Record Field;
         ObjectDetailsLine: Record "Object Details Line";
+        ObjectDetailsManagement: Codeunit "Object Details Management";
         SystemTableIDs: Integer;
     begin
         SystemTableIDs := 2000000000;
@@ -57,22 +58,11 @@ codeunit 50101 "Object Details Install"
                 if Field.FindFirst() then
                     repeat
                         if Field."No." < SystemTableIDs then
-                            InsertObjectDetailsLine(Field, "Object Type"::Table);
+                            ObjectDetailsManagement.InsertObjectDetailsLine(Field, "Object Type"::Table);
                     until Field.Next() = 0;
             until AllObj.Next() = 0;
     end;
 
-    local procedure InsertObjectDetailsLine(var Field: Record Field; ObjectType: Enum "Object Type")
-    var
-        ObjectDetailsLine: Record "Object Details Line";
-    begin
-        ObjectDetailsLine.Init();
-        ObjectDetailsLine.EntryNo := 0;
-        ObjectDetailsLine.Validate(ObjectType, ObjectType);
-        ObjectDetailsLine.Validate(ObjectNo, Field.TableNo);
-        ObjectDetailsLine.Validate(Type, Types::Field);
-        ObjectDetailsLine.Validate(ID, Field."No.");
-        ObjectDetailsLine.Insert(true);
-    end;
+
 
 }

@@ -52,6 +52,45 @@ page 50102 "Object Details Line List"
         }
     }
 
+    actions
+    {
+        area(Processing)
+        {
+            action(UpdateFields)
+            {
+                Caption = 'Update Fields';
+                ApplicationArea = All;
+                Image = UpdateXML;
+                Promoted = true;
+                PromotedOnly = true;
+                PromotedCategory = Process;
+
+                trigger OnAction()
+                var
+                    ObjectDetailsManagement: Codeunit "Object Details Management";
+                    UpdateFieldsText: Label 'Do you want to update the fields?';
+                    AlreadyUpdatedText: Label 'Fields already updated!';
+                    SuccessfullyUpdated: Label 'Fields successfully updated!';
+                begin
+                    if Confirm(UpdateFieldsText, true) then
+                        if ObjectDetailsManagement.CheckUpdateObjectDetailsLine() then begin
+                            ObjectDetailsManagement.UpdateObjectDetailsLine();
+                            Message(SuccessfullyUpdated);
+                        end
+                        else
+                            Message(AlreadyUpdatedText);
+                end;
+            }
+        }
+    }
+
+    trigger OnOpenPage()
+    var
+        ObjectDetailsManagement: Codeunit "Object Details Management";
+    begin
+        ObjectDetailsManagement.ConfirmCheckUpdateObjectDetailsLine();
+    end;
+
     local procedure GetName(): Text[250]
     var
         Field: Record Field;

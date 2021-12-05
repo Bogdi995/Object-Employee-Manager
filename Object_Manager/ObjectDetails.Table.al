@@ -11,6 +11,8 @@ table 50100 "Object Details"
         {
             Caption = 'Object Type';
             DataClassification = CustomerContent;
+            Editable = false;
+
             trigger OnValidate()
             var
                 ObjectDetailsManagement: Codeunit "Object Details Management";
@@ -22,6 +24,7 @@ table 50100 "Object Details"
         {
             Caption = 'Object No.';
             DataClassification = CustomerContent;
+            Editable = false;
         }
         field(10; Name; Text[30])
         {
@@ -128,15 +131,15 @@ table 50100 "Object Details"
 
     trigger OnInsert()
     begin
-        InsertObjectDetailsLine(Rec);
+        InsertLines(Rec);
     end;
 
     trigger OnDelete()
     begin
-        DeleteObjectDetailsLine(Rec);
+        DeleteLines(Rec);
     end;
 
-    local procedure DeleteObjectDetailsLine(var ObjectDetails: Record "Object Details")
+    local procedure DeleteLines(var ObjectDetails: Record "Object Details")
     var
         ObjectDetailsLine: Record "Object Details Line";
     begin
@@ -146,10 +149,10 @@ table 50100 "Object Details"
         ObjectDetailsLine.DeleteAll();
     end;
 
-    local procedure InsertObjectDetailsLine(var ObjectDetails: Record "Object Details")
+    local procedure InsertLines(var ObjectDetails: Record "Object Details")
     var
-        ObjectDetailsLine: Record "Object Details Line";
         Field: Record Field;
+        ObjectDetailsManagement: Codeunit "Object Details Management";
         SystemTableIDs: Integer;
     begin
         SystemTableIDs := 2000000000;
@@ -158,13 +161,7 @@ table 50100 "Object Details"
             if Field.FindFirst() then
                 repeat
                     if Field."No." < SystemTableIDs then begin
-                        ObjectDetailsLine.Init();
-                        ObjectDetailsLine.EntryNo := 0;
-                        ObjectDetailsLine.Validate(ObjectType, ObjectDetails.ObjectType);
-                        ObjectDetailsLine.Validate(ObjectNo, ObjectDetails.ObjectNo);
-                        ObjectDetailsLine.Validate(Type, Types::Field);
-                        ObjectDetailsLine.Validate(ID, Field."No.");
-                        ObjectDetailsLine.Insert(true);
+                        ObjectDetailsManagement.InsertObjectDetailsLine(Field, ObjectDetails.ObjectType);
                     end;
                 until Field.Next() = 0;
         end;
