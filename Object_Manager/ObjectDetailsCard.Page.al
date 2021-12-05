@@ -120,6 +120,13 @@ page 50101 "Object Details Card"
                     ApplicationArea = All;
                 }
             }
+            group(Lines)
+            {
+                part("Object Details Subpage"; "Object Details Subpage")
+                {
+                    SubPageLink = ObjectType = field(ObjectType), ObjectNo = field(ObjectNo);
+                }
+            }
         }
     }
 
@@ -164,13 +171,13 @@ page 50101 "Object Details Card"
                 trigger OnAction()
                 var
                     ObjectDetailsManagement: Codeunit "Object Details Management";
-                    UpdateFieldsText: Label 'Do you want to update the fields?';
+                    UpdateFieldsText: Label 'Do you want to update the fields for: %1 %2 - "%3"?';
                     AlreadyUpdatedText: Label 'Fields already updated!';
                     SuccessfullyUpdated: Label 'Fields successfully updated!';
                 begin
-                    if Confirm(UpdateFieldsText, true) then
-                        if ObjectDetailsManagement.CheckUpdateObjectDetailsLine() then begin
-                            ObjectDetailsManagement.UpdateObjectDetailsLine();
+                    if Confirm(StrSubstNo(UpdateFieldsText, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then
+                        if ObjectDetailsManagement.CheckUpdateFieldsObjectDetailsLine(Rec) then begin
+                            ObjectDetailsManagement.UpdateFieldsObjectDetailsLine(Format(Rec.ObjectNo));
                             Message(SuccessfullyUpdated);
                         end
                         else

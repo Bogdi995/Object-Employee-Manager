@@ -145,7 +145,7 @@ page 50100 "Object Details List"
         obj: Record "Object Details";
         obj2: Record "Object Details Line";
     begin
-        // ObjectDetailsManagement.ConfirmCheckIfUpdateNeeded();
+        ObjectDetailsManagement.ConfirmCheckUpdateObjectDetails();
         // obj.DeleteAll();
         // obj2.DeleteAll();
     end;

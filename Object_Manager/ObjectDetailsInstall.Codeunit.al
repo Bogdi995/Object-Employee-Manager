@@ -15,6 +15,7 @@ codeunit 50101 "Object Details Install"
     begin
         InsertNewRecords("Object Type"::Table, AllObj."Object Type"::Table);
         AddFieldsToObjectDetailsLine();
+        AddKeysToObjectDetailsLine();
         InsertNewRecords("Object Type"::"TableExtension", AllObj."Object Type"::"TableExtension");
         InsertNewRecords("Object Type"::Page, AllObj."Object Type"::Page);
         InsertNewRecords("Object Type"::"PageExtension", AllObj."Object Type"::"PageExtension");
@@ -58,11 +59,30 @@ codeunit 50101 "Object Details Install"
                 if Field.FindFirst() then
                     repeat
                         if Field."No." < SystemTableIDs then
-                            ObjectDetailsManagement.InsertObjectDetailsLine(Field, "Object Type"::Table);
+                            ObjectDetailsManagement.InsertObjectDetailsLine(Field, "Object Type"::Table); //add fields also for other objects: Page, etc
                     until Field.Next() = 0;
             until AllObj.Next() = 0;
     end;
 
+    local procedure AddKeysToObjectDetailsLine()
+    var
+        AllObj: Record AllObj;
+        Keys: Record "Key";
+        ObjectDetailsLine: Record "Object Details Line";
+        ObjectDetailsManagement: Codeunit "Object Details Management";
+        SystemKey: Label '$systemId';
+    begin
+        AllObj.SetRange("Object Type", AllObj."Object Type"::Table);
+        if AllObj.FindFirst() then
+            repeat
+                Keys.SetRange(TableNo, AllObj."Object ID");
+                if Keys.FindFirst() then
+                    repeat
+                        if Keys."Key" <> SystemKey then
+                            ObjectDetailsManagement.InsertObjectDetailsLine(Keys, "Object Type"::Table); //add keys also for other objects: Page, etc
+                    until Keys.Next() = 0;
+            until AllObj.Next() = 0;
 
+    end;
 
 }

@@ -51,12 +51,14 @@ table 50100 "Object Details"
         field(60; NoPrimaryKeys; Integer)
         {
             Caption = 'No. of Primary Keys';
-            DataClassification = CustomerContent;
+            FieldClass = FlowField;
+            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), ID = const(1), Type = const("Key")));
         }
         field(70; NoKeys; Integer)
         {
             Caption = 'No. of Keys';
-            DataClassification = CustomerContent;
+            FieldClass = FlowField;
+            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Key")));
         }
         field(80; NoFields; Integer)
         {
@@ -131,7 +133,7 @@ table 50100 "Object Details"
 
     trigger OnInsert()
     begin
-        InsertLines(Rec);
+
     end;
 
     trigger OnDelete()
@@ -149,21 +151,21 @@ table 50100 "Object Details"
         ObjectDetailsLine.DeleteAll();
     end;
 
-    local procedure InsertLines(var ObjectDetails: Record "Object Details")
-    var
-        Field: Record Field;
-        ObjectDetailsManagement: Codeunit "Object Details Management";
-        SystemTableIDs: Integer;
-    begin
-        SystemTableIDs := 2000000000;
-        if ObjectDetails.ObjectType = "Object Type"::Table then begin
-            Field.SetRange(TableNo, ObjectDetails.ObjectNo);
-            if Field.FindFirst() then
-                repeat
-                    if Field."No." < SystemTableIDs then begin
-                        ObjectDetailsManagement.InsertObjectDetailsLine(Field, ObjectDetails.ObjectType);
-                    end;
-                until Field.Next() = 0;
-        end;
-    end;
+    // local procedure InsertLines(var ObjectDetails: Record "Object Details")
+    // var
+    //     Field: Record Field;
+    //     ObjectDetailsManagement: Codeunit "Object Details Management";
+    //     SystemTableIDs: Integer;
+    // begin
+    //     SystemTableIDs := 2000000000;
+    //     if ObjectDetails.ObjectType = "Object Type"::Table then begin
+    //         Field.SetRange(TableNo, ObjectDetails.ObjectNo);
+    //         if Field.FindFirst() then
+    //             repeat
+    //                 if Field."No." < SystemTableIDs then begin
+    //                     ObjectDetailsManagement.InsertObjectDetailsLine(Field, ObjectDetails.ObjectType);
+    //                 end;
+    //             until Field.Next() = 0;
+    //     end;
+    // end;
 }

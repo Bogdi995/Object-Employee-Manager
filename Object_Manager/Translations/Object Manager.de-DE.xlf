@@ -189,17 +189,17 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details Line - Field TypeName - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - Method 3131975211 - NamedType 973351683" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Codeunit 1029530680 - Method 3794091750 - NamedType 973351683" size-unit="char" translate="yes" xml:space="preserve">
           <source>The objects are not updated, do you want to update them now?</source>
           <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method ConfirmCheckIfUpdateNeeded - NamedType ConfirmMessage</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method ConfirmCheckUpdateObjectDetails - NamedType ConfirmMessage</note>
         </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - Method 3131975211 - NamedType 2724499124" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Codeunit 1029530680 - Method 3794091750 - NamedType 2724499124" size-unit="char" translate="yes" xml:space="preserve">
           <source>The objects are being updated...</source>
           <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method ConfirmCheckIfUpdateNeeded - NamedType ProgressText</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method ConfirmCheckUpdateObjectDetails - NamedType ProgressText</note>
         </trans-unit>
         <trans-unit id="Codeunit 1029530680 - Method 789198616 - NamedType 973351683" size-unit="char" translate="yes" xml:space="preserve">
           <source>The fields are not updated, do you want to update them now?</source>
@@ -340,7 +340,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateFields - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Action 544469732 - Method 1377591017 - NamedType 2339537199" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Do you want to update the fields?</source>
+          <source>Do you want to update the fields for: %1 %2 - "%3"?</source>
           <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateFields - Method OnAction - NamedType UpdateFieldsText</note>
@@ -590,6 +590,42 @@
           <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Action Update - Method OnAction - NamedType SuccessfullyUpdated</note>
+        </trans-unit>
+        <trans-unit id="Page 2096197876 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Object Details Subpage</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Subpage - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2096197876 - Control 2879900210 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Caption field.</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Subpage - Control Caption - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2096197876 - Control 3641927271 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the ID field.</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Subpage - Control ID - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2096197876 - Control 2961552353 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Name field.</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Subpage - Control Name - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2096197876 - Control 1878130204 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Type field.</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Subpage - Control Type - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2096197876 - Control 1674963993 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Type Name field.</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Subpage - Control TypeName - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Enum 1085746399 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Type</source>

@@ -48,7 +48,7 @@ table 50101 "Object Details Line"
             Caption = 'Type Name';
             DataClassification = CustomerContent;
         }
-        field(70; TEST; Integer)
+        field(60; TEST_BOBL; Integer)
         {
 
         }
@@ -61,6 +61,10 @@ table 50101 "Object Details Line"
             Clustered = true;
         }
         key(Fk; ObjectType, ObjectNo)
+        {
+
+        }
+        key(Fk2; Type, ID)
         {
 
         }
