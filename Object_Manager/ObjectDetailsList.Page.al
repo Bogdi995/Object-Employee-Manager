@@ -38,7 +38,7 @@ page 50100 "Object Details List"
                     ToolTip = 'Specifies the value of the Name field.';
                     ApplicationArea = All;
                 }
-                field(NoPrimaryKeys; Rec.NoPrimaryKeys)
+                field(NoPrimaryKeys; Rec.PrimaryKey)
                 {
                     ToolTip = 'Specifies the value of the Name field.';
                     ApplicationArea = All;

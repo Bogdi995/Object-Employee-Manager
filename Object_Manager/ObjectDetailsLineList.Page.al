@@ -73,8 +73,34 @@ page 50102 "Object Details Line List"
                     SuccessfullyUpdated: Label 'Fields successfully updated!';
                 begin
                     if Confirm(UpdateFieldsText, true) then
-                        if ObjectDetailsManagement.CheckUpdateFieldsObjectDetailsLine() then begin
-                            ObjectDetailsManagement.UpdateFieldsObjectDetailsLine();
+                        if ObjectDetailsManagement.CheckUpdateTypeObjectDetailsLine(Types::Field) then begin
+                            ObjectDetailsManagement.UpdateTypeObjectDetailsLine(Types::Field);
+                            Message(SuccessfullyUpdated);
+                        end
+                        else
+                            Message(AlreadyUpdatedText);
+                end;
+            }
+
+            action(UpdateKeys)
+            {
+                Caption = 'Update Keys';
+                ApplicationArea = All;
+                Image = UpdateXML;
+                Promoted = true;
+                PromotedOnly = true;
+                PromotedCategory = Process;
+
+                trigger OnAction()
+                var
+                    ObjectDetailsManagement: Codeunit "Object Details Management";
+                    UpdateFieldsText: Label 'Do you want to update the keys?';
+                    AlreadyUpdatedText: Label 'Keys already updated!';
+                    SuccessfullyUpdated: Label 'Keys successfully updated!';
+                begin
+                    if Confirm(UpdateFieldsText, true) then
+                        if ObjectDetailsManagement.CheckUpdateTypeObjectDetailsLine(Types::"Key") then begin
+                            ObjectDetailsManagement.UpdateTypeObjectDetailsLine(Types::"Key");
                             Message(SuccessfullyUpdated);
                         end
                         else
@@ -89,7 +115,8 @@ page 50102 "Object Details Line List"
         ObjectDetailsManagement: Codeunit "Object Details Management";
         Keys: Record "Key";
     begin
-        ObjectDetailsManagement.ConfirmCheckUpdateFieldsObjectDetailsLine();
+        ObjectDetailsManagement.ConfirmCheckUpdateTypeObjectDetailsLine(Types::Field);
+        ObjectDetailsManagement.ConfirmCheckUpdateTypeObjectDetailsLine(Types::"Key");
     end;
 
     local procedure GetName(): Text[250]

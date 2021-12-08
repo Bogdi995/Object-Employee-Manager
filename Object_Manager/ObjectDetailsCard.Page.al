@@ -54,7 +54,7 @@ page 50101 "Object Details Card"
                     ToolTip = 'Specifies the value of the Name field.';
                     ApplicationArea = All;
                 }
-                field(NoPrimaryKeys; Rec.NoPrimaryKeys)
+                field(NoPrimaryKeys; Rec.PrimaryKey)
                 {
                     ToolTip = 'Specifies the value of the Name field.';
                     ApplicationArea = All;
@@ -176,8 +176,34 @@ page 50101 "Object Details Card"
                     SuccessfullyUpdated: Label 'Fields successfully updated!';
                 begin
                     if Confirm(StrSubstNo(UpdateFieldsText, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then
-                        if ObjectDetailsManagement.CheckUpdateFieldsObjectDetailsLine(Rec) then begin
-                            ObjectDetailsManagement.UpdateFieldsObjectDetailsLine(Format(Rec.ObjectNo));
+                        if ObjectDetailsManagement.CheckUpdateTypeObjectDetailsLine(Rec, Types::Field) then begin
+                            ObjectDetailsManagement.UpdateTypeObjectDetailsLine(Format(Rec.ObjectNo), Types::Field);
+                            Message(SuccessfullyUpdated);
+                        end
+                        else
+                            Message(AlreadyUpdatedText);
+                end;
+            }
+
+            action(UpdateKeys)
+            {
+                Caption = 'Update Keys';
+                ApplicationArea = All;
+                Image = UpdateXML;
+                Promoted = true;
+                PromotedOnly = true;
+                PromotedCategory = Process;
+
+                trigger OnAction()
+                var
+                    ObjectDetailsManagement: Codeunit "Object Details Management";
+                    UpdateFieldsText: Label 'Do you want to update the keys for: %1 %2 - "%3"?';
+                    AlreadyUpdatedText: Label 'Keys already updated!';
+                    SuccessfullyUpdated: Label 'Keys successfully updated!';
+                begin
+                    if Confirm(StrSubstNo(UpdateFieldsText, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then
+                        if ObjectDetailsManagement.CheckUpdateTypeObjectDetailsLine(Rec, Types::"Key") then begin
+                            ObjectDetailsManagement.UpdateTypeObjectDetailsLine(Format(Rec.ObjectNo), Types::"Key");
                             Message(SuccessfullyUpdated);
                         end
                         else

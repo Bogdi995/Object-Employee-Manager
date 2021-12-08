@@ -14,8 +14,8 @@ codeunit 50101 "Object Details Install"
         AllObj: Record AllObj;
     begin
         InsertNewRecords("Object Type"::Table, AllObj."Object Type"::Table);
-        AddFieldsToObjectDetailsLine();
-        AddKeysToObjectDetailsLine();
+        AddTypeToObjectDetailsLine(Types::Field);
+        AddTypeToObjectDetailsLine(Types::"Key");
         InsertNewRecords("Object Type"::"TableExtension", AllObj."Object Type"::"TableExtension");
         InsertNewRecords("Object Type"::Page, AllObj."Object Type"::Page);
         InsertNewRecords("Object Type"::"PageExtension", AllObj."Object Type"::"PageExtension");
@@ -43,46 +43,26 @@ codeunit 50101 "Object Details Install"
             until AllObj.Next() = 0;
     end;
 
-    local procedure AddFieldsToObjectDetailsLine()
+    local procedure AddTypeToObjectDetailsLine(Type: Enum Types)
     var
         AllObj: Record AllObj;
-        Field: Record Field;
-        ObjectDetailsLine: Record "Object Details Line";
+        RecRef: RecordRef;
+        FRef: FieldRef;
+        TableNoFRef: FieldRef;
         ObjectDetailsManagement: Codeunit "Object Details Management";
-        SystemTableIDs: Integer;
     begin
-        SystemTableIDs := 2000000000;
+        RecRef.Open(ObjectDetailsManagement.GetTypeTable(Type));
+        TableNoFRef := RecRef.Field(1);
+        ObjectDetailsManagement.FilterOutSystemValues(Type, FRef, RecRef);
         AllObj.SetRange("Object Type", AllObj."Object Type"::Table);
-        if AllObj.FindFirst() then
+        if AllObj.FindSet() then
             repeat
-                Field.SetRange(TableNo, AllObj."Object ID");
-                if Field.FindFirst() then
+                TableNoFRef.SetRange(AllObj."Object ID");
+                if RecRef.FindSet() then
                     repeat
-                        if Field."No." < SystemTableIDs then
-                            ObjectDetailsManagement.InsertObjectDetailsLine(Field, "Object Type"::Table); //add fields also for other objects: Page, etc
-                    until Field.Next() = 0;
+                        ObjectDetailsManagement.InsertObjectDetailsLine(RecRef, "Object Type"::Table, Type); // add also for other type of objects: Page, etc
+                    until RecRef.Next() = 0;
             until AllObj.Next() = 0;
-    end;
-
-    local procedure AddKeysToObjectDetailsLine()
-    var
-        AllObj: Record AllObj;
-        Keys: Record "Key";
-        ObjectDetailsLine: Record "Object Details Line";
-        ObjectDetailsManagement: Codeunit "Object Details Management";
-        SystemKey: Label '$systemId';
-    begin
-        AllObj.SetRange("Object Type", AllObj."Object Type"::Table);
-        if AllObj.FindFirst() then
-            repeat
-                Keys.SetRange(TableNo, AllObj."Object ID");
-                if Keys.FindFirst() then
-                    repeat
-                        if Keys."Key" <> SystemKey then
-                            ObjectDetailsManagement.InsertObjectDetailsLine(Keys, "Object Type"::Table); //add keys also for other objects: Page, etc
-                    until Keys.Next() = 0;
-            until AllObj.Next() = 0;
-
     end;
 
 }

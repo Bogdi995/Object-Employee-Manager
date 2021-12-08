@@ -11,8 +11,10 @@ codeunit 50102 "Object Details Upgrade"
         if Module.DataVersion.Major = 1 then begin
             if ObjectDetailsManagement.CheckUpdateObjectDetails() then
                 ObjectDetailsManagement.UpdateObjectDetails();
-            if ObjectDetailsManagement.CheckUpdateFieldsObjectDetailsLine() then
-                ObjectDetailsManagement.UpdateFieldsObjectDetailsLine();
+            if ObjectDetailsManagement.CheckUpdateTypeObjectDetailsLine(Types::Field) then
+                ObjectDetailsManagement.UpdateTypeObjectDetailsLine(Types::Field);
+            if ObjectDetailsManagement.CheckUpdateTypeObjectDetailsLine(Types::"Key") then
+                ObjectDetailsManagement.UpdateTypeObjectDetailsLine(Types::"Key");
         end;
     end;
 

@@ -68,6 +68,7 @@ table 50101 "Object Details Line"
         {
 
         }
+        key(fg; TEST_BOBL) { }
     }
 
 }

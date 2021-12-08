@@ -4,6 +4,7 @@ codeunit 50100 "Object Details Management"
     begin
     end;
 
+    //  -------- Object Details --------> START
     procedure ConfirmCheckUpdateObjectDetails()
     var
         ConfirmMessage: Label 'The objects are not updated, do you want to update them now?';
@@ -16,60 +17,6 @@ codeunit 50100 "Object Details Management"
                 UpdateObjectDetails();
                 Progress.Close();
             end;
-    end;
-
-    procedure ConfirmCheckUpdateFieldsObjectDetailsLine()
-    var
-        ConfirmMessage: Label 'The fields are not updated, do you want to update them now?';
-        ProgressText: Label 'The fields are being updated...';
-        Progress: Dialog;
-    begin
-        if CheckUpdateFieldsObjectDetailsLine() then
-            if Confirm(ConfirmMessage, true) then begin
-                Progress.Open(ProgressText);
-                UpdateFieldsObjectDetailsLine();
-                Progress.Close();
-            end;
-    end;
-
-    procedure CheckUpdateFieldsObjectDetailsLine(): Boolean
-    var
-        AllObj: Record AllObj;
-        Field: Record Field;
-        ObjectDetailsLine: Record "Object Details Line";
-        SystemFieldIDs: Integer;
-    begin
-        SystemFieldIDs := 2000000000;
-        ObjectDetailsLine.SetRange(ObjectType, "Object Type"::Table);
-        ObjectDetailsLine.SetRange(Type, Types::Field);
-        Field.SetFilter("No.", '<%1', SystemFieldIDs);
-        AllObj.SetRange("Object Type", AllObj."Object Type"::Table);
-        if AllObj.FindFirst() then
-            repeat
-                Field.SetRange(TableNo, AllObj."Object ID");
-                ObjectDetailsLine.SetRange(ObjectNo, AllObj."Object ID");
-                if not CheckFieldsObjectDetailsLine(Field, ObjectDetailsLine) then
-                    exit(true);
-            until AllObj.Next() = 0;
-        exit(false);
-    end;
-
-    procedure CheckUpdateFieldsObjectDetailsLine(var ObjectDetails: Record "Object Details"): Boolean
-    var
-        ObjectDetailsLine: Record "Object Details Line";
-        Field: Record Field;
-        SystemFieldIDs: Integer;
-    begin
-        SystemFieldIDs := 2000000000;
-        ObjectDetailsLine.SetRange(ObjectType, ObjectDetails.ObjectType);
-        ObjectDetailsLine.SetRange(ObjectNo, ObjectDetails.ObjectNo);
-        ObjectDetailsLine.SetRange(Type, Types::Field);
-        Field.SetRange(TableNo, ObjectDetails.ObjectNo);
-        Field.SetFilter("No.", '<%1', SystemFieldIDs);
-
-        if not CheckFieldsObjectDetailsLine(Field, ObjectDetailsLine) then
-            exit(true);
-        exit(false);
     end;
 
     procedure CheckUpdateObjectDetails(): Boolean
@@ -109,93 +56,6 @@ codeunit 50100 "Object Details Management"
         Update("Object Type"::XMLPort, AllObj."Object Type"::XMLport);
         Update("Object Type"::Query, AllObj."Object Type"::Query);
         Update("Object Type"::MenuSuite, AllObj."Object Type"::MenuSuite);
-
-    end;
-
-    procedure CheckFieldsObjectDetailsLine(var Field: Record Field; var ObjectDetailsLine: Record "Object Details Line"): Boolean
-    begin
-        if Field.Count() <> ObjectDetailsLine.Count() then
-            exit(false);
-
-        if Field.FindSet() then
-            if ObjectDetailsLine.FindSet() then
-                repeat
-                    if Field."No." <> ObjectDetailsLine.ID then
-                        exit(false);
-                    ObjectDetailsLine.Next();
-                until Field.Next() = 0;
-        exit(true);
-    end;
-
-    procedure UpdateFieldsObjectDetailsLine()
-    var
-        Field: Record Field;
-        ObjectDetailsLine: Record "Object Details Line";
-        Filter: Text;
-        SystemFieldIDs: Integer;
-    begin
-        Filter := GetObjectsWhereUpdateForFieldsNeeded();
-        SystemFieldIDs := 2000000000;
-
-        if Filter <> '' then begin
-            ObjectDetailsLine.SetFilter(ObjectNo, Filter);
-            if ObjectDetailsLine.FindSet() then
-                ObjectDetailsLine.DeleteAll();
-
-            Field.SetFilter(TableNo, Filter);
-            Field.SetFilter("No.", '<%1', SystemFieldIDs);
-            if Field.FindSet() then
-                repeat
-                    InsertObjectDetailsLine(Field, "Object Type"::Table);
-                until Field.Next() = 0;
-        end;
-    end;
-
-    procedure UpdateFieldsObjectDetailsLine(Filter: Text)
-    var
-        Field: Record Field;
-        ObjectDetailsLine: Record "Object Details Line";
-        SystemFieldIDs: Integer;
-    begin
-        SystemFieldIDs := 2000000000;
-
-        if Filter <> '' then begin
-            ObjectDetailsLine.SetFilter(ObjectNo, Filter);
-            if ObjectDetailsLine.FindSet() then
-                ObjectDetailsLine.DeleteAll();
-
-            Field.SetFilter(TableNo, Filter);
-            Field.SetFilter("No.", '<%1', SystemFieldIDs);
-            if Field.FindSet() then
-                repeat
-                    InsertObjectDetailsLine(Field, "Object Type"::Table);
-                until Field.Next() = 0;
-        end;
-    end;
-
-    procedure GetObjectsWhereUpdateForFieldsNeeded(): Text
-    var
-        AllObj: Record AllObj;
-        Field: Record Field;
-        ObjectDetailsLine: Record "Object Details Line";
-        SystemFieldIDs: Integer;
-        Filter: Text;
-    begin
-        SystemFieldIDs := 2000000000;
-        ObjectDetailsLine.SetRange(ObjectType, "Object Type"::Table);
-        ObjectDetailsLine.SetRange(Type, Types::Field);
-        Field.SetFilter("No.", '<%1', SystemFieldIDs);
-        AllObj.SetRange("Object Type", AllObj."Object Type"::Table);
-        if AllObj.FindFirst() then
-            repeat
-                Field.SetRange(TableNo, AllObj."Object ID");
-                ObjectDetailsLine.SetRange(ObjectNo, AllObj."Object ID");
-                if not CheckFieldsObjectDetailsLine(Field, ObjectDetailsLine) then begin
-                    Filter += Format(AllObj."Object ID") + '|';
-                end;
-            until AllObj.Next() = 0;
-        Filter := DelChr(Filter, '>', '|');
-        exit(Filter);
     end;
 
     procedure Update(ObjectTypeObjectDetails: enum "Object Type"; ObjectTypeAllObj: Integer)
@@ -232,33 +92,217 @@ codeunit 50100 "Object Details Management"
         ObjectDetails.Validate(ObjectNo, AllObj."Object ID");
         ObjectDetails.Insert(true);
     end;
+    //  -------- Object Details --------> END
 
-    procedure InsertObjectDetailsLine(var Field: Record Field; ObjectType: Enum "Object Type")
+
+
+    //  -------- Object Details Line --------> START
+    procedure ConfirmCheckUpdateTypeObjectDetailsLine(Type: Enum Types)
+    var
+        Progress: Dialog;
+        ConfirmMessage: Label 'The %1 are not updated, do you want to update them now?';
+        ProgressText: Label 'The %1 are being updated...';
+    begin
+        if CheckUpdateTypeObjectDetailsLine(Type) then
+            if Confirm(StrSubstNo(ConfirmMessage, GetTypeText(Type)), true) then begin
+                Progress.Open(StrSubstNo(ProgressText, GetTypeText(Type)));
+                UpdateTypeObjectDetailsLine(Type);
+                Progress.Close();
+            end;
+    end;
+
+    procedure CheckUpdateTypeObjectDetailsLine(Type: Enum Types): Boolean
+    var
+        AllObj: Record AllObj;
+        ObjectDetailsLine: Record "Object Details Line";
+        RecRef: RecordRef;
+        FRef: FieldRef;
+        TableNoFRef: FieldRef;
+    begin
+        RecRef.Open(GetTypeTable(Type));
+        TableNoFRef := RecRef.Field(1);
+        FilterOutSystemValues(Type, FRef, RecRef);
+
+        ObjectDetailsLine.SetRange(ObjectType, "Object Type"::Table);
+        ObjectDetailsLine.SetRange(Type, Type);
+        AllObj.SetRange("Object Type", AllObj."Object Type"::Table);
+        if AllObj.FindFirst() then
+            repeat
+                TableNoFRef.SetRange(AllObj."Object ID");
+                ObjectDetailsLine.SetRange(ObjectNo, AllObj."Object ID");
+                if not CheckTypeObjectDetailsLine(RecRef, ObjectDetailsLine) then
+                    exit(true);
+            until AllObj.Next() = 0;
+        exit(false);
+    end;
+
+    procedure CheckUpdateTypeObjectDetailsLine(var ObjectDetails: Record "Object Details"; Type: Enum Types): Boolean
+    var
+        ObjectDetailsLine: Record "Object Details Line";
+        RecRef: RecordRef;
+        FRef: FieldRef;
+        TableNoFRef: FieldRef;
+    begin
+        RecRef.Open(GetTypeTable(Type));
+        TableNoFRef := RecRef.Field(1);
+        TableNoFRef.SetRange(ObjectDetails.ObjectNo);
+        FilterOutSystemValues(Type, FRef, RecRef);
+
+        ObjectDetailsLine.SetRange(ObjectType, ObjectDetails.ObjectType);
+        ObjectDetailsLine.SetRange(ObjectNo, ObjectDetails.ObjectNo);
+        ObjectDetailsLine.SetRange(Type, Type);
+
+        if not CheckTypeObjectDetailsLine(RecRef, ObjectDetailsLine) then
+            exit(true);
+        exit(false);
+    end;
+
+    procedure CheckTypeObjectDetailsLine(var RecRef: RecordRef; var ObjectDetailsLine: Record "Object Details Line"): Boolean
+    begin
+        if RecRef.Count() <> ObjectDetailsLine.Count() then
+            exit(false);
+
+        if RecRef.FindSet() then
+            if ObjectDetailsLine.FindSet() then
+                repeat
+                    if Format(RecRef.Field(2)) <> Format(ObjectDetailsLine.ID) then
+                        exit(false);
+                    ObjectDetailsLine.Next();
+                until RecRef.Next() = 0;
+        exit(true);
+    end;
+
+
+    procedure GetTypeText(Type: Enum Types): Text
+    var
+        FieldsText: Label 'fields';
+        KeysText: Label 'keys';
+    begin
+        if Type = Types::Field then
+            exit(FieldsText);
+        exit(KeysText);
+    end;
+
+    procedure GetTypeTable(Type: Enum Types): Integer
+    begin
+        if Type = Type::Field then
+            exit(Database::Field);
+        exit(Database::"Key");
+    end;
+
+    procedure FilterOutSystemValues(Type: Enum Types; var FRef: FieldRef; var Recref: RecordRef)
+    var
+        SystemKey: Label '$systemId';
+        SystemFieldIDs: Integer;
+    begin
+        if Type = Types::Field then begin
+            SystemFieldIDs := 2000000000;
+            FRef := RecRef.Field(2);
+            FRef.SetFilter('<%1', SystemFieldIDs);
+        end
+        else begin
+            FRef := RecRef.Field(4);
+            FRef.SetFilter('<>%1', SystemKey);
+        end;
+    end;
+
+    procedure UpdateTypeObjectDetailsLine(Type: Enum Types)
+    var
+        ObjectDetailsLine: Record "Object Details Line";
+        RecRef: RecordRef;
+        FRef: FieldRef;
+        TableNoFRef: FieldRef;
+        Filter: Text;
+    begin
+        Filter := GetObjectsWhereUpdateForTypeNeeded(Type);
+        RecRef.Open(GetTypeTable(Type));
+        TableNoFRef := RecRef.Field(1);
+        FilterOutSystemValues(Type, FRef, RecRef);
+
+        if Filter <> '' then begin
+            ObjectDetailsLine.SetFilter(ObjectNo, Filter);
+            ObjectDetailsLine.SetRange(Type, Type);
+            if ObjectDetailsLine.FindSet() then
+                ObjectDetailsLine.DeleteAll();
+
+            TableNoFRef.SetFilter(Filter);
+            if RecRef.FindSet() then
+                repeat
+                    InsertObjectDetailsLine(RecRef, "Object Type"::Table, Type);
+                until RecRef.Next() = 0;
+        end;
+    end;
+
+    procedure UpdateTypeObjectDetailsLine(Filter: Text; Type: Enum Types)
+    var
+        ObjectDetailsLine: Record "Object Details Line";
+        RecRef: RecordRef;
+        FRef: FieldRef;
+        TableNoFRef: FieldRef;
+    begin
+        RecRef.Open(GetTypeTable(Type));
+        TableNoFRef := RecRef.Field(1);
+        FilterOutSystemValues(Type, FRef, RecRef);
+
+        if Filter <> '' then begin
+            ObjectDetailsLine.SetFilter(ObjectNo, Filter);
+            ObjectDetailsLine.SetRange(Type, Type);
+            if ObjectDetailsLine.FindSet() then
+                ObjectDetailsLine.DeleteAll();
+
+            TableNoFRef.SetFilter(Filter);
+            if RecRef.FindSet() then
+                repeat
+                    InsertObjectDetailsLine(RecRef, "Object Type"::Table, Type);
+                until RecRef.Next() = 0;
+        end;
+    end;
+
+    procedure GetObjectsWhereUpdateForTypeNeeded(Type: Enum Types): Text
+    var
+        AllObj: Record AllObj;
+        ObjectDetailsLine: Record "Object Details Line";
+        RecRef: RecordRef;
+        FRef: FieldRef;
+        TableNoFRef: FieldRef;
+        Filter: Text;
+
+    begin
+        RecRef.Open(GetTypeTable(Type));
+        TableNoFRef := RecRef.Field(1);
+        FilterOutSystemValues(Type, FRef, RecRef);
+
+        ObjectDetailsLine.SetRange(ObjectType, "Object Type"::Table);
+        ObjectDetailsLine.SetRange(Type, Type);
+        AllObj.SetRange("Object Type", AllObj."Object Type"::Table);
+        if AllObj.FindFirst() then
+            repeat
+                TableNoFRef.SetRange(AllObj."Object ID");
+                ObjectDetailsLine.SetRange(ObjectNo, AllObj."Object ID");
+                if not CheckTypeObjectDetailsLine(RecRef, ObjectDetailsLine) then
+                    Filter += Format(AllObj."Object ID") + '|';
+            until AllObj.Next() = 0;
+        Filter := DelChr(Filter, '>', '|');
+        exit(Filter);
+    end;
+
+    procedure InsertObjectDetailsLine(var RecRef: RecordRef; ObjectType: Enum "Object Type"; Type: Enum Types)
     var
         ObjectDetailsLine: Record "Object Details Line";
     begin
         ObjectDetailsLine.Init();
         ObjectDetailsLine.EntryNo := 0;
         ObjectDetailsLine.Validate(ObjectType, ObjectType);
-        ObjectDetailsLine.Validate(ObjectNo, Field.TableNo);
-        ObjectDetailsLine.Validate(Type, Types::Field);
-        ObjectDetailsLine.Validate(ID, Field."No.");
+        ObjectDetailsLine.Validate(ObjectNo, RecRef.Field(1).Value);
+        ObjectDetailsLine.Validate(Type, Type);
+        ObjectDetailsLine.Validate(ID, RecRef.Field(2).Value);
         ObjectDetailsLine.Insert(true);
     end;
+    //  -------- Object Details Line --------> END
 
-    procedure InsertObjectDetailsLine(var Keys: Record "Key"; ObjectType: Enum "Object Type")
-    var
-        ObjectDetailsLine: Record "Object Details Line";
-    begin
-        ObjectDetailsLine.Init();
-        ObjectDetailsLine.EntryNo := 0;
-        ObjectDetailsLine.Validate(ObjectType, ObjectType);
-        ObjectDetailsLine.Validate(ObjectNo, Keys.TableNo);
-        ObjectDetailsLine.Validate(Type, Types::"Key");
-        ObjectDetailsLine.Validate(ID, Keys."No.");
-        ObjectDetailsLine.Insert(true);
-    end;
 
+
+    //  -------- Others -------> START
     procedure GetObjectTypeFromObjectDetails(var ObjectDetails: Record "Object Details"): Integer
     var
         AllObj: Record AllObj;
@@ -288,4 +332,6 @@ codeunit 50100 "Object Details Management"
                 exit(AllObj."Object Type"::MenuSuite);
         end;
     end;
+    //  -------- Others -------> END
+
 }
