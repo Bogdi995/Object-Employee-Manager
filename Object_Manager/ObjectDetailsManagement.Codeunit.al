@@ -96,7 +96,7 @@ codeunit 50100 "Object Details Management"
 
 
 
-    //  -------- Object Details Line --------> START
+    //  -------- Object Details Line (FIELDS and KEYS) --------> START
     procedure ConfirmCheckUpdateTypeObjectDetailsLine(Type: Enum Types)
     var
         Progress: Dialog;
@@ -298,7 +298,73 @@ codeunit 50100 "Object Details Management"
         ObjectDetailsLine.Validate(ID, RecRef.Field(2).Value);
         ObjectDetailsLine.Insert(true);
     end;
-    //  -------- Object Details Line --------> END
+    //  -------- Object Details Line (FIELDS and KEYS) --------> END
+
+
+
+    //  -------- Object Details Line (FUNCTIONS) --------> START
+    [Scope('OnPrem')]
+    procedure CheckUpdateFunctionsObjectDetailsLine(var ObjectDetails: Record "Object Details"): Boolean
+    var
+        ObjectMetadataPage: Page "Object Metadata Page";
+        Encoding: DotNet Encoding;
+        StreamReader: DotNet StreamReader;
+        ObjectALCode: DotNet String;
+        GlobalFunctions: List of [Text];
+        LocalFunctions: List of [Text];
+        IntegrationEvents: List of [Text];
+        BusinessEvents: List of [Text];
+        InStr: InStream;
+        Function: Text;
+        ProcedureTxt: Label '    procedure';
+        LocalProcedureTxt: Label '    local procedure';
+        IntegrationEventTxt: Label '    [IntegrationEvent(%1, %2)]';
+        BusinessEventTxt: Label '    [BusinessEvent(%1, %2)]';
+        TrueTxt: Label 'true';
+        FalseTxt: Label 'false';
+    begin
+        InStr := ObjectMetadataPage.GetUserALCodeInstream(ObjectDetails.ObjectTypeCopy, ObjectDetails.ObjectNo);
+        ObjectALCode := StreamReader.StreamReader(InStr, Encoding.UTF8).ReadToEnd();
+        if ObjectALCode.IndexOf(StrSubstNo(IntegrationEventTxt, FalseTxt, FalseTxt)) <> -1 then
+            IntegrationEvents := GetFunctions(ObjectALCode, '', true, StrSubstNo(IntegrationEventTxt, FalseTxt, FalseTxt));
+        if ObjectALCode.IndexOf(ProcedureTxt) <> -1 then
+            GlobalFunctions := GetFunctions(ObjectALCode, ProcedureTxt, false, '');
+        if ObjectALCode.IndexOf(LocalProcedureTxt) <> -1 then
+            LocalFunctions := GetFunctions(ObjectALCode, LocalProcedureTxt, false, '');
+        if ObjectALCode.IndexOf(BusinessEventTxt) <> -1 then
+            BusinessEvents := GetFunctions(ObjectALCode, '', true, '');
+
+        foreach Function in IntegrationEvents do
+            Message(Function);
+        foreach Function in LocalFunctions do
+            Message(Function);
+    end;
+
+    [Scope('OnPrem')]
+    procedure GetFunctions(ObjectALCode: DotNet String; FunctionType: Text; IsEvent: Boolean; EventType: Text): List of [Text]
+    var
+        Substring: DotNet String;
+        Functions: List of [Text];
+        JValue: JsonValue;
+        Index: Integer;
+        SubstringIndex: Integer;
+    begin
+        Index := ObjectALCode.IndexOf(FunctionType);
+        repeat
+            Substring := ObjectALCode.Substring(Index + 4);
+            SubstringIndex := Substring.IndexOf('(');
+            JValue.SetValue(Substring.Substring(0, SubstringIndex));
+            if IsEvent then
+                Functions.Add(EventType + '\n' + Format(JValue))
+            else
+                Functions.Add(Format(JValue));
+            ObjectALCode := Substring.Substring(SubstringIndex);
+            Index := ObjectALCode.IndexOf(FunctionType);
+        until Index = -1;
+        exit(Functions);
+    end;
+
+    //  -------- Object Details Line (FUNCTIONS) --------> END
 
 
 

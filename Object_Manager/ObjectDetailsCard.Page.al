@@ -197,17 +197,42 @@ page 50101 "Object Details Card"
                 trigger OnAction()
                 var
                     ObjectDetailsManagement: Codeunit "Object Details Management";
-                    UpdateFieldsText: Label 'Do you want to update the keys for: %1 %2 - "%3"?';
+                    UpdateKeysText: Label 'Do you want to update the keys for: %1 %2 - "%3"?';
                     AlreadyUpdatedText: Label 'Keys already updated!';
                     SuccessfullyUpdated: Label 'Keys successfully updated!';
                 begin
-                    if Confirm(StrSubstNo(UpdateFieldsText, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then
+                    if Confirm(StrSubstNo(UpdateKeysText, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then
                         if ObjectDetailsManagement.CheckUpdateTypeObjectDetailsLine(Rec, Types::"Key") then begin
                             ObjectDetailsManagement.UpdateTypeObjectDetailsLine(Format(Rec.ObjectNo), Types::"Key");
                             Message(SuccessfullyUpdated);
                         end
                         else
                             Message(AlreadyUpdatedText);
+                end;
+            }
+            action(UpdateFunctions)
+            {
+                Caption = 'Update Functions';
+                ApplicationArea = All;
+                Image = UpdateXML;
+                Promoted = true;
+                PromotedOnly = true;
+                PromotedCategory = Process;
+
+                trigger OnAction()
+                var
+                    ObjectDetailsManagement: Codeunit "Object Details Management";
+                    UpdateFunctionsText: Label 'Do you want to update the functions for: %1 %2 - "%3"?';
+                    AlreadyUpdatedText: Label 'Functions already updated!';
+                    SuccessfullyUpdated: Label 'Functions successfully updated!';
+                begin
+                    // if Confirm(StrSubstNo(UpdateFunctionsText, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then
+                    if ObjectDetailsManagement.CheckUpdateFunctionsObjectDetailsLine(Rec) then begin
+                        // ObjectDetailsManagement.UpdateFunctionsObjectDetailsLine(Format(Rec.ObjectNo));
+                        Message(SuccessfullyUpdated);
+                    end
+                    else
+                        Message(AlreadyUpdatedText);
                 end;
             }
         }

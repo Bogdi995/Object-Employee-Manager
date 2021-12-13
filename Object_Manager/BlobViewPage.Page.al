@@ -16,7 +16,6 @@ page 50144 "Blob View Page"
 
     var
         MyText: Text;
-        FilePath: Text;
 
     [Scope('OnPrem')]
     procedure SetText(pMytext: Text)
