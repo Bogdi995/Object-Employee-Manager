@@ -34,7 +34,7 @@ codeunit 50101 "Object Details Install"
         ObjectDetails: Record "Object Details";
     begin
         AllObj.SetRange("Object Type", ObjectTypeAllObj);
-        if AllObj.FindFirst() then
+        if AllObj.FindSet() then
             repeat
                 ObjectDetails.Init();
                 ObjectDetails.Validate(ObjectType, ObjectTypeObjectDetails);

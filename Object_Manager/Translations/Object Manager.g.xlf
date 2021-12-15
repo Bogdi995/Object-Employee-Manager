@@ -18,6 +18,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field Name - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3526115305 - Field 613261596 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No. of Business Events</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field NoBusinessEvents - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3526115305 - Field 3389534604 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No. of fields</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -32,6 +37,11 @@
           <source>No. of Global Variables</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field NoGlobalVariables - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3526115305 - Field 334014308 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No. of Integration Events</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field NoIntegrationEvents - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3526115305 - Field 2577746007 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No. of Keys</source>
@@ -178,16 +188,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method CheckUpdateFunctionsObjectDetailsLine - NamedType BusinessEventTxt</note>
         </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - Method 1296989345 - NamedType 2662629274" size-unit="char" translate="yes" xml:space="preserve">
-          <source>true</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method CheckUpdateFunctionsObjectDetailsLine - NamedType TrueTxt</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - Method 1296989345 - NamedType 1693830703" size-unit="char" translate="yes" xml:space="preserve">
-          <source>false</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method CheckUpdateFunctionsObjectDetailsLine - NamedType FalseTxt</note>
-        </trans-unit>
         <trans-unit id="Codeunit 1029530680 - Method 3794091750 - NamedType 973351683" size-unit="char" translate="yes" xml:space="preserve">
           <source>The objects are not updated, do you want to update them now?</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -213,6 +213,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method FilterOutSystemValues - NamedType SystemKey</note>
         </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 1572135364 - NamedType 2662629274" size-unit="char" translate="yes" xml:space="preserve">
+          <source>true</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetEventParameters - NamedType TrueTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 1572135364 - NamedType 1693830703" size-unit="char" translate="yes" xml:space="preserve">
+          <source>false</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetEventParameters - NamedType FalseTxt</note>
+        </trans-unit>
         <trans-unit id="Codeunit 1029530680 - Method 3929872973 - NamedType 3665268272" size-unit="char" translate="yes" xml:space="preserve">
           <source>fields</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -222,6 +232,26 @@
           <source>keys</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetTypeText - NamedType KeysText</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 2046507907 - NamedType 1874868599" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    procedure</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method UpdateFunctionsObjectDetailsLine - NamedType ProcedureTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 2046507907 - NamedType 3732748292" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    local procedure</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method UpdateFunctionsObjectDetailsLine - NamedType LocalProcedureTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 2046507907 - NamedType 983099574" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    [IntegrationEvent(%1, %2)]</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method UpdateFunctionsObjectDetailsLine - NamedType IntegrationEventTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 2046507907 - NamedType 1494785318" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    [BusinessEvent(%1, %2)]</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method UpdateFunctionsObjectDetailsLine - NamedType BusinessEventTxt</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object Details Card</source>
@@ -238,6 +268,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control Name - Property ToolTip</note>
         </trans-unit>
+        <trans-unit id="Page 683374773 - Control 613261596 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Name field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control NoBusinessEvents - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 683374773 - Control 3389534604 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the value of the Name field.</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -253,6 +288,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control NoGlobalVariables - Property ToolTip</note>
         </trans-unit>
+        <trans-unit id="Page 683374773 - Control 334014308 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Name field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control NoIntegrationEvents - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 683374773 - Control 2577746007 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the value of the Name field.</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -262,11 +302,6 @@
           <source>Specifies the value of the Name field.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control NoLocalFuntions - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 683374773 - Control 1271361675 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the value of the Name field.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control NoPrimaryKeys - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Control 4116426244 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the value of the Name field.</source>
@@ -317,6 +352,11 @@
           <source>Specifies the value of the Name field.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control ObjectType - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 683374773 - Control 2333076789 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Name field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control PrimaryKey - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Control 4160745019 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the value of the Name field.</source>
@@ -498,6 +538,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Control Name - Property ToolTip</note>
         </trans-unit>
+        <trans-unit id="Page 2172956895 - Control 613261596 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Name field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Control NoBusinessEvents - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 2172956895 - Control 3389534604 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the value of the Name field.</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -513,6 +558,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Control NoGlobalVariables - Property ToolTip</note>
         </trans-unit>
+        <trans-unit id="Page 2172956895 - Control 334014308 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Name field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Control NoIntegrationEvents - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 2172956895 - Control 2577746007 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the value of the Name field.</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -522,11 +572,6 @@
           <source>Specifies the value of the Name field.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Control NoLocalFuntions - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 2172956895 - Control 1271361675 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the value of the Name field.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Control NoPrimaryKeys - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2172956895 - Control 4116426244 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the value of the Name field.</source>
@@ -577,6 +622,11 @@
           <source>Specifies the value of the Name field.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Control ObjectType - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2172956895 - Control 2333076789 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Name field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Control PrimaryKey - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2172956895 - Action 642782499 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Update Objects</source>
@@ -693,6 +743,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Types - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Enum 2388510493 - EnumValue 1072962558 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Business Event</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Types - EnumValue Business Event - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Enum 2388510493 - EnumValue 1884737638 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Field</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -707,6 +762,11 @@
           <source>Global Function</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Types - EnumValue Global Variable - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 2388510493 - EnumValue 573893934 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Integration Event</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Types - EnumValue Integration Event - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 2388510493 - EnumValue 3348941625 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Key</source>

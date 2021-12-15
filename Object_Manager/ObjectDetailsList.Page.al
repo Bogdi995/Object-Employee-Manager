@@ -38,7 +38,7 @@ page 50100 "Object Details List"
                     ToolTip = 'Specifies the value of the Name field.';
                     ApplicationArea = All;
                 }
-                field(NoPrimaryKeys; Rec.PrimaryKey)
+                field(PrimaryKey; Rec.PrimaryKey)
                 {
                     ToolTip = 'Specifies the value of the Name field.';
                     ApplicationArea = All;
@@ -51,6 +51,18 @@ page 50100 "Object Details List"
                 field(NoFields; Rec.NoFields)
                 {
                     ToolTip = 'Specifies the value of the Name field.';
+                    ApplicationArea = All;
+                }
+                field(NoIntegrationEvents; Rec.NoIntegrationEvents)
+                {
+                    ToolTip = 'Specifies the value of the Name field.';
+                    MultiLine = true;
+                    ApplicationArea = All;
+                }
+                field(NoBusinessEvents; Rec.NoBusinessEvents)
+                {
+                    ToolTip = 'Specifies the value of the Name field.';
+                    MultiLine = true;
                     ApplicationArea = All;
                 }
                 field(NoGlobalFunctions; Rec.NoGlobalFunctions)

@@ -54,7 +54,7 @@ page 50101 "Object Details Card"
                     ToolTip = 'Specifies the value of the Name field.';
                     ApplicationArea = All;
                 }
-                field(NoPrimaryKeys; Rec.PrimaryKey)
+                field(PrimaryKey; Rec.PrimaryKey)
                 {
                     ToolTip = 'Specifies the value of the Name field.';
                     ApplicationArea = All;
@@ -67,6 +67,18 @@ page 50101 "Object Details Card"
                 field(NoFields; Rec.NoFields)
                 {
                     ToolTip = 'Specifies the value of the Name field.';
+                    ApplicationArea = All;
+                }
+                field(NoIntegrationEvents; Rec.NoIntegrationEvents)
+                {
+                    ToolTip = 'Specifies the value of the Name field.';
+                    MultiLine = true;
+                    ApplicationArea = All;
+                }
+                field(NoBusinessEvents; Rec.NoBusinessEvents)
+                {
+                    ToolTip = 'Specifies the value of the Name field.';
+                    MultiLine = true;
                     ApplicationArea = All;
                 }
                 field(NoGlobalFunctions; Rec.NoGlobalFunctions)
@@ -226,13 +238,13 @@ page 50101 "Object Details Card"
                     AlreadyUpdatedText: Label 'Functions already updated!';
                     SuccessfullyUpdated: Label 'Functions successfully updated!';
                 begin
-                    // if Confirm(StrSubstNo(UpdateFunctionsText, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then
-                    if ObjectDetailsManagement.CheckUpdateFunctionsObjectDetailsLine(Rec) then begin
-                        // ObjectDetailsManagement.UpdateFunctionsObjectDetailsLine(Format(Rec.ObjectNo));
-                        Message(SuccessfullyUpdated);
-                    end
-                    else
-                        Message(AlreadyUpdatedText);
+                    if Confirm(StrSubstNo(UpdateFunctionsText, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then
+                        if ObjectDetailsManagement.CheckUpdateFunctionsObjectDetailsLine(Rec) then begin
+                            ObjectDetailsManagement.UpdateFunctionsObjectDetailsLine(Rec);
+                            Message(SuccessfullyUpdated);
+                        end
+                        else
+                            Message(AlreadyUpdatedText);
                 end;
             }
         }

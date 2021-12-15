@@ -19,27 +19,38 @@ enum 50101 Types
     {
         Caption = 'Field';
     }
-    value(4; "Global Function")
+
+    value(4; "Integration Event")
+    {
+        Caption = 'Integration Event';
+    }
+
+    value(5; "Business Event")
+    {
+        Caption = 'Business Event';
+    }
+
+    value(6; "Global Function")
     {
         Caption = 'Global Function';
     }
-    value(5; "Local Function")
+    value(7; "Local Function")
     {
         Caption = 'Local Function';
     }
-    value(6; "Global Variable")
+    value(8; "Global Variable")
     {
         Caption = 'Global Function';
     }
-    value(7; "Local Variable")
+    value(9; "Local Variable")
     {
         Caption = 'Local Variable';
     }
-    value(8; "Parameter")
+    value(10; "Parameter")
     {
         Caption = 'Parameter';
     }
-    value(9; "Return Value")
+    value(11; "Return Value")
     {
         Caption = 'Return Value';
     }

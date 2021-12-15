@@ -66,57 +66,71 @@ table 50100 "Object Details"
             FieldClass = FlowField;
             CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const(Field)));
         }
-        field(90; NoGlobalFunctions; Integer)
+        field(90; NoIntegrationEvents; Integer)
+        {
+            Caption = 'No. of Integration Events';
+            FieldClass = FlowField;
+            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Integration Event")));
+        }
+        field(100; NoBusinessEvents; Integer)
+        {
+            Caption = 'No. of Business Events';
+            FieldClass = FlowField;
+            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Business Event")));
+        }
+        field(110; NoGlobalFunctions; Integer)
         {
             Caption = 'No. of Global Functions';
-            DataClassification = CustomerContent;
+            FieldClass = FlowField;
+            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Global Function")));
         }
-        field(100; NoUnusedGlobalFunctions; Integer)
+        field(120; NoUnusedGlobalFunctions; Integer)
         {
             Caption = 'No. of Unused Global Functions';
             DataClassification = CustomerContent;
         }
-        field(110; NoLocalFuntions; Integer)
+        field(130; NoLocalFuntions; Integer)
         {
             Caption = 'No. of Local Functions';
-            DataClassification = CustomerContent;
+            FieldClass = FlowField;
+            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Local Function")));
         }
-        field(120; NoUnusedLocalFunctions; Integer)
+        field(140; NoUnusedLocalFunctions; Integer)
         {
             Caption = 'No. of Unused Local Functions';
             DataClassification = CustomerContent;
         }
-        field(130; NoTotalVariables; Integer)
+        field(150; NoTotalVariables; Integer)
         {
             Caption = 'No. of Total Variables';
             DataClassification = CustomerContent;
         }
-        field(140; NoUnusedTotalVariables; Integer)
+        field(160; NoUnusedTotalVariables; Integer)
         {
             Caption = 'No. of Unused Total Variables';
             DataClassification = CustomerContent;
         }
-        field(150; NoGlobalVariables; Integer)
+        field(170; NoGlobalVariables; Integer)
         {
             Caption = 'No. of Global Variables';
             DataClassification = CustomerContent;
         }
-        field(160; NoUnusedGlobalVariables; Integer)
+        field(180; NoUnusedGlobalVariables; Integer)
         {
             Caption = 'No. of Unused Global Variables';
             DataClassification = CustomerContent;
         }
-        field(170; NoUnusedParameters; Integer)
+        field(190; NoUnusedParameters; Integer)
         {
             Caption = 'No. of Unused Parameters';
             DataClassification = CustomerContent;
         }
-        field(180; NoUnusedReturnValues; Integer)
+        field(200; NoUnusedReturnValues; Integer)
         {
             Caption = 'No. of Unused Return Values';
             DataClassification = CustomerContent;
         }
-        field(190; ObjectTypeCopy; Option)
+        field(210; ObjectTypeCopy; Option)
         {
             OptionMembers = "TableData","Table",,"Report",,"Codeunit","XMLport","MenuSuite","Page","Query","System","FieldNumber",,,"PageExtension","TableExtension","Enum","EnumExtension","Profile","ProfileExtension";
             DataClassification = CustomerContent;

@@ -4,7 +4,8 @@ page 50103 "Object Details Subpage"
     Caption = 'Object Details Subpage';
     PageType = ListPart;
     SourceTable = "Object Details Line";
-    SourceTableView = sorting(Type, ID) order(ascending) where(Type = filter("Trigger" | "Key" | "Field"));
+    SourceTableView = sorting(Type, ID) order(ascending) where(Type = filter("Trigger" | "Key" | "Field" | "Global Function" |
+                                                                "Local Function" | "Integration Event" | "Business Event"));
 
     layout
     {
