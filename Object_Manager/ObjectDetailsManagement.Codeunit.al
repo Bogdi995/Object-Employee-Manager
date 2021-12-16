@@ -28,7 +28,7 @@ codeunit 50100 "Object Details Management"
         exit(false);
     end;
 
-    procedure CountAllObj(): Integer
+    local procedure CountAllObj(): Integer
     var
         AllObj: Record AllObj;
     begin
@@ -58,7 +58,7 @@ codeunit 50100 "Object Details Management"
         Update("Object Type"::MenuSuite, AllObj."Object Type"::MenuSuite);
     end;
 
-    procedure Update(ObjectTypeObjectDetails: Enum "Object Type"; ObjectTypeAllObj: Integer)
+    local procedure Update(ObjectTypeObjectDetails: Enum "Object Type"; ObjectTypeAllObj: Integer)
     var
         AllObj: Record AllObj;
         ObjectDetails: Record "Object Details";
@@ -83,7 +83,7 @@ codeunit 50100 "Object Details Management"
             end;
     end;
 
-    procedure InsertNewRecord(var AllObj: Record AllObj; TypeOfObject: enum "Object Type")
+    local procedure InsertNewRecord(var AllObj: Record AllObj; TypeOfObject: enum "Object Type")
     var
         ObjectDetails: Record "Object Details";
     begin
@@ -91,6 +91,20 @@ codeunit 50100 "Object Details Management"
         ObjectDetails.Validate(ObjectType, TypeOfObject);
         ObjectDetails.Validate(ObjectNo, AllObj."Object ID");
         ObjectDetails.Insert(true);
+    end;
+
+    procedure GetShowSubtype(ObjectType: Enum "Object Type"): Boolean
+    begin
+        if ObjectType = ObjectType::Codeunit then
+            exit(true);
+        exit(false);
+    end;
+
+    procedure GetShowNoUnused(No: Integer): Boolean
+    begin
+        if No <> 0 then
+            exit(true);
+        exit(false);
     end;
     //  -------- Object Details --------> END
 
@@ -157,7 +171,7 @@ codeunit 50100 "Object Details Management"
         exit(false);
     end;
 
-    procedure CheckTypeObjectDetailsLine(var RecRef: RecordRef; var ObjectDetailsLine: Record "Object Details Line"): Boolean
+    local procedure CheckTypeObjectDetailsLine(var RecRef: RecordRef; var ObjectDetailsLine: Record "Object Details Line"): Boolean
     begin
         if RecRef.Count() <> ObjectDetailsLine.Count() then
             exit(false);
@@ -173,7 +187,7 @@ codeunit 50100 "Object Details Management"
     end;
 
 
-    procedure GetTypeText(Type: Enum Types): Text
+    local procedure GetTypeText(Type: Enum Types): Text
     var
         FieldsText: Label 'fields';
         KeysText: Label 'keys';
@@ -258,7 +272,7 @@ codeunit 50100 "Object Details Management"
         end;
     end;
 
-    procedure GetObjectsWhereUpdateForTypeNeeded(Type: Enum Types): Text
+    local procedure GetObjectsWhereUpdateForTypeNeeded(Type: Enum Types): Text
     var
         AllObj: Record AllObj;
         ObjectDetailsLine: Record "Object Details Line";
@@ -302,17 +316,17 @@ codeunit 50100 "Object Details Management"
 
 
 
-    //  -------- Object Details Line (FUNCTIONS) --------> START
+    //  -------- Object Details Line (METHODS and EVENTS) --------> START
     [Scope('OnPrem')]
-    procedure CheckUpdateFunctionsObjectDetailsLine(var ObjectDetails: Record "Object Details"): Boolean
+    procedure CheckUpdateMethodsEventsObjectDetailsLine(var ObjectDetails: Record "Object Details"): Boolean
     var
         ObjectMetadataPage: Page "Object Metadata Page";
         Encoding: DotNet Encoding;
         StreamReader: DotNet StreamReader;
         ObjectALCode: DotNet String;
         InStr: InStream;
-        GlobalFunctions: List of [Text];
-        LocalFunctions: List of [Text];
+        GlobalMethods: List of [Text];
+        LocalMethods: List of [Text];
         IntegrationEvents: List of [Text];
         BusinessEvents: List of [Text];
         IntegrationEvent: Text;
@@ -333,26 +347,26 @@ codeunit 50100 "Object Details Management"
         if (ObjectALCode.IndexOf(BusinessEvent) <> -1) and (BusinessEvent <> '') then
             BusinessEvents := GetEvents(ObjectALCode, BusinessEvent, ProcedureTxt, LocalProcedureTxt);
         if ObjectALCode.IndexOf(ProcedureTxt) <> -1 then
-            GlobalFunctions := GetFunctions(ObjectALCode, ProcedureTxt, false, '', IntegrationEvents, BusinessEvents);
+            GlobalMethods := GetMethods(ObjectALCode, ProcedureTxt, false, '', IntegrationEvents, BusinessEvents);
         if ObjectALCode.IndexOf(LocalProcedureTxt) <> -1 then
-            LocalFunctions := GetFunctions(ObjectALCode, LocalProcedureTxt, false, '', IntegrationEvents, BusinessEvents);
+            LocalMethods := GetMethods(ObjectALCode, LocalProcedureTxt, false, '', IntegrationEvents, BusinessEvents);
 
-        if CheckFunctionsEvents(ObjectDetails, GlobalFunctions, Types::"Global Function") and CheckFunctionsEvents(ObjectDetails, LocalFunctions, Types::"Local Function")
-            and CheckFunctionsEvents(ObjectDetails, IntegrationEvents, Types::"Integration Event") and CheckFunctionsEvents(ObjectDetails, BusinessEvents, Types::"Business Event") then
+        if CheckMethodsEvents(ObjectDetails, GlobalMethods, Types::"Global Method") and CheckMethodsEvents(ObjectDetails, LocalMethods, Types::"Local Method")
+            and CheckMethodsEvents(ObjectDetails, IntegrationEvents, Types::"Integration Event") and CheckMethodsEvents(ObjectDetails, BusinessEvents, Types::"Business Event") then
             exit(false);
         exit(true);
     end;
 
     [Scope('OnPrem')]
-    procedure UpdateFunctionsObjectDetailsLine(var ObjectDetails: Record "Object Details")
+    procedure UpdateMethodsEventsObjectDetailsLine(var ObjectDetails: Record "Object Details")
     var
         ObjectMetadataPage: Page "Object Metadata Page";
         Encoding: DotNet Encoding;
         StreamReader: DotNet StreamReader;
         ObjectALCode: DotNet String;
         InStr: InStream;
-        GlobalFunctions: List of [Text];
-        LocalFunctions: List of [Text];
+        GlobalMethods: List of [Text];
+        LocalMethods: List of [Text];
         IntegrationEvents: List of [Text];
         BusinessEvents: List of [Text];
         IntegrationEvent: Text;
@@ -373,18 +387,18 @@ codeunit 50100 "Object Details Management"
         if (ObjectALCode.IndexOf(BusinessEvent) <> -1) and (BusinessEvent <> '') then
             BusinessEvents := GetEvents(ObjectALCode, BusinessEvent, ProcedureTxt, LocalProcedureTxt);
         if ObjectALCode.IndexOf(ProcedureTxt) <> -1 then
-            GlobalFunctions := GetFunctions(ObjectALCode, ProcedureTxt, false, '', IntegrationEvents, BusinessEvents);
+            GlobalMethods := GetMethods(ObjectALCode, ProcedureTxt, false, '', IntegrationEvents, BusinessEvents);
         if ObjectALCode.IndexOf(LocalProcedureTxt) <> -1 then
-            LocalFunctions := GetFunctions(ObjectALCode, LocalProcedureTxt, false, '', IntegrationEvents, BusinessEvents);
+            LocalMethods := GetMethods(ObjectALCode, LocalProcedureTxt, false, '', IntegrationEvents, BusinessEvents);
 
-        UpdateFunctionsEvents(ObjectDetails, GlobalFunctions, Types::"Global Function");
-        UpdateFunctionsEvents(ObjectDetails, LocalFunctions, Types::"Local Function");
-        UpdateFunctionsEvents(ObjectDetails, IntegrationEvents, Types::"Integration Event");
-        UpdateFunctionsEvents(ObjectDetails, BusinessEvents, Types::"Business Event");
+        UpdateMethodsEvents(ObjectDetails, GlobalMethods, Types::"Global Method");
+        UpdateMethodsEvents(ObjectDetails, LocalMethods, Types::"Local Method");
+        UpdateMethodsEvents(ObjectDetails, IntegrationEvents, Types::"Integration Event");
+        UpdateMethodsEvents(ObjectDetails, BusinessEvents, Types::"Business Event");
     end;
 
     [Scope('OnPrem')]
-    procedure GetEventParameters(ObjectALCode: DotNet String; EventType: Text): Text
+    local procedure GetEventParameters(ObjectALCode: DotNet String; EventType: Text): Text
     var
         TrueTxt: Label 'true';
         FalseTxt: Label 'false';
@@ -400,7 +414,7 @@ codeunit 50100 "Object Details Management"
     end;
 
     [Scope('OnPrem')]
-    procedure GetEvents(ObjectALCode: DotNet String; EventType: Text; ProcedureTxt: Text; LocalProcedureTxt: Text): List of [Text]
+    local procedure GetEvents(ObjectALCode: DotNet String; EventType: Text; ProcedureTxt: Text; LocalProcedureTxt: Text): List of [Text]
     var
         CopyObjectALCode: DotNet String;
         EmptyList: List of [Text];
@@ -410,16 +424,16 @@ codeunit 50100 "Object Details Management"
         Index := CopyObjectALCode.IndexOf(EventType);
         CopyObjectALCode := CopyObjectALCode.Substring(Index + 4);
         if CopyObjectALCode.IndexOf(ProcedureTxt) <> -1 then
-            exit(GetFunctions(CopyObjectALCode, ProcedureTxt, true, EventType, EmptyList, EmptyList));
-        exit(GetFunctions(CopyObjectALCode, LocalProcedureTxt, true, EventType, EmptyList, EmptyList));
+            exit(GetMethods(CopyObjectALCode, ProcedureTxt, true, EventType, EmptyList, EmptyList));
+        exit(GetMethods(CopyObjectALCode, LocalProcedureTxt, true, EventType, EmptyList, EmptyList));
     end;
 
     [Scope('OnPrem')]
-    procedure GetFunctions(ObjectALCode: DotNet String; FunctionType: Text; IsEvent: Boolean; EventType: Text; IntegrationEvents: List of [Text]; BusinessEvents: List of [Text]): List of [Text]
+    local procedure GetMethods(ObjectALCode: DotNet String; MethodType: Text; IsEvent: Boolean; EventType: Text; IntegrationEvents: List of [Text]; BusinessEvents: List of [Text]): List of [Text]
     var
         CopyObjectALCode: DotNet String;
         Substring: DotNet String;
-        Functions: List of [Text];
+        Methods: List of [Text];
         CRLF: Text[2];
         JValue: JsonValue;
         Index: Integer;
@@ -428,40 +442,40 @@ codeunit 50100 "Object Details Management"
         CRLF[1] := 13;
         CRLF[2] := 10;
         CopyObjectALCode := CopyObjectALCode.Copy(ObjectALCode);
-        Index := CopyObjectALCode.IndexOf(FunctionType);
+        Index := CopyObjectALCode.IndexOf(MethodType);
 
         repeat
             Substring := CopyObjectALCode.Substring(Index + 4);
             SubstringIndex := Substring.IndexOf('(');
             JValue.SetValue(Substring.Substring(0, SubstringIndex));
             if IsEvent then
-                Functions.Add(DelChr(DelChr(EventType, '=', ' ') + CRLF + Format(JValue), '=', '"'))
+                Methods.Add(DelChr(DelChr(EventType, '=', ' ') + CRLF + Format(JValue), '=', '"'))
             else begin
                 if (IntegrationEvents.Count() <> 0) or (BusinessEvents.Count() <> 0) then
-                    if CheckIfFunctionIsNotEvent(IntegrationEvents, BusinessEvents, Delchr(Format(JValue), '=', '"')) then
-                        Functions.Add(Delchr(Format(JValue), '=', '"'));
+                    if CheckIfMethodIsNotEvent(IntegrationEvents, BusinessEvents, Delchr(Format(JValue), '=', '"')) then
+                        Methods.Add(Delchr(Format(JValue), '=', '"'));
             end;
             CopyObjectALCode := Substring.Substring(SubstringIndex);
-            Index := CopyObjectALCode.IndexOf(FunctionType);
+            Index := CopyObjectALCode.IndexOf(MethodType);
         until Index = -1;
 
-        exit(Functions);
+        exit(Methods);
     end;
 
-    procedure CheckIfFunctionIsNotEvent(IntegrationEvents: List of [Text]; BusinessEvents: List of [Text]; NewFunction: Text): Boolean
+    procedure CheckIfMethodIsNotEvent(IntegrationEvents: List of [Text]; BusinessEvents: List of [Text]; NewMethod: Text): Boolean
     var
         Member: Text;
     begin
         foreach Member in IntegrationEvents do
-            if StrPos(Member, NewFunction) <> 0 then
+            if StrPos(Member, NewMethod) <> 0 then
                 exit(false);
         foreach Member in BusinessEvents do
-            if StrPos(Member, NewFunction) <> 0 then
+            if StrPos(Member, NewMethod) <> 0 then
                 exit(false);
         exit(true);
     end;
 
-    procedure CheckFunctionsEvents(var ObjectDetails: Record "Object Details"; GivenList: List of [Text]; Type: Enum Types): Boolean
+    procedure CheckMethodsEvents(var ObjectDetails: Record "Object Details"; GivenList: List of [Text]; Type: Enum Types): Boolean
     var
         ObjectDetailsLine: Record "Object Details Line";
     begin
@@ -478,7 +492,7 @@ codeunit 50100 "Object Details Management"
         exit(true);
     end;
 
-    procedure UpdateFunctionsEvents(var ObjectDetails: Record "Object Details"; GivenList: List of [Text]; Type: Enum Types)
+    procedure UpdateMethodsEvents(var ObjectDetails: Record "Object Details"; GivenList: List of [Text]; Type: Enum Types)
     var
         ObjectDetailsLine: Record "Object Details Line";
         Member: Text;
@@ -493,7 +507,7 @@ codeunit 50100 "Object Details Management"
             InsertObjectDetailsLine(ObjectDetails, Member, Type);
     end;
 
-    procedure InsertObjectDetailsLine(var ObjectDetails: Record "Object Details"; FunctionEventName: Text; Type: Enum Types)
+    local procedure InsertObjectDetailsLine(var ObjectDetails: Record "Object Details"; MethodEventName: Text; Type: Enum Types)
     var
         ObjectDetailsLine: Record "Object Details Line";
     begin
@@ -502,11 +516,11 @@ codeunit 50100 "Object Details Management"
         ObjectDetailsLine.Validate(ObjectType, ObjectDetails.ObjectType);
         ObjectDetailsLine.Validate(ObjectNo, ObjectDetails.ObjectNo);
         ObjectDetailsLine.Validate(Type, Type);
-        ObjectDetailsLine.Validate(Name, FunctionEventName);
+        ObjectDetailsLine.Validate(Name, MethodEventName);
         ObjectDetailsLine.Insert(true);
     end;
 
-    //  -------- Object Details Line (FUNCTIONS) --------> END
+    //  -------- Object Details Line (METHODS and EVENTS) --------> END
 
 
 

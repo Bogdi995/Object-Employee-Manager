@@ -78,26 +78,26 @@ table 50100 "Object Details"
             FieldClass = FlowField;
             CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Business Event")));
         }
-        field(110; NoGlobalFunctions; Integer)
+        field(110; NoGlobalMethods; Integer)
         {
-            Caption = 'No. of Global Functions';
+            Caption = 'No. of Global Methods';
             FieldClass = FlowField;
-            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Global Function")));
+            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Global Method")));
         }
-        field(120; NoUnusedGlobalFunctions; Integer)
+        field(120; NoUnusedGlobalMethods; Integer)
         {
-            Caption = 'No. of Unused Global Functions';
+            Caption = 'No. of Unused Global Methods';
             DataClassification = CustomerContent;
         }
-        field(130; NoLocalFuntions; Integer)
+        field(130; NoLocalMethods; Integer)
         {
-            Caption = 'No. of Local Functions';
+            Caption = 'No. of Local Methods';
             FieldClass = FlowField;
-            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Local Function")));
+            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Local Method")));
         }
-        field(140; NoUnusedLocalFunctions; Integer)
+        field(140; NoUnusedLocalMethods; Integer)
         {
-            Caption = 'No. of Unused Local Functions';
+            Caption = 'No. of Unused Local Methods';
             DataClassification = CustomerContent;
         }
         field(150; NoTotalVariables; Integer)
@@ -130,7 +130,27 @@ table 50100 "Object Details"
             Caption = 'No. of Unused Return Values';
             DataClassification = CustomerContent;
         }
-        field(210; ObjectTypeCopy; Option)
+        field(210; RelationsTo; Integer)
+        {
+            Caption = 'Relations To';
+            DataClassification = CustomerContent;
+        }
+        field(220; RelationsFrom; Integer)
+        {
+            Caption = 'Relations From';
+            DataClassification = CustomerContent;
+        }
+        field(230; NoObjectsUsedIn; Integer)
+        {
+            Caption = 'No. of Objects Used in';
+            DataClassification = CustomerContent;
+        }
+        field(240; UsedInNoObjects; Integer)
+        {
+            Caption = 'Used in No. of Objects';
+            DataClassification = CustomerContent;
+        }
+        field(250; ObjectTypeCopy; Option)
         {
             OptionMembers = "TableData","Table",,"Report",,"Codeunit","XMLport","MenuSuite","Page","Query","System","FieldNumber",,,"PageExtension","TableExtension","Enum","EnumExtension","Profile","ProfileExtension";
             DataClassification = CustomerContent;
@@ -144,11 +164,6 @@ table 50100 "Object Details"
             Clustered = true;
         }
     }
-
-    trigger OnInsert()
-    begin
-
-    end;
 
     trigger OnDelete()
     begin
@@ -165,21 +180,4 @@ table 50100 "Object Details"
         ObjectDetailsLine.DeleteAll();
     end;
 
-    // local procedure InsertLines(var ObjectDetails: Record "Object Details")
-    // var
-    //     Field: Record Field;
-    //     ObjectDetailsManagement: Codeunit "Object Details Management";
-    //     SystemTableIDs: Integer;
-    // begin
-    //     SystemTableIDs := 2000000000;
-    //     if ObjectDetails.ObjectType = "Object Type"::Table then begin
-    //         Field.SetRange(TableNo, ObjectDetails.ObjectNo);
-    //         if Field.FindFirst() then
-    //             repeat
-    //                 if Field."No." < SystemTableIDs then begin
-    //                     ObjectDetailsManagement.InsertObjectDetailsLine(Field, ObjectDetails.ObjectType);
-    //                 end;
-    //             until Field.Next() = 0;
-    //     end;
-    // end;
 }

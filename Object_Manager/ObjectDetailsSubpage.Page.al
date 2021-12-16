@@ -1,11 +1,10 @@
 page 50103 "Object Details Subpage"
 {
-
-    Caption = 'Object Details Subpage';
     PageType = ListPart;
     SourceTable = "Object Details Line";
-    SourceTableView = sorting(Type, ID) order(ascending) where(Type = filter("Trigger" | "Key" | "Field" | "Global Function" |
-                                                                "Local Function" | "Integration Event" | "Business Event"));
+    Caption = 'Object Details Subpage';
+    SourceTableView = sorting(Type, ID) order(ascending) where(Type = filter("Trigger" | "Key" | "Field" | "Global Method" | "Local Method" |
+                                                                             "Integration Event" | "Business Event"));
 
     layout
     {
@@ -15,27 +14,27 @@ page 50103 "Object Details Subpage"
             {
                 field("Type"; Rec."Type")
                 {
-                    ToolTip = 'Specifies the value of the Type field.';
+                    ToolTip = 'Specifies the type of the data.';
                     ApplicationArea = All;
                 }
                 field(ID; Rec.ID)
                 {
-                    ToolTip = 'Specifies the value of the ID field.';
+                    ToolTip = 'Specifies the ID of the data.';
                     ApplicationArea = All;
                 }
                 field(Name; GetName())
                 {
-                    ToolTip = 'Specifies the value of the Name field.';
+                    ToolTip = 'Specifies the name of the data.';
                     ApplicationArea = All;
                 }
                 field(Caption; GetCaption())
                 {
-                    ToolTip = 'Specifies the value of the Caption field.';
+                    ToolTip = 'Specifies the caption of the data.';
                     ApplicationArea = All;
                 }
                 field(TypeName; GetTypeName())
                 {
-                    ToolTip = 'Specifies the value of the Type Name field.';
+                    ToolTip = 'Specifies the data type and its length.';
                     ApplicationArea = All;
                 }
             }

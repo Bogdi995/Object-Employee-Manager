@@ -19,24 +19,21 @@ enum 50101 Types
     {
         Caption = 'Field';
     }
-
     value(4; "Integration Event")
     {
         Caption = 'Integration Event';
     }
-
     value(5; "Business Event")
     {
         Caption = 'Business Event';
     }
-
-    value(6; "Global Function")
+    value(6; "Global Method")
     {
-        Caption = 'Global Function';
+        Caption = 'Global Method';
     }
-    value(7; "Local Function")
+    value(7; "Local Method")
     {
-        Caption = 'Local Function';
+        Caption = 'Local Method';
     }
     value(8; "Global Variable")
     {

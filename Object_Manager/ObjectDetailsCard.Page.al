@@ -1,42 +1,35 @@
 page 50101 "Object Details Card"
 {
-    Caption = 'Object Details Card';
     PageType = Card;
+    SourceTable = "Object Details";
+    Caption = 'Object Details Card';
     ApplicationArea = All;
     UsageCategory = Administration;
-    SourceTable = "Object Details";
 
     layout
     {
         area(Content)
         {
-            group(Group)
+            group(Details)
             {
                 field(ObjectType; Rec.ObjectType)
                 {
-                    ToolTip = 'Specifies the value of the Name field.';
+                    ToolTip = 'Specifies the type of the object.';
                     ApplicationArea = All;
-                    trigger OnValidate()
-                    begin
-                        if Rec.ObjectType = Rec.ObjectType::Codeunit then
-                            ShowSubtype := true
-                        else
-                            ShowSubtype := false;
-                    end;
                 }
                 field(ObjectNo; Rec.ObjectNo)
                 {
-                    ToolTip = 'Specifies the value of the Name field.';
+                    ToolTip = 'Specifies the number of the object.';
                     ApplicationArea = All;
                 }
                 field(Name; Rec.Name)
                 {
-                    ToolTip = 'Specifies the value of the Name field.';
+                    ToolTip = 'Specifies the name of the object.';
                     ApplicationArea = All;
                 }
                 field(Caption; Rec.Caption)
                 {
-                    ToolTip = 'Specifies the value of the Name field.';
+                    ToolTip = 'Specifies the caption of the object.';
                     ApplicationArea = All;
                 }
                 group(Subtype)
@@ -45,91 +38,144 @@ page 50101 "Object Details Card"
                     Visible = ShowSubtype;
                     field(ObjectSubtype; Rec.ObjectSubtype)
                     {
-                        ToolTip = 'Specifies the value of the Name field.';
+                        ToolTip = 'Specifies the subtype of the object. This field is visible only when the type of the object is Codeunit.';
                         ApplicationArea = All;
                     }
                 }
                 field(NoTimesUsed; Rec.NoTimesUsed)
                 {
-                    ToolTip = 'Specifies the value of the Name field.';
+                    ToolTip = 'Specifies the number of times the object was used.';
                     ApplicationArea = All;
                 }
                 field(PrimaryKey; Rec.PrimaryKey)
                 {
-                    ToolTip = 'Specifies the value of the Name field.';
+                    ToolTip = 'Specifies the primary key of the object.';
                     ApplicationArea = All;
                 }
                 field(NoKeys; Rec.NoKeys)
                 {
-                    ToolTip = 'Specifies the value of the Name field.';
+                    ToolTip = 'Specifies the number of keys the object has.';
                     ApplicationArea = All;
                 }
                 field(NoFields; Rec.NoFields)
                 {
-                    ToolTip = 'Specifies the value of the Name field.';
+                    ToolTip = 'Specifies the number of fields the object has.';
                     ApplicationArea = All;
                 }
-                field(NoIntegrationEvents; Rec.NoIntegrationEvents)
+                group(Relations)
                 {
-                    ToolTip = 'Specifies the value of the Name field.';
-                    MultiLine = true;
-                    ApplicationArea = All;
+                    field(RelationsFrom; Rec.RelationsFrom)
+                    {
+                        ToolTip = 'Specifies the number of relations the object has from other objects.';
+                        ApplicationArea = All;
+                    }
+                    field(RelationsTo; Rec.RelationsTo)
+                    {
+                        ToolTip = 'Specifies the number of relations the object has to other objects.';
+                        ApplicationArea = All;
+                    }
+                    field(NoObjectsUsedIn; Rec.NoObjectsUsedIn)
+                    {
+                        ToolTip = 'Specifies the number of objects used in the object.';
+                        ApplicationArea = All;
+                    }
+                    field(UsedInNoObjects; Rec.UsedInNoObjects)
+                    {
+                        ToolTip = 'Specifies the number of objects the object is used in.';
+                        ApplicationArea = All;
+                    }
                 }
-                field(NoBusinessEvents; Rec.NoBusinessEvents)
+                group(MethodsEvents)
                 {
-                    ToolTip = 'Specifies the value of the Name field.';
-                    MultiLine = true;
-                    ApplicationArea = All;
+                    Caption = 'Methods and events';
+                    ShowCaption = true;
+
+                    field(NoIntegrationEvents; Rec.NoIntegrationEvents)
+                    {
+                        ToolTip = 'Specifies the number of integration events.';
+                        ApplicationArea = All;
+                    }
+                    field(NoBusinessEvents; Rec.NoBusinessEvents)
+                    {
+                        ToolTip = 'Specifies the number of business events.';
+                        ApplicationArea = All;
+                    }
+                    field(NoGlobalMethods; Rec.NoGlobalMethods)
+                    {
+                        ToolTip = 'Specifies the number of global methods.';
+                        ApplicationArea = All;
+                    }
+                    group(UnusedGlobalMethods)
+                    {
+                        ShowCaption = false;
+                        Visible = ShowNoUnusedGlobalMethods;
+                        field(NoUnusedGlobalMethods; Rec.NoUnusedGlobalMethods)
+                        {
+                            ToolTip = 'Specifies the number of unused global methods.';
+                            ApplicationArea = All;
+                        }
+                    }
+                    field(NoLocalMethods; Rec.NoLocalMethods)
+                    {
+                        ToolTip = 'Specifies the number of local methods.';
+                        ApplicationArea = All;
+                    }
+                    group(UnusedLocalMethods)
+                    {
+                        ShowCaption = false;
+                        Visible = ShowNoUnusedLocalMethods;
+                        field(NoUnusedLocalMethods; Rec.NoUnusedLocalMethods)
+                        {
+                            ToolTip = 'Specifies the number of unused local methods.';
+                            ApplicationArea = All;
+                        }
+                    }
+                    field(NoUnusedParameters; Rec.NoUnusedParameters)
+                    {
+                        ToolTip = 'Specifies the number of unused parameters.';
+                        ApplicationArea = All;
+                    }
+                    field(NoUnusedReturnValues; Rec.NoUnusedReturnValues)
+                    {
+                        ToolTip = 'Specifies the number of unused return values.';
+                        ApplicationArea = All;
+                    }
                 }
-                field(NoGlobalFunctions; Rec.NoGlobalFunctions)
+                group(Variables)
                 {
-                    ToolTip = 'Specifies the value of the Name field.';
-                    ApplicationArea = All;
-                }
-                field(NoUnusedGlobalFunctions; Rec.NoUnusedGlobalFunctions)
-                {
-                    ToolTip = 'Specifies the value of the Name field.';
-                    ApplicationArea = All;
-                }
-                field(NoLocalFuntions; Rec.NoLocalFuntions)
-                {
-                    ToolTip = 'Specifies the value of the Name field.';
-                    ApplicationArea = All;
-                }
-                field(NoUnusedLocalFunctions; Rec.NoUnusedLocalFunctions)
-                {
-                    ToolTip = 'Specifies the value of the Name field.';
-                    ApplicationArea = All;
-                }
-                field(NoTotalVariables; Rec.NoTotalVariables)
-                {
-                    ToolTip = 'Specifies the value of the Name field.';
-                    ApplicationArea = All;
-                }
-                field(NoUnusedTotalVariables; Rec.NoUnusedTotalVariables)
-                {
-                    ToolTip = 'Specifies the value of the Name field.';
-                    ApplicationArea = All;
-                }
-                field(NoGlobalVariables; Rec.NoGlobalVariables)
-                {
-                    ToolTip = 'Specifies the value of the Name field.';
-                    ApplicationArea = All;
-                }
-                field(NoUnusedGlobalVariables; Rec.NoUnusedGlobalVariables)
-                {
-                    ToolTip = 'Specifies the value of the Name field.';
-                    ApplicationArea = All;
-                }
-                field(NoUnusedParameters; Rec.NoUnusedParameters)
-                {
-                    ToolTip = 'Specifies the value of the Name field.';
-                    ApplicationArea = All;
-                }
-                field(NoUnusedReturnValues; Rec.NoUnusedReturnValues)
-                {
-                    ToolTip = 'Specifies the value of the Name field.';
-                    ApplicationArea = All;
+                    Caption = 'Variables';
+                    ShowCaption = true;
+
+                    field(NoTotalVariables; Rec.NoTotalVariables)
+                    {
+                        ToolTip = 'Specifies the total number of variables.';
+                        ApplicationArea = All;
+                    }
+                    group(UnusedTotalVariables)
+                    {
+                        ShowCaption = false;
+                        Visible = ShowNoUnusedTotalVariables;
+                        field(NoUnusedTotalVariables; Rec.NoUnusedTotalVariables)
+                        {
+                            ToolTip = 'Specifies the total number of unused variables.';
+                            ApplicationArea = All;
+                        }
+                    }
+                    field(NoGlobalVariables; Rec.NoGlobalVariables)
+                    {
+                        ToolTip = 'Specifies the number of global variables.';
+                        ApplicationArea = All;
+                    }
+                    group(UnusedGlobalVariables)
+                    {
+                        ShowCaption = false;
+                        Visible = ShowNoUnusedGlobalVariables;
+                        field(NoUnusedGlobalVariables; Rec.NoUnusedGlobalVariables)
+                        {
+                            ToolTip = 'Specifies the number of unused global variables.';
+                            ApplicationArea = All;
+                        }
+                    }
                 }
             }
             group(Lines)
@@ -222,9 +268,9 @@ page 50101 "Object Details Card"
                             Message(AlreadyUpdatedText);
                 end;
             }
-            action(UpdateFunctions)
+            action(UpdateMethodsEvents)
             {
-                Caption = 'Update Functions';
+                Caption = 'Update Methods and Events';
                 ApplicationArea = All;
                 Image = UpdateXML;
                 Promoted = true;
@@ -234,13 +280,13 @@ page 50101 "Object Details Card"
                 trigger OnAction()
                 var
                     ObjectDetailsManagement: Codeunit "Object Details Management";
-                    UpdateFunctionsText: Label 'Do you want to update the functions for: %1 %2 - "%3"?';
-                    AlreadyUpdatedText: Label 'Functions already updated!';
-                    SuccessfullyUpdated: Label 'Functions successfully updated!';
+                    UpdateMethodsEventsText: Label 'Do you want to update the methods and events for: %1 %2 - "%3"?';
+                    AlreadyUpdatedText: Label 'Methods and events already updated!';
+                    SuccessfullyUpdated: Label 'Methods and events successfully updated!';
                 begin
-                    if Confirm(StrSubstNo(UpdateFunctionsText, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then
-                        if ObjectDetailsManagement.CheckUpdateFunctionsObjectDetailsLine(Rec) then begin
-                            ObjectDetailsManagement.UpdateFunctionsObjectDetailsLine(Rec);
+                    if Confirm(StrSubstNo(UpdateMethodsEventsText, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then
+                        if ObjectDetailsManagement.CheckUpdateMethodsEventsObjectDetailsLine(Rec) then begin
+                            ObjectDetailsManagement.UpdateMethodsEventsObjectDetailsLine(Rec);
                             Message(SuccessfullyUpdated);
                         end
                         else
@@ -252,12 +298,18 @@ page 50101 "Object Details Card"
 
     var
         [InDataSet]
-        ShowSubtype: Boolean;
+        ShowSubtype, ShowNoUnusedTotalVariables, ShowNoUnusedGlobalVariables, ShowNoUnusedGlobalMethods, ShowNoUnusedLocalMethods : Boolean;
 
     trigger OnOpenPage()
     var
         ObjectDetailsManagement: Codeunit "Object Details Management";
     begin
         ObjectDetailsManagement.ConfirmCheckUpdateObjectDetails();
+        ShowSubtype := ObjectDetailsManagement.GetShowSubtype(Rec.ObjectType);
+        ShowNoUnusedGlobalMethods := ObjectDetailsManagement.GetShowNoUnused(Rec.NoGlobalMethods);
+        ShowNoUnusedLocalMethods := ObjectDetailsManagement.GetShowNoUnused(Rec.NoLocalMethods);
+        ShowNoUnusedTotalVariables := ObjectDetailsManagement.GetShowNoUnused(Rec.NoTotalVariables);
+        ShowNoUnusedGlobalVariables := ObjectDetailsManagement.GetShowNoUnused(Rec.NoGlobalVariables);
     end;
+
 }

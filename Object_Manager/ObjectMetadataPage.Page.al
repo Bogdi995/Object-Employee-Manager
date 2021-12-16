@@ -1,10 +1,13 @@
 page 50145 "Object Metadata Page"
 {
+    PageType = List;
+    SourceTable = "Application Object Metadata";
+    Caption = 'Object Details Line List';
+    ApplicationArea = All;
+    UsageCategory = Administration;
     DeleteAllowed = false;
     InsertAllowed = false;
     ModifyAllowed = false;
-    PageType = List;
-    SourceTable = "Application Object Metadata";
     SourceTableView = sorting("Object Type", "Object ID");
 
     layout
@@ -28,7 +31,7 @@ page 50145 "Object Metadata Page"
                         Rec.CalcFields(Metadata);
                         if Rec.Metadata.HasValue() then begin
                             Rec.Metadata.CreateInStream(InStr);
-                            "ProcessBlob&View"(Rec.FieldNo(Metadata), Instr);
+                            ShowBlob(Instr);
                         end else
                             error('Metadata is not available for this object');
                     end;
@@ -42,7 +45,7 @@ page 50145 "Object Metadata Page"
                         Rec.CalcFields("User Code");
                         if Rec."User Code".HasValue() then begin
                             Rec."User Code".CreateInStream(InStr);
-                            "ProcessBlob&View"(Rec.FieldNo("User Code"), InStr);
+                            ShowBlob(InStr);
                         end else
                             error('User Code is not available for this object');
                     end;
@@ -56,43 +59,22 @@ page 50145 "Object Metadata Page"
                         Rec.CalcFields("User AL Code");
                         if Rec."User AL Code".HasValue() then begin
                             Rec."User AL Code".CreateInStream(InStr);
-                            "ProcessBlob&View"(Rec.FieldNo("User AL Code"), InStr);
+                            ShowBlob(InStr);
                         end else
                             error('User AL Code is not available for this object');
                     end;
-                }
-                field("Metadata Version"; Rec."Metadata Version")
-                {
-                }
-                field("Object Subtype"; Rec."Object Subtype")
-                {
                 }
             }
         }
     }
 
     [Scope('OnPrem')]
-    local procedure "ProcessBlob&View"(FieldNo: Integer; InStr: InStream)
+    local procedure ShowBlob(InStr: InStream)
     var
-        BlobViewPage: Page "Blob View Page";
         Encoding: DotNet Encoding;
         StreamReader: DotNet StreamReader;
-        PageTitle: Text;
     begin
-        StreamReader := StreamReader.StreamReader(InStr, Encoding.UTF8);
-        Clear(BlobViewPage);
-        BlobViewPage.SetText(StreamReader.ReadToEnd());
-        PageTitle := Format(Rec."Object Type") + ' ' + Format(Rec."Object ID");
-        case FieldNo of
-            Rec.FieldNo(Metadata):
-                PageTitle += ' - ' + Rec.FieldName(Metadata) + '.xml';
-            Rec.FieldNo("User Code"):
-                PageTitle += ' - ' + Rec.FieldName("User Code") + '.cs';
-            Rec.FieldNo("User AL Code"):
-                PageTitle += ' - ' + Rec.FieldName("User AL Code") + '.txt';
-        end;
-        BlobViewPage.Caption(PageTitle);
-        BlobViewPage.RunModal();
+        Message(StreamReader.StreamReader(InStr, Encoding.UTF8).ReadToEnd());
     end;
 
     procedure GetKeyForObject(ObjectType: Text; ObjectID: Text): Text

@@ -48,10 +48,6 @@ table 50101 "Object Details Line"
             Caption = 'Type Name';
             DataClassification = CustomerContent;
         }
-        field(60; TEST_BOBL; Integer)
-        {
-
-        }
     }
 
     keys
@@ -68,7 +64,6 @@ table 50101 "Object Details Line"
         {
 
         }
-        key(fg; TEST_BOBL) { }
     }
 
 }

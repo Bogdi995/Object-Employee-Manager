@@ -1,10 +1,9 @@
 page 50102 "Object Details Line List"
 {
-
-    ApplicationArea = All;
-    Caption = 'Object Details Line List';
     PageType = List;
     SourceTable = "Object Details Line";
+    Caption = 'Object Details Line List';
+    ApplicationArea = All;
     UsageCategory = Administration;
 
     layout
@@ -15,37 +14,37 @@ page 50102 "Object Details Line List"
             {
                 field("ObjectType"; Rec."ObjectType")
                 {
-                    ToolTip = 'Specifies the value of the Object Type field.';
+                    ToolTip = 'Specifies the type of the object.';
                     ApplicationArea = All;
                 }
                 field(ObjectNo; Rec.ObjectNo)
                 {
-                    ToolTip = 'Specifies the value of the Object No. field.';
+                    ToolTip = 'Specifies the number of the object.';
                     ApplicationArea = All;
                 }
                 field("Type"; Rec."Type")
                 {
-                    ToolTip = 'Specifies the value of the Type field.';
+                    ToolTip = 'Specifies the type of the data.';
                     ApplicationArea = All;
                 }
                 field(ID; Rec.ID)
                 {
-                    ToolTip = 'Specifies the value of the ID field.';
+                    ToolTip = 'Specifies the ID of the data.';
                     ApplicationArea = All;
                 }
                 field(Name; GetName())
                 {
-                    ToolTip = 'Specifies the value of the Name field.';
+                    ToolTip = 'Specifies the name of the data.';
                     ApplicationArea = All;
                 }
                 field(Caption; GetCaption())
                 {
-                    ToolTip = 'Specifies the value of the Caption field.';
+                    ToolTip = 'Specifies the caption of the data.';
                     ApplicationArea = All;
                 }
                 field(TypeName; GetTypeName())
                 {
-                    ToolTip = 'Specifies the value of the Type Name field.';
+                    ToolTip = 'Specifies the data type and its length.';
                     ApplicationArea = All;
                 }
             }
