@@ -305,6 +305,12 @@ page 50101 "Object Details Card"
         ObjectDetailsManagement: Codeunit "Object Details Management";
     begin
         ObjectDetailsManagement.ConfirmCheckUpdateObjectDetails();
+    end;
+
+    trigger OnAfterGetRecord()
+    var
+        ObjectDetailsManagement: Codeunit "Object Details Management";
+    begin
         ShowSubtype := ObjectDetailsManagement.GetShowSubtype(Rec.ObjectType);
         ShowNoUnusedGlobalMethods := ObjectDetailsManagement.GetShowNoUnused(Rec.NoGlobalMethods);
         ShowNoUnusedLocalMethods := ObjectDetailsManagement.GetShowNoUnused(Rec.NoLocalMethods);
