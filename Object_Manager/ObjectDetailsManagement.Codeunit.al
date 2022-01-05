@@ -318,6 +318,79 @@ codeunit 50100 "Object Details Management"
 
     //  -------- Object Details Line (METHODS and EVENTS) --------> START
     [Scope('OnPrem')]
+    procedure CheckUpdateUnusedParameters(var ObjectDetails: Record "Object Details"): Boolean
+    var
+        ObjectMetadataPage: Page "Object Metadata Page";
+        Encoding: DotNet Encoding;
+        StreamReader: DotNet StreamReader;
+        ObjectALCode: DotNet String;
+        InStr: InStream;
+        ProcedureTxt: Label '    procedure';
+        LocalProcedureTxt: Label '    local procedure';
+    begin
+        InStr := ObjectMetadataPage.GetUserALCodeInstream(ObjectDetails.ObjectTypeCopy, ObjectDetails.ObjectNo);
+        ObjectALCode := StreamReader.StreamReader(InStr, Encoding.UTF8).ReadToEnd();
+        if GetUnusedParameters(ObjectALCode, ProcedureTxt) + GetUnusedParameters(ObjectALCode, LocalProcedureTxt) = 0 then
+            exit(true);
+        exit(false);
+    end;
+
+    [Scope('OnPrem')]
+    procedure GetUnusedParameters(ObjectALCode: DotNet String; MethodType: Text): Integer
+    var
+        CopyObjectALCode: DotNet String;
+        MethodALCode: DotNet String;
+        MethodHeader: DotNet String;
+        MethodBody: DotNet String;
+        ParametersList: List of [Text];
+        Parameter: Text;
+        EndTxt: Label '    end;';
+        VarTxt: Label 'var ';
+        UnusedParameters: Integer;
+        Index: Integer;
+        SubstringIndex: Integer;
+        SubstringIndexEnd: Integer;
+        CRLF: Text[2];
+    begin
+        CopyObjectALCode := CopyObjectALCode.Copy(ObjectALCode);
+        Index := CopyObjectALCode.IndexOf(MethodType);
+
+        repeat
+            MethodHeader := CopyObjectALCode.Substring(Index + 4);
+            CopyObjectALCode := CopyObjectALCode.Substring(Index + 4);
+            SubstringIndex := MethodHeader.IndexOf('(');
+            SubstringIndexEnd := MethodHeader.IndexOf(')');
+            MethodBody := MethodHeader.Substring(SubstringIndexEnd + 2, MethodHeader.IndexOf(EndTxt) - (SubstringIndexEnd + 2) + StrLen(EndTxt));
+            MethodHeader := MethodHeader.Substring(0, SubstringIndexEnd + 1);
+
+            CRLF[1] := 13;
+            CRLF[2] := 10;
+            Parameter := '    [IntegrationEvent(false, false)]' + CRLF + '    local procedure';
+            Index := CopyObjectALCode.IndexOf(Delchr(Parameter, '=', ''''));
+            CopyObjectALCode := CopyObjectALCode.Remove(CopyObjectALCode.IndexOf(Delchr(Parameter, '=', ''''), StrLen('    [IntegrationEvent(false, false)]') + StrLen('    local procedure')));
+
+            if SubstringIndexEnd - SubstringIndex <> 1 then
+                while (SubstringIndex <> 0) do begin
+                    MethodHeader := MethodHeader.Substring(SubstringIndex);
+                    SubstringIndex := MethodHeader.IndexOf(':');
+                    Parameter := MethodHeader.Substring(1, SubstringIndex - 1);
+                    if Parameter.Contains(VarTxt) then
+                        Parameter := Parameter.Remove(1, 4);
+                    ParametersList.Add(Parameter);
+                    SubstringIndex := MethodHeader.IndexOf(';') + 1;
+                end;
+            Index := CopyObjectALCode.IndexOf(MethodType);
+
+            foreach Parameter in ParametersList do
+                if not MethodBody.Contains(Parameter) then
+                    UnusedParameters += 1;
+            ParametersList.RemoveRange(1, ParametersList.Count());
+        until Index = -1;
+
+        exit(UnusedParameters);
+    end;
+
+    [Scope('OnPrem')]
     procedure CheckUpdateMethodsEventsObjectDetailsLine(var ObjectDetails: Record "Object Details"): Boolean
     var
         ObjectMetadataPage: Page "Object Metadata Page";

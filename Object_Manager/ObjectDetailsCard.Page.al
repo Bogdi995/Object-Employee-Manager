@@ -284,13 +284,14 @@ page 50101 "Object Details Card"
                     AlreadyUpdatedText: Label 'Methods and events already updated!';
                     SuccessfullyUpdated: Label 'Methods and events successfully updated!';
                 begin
-                    if Confirm(StrSubstNo(UpdateMethodsEventsText, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then
-                        if ObjectDetailsManagement.CheckUpdateMethodsEventsObjectDetailsLine(Rec) then begin
-                            ObjectDetailsManagement.UpdateMethodsEventsObjectDetailsLine(Rec);
-                            Message(SuccessfullyUpdated);
-                        end
-                        else
-                            Message(AlreadyUpdatedText);
+                    // if Confirm(StrSubstNo(UpdateMethodsEventsText, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then
+                    //     if ObjectDetailsManagement.CheckUpdateMethodsEventsObjectDetailsLine(Rec) then begin
+                    //         ObjectDetailsManagement.UpdateMethodsEventsObjectDetailsLine(Rec);
+                    //         Message(SuccessfullyUpdated);
+                    //     end
+                    //     else
+                    //         Message(AlreadyUpdatedText);
+                    ObjectDetailsManagement.CheckUpdateUnusedParameters(Rec);
                 end;
             }
         }

@@ -203,6 +203,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method CheckUpdateMethodsEventsObjectDetailsLine - NamedType BusinessEventTxt</note>
         </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 3668271955 - NamedType 1874868599" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    procedure</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method CheckUpdateUnusedParameters - NamedType ProcedureTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 3668271955 - NamedType 3732748292" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    local procedure</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method CheckUpdateUnusedParameters - NamedType LocalProcedureTxt</note>
+        </trans-unit>
         <trans-unit id="Codeunit 1029530680 - Method 3794091750 - NamedType 973351683" size-unit="char" translate="yes" xml:space="preserve">
           <source>The objects are not updated, do you want to update them now?</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -247,6 +257,16 @@
           <source>keys</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetTypeText - NamedType KeysText</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 2934933108 - NamedType 3692234337" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    end;</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetUnusedParameters - NamedType EndTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 2934933108 - NamedType 2540259599" size-unit="char" translate="yes" xml:space="preserve">
+          <source>var </source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetUnusedParameters - NamedType VarTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 1029530680 - Method 208438581 - NamedType 1874868599" size-unit="char" translate="yes" xml:space="preserve">
           <source>    procedure</source>

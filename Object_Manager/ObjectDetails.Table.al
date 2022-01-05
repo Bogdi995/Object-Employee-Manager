@@ -48,11 +48,11 @@ table 50100 "Object Details"
             Caption = 'No. of Times Used';
             DataClassification = CustomerContent;
         }
-        field(60; PrimaryKey; Integer)
+        field(60; PrimaryKey; Text[250])
         {
             Caption = 'Primary Key';
             FieldClass = FlowField;
-            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), ID = const(1), Type = const("Key")));
+            CalcFormula = lookup(Key."Key" where(TableNo = field(ObjectNo), "No." = const(1)));
         }
         field(70; NoKeys; Integer)
         {
