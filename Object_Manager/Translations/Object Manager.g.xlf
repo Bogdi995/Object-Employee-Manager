@@ -248,6 +248,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetEventParameters - NamedType FalseTxt</note>
         </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 4229754755 - NamedType 1874868599" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    procedure</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetEvents - NamedType ProcedureTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 4229754755 - NamedType 3732748292" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    local procedure</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetEvents - NamedType LocalProcedureTxt</note>
+        </trans-unit>
         <trans-unit id="Codeunit 1029530680 - Method 3929872973 - NamedType 3665268272" size-unit="char" translate="yes" xml:space="preserve">
           <source>fields</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -267,6 +277,16 @@
           <source>var </source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetUnusedParameters - NamedType VarTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 1582397950 - NamedType 983099574" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    [IntegrationEvent(%1, %2)]</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method RemoveEventsFromObject - NamedType IntegrationEventTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 1582397950 - NamedType 1494785318" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    [BusinessEvent(%1, %2)]</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method RemoveEventsFromObject - NamedType BusinessEventTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 1029530680 - Method 208438581 - NamedType 1874868599" size-unit="char" translate="yes" xml:space="preserve">
           <source>    procedure</source>
