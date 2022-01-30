@@ -243,6 +243,18 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method CheckUpdateMethodsEventsObjectDetailsLine - NamedType BusinessEventTxt</note>
         </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 3668271955 - NamedType 1874868599" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    procedure</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method CheckUpdateUnusedParameters - NamedType ProcedureTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 3668271955 - NamedType 3732748292" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    local procedure</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method CheckUpdateUnusedParameters - NamedType LocalProcedureTxt</note>
+        </trans-unit>
         <trans-unit id="Codeunit 1029530680 - Method 3794091750 - NamedType 973351683" size-unit="char" translate="yes" xml:space="preserve">
           <source>The objects are not updated, do you want to update them now?</source>
           <target state="Die Objekte sind nicht aktualisiert, wollen Sie sie jetzt aktualisieren?"/>
@@ -285,6 +297,30 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetEventParameters - NamedType FalseTxt</note>
         </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 4229754755 - NamedType 1874868599" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    procedure</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetEvents - NamedType ProcedureTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 4229754755 - NamedType 3732748292" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    local procedure</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetEvents - NamedType LocalProcedureTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 3381830381 - NamedType 3692234337" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    end;</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetNumberUnusedParameters - NamedType EndTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 3381830381 - NamedType 2540259599" size-unit="char" translate="yes" xml:space="preserve">
+          <source>var </source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetNumberUnusedParameters - NamedType VarTxt</note>
+        </trans-unit>
         <trans-unit id="Codeunit 1029530680 - Method 3929872973 - NamedType 3665268272" size-unit="char" translate="yes" xml:space="preserve">
           <source>fields</source>
           <target state="Felder"/>
@@ -296,6 +332,30 @@
           <target state="Schlüssel"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetTypeText - NamedType KeysText</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 1582397950 - NamedType 1018256172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    [IntegrationEvent(%1, %2)]</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method RemoveEventsFromObject - NamedType IntegrationEventLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 1582397950 - NamedType 2696378812" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    [BusinessEvent(%1, %2)]</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method RemoveEventsFromObject - NamedType BusinessEventLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 1582397950 - NamedType 983099574" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    [IntegrationEvent(%1, %2)]</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method RemoveEventsFromObject - NamedType IntegrationEventTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 1582397950 - NamedType 1494785318" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    [BusinessEvent(%1, %2)]</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method RemoveEventsFromObject - NamedType BusinessEventTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 1029530680 - Method 208438581 - NamedType 1874868599" size-unit="char" translate="yes" xml:space="preserve">
           <source>    procedure</source>
@@ -334,7 +394,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control Caption - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Control 1571018173 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Methods and events</source>
+          <source>Methods and Events</source>
           <target state="Methoden und Ereignisse"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control MethodsEvents - Property Caption</note>
@@ -497,7 +557,7 @@
         </trans-unit>
         <trans-unit id="Page 683374773 - Action 544469732 - Method 1377591017 - NamedType 2339537199" size-unit="char" translate="yes" xml:space="preserve">
           <source>Do you want to update the fields for: %1 %2 - "%3"?</source>
-          <target state="Möchten Sie die Felder für %1 %2 - "%3" aktualisieren? "/>
+          <target state="Möchten Sie die Felder für %1 %2 - %3 aktualisieren? "/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateFields - Method OnAction - NamedType UpdateFieldsText</note>
         </trans-unit>
@@ -521,7 +581,7 @@
         </trans-unit>
         <trans-unit id="Page 683374773 - Action 3473419439 - Method 1377591017 - NamedType 788511668" size-unit="char" translate="yes" xml:space="preserve">
           <source>Do you want to update the keys for: %1 %2 - "%3"?</source>
-          <target state="Möchten Sie die Schlüssel für %1 %2 - "%3" aktualisieren?"/>
+          <target state="Möchten Sie die Schlüssel für %1 %2 - %3 aktualisieren?"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateKeys - Method OnAction - NamedType UpdateKeysText</note>
         </trans-unit>
@@ -545,7 +605,7 @@
         </trans-unit>
         <trans-unit id="Page 683374773 - Action 459552838 - Method 1377591017 - NamedType 138329009" size-unit="char" translate="yes" xml:space="preserve">
           <source>Do you want to update the methods and events for: %1 %2 - "%3"?</source>
-          <target state="Möchten Sie die Methoden für %1 %2 - "%3" aktualisieren?"/>
+          <target state="Möchten Sie die Methoden für %1 %2 - %3 aktualisieren?"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateMethodsEvents - Method OnAction - NamedType UpdateMethodsEventsText</note>
         </trans-unit>

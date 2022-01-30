@@ -330,13 +330,13 @@ codeunit 50100 "Object Details Management"
     begin
         InStr := ObjectMetadataPage.GetUserALCodeInstream(ObjectDetails.ObjectTypeCopy, ObjectDetails.ObjectNo);
         ObjectALCode := StreamReader.StreamReader(InStr, Encoding.UTF8).ReadToEnd();
-        if GetUnusedParameters(ObjectALCode, ProcedureTxt) + GetUnusedParameters(ObjectALCode, LocalProcedureTxt) = 0 then
+        if GetNumberUnusedParameters(ObjectALCode, ProcedureTxt) + GetNumberUnusedParameters(ObjectALCode, LocalProcedureTxt) = 0 then
             exit(true);
         exit(false);
     end;
 
     [Scope('OnPrem')]
-    procedure GetUnusedParameters(ObjectALCode: DotNet String; MethodType: Text): Integer
+    procedure GetNumberUnusedParameters(ObjectALCode: DotNet String; MethodType: Text): Integer
     var
         CopyObjectALCode: DotNet String;
         MethodALCode: DotNet String;
@@ -346,13 +346,13 @@ codeunit 50100 "Object Details Management"
         Parameter: Text;
         EndTxt: Label '    end;';
         VarTxt: Label 'var ';
-        UnusedParameters: Integer;
+        NoUnusedParameters: Integer;
         Index: Integer;
         SubstringIndex: Integer;
         SubstringIndexEnd: Integer;
     begin
         CopyObjectALCode := CopyObjectALCode.Copy(ObjectALCode);
-        // RemoveEventsFromObject(CopyObjectALCode);
+        RemoveEventsFromObject(CopyObjectALCode);
         Index := CopyObjectALCode.IndexOf(MethodType);
 
         repeat
@@ -377,11 +377,24 @@ codeunit 50100 "Object Details Management"
 
             foreach Parameter in ParametersList do
                 if not MethodBody.Contains(Parameter) then
-                    UnusedParameters += 1;
+                    NoUnusedParameters += 1;
             ParametersList.RemoveRange(1, ParametersList.Count());
         until Index = -1;
 
-        exit(UnusedParameters);
+        exit(NoUnusedParameters);
+    end;
+
+    [Scope('OnPrem')]
+    local procedure RemoveEventsFromObject(ObjectALCode: DotNet String)
+    var
+        IntegrationEvents: List of [Text];
+        BusinessEvents: List of [Text];
+        IntegrationEventLbl: Label '    [IntegrationEvent(%1, %2)]';
+        BusinessEventLbl: Label '    [BusinessEvent(%1, %2)]';
+    begin
+        IntegrationEvents := GetEvents(ObjectALCode, IntegrationEventLbl);
+        BusinessEvents := GetEvents(ObjectALCode, BusinessEventLbl);
+        RemoveEventsFromObject(ObjectALCode, IntegrationEvents, BusinessEvents);
     end;
 
     [Scope('OnPrem')]
@@ -398,18 +411,6 @@ codeunit 50100 "Object Details Management"
             ObjectALCode := ObjectALCode.Remove(ObjectALCode.IndexOf(Member), StrLen(Member));
         foreach Member in BusinessEvents do
             ObjectALCode := ObjectALCode.Remove(ObjectALCode.IndexOf(Member), StrLen(Member));
-    end;
-
-    [Scope('OnPrem')]
-    local procedure RemoveEventsFromObject(ObjectALCode: DotNet String; EventType: Text; ProcedureType: Text)
-    var
-        CRLF: Text[2];
-        EventAndProcedure: Text;
-    begin
-        CRLF[1] := 13;
-        CRLF[2] := 10;
-        EventAndProcedure := EventType + CRLF + ProcedureType;
-        ObjectALCode := ObjectALCode.Remove(ObjectALCode.IndexOf(EventAndProcedure), StrLen(EventAndProcedure));
     end;
 
     [Scope('OnPrem')]
@@ -435,6 +436,8 @@ codeunit 50100 "Object Details Management"
         IntegrationEvents := GetEvents(ObjectALCode, IntegrationEventTxt);
         BusinessEvents := GetEvents(ObjectALCode, BusinessEventTxt);
         RemoveEventsFromObject(ObjectALCode, IntegrationEvents, BusinessEvents);
+        IntegrationEvents := GetFormattedEvents(IntegrationEvents);
+        BusinessEvents := GetFormattedEvents(BusinessEvents);
 
         if ObjectALCode.IndexOf(ProcedureTxt) <> -1 then
             GlobalMethods := GetMethods(ObjectALCode, ProcedureTxt, false, '');
@@ -470,6 +473,8 @@ codeunit 50100 "Object Details Management"
         IntegrationEvents := GetEvents(ObjectALCode, IntegrationEventTxt);
         BusinessEvents := GetEvents(ObjectALCode, BusinessEventTxt);
         RemoveEventsFromObject(ObjectALCode, IntegrationEvents, BusinessEvents);
+        IntegrationEvents := GetFormattedEvents(IntegrationEvents);
+        BusinessEvents := GetFormattedEvents(BusinessEvents);
 
         if ObjectALCode.IndexOf(ProcedureTxt) <> -1 then
             GlobalMethods := GetMethods(ObjectALCode, ProcedureTxt, false, '');
@@ -509,11 +514,40 @@ codeunit 50100 "Object Details Management"
         Member: Text;
     begin
         TypeEventsAux := GetEventsWithSpecificParameters(ObjectALCode, EventType, ProcedureType);
-        if TypeEventsAux.Count <> 0 then begin
-            foreach Member in TypeEventsAux do
+
+        if TypeEventsAux.Count() <> 0 then
+            foreach Member in TypeEventsAux do begin
                 TypeEvents.Add(Member);
-            RemoveEventsFromObject(ObjectALCode, EventType, ProcedureType);
+                ObjectALCode := ObjectALCode.Remove(ObjectALCode.IndexOf(Member), StrLen(Member));
+            end;
+    end;
+
+    local procedure GetFormattedEvents(UnformattedEvents: List of [Text]): List of [Text]
+    var
+        FormattedEvents: List of [Text];
+        Member: Text;
+    begin
+        foreach Member in UnformattedEvents do begin
+            FormattedEvents.Add(FormatEvent(Member));
         end;
+
+        exit(FormattedEvents);
+    end;
+
+    local procedure FormatEvent(UnformattedEvent: Text): Text
+    var
+        CRLF: Text[2];
+        EventType: Text;
+        ProcedureFromEvent: Text;
+    begin
+        CRLF[1] := 13;
+        CRLF[2] := 10;
+        EventType := UnformattedEvent.Substring(1, StrPos(UnformattedEvent, CRLF) - 1);
+        ProcedureFromEvent := UnformattedEvent.Substring(StrLen(EventType) + 1);
+        ProcedureFromEvent := DelChr(ProcedureFromEvent, '=', CRLF);
+        ProcedureFromEvent := DelChr(ProcedureFromEvent, '<', ' ');
+        EventType := DelChr(EventType, '<', ' ');
+        exit(EventType + CRLF + ProcedureFromEvent);
     end;
 
     [Scope('OnPrem')]
@@ -552,6 +586,7 @@ codeunit 50100 "Object Details Management"
         Substring: DotNet String;
         Methods: List of [Text];
         CRLF: Text[2];
+        Method: Text;
         JValue: JsonValue;
         Index: Integer;
         SubstringIndex: Integer;
@@ -568,8 +603,10 @@ codeunit 50100 "Object Details Management"
 
             if IsEvent then
                 Methods.Add(DelChr(EventType + CRLF + Format(JValue), '=', '"'))
-            else
-                Methods.Add(Delchr(Format(JValue), '=', '"'));
+            else begin
+                Method := Delchr(Format(JValue), '=', '"');
+                Methods.Add(Delchr(Method, '<', ' '));
+            end;
 
             CopyObjectALCode := Substring.Substring(SubstringIndex);
             Index := CopyObjectALCode.IndexOf(MethodType);
@@ -578,19 +615,6 @@ codeunit 50100 "Object Details Management"
         exit(Methods);
     end;
 
-    // procedure CheckIfMethodIsNotEvent(IntegrationEvents: List of [Text]; BusinessEvents: List of [Text]; NewMethod: Text): Boolean
-    // var
-    //     Member: Text;
-    // begin
-    //     foreach Member in IntegrationEvents do
-    //         if StrPos(Member, NewMethod) <> 0 then
-    //             exit(false);
-    //     foreach Member in BusinessEvents do
-    //         if StrPos(Member, NewMethod) <> 0 then
-    //             exit(false);
-    //     exit(true);
-    // end;
-
     procedure CheckMethodsEvents(var ObjectDetails: Record "Object Details"; GivenList: List of [Text]; Type: Enum Types): Boolean
     var
         ObjectDetailsLine: Record "Object Details Line";
@@ -598,6 +622,10 @@ codeunit 50100 "Object Details Management"
         ObjectDetailsLine.SetRange(ObjectType, ObjectDetails.ObjectType);
         ObjectDetailsLine.SetRange(ObjectNo, ObjectDetails.ObjectNo);
         ObjectDetailsLine.SetRange(Type, Type);
+
+        if (ObjectDetailsLine.Count() = 0) and (GivenList.Count() = 0) then
+            exit(true);
+
         if ObjectDetailsLine.FindSet() then
             repeat
                 if not GivenList.Contains(ObjectDetailsLine.Name) then
@@ -620,10 +648,10 @@ codeunit 50100 "Object Details Management"
             ObjectDetailsLine.DeleteAll();
 
         foreach Member in GivenList do
-            InsertObjectDetailsLine(ObjectDetails, DelChr(Member, '=', ' '), Type);
+            InsertObjectDetailsLine(ObjectDetails, Member, Type);
     end;
 
-    local procedure InsertObjectDetailsLine(var ObjectDetails: Record "Object Details"; MethodEventName: Text; Type: Enum Types)
+    local procedure InsertObjectDetailsLine(var ObjectDetails: Record "Object Details"; Name: Text; Type: Enum Types)
     var
         ObjectDetailsLine: Record "Object Details Line";
     begin
@@ -632,7 +660,7 @@ codeunit 50100 "Object Details Management"
         ObjectDetailsLine.Validate(ObjectType, ObjectDetails.ObjectType);
         ObjectDetailsLine.Validate(ObjectNo, ObjectDetails.ObjectNo);
         ObjectDetailsLine.Validate(Type, Type);
-        ObjectDetailsLine.Validate(Name, MethodEventName);
+        ObjectDetailsLine.Validate(Name, Name);
         ObjectDetailsLine.Insert(true);
     end;
 

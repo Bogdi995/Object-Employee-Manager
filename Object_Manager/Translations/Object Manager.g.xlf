@@ -258,6 +258,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetEvents - NamedType LocalProcedureTxt</note>
         </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 3381830381 - NamedType 3692234337" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    end;</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetNumberUnusedParameters - NamedType EndTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 3381830381 - NamedType 2540259599" size-unit="char" translate="yes" xml:space="preserve">
+          <source>var </source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetNumberUnusedParameters - NamedType VarTxt</note>
+        </trans-unit>
         <trans-unit id="Codeunit 1029530680 - Method 3929872973 - NamedType 3665268272" size-unit="char" translate="yes" xml:space="preserve">
           <source>fields</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -268,15 +278,15 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetTypeText - NamedType KeysText</note>
         </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - Method 2934933108 - NamedType 3692234337" size-unit="char" translate="yes" xml:space="preserve">
-          <source>    end;</source>
+        <trans-unit id="Codeunit 1029530680 - Method 1582397950 - NamedType 1018256172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    [IntegrationEvent(%1, %2)]</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetUnusedParameters - NamedType EndTxt</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method RemoveEventsFromObject - NamedType IntegrationEventLbl</note>
         </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - Method 2934933108 - NamedType 2540259599" size-unit="char" translate="yes" xml:space="preserve">
-          <source>var </source>
+        <trans-unit id="Codeunit 1029530680 - Method 1582397950 - NamedType 2696378812" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    [BusinessEvent(%1, %2)]</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetUnusedParameters - NamedType VarTxt</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method RemoveEventsFromObject - NamedType BusinessEventLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 1029530680 - Method 1582397950 - NamedType 983099574" size-unit="char" translate="yes" xml:space="preserve">
           <source>    [IntegrationEvent(%1, %2)]</source>
@@ -319,7 +329,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control Caption - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Control 1571018173 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Methods and events</source>
+          <source>Methods and Events</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control MethodsEvents - Property Caption</note>
         </trans-unit>

@@ -87,7 +87,7 @@ page 50101 "Object Details Card"
                 }
                 group(MethodsEvents)
                 {
-                    Caption = 'Methods and events';
+                    Caption = 'Methods and Events';
                     ShowCaption = true;
 
                     field(NoIntegrationEvents; Rec.NoIntegrationEvents)
@@ -285,13 +285,13 @@ page 50101 "Object Details Card"
                     SuccessfullyUpdated: Label 'Methods and events successfully updated!';
                 begin
                     if Confirm(StrSubstNo(UpdateMethodsEventsText, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then
-                        if ObjectDetailsManagement.CheckUpdateMethodsEventsObjectDetailsLine(Rec) then begin
-                            ObjectDetailsManagement.UpdateMethodsEventsObjectDetailsLine(Rec);
-                            Message(SuccessfullyUpdated);
-                        end
-                        else
-                            Message(AlreadyUpdatedText);
-                    // ObjectDetailsManagement.CheckUpdateUnusedParameters(Rec);
+                        // if ObjectDetailsManagement.CheckUpdateMethodsEventsObjectDetailsLine(Rec) then begin
+                        //     ObjectDetailsManagement.UpdateMethodsEventsObjectDetailsLine(Rec);
+                        //     Message(SuccessfullyUpdated);
+                        // end
+                        // else
+                        //     Message(AlreadyUpdatedText);
+                    ObjectDetailsManagement.CheckUpdateUnusedParameters(Rec);
                 end;
             }
         }
