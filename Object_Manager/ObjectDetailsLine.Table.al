@@ -48,6 +48,11 @@ table 50101 "Object Details Line"
             Caption = 'Type Name';
             DataClassification = CustomerContent;
         }
+        field(60; Used; Boolean)
+        {
+            Caption = 'Used';
+            DataClassification = CustomerContent;
+        }
     }
 
     keys

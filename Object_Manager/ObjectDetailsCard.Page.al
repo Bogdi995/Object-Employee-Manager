@@ -204,17 +204,17 @@ page 50101 "Object Details Card"
                 trigger OnAction()
                 var
                     ObjectDetailsManagement: Codeunit "Object Details Management";
-                    UpdateObjectsText: Label 'Do you want to update the objects?';
-                    AlreadyUpdatedText: Label 'Objects already updated!';
-                    SuccessfullyUpdated: Label 'Objects successfully updated!';
+                    UpdateObjectsLbl: Label 'Do you want to update the objects?';
+                    AlreadyUpdatedLbl: Label 'Objects already updated!';
+                    SuccessfullyUpdatedLbl: Label 'Objects successfully updated!';
                 begin
-                    if Confirm(UpdateObjectsText, true) then
+                    if Confirm(UpdateObjectsLbl, true) then
                         if ObjectDetailsManagement.CheckUpdateObjectDetails() then begin
                             ObjectDetailsManagement.UpdateObjectDetails();
-                            Message(SuccessfullyUpdated);
+                            Message(SuccessfullyUpdatedLbl);
                         end
                         else
-                            Message(AlreadyUpdatedText);
+                            Message(AlreadyUpdatedLbl);
                 end;
             }
             action(UpdateFields)
@@ -229,17 +229,17 @@ page 50101 "Object Details Card"
                 trigger OnAction()
                 var
                     ObjectDetailsManagement: Codeunit "Object Details Management";
-                    UpdateFieldsText: Label 'Do you want to update the fields for: %1 %2 - "%3"?';
-                    AlreadyUpdatedText: Label 'Fields already updated!';
-                    SuccessfullyUpdated: Label 'Fields successfully updated!';
+                    UpdateFieldsLbl: Label 'Do you want to update the fields for: %1 %2 - "%3"?';
+                    AlreadyUpdatedLbl: Label 'Fields already updated!';
+                    SuccessfullyUpdatedLbl: Label 'Fields successfully updated!';
                 begin
-                    if Confirm(StrSubstNo(UpdateFieldsText, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then
+                    if Confirm(StrSubstNo(UpdateFieldsLbl, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then
                         if ObjectDetailsManagement.CheckUpdateTypeObjectDetailsLine(Rec, Types::Field) then begin
                             ObjectDetailsManagement.UpdateTypeObjectDetailsLine(Format(Rec.ObjectNo), Types::Field);
-                            Message(SuccessfullyUpdated);
+                            Message(SuccessfullyUpdatedLbl);
                         end
                         else
-                            Message(AlreadyUpdatedText);
+                            Message(AlreadyUpdatedLbl);
                 end;
             }
 
@@ -255,17 +255,17 @@ page 50101 "Object Details Card"
                 trigger OnAction()
                 var
                     ObjectDetailsManagement: Codeunit "Object Details Management";
-                    UpdateKeysText: Label 'Do you want to update the keys for: %1 %2 - "%3"?';
-                    AlreadyUpdatedText: Label 'Keys already updated!';
-                    SuccessfullyUpdated: Label 'Keys successfully updated!';
+                    UpdateKeysLbl: Label 'Do you want to update the keys for: %1 %2 - "%3"?';
+                    AlreadyUpdatedLbl: Label 'Keys already updated!';
+                    SuccessfullyUpdatedLbl: Label 'Keys successfully updated!';
                 begin
-                    if Confirm(StrSubstNo(UpdateKeysText, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then
+                    if Confirm(StrSubstNo(UpdateKeysLbl, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then
                         if ObjectDetailsManagement.CheckUpdateTypeObjectDetailsLine(Rec, Types::"Key") then begin
                             ObjectDetailsManagement.UpdateTypeObjectDetailsLine(Format(Rec.ObjectNo), Types::"Key");
-                            Message(SuccessfullyUpdated);
+                            Message(SuccessfullyUpdatedLbl);
                         end
                         else
-                            Message(AlreadyUpdatedText);
+                            Message(AlreadyUpdatedLbl);
                 end;
             }
             action(UpdateMethodsEvents)
@@ -280,18 +280,21 @@ page 50101 "Object Details Card"
                 trigger OnAction()
                 var
                     ObjectDetailsManagement: Codeunit "Object Details Management";
-                    UpdateMethodsEventsText: Label 'Do you want to update the methods and events for: %1 %2 - "%3"?';
-                    AlreadyUpdatedText: Label 'Methods and events already updated!';
-                    SuccessfullyUpdated: Label 'Methods and events successfully updated!';
+                    UpdateMethodsEventsLbl: Label 'Do you want to update the methods and events for: %1 %2 - "%3"?';
+                    AlreadyUpdatedLbl: Label 'Methods and events already updated!';
+                    SuccessfullyUpdatedLbl: Label 'Methods and events successfully updated!';
+                    NeedsUpdate: array[4] of Boolean;
+                    AlreadyUpdated: Boolean;
                 begin
-                    if Confirm(StrSubstNo(UpdateMethodsEventsText, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then
-                        // if ObjectDetailsManagement.CheckUpdateMethodsEventsObjectDetailsLine(Rec) then begin
-                        //     ObjectDetailsManagement.UpdateMethodsEventsObjectDetailsLine(Rec);
-                        //     Message(SuccessfullyUpdated);
-                        // end
-                        // else
-                        //     Message(AlreadyUpdatedText);
-                    ObjectDetailsManagement.CheckUpdateUnusedParameters(Rec);
+                    if Confirm(StrSubstNo(UpdateMethodsEventsLbl, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then begin
+                        ObjectDetailsManagement.UpdateMethodsEventsObjectDetailsLine(Rec, NeedsUpdate[1]);
+                        ObjectDetailsManagement.UpdateUnusedParameters(Rec, NeedsUpdate[2]);
+
+                        if IsAlreadyUpdated(NeedsUpdate) then
+                            Message(AlreadyUpdatedLbl)
+                        else
+                            Message(SuccessfullyUpdatedLbl);
+                    end;
                 end;
             }
         }
@@ -317,6 +320,16 @@ page 50101 "Object Details Card"
         ShowNoUnusedLocalMethods := ObjectDetailsManagement.GetShowNoUnused(Rec.NoLocalMethods);
         ShowNoUnusedTotalVariables := ObjectDetailsManagement.GetShowNoUnused(Rec.NoTotalVariables);
         ShowNoUnusedGlobalVariables := ObjectDetailsManagement.GetShowNoUnused(Rec.NoGlobalVariables);
+    end;
+
+    local procedure IsAlreadyUpdated(NeedsUpdate: array[4] of Boolean): Boolean
+    var
+        Index: Integer;
+    begin
+        for Index := 1 to 2 do
+            if NeedsUpdate[Index] then
+                exit(false);
+        exit(true);
     end;
 
 }

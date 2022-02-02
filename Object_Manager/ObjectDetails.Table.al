@@ -82,23 +82,25 @@ table 50100 "Object Details"
         {
             Caption = 'No. of Global Methods';
             FieldClass = FlowField;
-            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Global Method")));
+            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Global Method"), Used = const(true)));
         }
         field(120; NoUnusedGlobalMethods; Integer)
         {
             Caption = 'No. of Unused Global Methods';
-            DataClassification = CustomerContent;
+            FieldClass = FlowField;
+            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Global Method"), Used = const(false)));
         }
         field(130; NoLocalMethods; Integer)
         {
             Caption = 'No. of Local Methods';
             FieldClass = FlowField;
-            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Local Method")));
+            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Local Method"), Used = const(true)));
         }
         field(140; NoUnusedLocalMethods; Integer)
         {
             Caption = 'No. of Unused Local Methods';
-            DataClassification = CustomerContent;
+            FieldClass = FlowField;
+            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Local Method"), Used = const(false)));
         }
         field(150; NoTotalVariables; Integer)
         {
@@ -123,7 +125,8 @@ table 50100 "Object Details"
         field(190; NoUnusedParameters; Integer)
         {
             Caption = 'No. of Unused Parameters';
-            DataClassification = CustomerContent;
+            FieldClass = FlowField;
+            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const(Parameter), Used = const(false)));
         }
         field(200; NoUnusedReturnValues; Integer)
         {

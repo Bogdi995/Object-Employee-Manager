@@ -47,6 +47,11 @@ page 50102 "Object Details Line List"
                     ToolTip = 'Specifies the data type and its length.';
                     ApplicationArea = All;
                 }
+                field(Used; Rec.Used)
+                {
+                    ToolTip = 'Applies only to methods, parameters and return values.';
+                    ApplicationArea = All;
+                }
             }
         }
     }
@@ -67,17 +72,18 @@ page 50102 "Object Details Line List"
                 trigger OnAction()
                 var
                     ObjectDetailsManagement: Codeunit "Object Details Management";
-                    UpdateFieldsText: Label 'Do you want to update the fields?';
-                    AlreadyUpdatedText: Label 'Fields already updated!';
-                    SuccessfullyUpdated: Label 'Fields successfully updated!';
+                    UpdateFieldsLbl: Label 'Do you want to update the fields?';
+                    AlreadyUpdatedLbl: Label 'Fields already updated!';
+                    SuccessfullyUpdatedLbl: Label 'Fields successfully updated!';
+                    NeedsUpdate: Boolean;
                 begin
-                    if Confirm(UpdateFieldsText, true) then
-                        if ObjectDetailsManagement.CheckUpdateTypeObjectDetailsLine(Types::Field) then begin
-                            ObjectDetailsManagement.UpdateTypeObjectDetailsLine(Types::Field);
-                            Message(SuccessfullyUpdated);
-                        end
+                    if Confirm(UpdateFieldsLbl, true) then begin
+                        ObjectDetailsManagement.UpdateTypeObjectDetailsLine(Types::Field, NeedsUpdate);
+                        if NeedsUpdate then
+                            Message(SuccessfullyUpdatedLbl)
                         else
-                            Message(AlreadyUpdatedText);
+                            Message(AlreadyUpdatedLbl);
+                    end;
                 end;
             }
 
@@ -93,17 +99,18 @@ page 50102 "Object Details Line List"
                 trigger OnAction()
                 var
                     ObjectDetailsManagement: Codeunit "Object Details Management";
-                    UpdateFieldsText: Label 'Do you want to update the keys?';
-                    AlreadyUpdatedText: Label 'Keys already updated!';
-                    SuccessfullyUpdated: Label 'Keys successfully updated!';
+                    UpdateFieldsLbl: Label 'Do you want to update the keys?';
+                    AlreadyUpdatedLbl: Label 'Keys already updated!';
+                    SuccessfullyUpdatedLbl: Label 'Keys successfully updated!';
+                    NeedsUpdate: Boolean;
                 begin
-                    if Confirm(UpdateFieldsText, true) then
-                        if ObjectDetailsManagement.CheckUpdateTypeObjectDetailsLine(Types::"Key") then begin
-                            ObjectDetailsManagement.UpdateTypeObjectDetailsLine(Types::"Key");
-                            Message(SuccessfullyUpdated);
-                        end
+                    if Confirm(UpdateFieldsLbl, true) then begin
+                        ObjectDetailsManagement.UpdateTypeObjectDetailsLine(Types::"Key", NeedsUpdate);
+                        if NeedsUpdate then
+                            Message(SuccessfullyUpdatedLbl)
                         else
-                            Message(AlreadyUpdatedText);
+                            Message(AlreadyUpdatedLbl);
+                    end;
                 end;
             }
         }
@@ -112,10 +119,8 @@ page 50102 "Object Details Line List"
     trigger OnOpenPage()
     var
         ObjectDetailsManagement: Codeunit "Object Details Management";
-        Keys: Record "Key";
     begin
-        ObjectDetailsManagement.ConfirmCheckUpdateTypeObjectDetailsLine(Types::Field);
-        ObjectDetailsManagement.ConfirmCheckUpdateTypeObjectDetailsLine(Types::"Key");
+
     end;
 
     local procedure GetName(): Text[250]

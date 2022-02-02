@@ -1,9 +1,5 @@
 codeunit 50100 "Object Details Management"
 {
-    trigger OnRun()
-    begin
-    end;
-
     //  -------- Object Details --------> START
     procedure ConfirmCheckUpdateObjectDetails()
     var
@@ -65,6 +61,7 @@ codeunit 50100 "Object Details Management"
     begin
         AllObj.SetRange("Object Type", ObjectTypeAllObj);
         ObjectDetails.SetRange(ObjectType, ObjectTypeObjectDetails);
+
         if AllObj.FindSet() then
             if ObjectDetails.FindSet() then begin
                 if AllObj.Count() > ObjectDetails.Count() then
@@ -111,44 +108,19 @@ codeunit 50100 "Object Details Management"
 
 
     //  -------- Object Details Line (FIELDS and KEYS) --------> START
-    procedure ConfirmCheckUpdateTypeObjectDetailsLine(Type: Enum Types)
-    var
-        Progress: Dialog;
-        ConfirmMessage: Label 'The %1 are not updated, do you want to update them now?';
-        ProgressText: Label 'The %1 are being updated...';
-    begin
-        if CheckUpdateTypeObjectDetailsLine(Type) then
-            if Confirm(StrSubstNo(ConfirmMessage, GetTypeText(Type)), true) then begin
-                Progress.Open(StrSubstNo(ProgressText, GetTypeText(Type)));
-                UpdateTypeObjectDetailsLine(Type);
-                Progress.Close();
-            end;
-    end;
-
-    procedure CheckUpdateTypeObjectDetailsLine(Type: Enum Types): Boolean
-    var
-        AllObj: Record AllObj;
-        ObjectDetailsLine: Record "Object Details Line";
-        RecRef: RecordRef;
-        FRef: FieldRef;
-        TableNoFRef: FieldRef;
-    begin
-        RecRef.Open(GetTypeTable(Type));
-        TableNoFRef := RecRef.Field(1);
-        FilterOutSystemValues(Type, FRef, RecRef);
-
-        ObjectDetailsLine.SetRange(ObjectType, "Object Type"::Table);
-        ObjectDetailsLine.SetRange(Type, Type);
-        AllObj.SetRange("Object Type", AllObj."Object Type"::Table);
-        if AllObj.FindSet() then
-            repeat
-                TableNoFRef.SetRange(AllObj."Object ID");
-                ObjectDetailsLine.SetRange(ObjectNo, AllObj."Object ID");
-                if not CheckTypeObjectDetailsLine(RecRef, ObjectDetailsLine) then
-                    exit(true);
-            until AllObj.Next() = 0;
-        exit(false);
-    end;
+    // procedure ConfirmCheckUpdateTypeObjectDetailsLine(Type: Enum Types)
+    // var
+    //     Progress: Dialog;
+    //     ConfirmMessage: Label 'The %1 are not updated, do you want to update them now?';
+    //     ProgressText: Label 'The %1 are being updated...';
+    // begin
+    //     if CheckUpdateTypeObjectDetailsLine(Type) then
+    //         if Confirm(StrSubstNo(ConfirmMessage, GetTypeText(Type)), true) then begin
+    //             Progress.Open(StrSubstNo(ProgressText, GetTypeText(Type)));
+    //             UpdateTypeObjectDetailsLine(Type);
+    //             Progress.Close();
+    //         end;
+    // end;
 
     procedure CheckUpdateTypeObjectDetailsLine(var ObjectDetails: Record "Object Details"; Type: Enum Types): Boolean
     var
@@ -220,7 +192,7 @@ codeunit 50100 "Object Details Management"
         end;
     end;
 
-    procedure UpdateTypeObjectDetailsLine(Type: Enum Types)
+    procedure UpdateTypeObjectDetailsLine(Type: Enum Types; var NeedsUpdate: Boolean)
     var
         ObjectDetailsLine: Record "Object Details Line";
         RecRef: RecordRef;
@@ -234,6 +206,8 @@ codeunit 50100 "Object Details Management"
         FilterOutSystemValues(Type, FRef, RecRef);
 
         if Filter <> '' then begin
+            NeedsUpdate := true;
+
             ObjectDetailsLine.SetFilter(ObjectNo, Filter);
             ObjectDetailsLine.SetRange(Type, Type);
             if ObjectDetailsLine.FindSet() then
@@ -318,70 +292,89 @@ codeunit 50100 "Object Details Management"
 
     //  -------- Object Details Line (METHODS and EVENTS) --------> START
     [Scope('OnPrem')]
-    procedure CheckUpdateUnusedParameters(var ObjectDetails: Record "Object Details"): Boolean
+    procedure UpdateMethodsEventsObjectDetailsLine(var ObjectDetails: Record "Object Details"; var NeedsUpdate: Boolean)
     var
         ObjectMetadataPage: Page "Object Metadata Page";
         Encoding: DotNet Encoding;
         StreamReader: DotNet StreamReader;
         ObjectALCode: DotNet String;
         InStr: InStream;
+        GlobalMethods: List of [Text];
+        LocalMethods: List of [Text];
+        IntegrationEvents: List of [Text];
+        BusinessEvents: List of [Text];
         ProcedureTxt: Label '    procedure';
         LocalProcedureTxt: Label '    local procedure';
+        IntegrationEventTxt: Label '    [IntegrationEvent(%1, %2)]';
+        BusinessEventTxt: Label '    [BusinessEvent(%1, %2)]';
     begin
         InStr := ObjectMetadataPage.GetUserALCodeInstream(ObjectDetails.ObjectTypeCopy, ObjectDetails.ObjectNo);
         ObjectALCode := StreamReader.StreamReader(InStr, Encoding.UTF8).ReadToEnd();
-        if GetNumberUnusedParameters(ObjectALCode, ProcedureTxt) + GetNumberUnusedParameters(ObjectALCode, LocalProcedureTxt) = 0 then
-            exit(true);
-        exit(false);
+
+        IntegrationEvents := GetEvents(ObjectALCode, IntegrationEventTxt);
+        BusinessEvents := GetEvents(ObjectALCode, BusinessEventTxt);
+        RemoveEventsFromObject(ObjectALCode, IntegrationEvents, BusinessEvents);
+        IntegrationEvents := GetFormattedEvents(IntegrationEvents);
+        BusinessEvents := GetFormattedEvents(BusinessEvents);
+
+        if ObjectALCode.IndexOf(ProcedureTxt) <> -1 then
+            GlobalMethods := GetMethods(ObjectALCode, ProcedureTxt, false, '');
+        if ObjectALCode.IndexOf(LocalProcedureTxt) <> -1 then
+            LocalMethods := GetMethods(ObjectALCode, LocalProcedureTxt, false, '');
+
+        if not CheckMethodsEvents(ObjectDetails, GlobalMethods, Types::"Global Method", true) then begin
+            NeedsUpdate := true;
+            UpdateMethodsEvents(ObjectDetails, GlobalMethods, Types::"Global Method", true);
+        end;
+        if not CheckMethodsEvents(ObjectDetails, LocalMethods, Types::"Local Method", true) then begin
+            NeedsUpdate := true;
+            UpdateMethodsEvents(ObjectDetails, LocalMethods, Types::"Local Method", true);
+        end;
+        if not CheckMethodsEvents(ObjectDetails, IntegrationEvents, Types::"Integration Event", false) then begin
+            NeedsUpdate := true;
+            UpdateMethodsEvents(ObjectDetails, IntegrationEvents, Types::"Integration Event", false);
+        end;
+        if not CheckMethodsEvents(ObjectDetails, BusinessEvents, Types::"Business Event", false) then begin
+            NeedsUpdate := true;
+            UpdateMethodsEvents(ObjectDetails, BusinessEvents, Types::"Business Event", false);
+        end;
     end;
 
     [Scope('OnPrem')]
-    procedure GetNumberUnusedParameters(ObjectALCode: DotNet String; MethodType: Text): Integer
+    local procedure GetEvents(ObjectALCode: DotNet String; EventTypeTxt: Text): List of [Text]
     var
         CopyObjectALCode: DotNet String;
-        MethodALCode: DotNet String;
-        MethodHeader: DotNet String;
-        MethodBody: DotNet String;
-        ParametersList: List of [Text];
-        Parameter: Text;
-        EndTxt: Label '    end;';
-        VarTxt: Label 'var ';
-        NoUnusedParameters: Integer;
-        Index: Integer;
-        SubstringIndex: Integer;
-        SubstringIndexEnd: Integer;
+        TypeEvents: List of [Text];
+        TypeEvent: Text;
+        ProcedureTxt: Label '    procedure';
+        LocalProcedureTxt: Label '    local procedure';
     begin
         CopyObjectALCode := CopyObjectALCode.Copy(ObjectALCode);
-        RemoveEventsFromObject(CopyObjectALCode);
-        Index := CopyObjectALCode.IndexOf(MethodType);
 
         repeat
-            MethodHeader := CopyObjectALCode.Substring(Index + 4);
-            CopyObjectALCode := CopyObjectALCode.Substring(Index + 4);
-            SubstringIndex := MethodHeader.IndexOf('(');
-            SubstringIndexEnd := MethodHeader.IndexOf(')');
-            MethodBody := MethodHeader.Substring(SubstringIndexEnd + 2, MethodHeader.IndexOf(EndTxt) - (SubstringIndexEnd + 2) + StrLen(EndTxt));
-            MethodHeader := MethodHeader.Substring(0, SubstringIndexEnd + 1);
+            TypeEvent := GetEventParameters(CopyObjectALCode, EventTypeTxt);
+            if TypeEvent <> '' then begin
+                UpdateEvents(TypeEvents, CopyObjectALCode, TypeEvent, ProcedureTxt);
+                UpdateEvents(TypeEvents, CopyObjectALCode, TypeEvent, LocalProcedureTxt);
+            end;
+        until TypeEvent = '';
 
-            if SubstringIndexEnd - SubstringIndex <> 1 then
-                while (SubstringIndex <> 0) do begin
-                    MethodHeader := MethodHeader.Substring(SubstringIndex);
-                    SubstringIndex := MethodHeader.IndexOf(':');
-                    Parameter := MethodHeader.Substring(1, SubstringIndex - 1);
-                    if Parameter.Contains(VarTxt) then
-                        Parameter := Parameter.Remove(1, 4);
-                    ParametersList.Add(Parameter);
-                    SubstringIndex := MethodHeader.IndexOf(';') + 1;
-                end;
-            Index := CopyObjectALCode.IndexOf(MethodType);
+        exit(TypeEvents);
+    end;
 
-            foreach Parameter in ParametersList do
-                if not MethodBody.Contains(Parameter) then
-                    NoUnusedParameters += 1;
-            ParametersList.RemoveRange(1, ParametersList.Count());
-        until Index = -1;
+    [Scope('OnPrem')]
+    local procedure UpdateEvents(var TypeEvents: List of [Text]; ObjectALCode: DotNet String; EventType: Text; ProcedureType: Text)
+    var
+        TypeEventsAux: List of [Text];
+        Member: Text;
+    begin
+        TypeEventsAux := GetEventsWithSpecificParameters(ObjectALCode, EventType, ProcedureType);
 
-        exit(NoUnusedParameters);
+        if TypeEventsAux.Count() <> 0 then
+            foreach Member in TypeEventsAux do begin
+                TypeEvents.Add(Member);
+                ObjectALCode := ObjectALCode.Remove(ObjectALCode.IndexOf(Member), StrLen(Member));
+            end;
     end;
 
     [Scope('OnPrem')]
@@ -411,115 +404,6 @@ codeunit 50100 "Object Details Management"
             ObjectALCode := ObjectALCode.Remove(ObjectALCode.IndexOf(Member), StrLen(Member));
         foreach Member in BusinessEvents do
             ObjectALCode := ObjectALCode.Remove(ObjectALCode.IndexOf(Member), StrLen(Member));
-    end;
-
-    [Scope('OnPrem')]
-    procedure CheckUpdateMethodsEventsObjectDetailsLine(var ObjectDetails: Record "Object Details"): Boolean
-    var
-        ObjectMetadataPage: Page "Object Metadata Page";
-        Encoding: DotNet Encoding;
-        StreamReader: DotNet StreamReader;
-        ObjectALCode: DotNet String;
-        InStr: InStream;
-        GlobalMethods: List of [Text];
-        LocalMethods: List of [Text];
-        IntegrationEvents: List of [Text];
-        BusinessEvents: List of [Text];
-        ProcedureTxt: Label '    procedure';
-        LocalProcedureTxt: Label '    local procedure';
-        IntegrationEventTxt: Label '    [IntegrationEvent(%1, %2)]';
-        BusinessEventTxt: Label '    [BusinessEvent(%1, %2)]';
-    begin
-        InStr := ObjectMetadataPage.GetUserALCodeInstream(ObjectDetails.ObjectTypeCopy, ObjectDetails.ObjectNo);
-        ObjectALCode := StreamReader.StreamReader(InStr, Encoding.UTF8).ReadToEnd();
-
-        IntegrationEvents := GetEvents(ObjectALCode, IntegrationEventTxt);
-        BusinessEvents := GetEvents(ObjectALCode, BusinessEventTxt);
-        RemoveEventsFromObject(ObjectALCode, IntegrationEvents, BusinessEvents);
-        IntegrationEvents := GetFormattedEvents(IntegrationEvents);
-        BusinessEvents := GetFormattedEvents(BusinessEvents);
-
-        if ObjectALCode.IndexOf(ProcedureTxt) <> -1 then
-            GlobalMethods := GetMethods(ObjectALCode, ProcedureTxt, false, '');
-        if ObjectALCode.IndexOf(LocalProcedureTxt) <> -1 then
-            LocalMethods := GetMethods(ObjectALCode, LocalProcedureTxt, false, '');
-
-        if CheckMethodsEvents(ObjectDetails, GlobalMethods, Types::"Global Method") and CheckMethodsEvents(ObjectDetails, LocalMethods, Types::"Local Method")
-            and CheckMethodsEvents(ObjectDetails, IntegrationEvents, Types::"Integration Event") and CheckMethodsEvents(ObjectDetails, BusinessEvents, Types::"Business Event") then
-            exit(false);
-        exit(true);
-    end;
-
-    [Scope('OnPrem')]
-    procedure UpdateMethodsEventsObjectDetailsLine(var ObjectDetails: Record "Object Details")
-    var
-        ObjectMetadataPage: Page "Object Metadata Page";
-        Encoding: DotNet Encoding;
-        StreamReader: DotNet StreamReader;
-        ObjectALCode: DotNet String;
-        InStr: InStream;
-        GlobalMethods: List of [Text];
-        LocalMethods: List of [Text];
-        IntegrationEvents: List of [Text];
-        BusinessEvents: List of [Text];
-        ProcedureTxt: Label '    procedure';
-        LocalProcedureTxt: Label '    local procedure';
-        IntegrationEventTxt: Label '    [IntegrationEvent(%1, %2)]';
-        BusinessEventTxt: Label '    [BusinessEvent(%1, %2)]';
-    begin
-        InStr := ObjectMetadataPage.GetUserALCodeInstream(ObjectDetails.ObjectTypeCopy, ObjectDetails.ObjectNo);
-        ObjectALCode := StreamReader.StreamReader(InStr, Encoding.UTF8).ReadToEnd();
-
-        IntegrationEvents := GetEvents(ObjectALCode, IntegrationEventTxt);
-        BusinessEvents := GetEvents(ObjectALCode, BusinessEventTxt);
-        RemoveEventsFromObject(ObjectALCode, IntegrationEvents, BusinessEvents);
-        IntegrationEvents := GetFormattedEvents(IntegrationEvents);
-        BusinessEvents := GetFormattedEvents(BusinessEvents);
-
-        if ObjectALCode.IndexOf(ProcedureTxt) <> -1 then
-            GlobalMethods := GetMethods(ObjectALCode, ProcedureTxt, false, '');
-        if ObjectALCode.IndexOf(LocalProcedureTxt) <> -1 then
-            LocalMethods := GetMethods(ObjectALCode, LocalProcedureTxt, false, '');
-
-        UpdateMethodsEvents(ObjectDetails, GlobalMethods, Types::"Global Method");
-        UpdateMethodsEvents(ObjectDetails, LocalMethods, Types::"Local Method");
-        UpdateMethodsEvents(ObjectDetails, IntegrationEvents, Types::"Integration Event");
-        UpdateMethodsEvents(ObjectDetails, BusinessEvents, Types::"Business Event");
-    end;
-
-    [Scope('OnPrem')]
-    local procedure GetEvents(ObjectALCode: DotNet String; EventTypeTxt: Text): List of [Text]
-    var
-        CopyObjectALCode: DotNet String;
-        TypeEvents: List of [Text];
-        TypeEvent: Text;
-        ProcedureTxt: Label '    procedure';
-        LocalProcedureTxt: Label '    local procedure';
-    begin
-        CopyObjectALCode := CopyObjectALCode.Copy(ObjectALCode);
-        repeat
-            TypeEvent := GetEventParameters(CopyObjectALCode, EventTypeTxt);
-            if TypeEvent <> '' then begin
-                UpdateEvents(TypeEvents, CopyObjectALCode, TypeEvent, ProcedureTxt);
-                UpdateEvents(TypeEvents, CopyObjectALCode, TypeEvent, LocalProcedureTxt);
-            end;
-        until TypeEvent = '';
-        exit(TypeEvents);
-    end;
-
-    [Scope('OnPrem')]
-    local procedure UpdateEvents(var TypeEvents: List of [Text]; ObjectALCode: DotNet String; EventType: Text; ProcedureType: Text)
-    var
-        TypeEventsAux: List of [Text];
-        Member: Text;
-    begin
-        TypeEventsAux := GetEventsWithSpecificParameters(ObjectALCode, EventType, ProcedureType);
-
-        if TypeEventsAux.Count() <> 0 then
-            foreach Member in TypeEventsAux do begin
-                TypeEvents.Add(Member);
-                ObjectALCode := ObjectALCode.Remove(ObjectALCode.IndexOf(Member), StrLen(Member));
-            end;
     end;
 
     local procedure GetFormattedEvents(UnformattedEvents: List of [Text]): List of [Text]
@@ -615,13 +499,14 @@ codeunit 50100 "Object Details Management"
         exit(Methods);
     end;
 
-    procedure CheckMethodsEvents(var ObjectDetails: Record "Object Details"; GivenList: List of [Text]; Type: Enum Types): Boolean
+    local procedure CheckMethodsEvents(var ObjectDetails: Record "Object Details"; GivenList: List of [Text]; Type: Enum Types; IsUsed: Boolean): Boolean
     var
         ObjectDetailsLine: Record "Object Details Line";
     begin
         ObjectDetailsLine.SetRange(ObjectType, ObjectDetails.ObjectType);
         ObjectDetailsLine.SetRange(ObjectNo, ObjectDetails.ObjectNo);
         ObjectDetailsLine.SetRange(Type, Type);
+        ObjectDetailsLine.SetRange(Used, IsUsed);
 
         if (ObjectDetailsLine.Count() = 0) and (GivenList.Count() = 0) then
             exit(true);
@@ -636,7 +521,7 @@ codeunit 50100 "Object Details Management"
         exit(true);
     end;
 
-    procedure UpdateMethodsEvents(var ObjectDetails: Record "Object Details"; GivenList: List of [Text]; Type: Enum Types)
+    local procedure UpdateMethodsEvents(var ObjectDetails: Record "Object Details"; GivenList: List of [Text]; Type: Enum Types; IsUsed: Boolean)
     var
         ObjectDetailsLine: Record "Object Details Line";
         Member: Text;
@@ -644,14 +529,15 @@ codeunit 50100 "Object Details Management"
         ObjectDetailsLine.SetRange(ObjectType, ObjectDetails.ObjectType);
         ObjectDetailsLine.SetRange(ObjectNo, ObjectDetails.ObjectNo);
         ObjectDetailsLine.SetRange(Type, Type);
+        ObjectDetailsLine.SetRange(Used, IsUsed);
         if ObjectDetailsLine.FindSet() then
             ObjectDetailsLine.DeleteAll();
 
         foreach Member in GivenList do
-            InsertObjectDetailsLine(ObjectDetails, Member, Type);
+            InsertObjectDetailsLine(ObjectDetails, Member, Type, IsUsed);
     end;
 
-    local procedure InsertObjectDetailsLine(var ObjectDetails: Record "Object Details"; Name: Text; Type: Enum Types)
+    local procedure InsertObjectDetailsLine(var ObjectDetails: Record "Object Details"; Name: Text; Type: Enum Types; IsUsed: Boolean)
     var
         ObjectDetailsLine: Record "Object Details Line";
     begin
@@ -661,8 +547,97 @@ codeunit 50100 "Object Details Management"
         ObjectDetailsLine.Validate(ObjectNo, ObjectDetails.ObjectNo);
         ObjectDetailsLine.Validate(Type, Type);
         ObjectDetailsLine.Validate(Name, Name);
+        ObjectDetailsLine.Validate(Used, IsUsed);
         ObjectDetailsLine.Insert(true);
     end;
+
+    // Unused Parameters -> Start
+    [Scope('OnPrem')]
+    procedure UpdateUnusedParameters(var ObjectDetails: Record "Object Details"; var NeedsUpdate: Boolean)
+    var
+        ObjectMetadataPage: Page "Object Metadata Page";
+        Encoding: DotNet Encoding;
+        StreamReader: DotNet StreamReader;
+        ObjectALCode: DotNet String;
+        InStr: InStream;
+        UnusedParamsFromProcedures: List of [Text];
+        UnusedParamsFromLocalProcedures: List of [Text];
+        ProcedureTxt: Label '    procedure';
+        LocalProcedureTxt: Label '    local procedure';
+    begin
+        InStr := ObjectMetadataPage.GetUserALCodeInstream(ObjectDetails.ObjectTypeCopy, ObjectDetails.ObjectNo);
+        ObjectALCode := StreamReader.StreamReader(InStr, Encoding.UTF8).ReadToEnd();
+
+        UnusedParamsFromProcedures := GetUnusedParameters(ObjectALCode, ProcedureTxt);
+        UnusedParamsFromLocalProcedures := GetUnusedParameters(ObjectALCode, LocalProcedureTxt);
+
+        if UnusedParamsFromProcedures.Count() <> 0 then begin
+            NeedsUpdate := true;
+            InsertUnusedParametersInObjectDetailsLine(ObjectDetails, UnusedParamsFromProcedures);
+        end;
+        if UnusedParamsFromLocalProcedures.Count() <> 0 then begin
+            NeedsUpdate := true;
+            InsertUnusedParametersInObjectDetailsLine(ObjectDetails, UnusedParamsFromLocalProcedures);
+        end;
+    end;
+
+    [Scope('OnPrem')]
+    procedure GetUnusedParameters(ObjectALCode: DotNet String; MethodType: Text): List of [Text]
+    var
+        CopyObjectALCode: DotNet String;
+        MethodALCode: DotNet String;
+        MethodHeader: DotNet String;
+        MethodBody: DotNet String;
+        UnusedParameters: List of [Text];
+        ParametersList: List of [Text];
+        Parameter: Text;
+        EndTxt: Label '    end;';
+        VarTxt: Label 'var ';
+        Index: Integer;
+        SubstringIndex: Integer;
+        SubstringIndexEnd: Integer;
+    begin
+        CopyObjectALCode := CopyObjectALCode.Copy(ObjectALCode);
+        RemoveEventsFromObject(CopyObjectALCode);
+        Index := CopyObjectALCode.IndexOf(MethodType);
+
+        repeat
+            MethodHeader := CopyObjectALCode.Substring(Index + 4);
+            CopyObjectALCode := CopyObjectALCode.Substring(Index + 4);
+            SubstringIndex := MethodHeader.IndexOf('(');
+            SubstringIndexEnd := MethodHeader.IndexOf(')');
+            MethodBody := MethodHeader.Substring(SubstringIndexEnd + 2, MethodHeader.IndexOf(EndTxt) - (SubstringIndexEnd + 2) + StrLen(EndTxt));
+            MethodHeader := MethodHeader.Substring(0, SubstringIndexEnd + 1);
+
+            if SubstringIndexEnd - SubstringIndex <> 1 then
+                while (SubstringIndex <> 0) do begin
+                    MethodHeader := MethodHeader.Substring(SubstringIndex);
+                    SubstringIndex := MethodHeader.IndexOf(':');
+                    Parameter := MethodHeader.Substring(1, SubstringIndex - 1);
+                    if Parameter.Contains(VarTxt) then
+                        Parameter := Parameter.Remove(1, 4);
+                    ParametersList.Add(Parameter);
+                    SubstringIndex := MethodHeader.IndexOf(';') + 1;
+                end;
+            Index := CopyObjectALCode.IndexOf(MethodType);
+
+            foreach Parameter in ParametersList do
+                if not MethodBody.Contains(Parameter) then
+                    UnusedParameters.Add(Parameter);
+            ParametersList.RemoveRange(1, ParametersList.Count());
+        until Index = -1;
+
+        exit(UnusedParameters);
+    end;
+
+    local procedure InsertUnusedParametersInObjectDetailsLine(ObjectDetails: Record "Object Details"; UnusedParameters: List of [Text])
+    var
+        Parameter: Text;
+    begin
+        foreach Parameter in UnusedParameters do
+            InsertObjectDetailsLine(ObjectDetails, Parameter, Types::Parameter, false);
+    end;
+    // Unused Parameters -> End
 
     //  -------- Object Details Line (METHODS and EVENTS) --------> END
 
