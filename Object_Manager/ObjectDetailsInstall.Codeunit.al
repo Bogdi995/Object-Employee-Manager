@@ -55,6 +55,7 @@ codeunit 50101 "Object Details Install"
         TableNoFRef := RecRef.Field(1);
         ObjectDetailsManagement.FilterOutSystemValues(Type, FRef, RecRef);
         AllObj.SetRange("Object Type", AllObj."Object Type"::Table);
+
         if AllObj.FindSet() then
             repeat
                 TableNoFRef.SetRange(AllObj."Object ID");

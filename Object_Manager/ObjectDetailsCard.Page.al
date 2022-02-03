@@ -38,7 +38,7 @@ page 50101 "Object Details Card"
                     Visible = ShowSubtype;
                     field(ObjectSubtype; Rec.ObjectSubtype)
                     {
-                        ToolTip = 'Specifies the subtype of the object. This field is visible only when the type of the object is Codeunit.';
+                        ToolTip = 'This field is visible only when the type of the object is Codeunit.';
                         ApplicationArea = All;
                     }
                 }
@@ -111,7 +111,7 @@ page 50101 "Object Details Card"
                         Visible = ShowNoUnusedGlobalMethods;
                         field(NoUnusedGlobalMethods; Rec.NoUnusedGlobalMethods)
                         {
-                            ToolTip = 'Specifies the number of unused global methods.';
+                            ToolTip = 'This field is visible only if the number of unused global methods is different than 0.';
                             ApplicationArea = All;
                         }
                     }
@@ -126,7 +126,7 @@ page 50101 "Object Details Card"
                         Visible = ShowNoUnusedLocalMethods;
                         field(NoUnusedLocalMethods; Rec.NoUnusedLocalMethods)
                         {
-                            ToolTip = 'Specifies the number of unused local methods.';
+                            ToolTip = 'This field is visible only if the number of unused local methods is different than 0.';
                             ApplicationArea = All;
                         }
                     }
@@ -157,7 +157,7 @@ page 50101 "Object Details Card"
                         Visible = ShowNoUnusedTotalVariables;
                         field(NoUnusedTotalVariables; Rec.NoUnusedTotalVariables)
                         {
-                            ToolTip = 'Specifies the total number of unused variables.';
+                            ToolTip = 'This field is visible only if the total number of variables is different than 0.';
                             ApplicationArea = All;
                         }
                     }
@@ -172,7 +172,7 @@ page 50101 "Object Details Card"
                         Visible = ShowNoUnusedGlobalVariables;
                         field(NoUnusedGlobalVariables; Rec.NoUnusedGlobalVariables)
                         {
-                            ToolTip = 'Specifies the number of unused global variables.';
+                            ToolTip = 'This field is visible only if the number of global variables is different than 0.';
                             ApplicationArea = All;
                         }
                     }
@@ -287,13 +287,14 @@ page 50101 "Object Details Card"
                     AlreadyUpdated: Boolean;
                 begin
                     if Confirm(StrSubstNo(UpdateMethodsEventsLbl, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then begin
-                        ObjectDetailsManagement.UpdateMethodsEventsObjectDetailsLine(Rec, NeedsUpdate[1]);
-                        ObjectDetailsManagement.UpdateUnusedParameters(Rec, NeedsUpdate[2]);
+                        // ObjectDetailsManagement.UpdateMethodsEventsObjectDetailsLine(Rec, NeedsUpdate[1]);
+                        // ObjectDetailsManagement.UpdateUnusedParameters(Rec, NeedsUpdate[2]);
+                        ObjectDetailsManagement.UpdateUnusedMethods(Rec, NeedsUpdate[3]);
 
-                        if IsAlreadyUpdated(NeedsUpdate) then
-                            Message(AlreadyUpdatedLbl)
-                        else
-                            Message(SuccessfullyUpdatedLbl);
+                        // if IsAlreadyUpdated(NeedsUpdate) then
+                        //     Message(AlreadyUpdatedLbl)
+                        // else
+                        //     Message(SuccessfullyUpdatedLbl);
                     end;
                 end;
             }
@@ -326,7 +327,7 @@ page 50101 "Object Details Card"
     var
         Index: Integer;
     begin
-        for Index := 1 to 2 do
+        for Index := 1 to 3 do
             if NeedsUpdate[Index] then
                 exit(false);
         exit(true);

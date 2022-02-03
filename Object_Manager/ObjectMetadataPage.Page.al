@@ -33,7 +33,7 @@ page 50145 "Object Metadata Page"
                             Rec.Metadata.CreateInStream(InStr);
                             ShowBlob(Instr);
                         end else
-                            error('Metadata is not available for this object');
+                            Error('Metadata is not available for this object');
                     end;
                 }
                 field("User Code"; Rec."User Code")
@@ -47,7 +47,7 @@ page 50145 "Object Metadata Page"
                             Rec."User Code".CreateInStream(InStr);
                             ShowBlob(InStr);
                         end else
-                            error('User Code is not available for this object');
+                            Error('User Code is not available for this object');
                     end;
                 }
                 field("User AL Code"; Rec."User AL Code")
@@ -61,7 +61,7 @@ page 50145 "Object Metadata Page"
                             Rec."User AL Code".CreateInStream(InStr);
                             ShowBlob(InStr);
                         end else
-                            error('User AL Code is not available for this object');
+                            Error('User AL Code is not available for this object');
                     end;
                 }
             }
@@ -77,10 +77,10 @@ page 50145 "Object Metadata Page"
         Message(StreamReader.StreamReader(InStr, Encoding.UTF8).ReadToEnd());
     end;
 
-    procedure GetKeyForObject(ObjectType: Text; ObjectID: Text): Text
-    begin
-        exit(ObjectType + ObjectID);
-    end;
+    // procedure GetKeyForObject(ObjectType: Text; ObjectID: Text): Text
+    // begin
+    //     exit(ObjectType + ObjectID);
+    // end;
 
     procedure GetUserALCodeInstream(ObjectType: Option; ObjectID: Integer): InStream
     var
