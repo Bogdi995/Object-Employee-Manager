@@ -462,6 +462,7 @@ codeunit 50100 "Object Details Management"
         Methods: List of [Text];
         CRLF: Text[2];
         Method: Text;
+        Character: Text;
         Index: Integer;
         SubstringIndex: Integer;
     begin
@@ -475,13 +476,18 @@ codeunit 50100 "Object Details Management"
             SubstringIndex := Substring.IndexOf('(');
             Method := Substring.Substring(0, SubstringIndex);
 
-            if IsEvent then
-                Methods.Add(EventType + CRLF + Method)
-            else
-                Methods.Add(Delchr(Method, '<', ' '));
+            // if character before procedure is newline
+            if (Character[1] = 10) then
+                if IsEvent then
+                    Methods.Add(EventType + CRLF + Method)
+                else
+                    Methods.Add(Delchr(Method, '<', ' '));
 
             CopyObjectALCode := Substring.Substring(SubstringIndex);
             Index := CopyObjectALCode.IndexOf(MethodType);
+
+            if Index <> -1 then
+                Character := CopyObjectALCode.Substring(CopyObjectALCode.IndexOf(MethodType) - 1, 1);
         until Index = -1;
 
         exit(Methods);
@@ -558,8 +564,8 @@ codeunit 50100 "Object Details Management"
         ObjectALCode := StreamReader.StreamReader(InStr, Encoding.UTF8).ReadToEnd();
         RemoveEventsFromObject(ObjectALCode);
 
-        UnusedGlobalMethods := GetUnusedMethods(ObjectALCode, ProcedureLbl);
-        UnusedGlobalMethods := GetUnusedMethods(ObjectALCode, LocalProcedureLbl);
+        // UnusedGlobalMethods := GetUnusedMethods(ObjectALCode, ProcedureLbl);
+        UnusedLocalMethods := GetUnusedMethods(ObjectALCode, LocalProcedureLbl);
 
         if UnusedGlobalMethods.Count() <> 0 then begin
             NeedsUpdate := true;
@@ -574,19 +580,23 @@ codeunit 50100 "Object Details Management"
     [Scope('OnPrem')]
     local procedure GetUnusedMethods(ObjectALCode: DotNet String; MethodType: Text): List of [Text]
     var
+        CopyObjectALCode: DotNet String;
         Methods: List of [Text];
         UnusedMethods: List of [Text];
-        ParametersTypes: List of [Text];
         Method: Text;
         MethodName: Text;
+        ParametersNo: Integer;
     begin
         if ObjectALCode.IndexOf(MethodType) <> -1 then
             Methods := GetMethods(ObjectALCode, MethodType, false, '');
 
+        CopyObjectALCode := CopyObjectALCode.Copy(ObjectALCode);
+        RemoveMethodsFromObject(CopyObjectALCode);
+
         foreach Method in Methods do begin
-            ParametersTypes := GetParametersTypesForMethod(ObjectALCode, Method);
+            ParametersNo := GetParametersNumberForMethod(ObjectALCode, Method, ';', 0);
             MethodName := GetMethodName(Method);
-            if not CheckIfMethodIsUsedInObject(ObjectALCode, MethodName, ParametersTypes) then
+            if not CheckIfMethodIsUsedInObject(CopyObjectALCode, MethodName, ParametersNo) then
                 UnusedMethods.Add(Method);
         end;
 
@@ -594,36 +604,45 @@ codeunit 50100 "Object Details Management"
     end;
 
     [Scope('OnPrem')]
-    local procedure GetParametersTypesForMethod(ObjectALCode: DotNet String; Method: Text): List of [Text]
+    local procedure GetParametersNumberForMethod(ObjectALCode: DotNet String; Method: Text; Separator: Char; ExpectedParametersNo: Integer): Integer
     var
         CopyObjectALCode: DotNet String;
         MethodHeader: DotNet String;
-        ParametersTypes: List of [Text];
-        ParameterType: Text;
+        ParametersNo: Integer;
         Index: Integer;
         SubstringIndex: Integer;
         SubstringIndexEnd: Integer;
     begin
         CopyObjectALCode := CopyObjectALCode.Copy(ObjectALCode);
         Index := CopyObjectALCode.IndexOf(Method);
-        CopyObjectALCode := CopyObjectALCode.Substring(Index);
-        SubstringIndex := CopyObjectALCode.IndexOf('(');
-        SubstringIndexEnd := CopyObjectALCode.IndexOf(')');
 
-        if SubstringIndexEnd - SubstringIndex <> 1 then begin
-            MethodHeader := CopyObjectALCode.Substring(SubstringIndex, SubstringIndexEnd - SubstringIndex + 1);
-            repeat
-                Index := MethodHeader.IndexOf(';');
-                if Index <> -1 then
-                    ParameterType := MethodHeader.Substring(MethodHeader.IndexOf(':') + 2, MethodHeader.IndexOf(';') - MethodHeader.IndexOf(':') - 2)
-                else
-                    ParameterType := MethodHeader.Substring(MethodHeader.IndexOf(':') + 2, MethodHeader.IndexOf(')') - MethodHeader.IndexOf(':') - 2);
-                ParametersTypes.Add(ParameterType);
-                MethodHeader := MethodHeader.Substring(Index + 1);
-            until Index = -1;
+        while Index <> -1 do begin
+            CopyObjectALCode := CopyObjectALCode.Substring(Index);
+            SubstringIndex := CopyObjectALCode.IndexOf('(');
+            SubstringIndexEnd := CopyObjectALCode.IndexOf(')');
+
+            // Delete the method definition from object (necessary in case of overloading)
+            if Separator = ';' then
+                ObjectALCode := ObjectALCode.Remove(Index, SubstringIndex);
+
+            if SubstringIndexEnd - SubstringIndex <> 1 then begin
+                MethodHeader := CopyObjectALCode.Substring(SubstringIndex, SubstringIndexEnd - SubstringIndex + 1);
+                while Index <> -1 do begin
+                    ParametersNo += 1;
+                    Index := MethodHeader.IndexOf(Separator);
+                    MethodHeader := MethodHeader.Substring(Index + 1);
+                end;
+            end;
+
+            // If a method is overloaded in the object, search other references of it
+            if (Separator = ',') and (ParametersNo <> ExpectedParametersNo) then begin
+                CopyObjectALCode := CopyObjectALCode.Substring(SubstringIndexEnd + 1);
+                Index := CopyObjectALCode.IndexOf(Method);
+                ParametersNo := 0;
+            end;
         end;
 
-        exit(ParametersTypes);
+        exit(ParametersNo);
     end;
 
     local procedure GetMethodName(Method: Text): Text
@@ -631,37 +650,37 @@ codeunit 50100 "Object Details Management"
         ProcedureLbl: Label 'procedure';
         LocalProcedureLbl: Label 'local procedure';
     begin
-        if Method.Contains(ProcedureLbl) then
-            exit(Method.Remove(1, StrLen(ProcedureLbl)));
-        exit(Method.Remove(1, StrLen(LocalProcedureLbl)));
+        if Method.Contains(LocalProcedureLbl) then
+            exit(Method.Remove(1, StrLen(LocalProcedureLbl)));
+        exit(Method.Remove(1, StrLen(ProcedureLbl)));
     end;
 
     [Scope('OnPrem')]
-    local procedure CheckIfMethodIsUsedInObject(ObjectALCode: DotNet String; MethodName: Text; ParametersTypes: List of [Text]): Boolean
+    local procedure CheckIfMethodIsUsedInObject(ObjectALCode: DotNet String; MethodName: Text; ParametersNo: Integer): Boolean
     var
-        CopyObjectALCode: DotNet String;
-        MethodCall: DotNet String;
         Index: Integer;
     begin
-        CopyObjectALCode := CopyObjectALCode.Copy(ObjectALCode);
-        RemoveMethodsFromObject(CopyObjectALCode);
-        MethodName := GetNewMethodName(MethodName, ParametersTypes.Count());
-        Index := CopyObjectALCode.IndexOf(MethodName);
+        MethodName := GetNewMethodName(MethodName, ParametersNo);
+        Index := ObjectALCode.IndexOf(MethodName);
 
         // If method is not used in the object
-        if Index = -1 then
-            exit(false);
+        if Index = -1 then begin
+            // Check also for cases where method is used in another method: List.Add(Myfunction)
+            MethodName := '(' + DelChr(MethodName, '<', ' ');
+            if ObjectALCode.IndexOf(MethodName) = -1 then
+                exit(false);
+        end;
 
         // If method is used in object and doesn't have parameters
-        if (Index <> -1) and (ParametersTypes.Count() = 0) then
+        if ParametersNo = 0 then
             exit(true);
 
         // If method is used in the object and has one or more parameters
-        if (Index <> -1) and (ParametersTypes.Count() <> 0) then begin
-            CopyObjectALCode := CopyObjectALCode.Substring(Index);
-            MethodCall := CopyObjectALCode.Substring(CopyObjectALCode.IndexOf('('), CopyObjectALCode.IndexOf(')') - CopyObjectALCode.IndexOf('(') + 1);
-        end;
+        if ParametersNo <> 0 then
+            if ParametersNo = GetParametersNumberForMethod(ObjectALCode, MethodName, ',', ParametersNo) then
+                exit(true);
 
+        exit(false);
     end;
 
     local procedure GetNewMethodName(MethodName: Text; Count: Integer): Text
@@ -679,8 +698,10 @@ codeunit 50100 "Object Details Management"
         ProcedureLbl: Label '    procedure';
         LocalProcedureLbl: Label '    local procedure';
     begin
-        GlobalMethods := GetMethods(ObjectALCode, ProcedureLbl, false, '');
-        LocalMethods := GetMethods(ObjectALCode, LocalProcedureLbl, false, '');
+        if ObjectALCode.IndexOf(ProcedureLbl) <> -1 then
+            GlobalMethods := GetMethods(ObjectALCode, ProcedureLbl, false, '');
+        if ObjectALCode.IndexOf(LocalProcedureLbl) <> -1 then
+            LocalMethods := GetMethods(ObjectALCode, LocalProcedureLbl, false, '');
         RemoveMethodsFromObject(ObjectALCode, GlobalMethods, LocalMethods);
     end;
 

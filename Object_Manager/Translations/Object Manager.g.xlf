@@ -794,7 +794,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Subpage - Control TypeName - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2942433581 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Object Details Line List</source>
+          <source>Object Metadata Page</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Metadata Page - Property Caption</note>
         </trans-unit>

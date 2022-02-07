@@ -2,7 +2,7 @@ page 50145 "Object Metadata Page"
 {
     PageType = List;
     SourceTable = "Application Object Metadata";
-    Caption = 'Object Details Line List';
+    Caption = 'Object Metadata Page';
     ApplicationArea = All;
     UsageCategory = Administration;
     DeleteAllowed = false;
