@@ -307,16 +307,16 @@ codeunit 50100 "Object Details Management"
         InStr := ObjectMetadataPage.GetUserALCodeInstream(ObjectDetails.ObjectTypeCopy, ObjectDetails.ObjectNo);
         ObjectALCode := StreamReader.StreamReader(InStr, Encoding.UTF8).ReadToEnd();
 
-        IntegrationEvents := GetEvents(ObjectALCode, IntegrationEventTxt);
-        BusinessEvents := GetEvents(ObjectALCode, BusinessEventTxt);
+        IntegrationEvents := GetAllEvents(ObjectALCode, IntegrationEventTxt);
+        BusinessEvents := GetAllEvents(ObjectALCode, BusinessEventTxt);
         RemoveEventsFromObject(ObjectALCode, IntegrationEvents, BusinessEvents);
         IntegrationEvents := GetFormattedEvents(IntegrationEvents);
         BusinessEvents := GetFormattedEvents(BusinessEvents);
 
         if ObjectALCode.IndexOf(ProcedureTxt) <> -1 then
-            GlobalMethods := GetMethods(ObjectALCode, ProcedureTxt, false, '');
+            GlobalMethods := GetMethods(ObjectALCode, ProcedureTxt);
         if ObjectALCode.IndexOf(LocalProcedureTxt) <> -1 then
-            LocalMethods := GetMethods(ObjectALCode, LocalProcedureTxt, false, '');
+            LocalMethods := GetMethods(ObjectALCode, LocalProcedureTxt);
 
         if not CheckMethodsEvents(ObjectDetails, GlobalMethods, Types::"Global Method", true) then begin
             NeedsUpdate := true;
@@ -337,7 +337,7 @@ codeunit 50100 "Object Details Management"
     end;
 
     [Scope('OnPrem')]
-    local procedure GetEvents(ObjectALCode: DotNet String; EventTypeTxt: Text): List of [Text]
+    local procedure GetAllEvents(ObjectALCode: DotNet String; EventTypeTxt: Text): List of [Text]
     var
         CopyObjectALCode: DotNet String;
         TypeEvents: List of [Text];
@@ -381,8 +381,8 @@ codeunit 50100 "Object Details Management"
         IntegrationEventLbl: Label '    [IntegrationEvent(%1, %2)]';
         BusinessEventLbl: Label '    [BusinessEvent(%1, %2)]';
     begin
-        IntegrationEvents := GetEvents(ObjectALCode, IntegrationEventLbl);
-        BusinessEvents := GetEvents(ObjectALCode, BusinessEventLbl);
+        IntegrationEvents := GetAllEvents(ObjectALCode, IntegrationEventLbl);
+        BusinessEvents := GetAllEvents(ObjectALCode, BusinessEventLbl);
         RemoveEventsFromObject(ObjectALCode, IntegrationEvents, BusinessEvents);
     end;
 
@@ -454,11 +454,11 @@ codeunit 50100 "Object Details Management"
         Index := CopyObjectALCode.IndexOf(EventType);
         CopyObjectALCode := CopyObjectALCode.Substring(Index);
         if CopyObjectALCode.IndexOf(EventType + CRLF + ProcedureTypeTxt) <> -1 then
-            exit(GetMethods(CopyObjectALCode, ProcedureTypeTxt, true, EventType));
+            exit(GetEvents(CopyObjectALCode, EventType, ProcedureTypeTxt));
     end;
 
     [Scope('OnPrem')]
-    local procedure GetMethods(ObjectALCode: DotNet String; MethodType: Text; IsEvent: Boolean; EventType: Text): List of [Text]
+    local procedure GetMethods(ObjectALCode: DotNet String; MethodType: Text): List of [Text]
     var
         CopyObjectALCode: DotNet String;
         Substring: DotNet String;
@@ -480,18 +480,49 @@ codeunit 50100 "Object Details Management"
             SubstringIndex := Substring.IndexOf('(');
             Method := Substring.Substring(0, SubstringIndex);
 
-            if IsEvent then
-                Methods.Add(EventType + CRLF + Method)
-            else
-                // if character before procedure is newline
-                if (Character[1] = 10) then
-                    Methods.Add(Delchr(Method, '<', ' '));
+            // if character before procedure is newline
+            if (Character[1] = 10) then
+                Methods.Add(Delchr(Method, '<', ' '));
 
             CopyObjectALCode := Substring.Substring(SubstringIndex);
             Index := CopyObjectALCode.IndexOf(MethodType);
         end;
 
         exit(Methods);
+    end;
+
+    local procedure GetEvents(ObjectALCode: DotNet String; EventType: Text; MethodType: Text): List of [Text]
+    var
+        CopyObjectALCode: DotNet String;
+        Substring: DotNet String;
+        Events: List of [Text];
+        CRLF: Text[2];
+        MyEvent: Text;
+        Index: Integer;
+        SubstringIndex: Integer;
+    begin
+        CRLF[1] := 13;
+        CRLF[2] := 10;
+        CopyObjectALCode := CopyObjectALCode.Copy(ObjectALCode);
+        Index := CopyObjectALCode.IndexOf(MethodType);
+
+        while Index <> -1 do begin
+            Substring := CopyObjectALCode.Substring(Index);
+            SubstringIndex := Substring.IndexOf('(');
+
+            MyEvent := Substring.Substring(0, SubstringIndex);
+            Events.Add(EventType + CRLF + MyEvent);
+
+            CopyObjectALCode := Substring.Substring(SubstringIndex);
+            Index := CopyObjectALCode.IndexOf(EventType + CRLF + MethodType);
+
+            if Index <> -1 then begin
+                CopyObjectALCode := CopyObjectALCode.Substring(Index);
+                Index := CopyObjectALCode.IndexOf(MethodType);
+            end;
+        end;
+
+        exit(Events);
     end;
 
     local procedure CheckMethodsEvents(ObjectDetails: Record "Object Details"; GivenList: List of [Text]; Type: Enum Types; IsUsed: Boolean): Boolean
@@ -582,6 +613,8 @@ codeunit 50100 "Object Details Management"
         Method: Text;
         SearchText: Text;
         ProcedureLbl: Label '    procedure';
+        ProgressLbl: Label 'The Unused Global Methods are being updated...  #1';
+        Progress: Dialog;
     begin
         CopyObjectALCode := CopyObjectALCode.Copy(ObjectALCode);
         UnusedGlobalMethods := GetUnusedMethods(CopyObjectALCode, ProcedureLbl);
@@ -591,15 +624,17 @@ codeunit 50100 "Object Details Management"
         ParametersNo := GetParametersNumberForGivenMethods(ObjectALCode, UnusedGlobalMethods);
         SearchText := GetSearchText(ObjectDetails);
 
-        ObjDetails.SetRange(ObjectType, "Object Type"::Table);
-        ObjDetails.SetRange(ObjectNo, 17);
-        // ObjDetails.SetFilter(ObjectType, '%1|%2|%3|%4', "Object Type"::Table, "Object Type"::Page, "Object Type"::Codeunit, "Object Type"::Report);
+        // ObjDetails.SetRange(ObjectType, "Object Type"::Table);
+        // ObjDetails.SetRange(ObjectNo, 17);
+        ObjDetails.SetFilter(ObjectType, '%2|%3|%4', "Object Type"::Page, "Object Type"::Codeunit, "Object Type"::Report);
         if ObjDetails.FindFirst() then
             repeat
+                Progress.Open(ProgressLbl);
                 GetObjectALCode(ObjDetails, ObjectALCode);
                 RemoveEventsFromObject(ObjectALCode);
                 UpdateUnusedGlobalMethods(UnusedGlobalMethods, MethodsName, ParametersNo, ObjectALCode, SearchText);
             until (ObjDetails.Next() = 0) or (UnusedGlobalMethods.Count() = 0);
+        Progress.Close();
 
         exit(UnusedGlobalMethods);
     end;
@@ -703,7 +738,7 @@ codeunit 50100 "Object Details Management"
         ParametersNo: Integer;
     begin
         if ObjectALCode.IndexOf(MethodType) <> -1 then
-            Methods := GetMethods(ObjectALCode, MethodType, false, '');
+            Methods := GetMethods(ObjectALCode, MethodType);
 
         CopyObjectALCode := CopyObjectALCode.Copy(ObjectALCode);
         RemoveMethodsFromObject(CopyObjectALCode);
@@ -816,9 +851,9 @@ codeunit 50100 "Object Details Management"
         LocalProcedureLbl: Label '    local procedure';
     begin
         if ObjectALCode.IndexOf(ProcedureLbl) <> -1 then
-            GlobalMethods := GetMethods(ObjectALCode, ProcedureLbl, false, '');
+            GlobalMethods := GetMethods(ObjectALCode, ProcedureLbl);
         if ObjectALCode.IndexOf(LocalProcedureLbl) <> -1 then
-            LocalMethods := GetMethods(ObjectALCode, LocalProcedureLbl, false, '');
+            LocalMethods := GetMethods(ObjectALCode, LocalProcedureLbl);
         RemoveMethodsFromObject(ObjectALCode, GlobalMethods, LocalMethods);
     end;
 
