@@ -207,19 +207,20 @@ page 50101 "Object Details Card"
                     UpdateObjectsLbl: Label 'Do you want to update the objects?';
                     AlreadyUpdatedLbl: Label 'Objects already updated!';
                     SuccessfullyUpdatedLbl: Label 'Objects successfully updated!';
+                    NeedsUpdate: array[4] of Boolean;
                 begin
-                    if Confirm(UpdateObjectsLbl, true) then
+                    if Confirm(UpdateObjectsLbl, true) then begin
                         if ObjectDetailsManagement.CheckUpdateObjectDetails() then begin
                             ObjectDetailsManagement.UpdateObjectDetails();
-                            Message(SuccessfullyUpdatedLbl);
-                        end
-                        else
-                            Message(AlreadyUpdatedLbl);
+                            NeedsUpdate[1] := true;
+                        end;
+                        Message(GetMessageForUser(NeedsUpdate, AlreadyUpdatedLbl, SuccessfullyUpdatedLbl));
+                    end;
                 end;
             }
-            action(UpdateFields)
+            action(UpdateFieldsKeys)
             {
-                Caption = 'Update Fields';
+                Caption = 'Update Fields and Keys';
                 ApplicationArea = All;
                 Image = UpdateXML;
                 Promoted = true;
@@ -229,43 +230,22 @@ page 50101 "Object Details Card"
                 trigger OnAction()
                 var
                     ObjectDetailsManagement: Codeunit "Object Details Management";
-                    UpdateFieldsLbl: Label 'Do you want to update the fields for: %1 %2 - "%3"?';
-                    AlreadyUpdatedLbl: Label 'Fields already updated!';
-                    SuccessfullyUpdatedLbl: Label 'Fields successfully updated!';
+                    UpdateFieldsKeysLbl: Label 'Do you want to update the fields and keys for: %1 %2 - "%3"?';
+                    AlreadyUpdatedLbl: Label 'Fields and keys already updated!';
+                    SuccessfullyUpdatedLbl: Label 'Fields and keys successfully updated!';
+                    NeedsUpdate: array[4] of Boolean;
                 begin
-                    if Confirm(StrSubstNo(UpdateFieldsLbl, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then
-                        if ObjectDetailsManagement.CheckUpdateTypeObjectDetailsLine(Rec, Types::Field) then begin
-                            ObjectDetailsManagement.UpdateTypeObjectDetailsLine(Format(Rec.ObjectNo), Types::Field);
-                            Message(SuccessfullyUpdatedLbl);
-                        end
-                        else
-                            Message(AlreadyUpdatedLbl);
-                end;
-            }
-
-            action(UpdateKeys)
-            {
-                Caption = 'Update Keys';
-                ApplicationArea = All;
-                Image = UpdateXML;
-                Promoted = true;
-                PromotedOnly = true;
-                PromotedCategory = Process;
-
-                trigger OnAction()
-                var
-                    ObjectDetailsManagement: Codeunit "Object Details Management";
-                    UpdateKeysLbl: Label 'Do you want to update the keys for: %1 %2 - "%3"?';
-                    AlreadyUpdatedLbl: Label 'Keys already updated!';
-                    SuccessfullyUpdatedLbl: Label 'Keys successfully updated!';
-                begin
-                    if Confirm(StrSubstNo(UpdateKeysLbl, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then
+                    if Confirm(StrSubstNo(UpdateFieldsKeysLbl, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then begin
                         if ObjectDetailsManagement.CheckUpdateTypeObjectDetailsLine(Rec, Types::"Key") then begin
                             ObjectDetailsManagement.UpdateTypeObjectDetailsLine(Format(Rec.ObjectNo), Types::"Key");
-                            Message(SuccessfullyUpdatedLbl);
-                        end
-                        else
-                            Message(AlreadyUpdatedLbl);
+                            NeedsUpdate[1] := true;
+                        end;
+                        if ObjectDetailsManagement.CheckUpdateTypeObjectDetailsLine(Rec, Types::Field) then begin
+                            ObjectDetailsManagement.UpdateTypeObjectDetailsLine(Format(Rec.ObjectNo), Types::Field);
+                            NeedsUpdate[2] := true;
+                        end;
+                        Message(GetMessageForUser(NeedsUpdate, AlreadyUpdatedLbl, SuccessfullyUpdatedLbl));
+                    end;
                 end;
             }
             action(UpdateMethodsEvents)
@@ -284,17 +264,13 @@ page 50101 "Object Details Card"
                     AlreadyUpdatedLbl: Label 'Methods and events already updated!';
                     SuccessfullyUpdatedLbl: Label 'Methods and events successfully updated!';
                     NeedsUpdate: array[4] of Boolean;
-                    AlreadyUpdated: Boolean;
                 begin
                     if Confirm(StrSubstNo(UpdateMethodsEventsLbl, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then begin
                         // ObjectDetailsManagement.UpdateMethodsEventsObjectDetailsLine(Rec, NeedsUpdate[1]);
-                        // ObjectDetailsManagement.UpdateUnusedParameters(Rec, NeedsUpdate[2]);
-                        ObjectDetailsManagement.UpdateUnusedMethods(Rec, NeedsUpdate[3]);
-
-                        // if IsAlreadyUpdated(NeedsUpdate) then
-                        //     Message(AlreadyUpdatedLbl)
-                        // else
-                        //     Message(SuccessfullyUpdatedLbl);
+                        // ObjectDetailsManagement.UpdateUnusedMethods(Rec, NeedsUpdate[2]);
+                        ObjectDetailsManagement.UpdateUnusedParameters(Rec, NeedsUpdate[3]);
+                        // ObjectDetailsManagement.UpdateUnusedReturnValues(Rec, NeedsUpdate[4]);
+                        Message(GetMessageForUser(NeedsUpdate, AlreadyUpdatedLbl, SuccessfullyUpdatedLbl));
                     end;
                 end;
             }
@@ -327,10 +303,17 @@ page 50101 "Object Details Card"
     var
         Index: Integer;
     begin
-        for Index := 1 to 3 do
+        for Index := 1 to 4 do
             if NeedsUpdate[Index] then
                 exit(false);
         exit(true);
+    end;
+
+    local procedure GetMessageForUser(NeedsUpdate: array[4] of Boolean; AlreadyUpdated: Text; SuccessfullyUpdated: Text): Text
+    begin
+        if IsAlreadyUpdated(NeedsUpdate) then
+            exit(AlreadyUpdated);
+        exit(SuccessfullyUpdated);
     end;
 
 }

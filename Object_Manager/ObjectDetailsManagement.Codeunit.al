@@ -290,11 +290,7 @@ codeunit 50100 "Object Details Management"
     [Scope('OnPrem')]
     procedure UpdateMethodsEventsObjectDetailsLine(ObjectDetails: Record "Object Details"; var NeedsUpdate: Boolean)
     var
-        ObjectMetadataPage: Page "Object Metadata Page";
-        Encoding: DotNet Encoding;
-        StreamReader: DotNet StreamReader;
         ObjectALCode: DotNet String;
-        InStr: InStream;
         GlobalMethods: List of [Text];
         LocalMethods: List of [Text];
         IntegrationEvents: List of [Text];
@@ -304,8 +300,7 @@ codeunit 50100 "Object Details Management"
         IntegrationEventTxt: Label '    [IntegrationEvent(%1, %2)]';
         BusinessEventTxt: Label '    [BusinessEvent(%1, %2)]';
     begin
-        InStr := ObjectMetadataPage.GetUserALCodeInstream(ObjectDetails.ObjectTypeCopy, ObjectDetails.ObjectNo);
-        ObjectALCode := StreamReader.StreamReader(InStr, Encoding.UTF8).ReadToEnd();
+        GetObjectALCode(ObjectDetails, ObjectALCode);
 
         IntegrationEvents := GetAllEvents(ObjectALCode, IntegrationEventTxt);
         BusinessEvents := GetAllEvents(ObjectALCode, BusinessEventTxt);
@@ -334,6 +329,18 @@ codeunit 50100 "Object Details Management"
             NeedsUpdate := true;
             UpdateMethodsEvents(ObjectDetails, BusinessEvents, Types::"Business Event", false);
         end;
+    end;
+
+    [Scope('OnPrem')]
+    local procedure GetObjectALCode(ObjectDetails: Record "Object Details"; var ObjectALCode: DotNet String)
+    var
+        ObjectMetadataPage: Page "Object Metadata Page";
+        Encoding: DotNet Encoding;
+        StreamReader: DotNet StreamReader;
+        InStr: InStream;
+    begin
+        InStr := ObjectMetadataPage.GetUserALCodeInstream(ObjectDetails.ObjectTypeCopy, ObjectDetails.ObjectNo);
+        ObjectALCode := StreamReader.StreamReader(InStr, Encoding.UTF8).ReadToEnd();
     end;
 
     [Scope('OnPrem')]
@@ -593,14 +600,14 @@ codeunit 50100 "Object Details Management"
         UnusedLocalMethods := GetUnusedMethods(ObjectALCode, LocalProcedureLbl);
         UnusedGlobalMethods := GetUnusedGlobalMethods(ObjectDetails, ObjectALCode);
 
-        // if UnusedGlobalMethods.Count() <> 0 then begin
-        //     NeedsUpdate := true;
-        //     InsertUnusedMethodsInObjectDetailsLine(ObjectDetails, UnusedGlobalMethods, true);
-        // end;
-        // if UnusedLocalMethods.Count() <> 0 then begin
-        //     NeedsUpdate := true;
-        //     InsertUnusedMethodsInObjectDetailsLine(ObjectDetails, UnusedLocalMethods, false);
-        // end;
+        if UnusedGlobalMethods.Count() <> 0 then begin
+            NeedsUpdate := true;
+            InsertUnusedMethodsInObjectDetailsLine(ObjectDetails, UnusedGlobalMethods, true);
+        end;
+        if UnusedLocalMethods.Count() <> 0 then begin
+            NeedsUpdate := true;
+            InsertUnusedMethodsInObjectDetailsLine(ObjectDetails, UnusedLocalMethods, false);
+        end;
     end;
 
     local procedure GetUnusedGlobalMethods(ObjectDetails: Record "Object Details"; ObjectALCode: DotNet String): List of [Text]
@@ -613,7 +620,7 @@ codeunit 50100 "Object Details Management"
         Method: Text;
         SearchText: Text;
         ProcedureLbl: Label '    procedure';
-        ProgressLbl: Label 'The Unused Global Methods are being updated...  #1';
+        ProgressLbl: Label 'The Unused Global Methods are being updated...';
         Progress: Dialog;
     begin
         CopyObjectALCode := CopyObjectALCode.Copy(ObjectALCode);
@@ -624,31 +631,17 @@ codeunit 50100 "Object Details Management"
         ParametersNo := GetParametersNumberForGivenMethods(ObjectALCode, UnusedGlobalMethods);
         SearchText := GetSearchText(ObjectDetails);
 
-        // ObjDetails.SetRange(ObjectType, "Object Type"::Table);
-        // ObjDetails.SetRange(ObjectNo, 17);
-        ObjDetails.SetFilter(ObjectType, '%2|%3|%4', "Object Type"::Page, "Object Type"::Codeunit, "Object Type"::Report);
+        ObjDetails.SetFilter(ObjectType, '%1|%2|%3|%4|%5|%6', "Object Type"::Table, "Object Type"::"TableExtension", "Object Type"::Page, "Object Type"::"PageExtension", "Object Type"::Codeunit, "Object Type"::Report);
+        ObjDetails.SetFilter(ObjectNo, '<%1', 2000000000);
         if ObjDetails.FindFirst() then
             repeat
                 Progress.Open(ProgressLbl);
                 GetObjectALCode(ObjDetails, ObjectALCode);
-                RemoveEventsFromObject(ObjectALCode);
                 UpdateUnusedGlobalMethods(UnusedGlobalMethods, MethodsName, ParametersNo, ObjectALCode, SearchText);
             until (ObjDetails.Next() = 0) or (UnusedGlobalMethods.Count() = 0);
         Progress.Close();
 
         exit(UnusedGlobalMethods);
-    end;
-
-    [Scope('OnPrem')]
-    local procedure GetObjectALCode(ObjectDetails: Record "Object Details"; var ObjectALCode: DotNet String)
-    var
-        ObjectMetadataPage: Page "Object Metadata Page";
-        Encoding: DotNet Encoding;
-        StreamReader: DotNet StreamReader;
-        InStr: InStream;
-    begin
-        InStr := ObjectMetadataPage.GetUserALCodeInstream(ObjectDetails.ObjectTypeCopy, ObjectDetails.ObjectNo);
-        ObjectALCode := StreamReader.StreamReader(InStr, Encoding.UTF8).ReadToEnd();
     end;
 
     local procedure GetSearchText(ObjectDetails: Record "Object Details"): Text
@@ -677,19 +670,24 @@ codeunit 50100 "Object Details Management"
         end
     end;
 
-    local procedure UpdateUnusedGlobalMethods(var UnusedGlobalMethods: List of [Text]; MethodsName: List of [Text]; ParametersNo: List of [Integer]; ObjectALCode: DotNet String; SearchText: Text)
+    local procedure UpdateUnusedGlobalMethods(var UnusedGlobalMethods: List of [Text]; var MethodsName: List of [Text]; ParametersNo: List of [Integer]; ObjectALCode: DotNet String; SearchText: Text)
     var
         VariableName: Text;
         Method: Text;
+        MethodFound: Text;
     begin
         if ObjectALCode.IndexOf(SearchText) <> -1 then begin
             VariableName := GetVariableName(ObjectALCode, SearchText);
+            MethodFound := '';
             foreach Method in MethodsName do
                 if ObjectALCode.IndexOf(VariableName + '.' + Method) <> -1 then
                     if CheckIfMethodIsUsedInObject(ObjectALCode, VariableName + '.' + Method, ParametersNo.Get(MethodsName.IndexOf(Method))) then begin
                         ParametersNo.Remove(ParametersNo.Get(MethodsName.IndexOf(Method)));
                         UnusedGlobalMethods.Remove(UnusedGlobalMethods.Get(MethodsName.IndexOf(Method)));
+                        MethodFound := Method;
                     end;
+            if MethodFound <> '' then
+                MethodsName.Remove(MethodFound);
         end;
     end;
 
@@ -888,18 +886,13 @@ codeunit 50100 "Object Details Management"
     [Scope('OnPrem')]
     procedure UpdateUnusedParameters(ObjectDetails: Record "Object Details"; var NeedsUpdate: Boolean)
     var
-        ObjectMetadataPage: Page "Object Metadata Page";
-        Encoding: DotNet Encoding;
-        StreamReader: DotNet StreamReader;
         ObjectALCode: DotNet String;
-        InStr: InStream;
         UnusedParamsFromProcedures: List of [Text];
         UnusedParamsFromLocalProcedures: List of [Text];
         ProcedureLbl: Label '    procedure';
         LocalProcedureLbl: Label '    local procedure';
     begin
-        InStr := ObjectMetadataPage.GetUserALCodeInstream(ObjectDetails.ObjectTypeCopy, ObjectDetails.ObjectNo);
-        ObjectALCode := StreamReader.StreamReader(InStr, Encoding.UTF8).ReadToEnd();
+        GetObjectALCode(ObjectDetails, ObjectALCode);
         RemoveEventsFromObject(ObjectALCode);
 
         UnusedParamsFromProcedures := GetUnusedParameters(ObjectALCode, ProcedureLbl);
@@ -934,7 +927,7 @@ codeunit 50100 "Object Details Management"
         CopyObjectALCode := CopyObjectALCode.Copy(ObjectALCode);
         Index := CopyObjectALCode.IndexOf(MethodType);
 
-        repeat
+        while Index <> -1 do begin
             MethodHeader := CopyObjectALCode.Substring(Index + 4);
             CopyObjectALCode := CopyObjectALCode.Substring(Index + 4);
             SubstringIndex := MethodHeader.IndexOf('(');
@@ -958,7 +951,7 @@ codeunit 50100 "Object Details Management"
                 if not MethodBody.Contains(Parameter) then
                     UnusedParameters.Add(Parameter);
             ParametersList.RemoveRange(1, ParametersList.Count());
-        until Index = -1;
+        end;
 
         exit(UnusedParameters);
     end;
@@ -971,6 +964,82 @@ codeunit 50100 "Object Details Management"
             InsertObjectDetailsLine(ObjectDetails, Parameter, Types::Parameter, false);
     end;
     // Unused Parameters -> End
+
+    // Unused Return Values -> Start
+    [Scope('OnPrem')]
+    procedure UpdateUnusedReturnValues(ObjectDetails: Record "Object Details"; var NeedsUpdate: Boolean)
+    var
+        ObjectALCode: DotNet String;
+        UnusedReturnValuesFromProcedures: List of [Text];
+        UnusedReturnValuesFromLocalProcedures: List of [Text];
+        ProcedureLbl: Label '    procedure';
+        LocalProcedureLbl: Label '    local procedure';
+    begin
+        GetObjectALCode(ObjectDetails, ObjectALCode);
+        RemoveEventsFromObject(ObjectALCode);
+
+        UnusedReturnValuesFromProcedures := GetUnusedReturnValues(ObjectALCode, ProcedureLbl);
+        UnusedReturnValuesFromLocalProcedures := GetUnusedReturnValues(ObjectALCode, LocalProcedureLbl);
+
+        if UnusedReturnValuesFromProcedures.Count() <> 0 then begin
+            NeedsUpdate := true;
+            InsertUnusedReturnValuesInObjectDetailsLine(ObjectDetails, UnusedReturnValuesFromProcedures);
+        end;
+        if UnusedReturnValuesFromLocalProcedures.Count() <> 0 then begin
+            NeedsUpdate := true;
+            InsertUnusedReturnValuesInObjectDetailsLine(ObjectDetails, UnusedReturnValuesFromLocalProcedures);
+        end;
+    end;
+
+    [Scope('OnPrem')]
+    procedure GetUnusedReturnValues(ObjectALCode: DotNet String; MethodType: Text): List of [Text]
+    var
+        CopyObjectALCode: DotNet String;
+        MethodALCode: DotNet String;
+        MethodHeader: DotNet String;
+        MethodBody: DotNet String;
+        UnusedReturnValues: List of [Text];
+        CRLF: Text[2];
+        ReturnValueType: Text;
+        EndLbl: Label '    end;';
+        ExitLbl: Label '    exit(';
+        Index: Integer;
+        SubstringIndex: Integer;
+        SubstringIndexEnd: Integer;
+    begin
+        CopyObjectALCode := CopyObjectALCode.Copy(ObjectALCode);
+        Index := CopyObjectALCode.IndexOf(MethodType);
+        CRLF[1] := 13;
+        CRLF[2] := 10;
+
+        while Index <> -1 do begin
+            MethodHeader := CopyObjectALCode.Substring(Index + 4);
+            CopyObjectALCode := CopyObjectALCode.Substring(Index + 4);
+            SubstringIndex := CopyObjectALCode.IndexOf('(');
+            SubstringIndexEnd := CopyObjectALCode.IndexOf(')');
+            MethodHeader := MethodHeader.Substring(0, SubstringIndexEnd + 2);
+
+            if MethodHeader.Chars(MethodHeader.Length - 1) = ':' then begin
+                ReturnValueType := CopyObjectALCode.Substring(SubstringIndexEnd + 3, CopyObjectALCode.IndexOf(CRLF) - (SubstringIndexEnd + 4) + StrLen(CRLF));
+                MethodBody := CopyObjectALCode.Substring(SubstringIndexEnd + 2, CopyObjectALCode.IndexOf(EndLbl) - (SubstringIndexEnd + 2) + StrLen(EndLbl));
+                if MethodBody.IndexOf(ExitLbl) = -1 then
+                    UnusedReturnValues.Add(ReturnValueType);
+            end;
+
+            Index := CopyObjectALCode.IndexOf(MethodType);
+        end;
+
+        exit(UnusedReturnValues);
+    end;
+
+    local procedure InsertUnusedReturnValuesInObjectDetailsLine(ObjectDetails: Record "Object Details"; UnusedReturnValues: List of [Text])
+    var
+        ReturnValue: Text;
+    begin
+        foreach ReturnValue in UnusedReturnValues do
+            InsertObjectDetailsLine(ObjectDetails, ReturnValue, Types::"Return Value", false);
+    end;
+    // Unused Return Values -> End
 
     //  -------- Object Details Line (METHODS and EVENTS) --------> END
 

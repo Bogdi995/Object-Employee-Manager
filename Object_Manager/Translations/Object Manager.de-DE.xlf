@@ -243,6 +243,18 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method FilterOutSystemValues - NamedType SystemKey</note>
         </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 633131236 - NamedType 141553153" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    procedure</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetAllEvents - NamedType ProcedureLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 633131236 - NamedType 4182917982" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    local procedure</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetAllEvents - NamedType LocalProcedureLbl</note>
+        </trans-unit>
         <trans-unit id="Codeunit 1029530680 - Method 1572135364 - NamedType 1428552256" size-unit="char" translate="yes" xml:space="preserve">
           <source>true</source>
           <target state="needs-translation"/>
@@ -254,18 +266,6 @@
           <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetEventParameters - NamedType FalseLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - Method 4229754755 - NamedType 141553153" size-unit="char" translate="yes" xml:space="preserve">
-          <source>    procedure</source>
-          <target state="needs-translation"/>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetEvents - NamedType ProcedureLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - Method 4229754755 - NamedType 4182917982" size-unit="char" translate="yes" xml:space="preserve">
-          <source>    local procedure</source>
-          <target state="needs-translation"/>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetEvents - NamedType LocalProcedureLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 1029530680 - Method 466741362 - NamedType 141553153" size-unit="char" translate="yes" xml:space="preserve">
           <source>procedure</source>
@@ -315,6 +315,12 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetUnusedGlobalMethods - NamedType ProcedureLbl</note>
         </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 2032994455 - NamedType 3950098385" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The Unused Global Methods are being updated...</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetUnusedGlobalMethods - NamedType ProgressLbl</note>
+        </trans-unit>
         <trans-unit id="Codeunit 1029530680 - Method 2934933108 - NamedType 3609573591" size-unit="char" translate="yes" xml:space="preserve">
           <source>    end;</source>
           <target state="needs-translation"/>
@@ -326,6 +332,18 @@
           <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetUnusedParameters - NamedType VarLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 1786262572 - NamedType 3609573591" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    end;</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetUnusedReturnValues - NamedType EndLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 1786262572 - NamedType 3648783054" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    exit(</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetUnusedReturnValues - NamedType ExitLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 1029530680 - Method 1582397950 - NamedType 1018256172" size-unit="char" translate="yes" xml:space="preserve">
           <source>    [IntegrationEvent(%1, %2)]</source>
@@ -392,6 +410,18 @@
           <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method UpdateUnusedParameters - NamedType LocalProcedureLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 2390235881 - NamedType 141553153" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    procedure</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method UpdateUnusedReturnValues - NamedType ProcedureLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 2390235881 - NamedType 4182917982" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    local procedure</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method UpdateUnusedReturnValues - NamedType LocalProcedureLbl</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object Details Card</source>
@@ -561,53 +591,29 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control NoUnusedTotalVariables - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 683374773 - Action 544469732 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Update Fields</source>
-          <target state="Felder aktualisieren"/>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateFields - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 683374773 - Action 544469732 - Method 1377591017 - NamedType 534634590" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Do you want to update the fields for: %1 %2 - "%3"?</source>
+        <trans-unit id="Page 683374773 - Action 3450744784 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Update Fields and Keys</source>
           <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateFields - Method OnAction - NamedType UpdateFieldsLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateFieldsKeys - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 683374773 - Action 544469732 - Method 1377591017 - NamedType 2810089971" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Fields already updated!</source>
+        <trans-unit id="Page 683374773 - Action 3450744784 - Method 1377591017 - NamedType 2161219690" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Do you want to update the fields and keys for: %1 %2 - "%3"?</source>
           <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateFields - Method OnAction - NamedType AlreadyUpdatedLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateFieldsKeys - Method OnAction - NamedType UpdateFieldsKeysLbl</note>
         </trans-unit>
-        <trans-unit id="Page 683374773 - Action 544469732 - Method 1377591017 - NamedType 1494617514" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Fields successfully updated!</source>
+        <trans-unit id="Page 683374773 - Action 3450744784 - Method 1377591017 - NamedType 2810089971" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Fields and keys already updated!</source>
           <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateFields - Method OnAction - NamedType SuccessfullyUpdatedLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateFieldsKeys - Method OnAction - NamedType AlreadyUpdatedLbl</note>
         </trans-unit>
-        <trans-unit id="Page 683374773 - Action 3473419439 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Update Keys</source>
-          <target state="Schlüssel aktualisieren"/>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateKeys - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 683374773 - Action 3473419439 - Method 1377591017 - NamedType 3553352913" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Do you want to update the keys for: %1 %2 - "%3"?</source>
+        <trans-unit id="Page 683374773 - Action 3450744784 - Method 1377591017 - NamedType 1494617514" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Fields and keys successfully updated!</source>
           <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateKeys - Method OnAction - NamedType UpdateKeysLbl</note>
-        </trans-unit>
-        <trans-unit id="Page 683374773 - Action 3473419439 - Method 1377591017 - NamedType 2810089971" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Keys already updated!</source>
-          <target state="needs-translation"/>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateKeys - Method OnAction - NamedType AlreadyUpdatedLbl</note>
-        </trans-unit>
-        <trans-unit id="Page 683374773 - Action 3473419439 - Method 1377591017 - NamedType 1494617514" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Keys successfully updated!</source>
-          <target state="needs-translation"/>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateKeys - Method OnAction - NamedType SuccessfullyUpdatedLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateFieldsKeys - Method OnAction - NamedType SuccessfullyUpdatedLbl</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Action 459552838 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Update Methods and Events</source>
