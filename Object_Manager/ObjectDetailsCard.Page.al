@@ -268,7 +268,7 @@ page 50101 "Object Details Card"
                     if Confirm(StrSubstNo(UpdateMethodsEventsLbl, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then begin
                         // ObjectDetailsManagement.UpdateMethodsEventsObjectDetailsLine(Rec, NeedsUpdate[1]);
                         // ObjectDetailsManagement.UpdateUnusedMethods(Rec, NeedsUpdate[2]);
-                        ObjectDetailsManagement.UpdateUnusedParameters(Rec, NeedsUpdate[3]);
+                        // ObjectDetailsManagement.UpdateUnusedParameters(Rec, NeedsUpdate[3]);
                         // ObjectDetailsManagement.UpdateUnusedReturnValues(Rec, NeedsUpdate[4]);
                         Message(GetMessageForUser(NeedsUpdate, AlreadyUpdatedLbl, SuccessfullyUpdatedLbl));
                     end;

@@ -188,6 +188,36 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details Line - Field Used - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - NamedType 463538287" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    begin</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType BeginLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - NamedType 2696378812" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    [BusinessEvent(%1, %2)]</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType BusinessEventLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - NamedType 3609573591" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    end;</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType EndLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - NamedType 1018256172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    [IntegrationEvent(%1, %2)]</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType IntegrationEventLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - NamedType 4182917982" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    local procedure</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType LocalProcedureLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - NamedType 141553153" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    procedure</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType ProcedureLbl</note>
+        </trans-unit>
         <trans-unit id="Codeunit 1029530680 - Method 3794091750 - NamedType 2326848645" size-unit="char" translate="yes" xml:space="preserve">
           <source>The objects are not updated, do you want to update them now?</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -203,16 +233,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method FilterOutSystemValues - NamedType SystemKey</note>
         </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - Method 633131236 - NamedType 141553153" size-unit="char" translate="yes" xml:space="preserve">
-          <source>    procedure</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetAllEvents - NamedType ProcedureLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - Method 633131236 - NamedType 4182917982" size-unit="char" translate="yes" xml:space="preserve">
-          <source>    local procedure</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetAllEvents - NamedType LocalProcedureLbl</note>
-        </trans-unit>
         <trans-unit id="Codeunit 1029530680 - Method 1572135364 - NamedType 1428552256" size-unit="char" translate="yes" xml:space="preserve">
           <source>true</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -223,15 +243,15 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetEventParameters - NamedType FalseLbl</note>
         </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - Method 466741362 - NamedType 141553153" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Codeunit 1029530680 - Method 466741362 - NamedType 3134376032" size-unit="char" translate="yes" xml:space="preserve">
           <source>procedure</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetMethodName - NamedType ProcedureLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetMethodName - NamedType ProcedureWithoutSpacesLbl</note>
         </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - Method 466741362 - NamedType 4182917982" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Codeunit 1029530680 - Method 466741362 - NamedType 1996863027" size-unit="char" translate="yes" xml:space="preserve">
           <source>local procedure</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetMethodName - NamedType LocalProcedureLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetMethodName - NamedType LocalProcedureWithoutSpacesLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 1029530680 - Method 2008638802 - NamedType 672541161" size-unit="char" translate="yes" xml:space="preserve">
           <source>Record</source>
@@ -258,100 +278,20 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetTypeText - NamedType KeysLbl</note>
         </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - Method 2032994455 - NamedType 141553153" size-unit="char" translate="yes" xml:space="preserve">
-          <source>    procedure</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetUnusedGlobalMethods - NamedType ProcedureLbl</note>
-        </trans-unit>
         <trans-unit id="Codeunit 1029530680 - Method 2032994455 - NamedType 3950098385" size-unit="char" translate="yes" xml:space="preserve">
           <source>The Unused Global Methods are being updated...</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetUnusedGlobalMethods - NamedType ProgressLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - Method 2934933108 - NamedType 3609573591" size-unit="char" translate="yes" xml:space="preserve">
-          <source>    end;</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetUnusedParameters - NamedType EndLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 1029530680 - Method 2934933108 - NamedType 3450148265" size-unit="char" translate="yes" xml:space="preserve">
           <source>var </source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetUnusedParameters - NamedType VarLbl</note>
         </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - Method 1786262572 - NamedType 3609573591" size-unit="char" translate="yes" xml:space="preserve">
-          <source>    end;</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetUnusedReturnValues - NamedType EndLbl</note>
-        </trans-unit>
         <trans-unit id="Codeunit 1029530680 - Method 1786262572 - NamedType 3648783054" size-unit="char" translate="yes" xml:space="preserve">
           <source>    exit(</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetUnusedReturnValues - NamedType ExitLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - Method 1582397950 - NamedType 1018256172" size-unit="char" translate="yes" xml:space="preserve">
-          <source>    [IntegrationEvent(%1, %2)]</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method RemoveEventsFromObject - NamedType IntegrationEventLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - Method 1582397950 - NamedType 2696378812" size-unit="char" translate="yes" xml:space="preserve">
-          <source>    [BusinessEvent(%1, %2)]</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method RemoveEventsFromObject - NamedType BusinessEventLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - Method 400728051 - NamedType 141553153" size-unit="char" translate="yes" xml:space="preserve">
-          <source>    procedure</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method RemoveMethodsFromObject - NamedType ProcedureLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - Method 400728051 - NamedType 4182917982" size-unit="char" translate="yes" xml:space="preserve">
-          <source>    local procedure</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method RemoveMethodsFromObject - NamedType LocalProcedureLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - Method 208438581 - NamedType 1874868599" size-unit="char" translate="yes" xml:space="preserve">
-          <source>    procedure</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method UpdateMethodsEventsObjectDetailsLine - NamedType ProcedureTxt</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - Method 208438581 - NamedType 3732748292" size-unit="char" translate="yes" xml:space="preserve">
-          <source>    local procedure</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method UpdateMethodsEventsObjectDetailsLine - NamedType LocalProcedureTxt</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - Method 208438581 - NamedType 983099574" size-unit="char" translate="yes" xml:space="preserve">
-          <source>    [IntegrationEvent(%1, %2)]</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method UpdateMethodsEventsObjectDetailsLine - NamedType IntegrationEventTxt</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - Method 208438581 - NamedType 1494785318" size-unit="char" translate="yes" xml:space="preserve">
-          <source>    [BusinessEvent(%1, %2)]</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method UpdateMethodsEventsObjectDetailsLine - NamedType BusinessEventTxt</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - Method 798985571 - NamedType 4182917982" size-unit="char" translate="yes" xml:space="preserve">
-          <source>    local procedure</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method UpdateUnusedMethods - NamedType LocalProcedureLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - Method 1766432337 - NamedType 141553153" size-unit="char" translate="yes" xml:space="preserve">
-          <source>    procedure</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method UpdateUnusedParameters - NamedType ProcedureLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - Method 1766432337 - NamedType 4182917982" size-unit="char" translate="yes" xml:space="preserve">
-          <source>    local procedure</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method UpdateUnusedParameters - NamedType LocalProcedureLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - Method 2390235881 - NamedType 141553153" size-unit="char" translate="yes" xml:space="preserve">
-          <source>    procedure</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method UpdateUnusedReturnValues - NamedType ProcedureLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - Method 2390235881 - NamedType 4182917982" size-unit="char" translate="yes" xml:space="preserve">
-          <source>    local procedure</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method UpdateUnusedReturnValues - NamedType LocalProcedureLbl</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object Details Card</source>

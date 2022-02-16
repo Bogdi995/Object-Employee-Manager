@@ -105,22 +105,26 @@ table 50100 "Object Details"
         field(150; NoTotalVariables; Integer)
         {
             Caption = 'No. of Total Variables';
-            DataClassification = CustomerContent;
+            FieldClass = FlowField;
+            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = filter("Global Variable" | "Local Variable"), Used = const(true)));
         }
         field(160; NoUnusedTotalVariables; Integer)
         {
             Caption = 'No. of Unused Total Variables';
-            DataClassification = CustomerContent;
+            FieldClass = FlowField;
+            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = filter("Global Variable" | "Local Variable"), Used = const(false)));
         }
         field(170; NoGlobalVariables; Integer)
         {
             Caption = 'No. of Global Variables';
-            DataClassification = CustomerContent;
+            FieldClass = FlowField;
+            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Global Variable"), Used = const(true)));
         }
         field(180; NoUnusedGlobalVariables; Integer)
         {
             Caption = 'No. of Unused Global Variables';
-            DataClassification = CustomerContent;
+            FieldClass = FlowField;
+            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Global Variable"), Used = const(false)));
         }
         field(190; NoUnusedParameters; Integer)
         {
@@ -131,7 +135,8 @@ table 50100 "Object Details"
         field(200; NoUnusedReturnValues; Integer)
         {
             Caption = 'No. of Unused Return Values';
-            DataClassification = CustomerContent;
+            FieldClass = FlowField;
+            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Return Value"), Used = const(false)));
         }
         field(210; RelationsTo; Integer)
         {

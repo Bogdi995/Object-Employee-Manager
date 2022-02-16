@@ -37,7 +37,7 @@ enum 50101 Types
     }
     value(8; "Global Variable")
     {
-        Caption = 'Global Function';
+        Caption = 'Global Variable';
     }
     value(9; "Local Variable")
     {

@@ -1,5 +1,13 @@
 codeunit 50100 "Object Details Management"
 {
+    var
+        ProcedureLbl: Label '    procedure';
+        LocalProcedureLbl: Label '    local procedure';
+        IntegrationEventLbl: Label '    [IntegrationEvent(%1, %2)]';
+        BusinessEventLbl: Label '    [BusinessEvent(%1, %2)]';
+        BeginLbl: Label '    begin';
+        EndLbl: Label '    end;';
+
     //  -------- Object Details --------> START
     procedure ConfirmCheckUpdateObjectDetails()
     var
@@ -176,7 +184,7 @@ codeunit 50100 "Object Details Management"
         exit(Database::"Key");
     end;
 
-    procedure FilterOutSystemValues(Type: Enum Types; var FRef: FieldRef; Recref: RecordRef)
+    procedure FilterOutSystemValues(Type: Enum Types; var FRef: FieldRef; RecRef: RecordRef)
     var
         SystemKey: Label '$systemId';
         SystemFieldIDs: Integer;
@@ -295,23 +303,19 @@ codeunit 50100 "Object Details Management"
         LocalMethods: List of [Text];
         IntegrationEvents: List of [Text];
         BusinessEvents: List of [Text];
-        ProcedureTxt: Label '    procedure';
-        LocalProcedureTxt: Label '    local procedure';
-        IntegrationEventTxt: Label '    [IntegrationEvent(%1, %2)]';
-        BusinessEventTxt: Label '    [BusinessEvent(%1, %2)]';
     begin
         GetObjectALCode(ObjectDetails, ObjectALCode);
 
-        IntegrationEvents := GetAllEvents(ObjectALCode, IntegrationEventTxt);
-        BusinessEvents := GetAllEvents(ObjectALCode, BusinessEventTxt);
+        IntegrationEvents := GetAllEvents(ObjectALCode, IntegrationEventLbl);
+        BusinessEvents := GetAllEvents(ObjectALCode, BusinessEventLbl);
         RemoveEventsFromObject(ObjectALCode, IntegrationEvents, BusinessEvents);
         IntegrationEvents := GetFormattedEvents(IntegrationEvents);
         BusinessEvents := GetFormattedEvents(BusinessEvents);
 
-        if ObjectALCode.IndexOf(ProcedureTxt) <> -1 then
-            GlobalMethods := GetMethods(ObjectALCode, ProcedureTxt);
-        if ObjectALCode.IndexOf(LocalProcedureTxt) <> -1 then
-            LocalMethods := GetMethods(ObjectALCode, LocalProcedureTxt);
+        if ObjectALCode.IndexOf(ProcedureLbl) <> -1 then
+            GlobalMethods := GetMethods(ObjectALCode, ProcedureLbl);
+        if ObjectALCode.IndexOf(LocalProcedureLbl) <> -1 then
+            LocalMethods := GetMethods(ObjectALCode, LocalProcedureLbl);
 
         if not CheckMethodsEvents(ObjectDetails, GlobalMethods, Types::"Global Method", true) then begin
             NeedsUpdate := true;
@@ -349,8 +353,6 @@ codeunit 50100 "Object Details Management"
         CopyObjectALCode: DotNet String;
         TypeEvents: List of [Text];
         TypeEvent: Text;
-        ProcedureLbl: Label '    procedure';
-        LocalProcedureLbl: Label '    local procedure';
     begin
         CopyObjectALCode := CopyObjectALCode.Copy(ObjectALCode);
 
@@ -385,8 +387,6 @@ codeunit 50100 "Object Details Management"
     var
         IntegrationEvents: List of [Text];
         BusinessEvents: List of [Text];
-        IntegrationEventLbl: Label '    [IntegrationEvent(%1, %2)]';
-        BusinessEventLbl: Label '    [BusinessEvent(%1, %2)]';
     begin
         IntegrationEvents := GetAllEvents(ObjectALCode, IntegrationEventLbl);
         BusinessEvents := GetAllEvents(ObjectALCode, BusinessEventLbl);
@@ -592,7 +592,6 @@ codeunit 50100 "Object Details Management"
         ObjectALCode: DotNet String;
         UnusedGlobalMethods: List of [Text];
         UnusedLocalMethods: List of [Text];
-        LocalProcedureLbl: Label '    local procedure';
     begin
         GetObjectALCode(ObjectDetails, ObjectALCode);
         RemoveEventsFromObject(ObjectALCode);
@@ -619,7 +618,6 @@ codeunit 50100 "Object Details Management"
         ParametersNo: List of [Integer];
         Method: Text;
         SearchText: Text;
-        ProcedureLbl: Label '    procedure';
         ProgressLbl: Label 'The Unused Global Methods are being updated...';
         Progress: Dialog;
     begin
@@ -797,12 +795,12 @@ codeunit 50100 "Object Details Management"
 
     local procedure GetMethodName(Method: Text): Text
     var
-        ProcedureLbl: Label 'procedure';
-        LocalProcedureLbl: Label 'local procedure';
+        ProcedureWithoutSpacesLbl: Label 'procedure';
+        LocalProcedureWithoutSpacesLbl: Label 'local procedure';
     begin
-        if Method.Contains(LocalProcedureLbl) then
-            exit(Method.Remove(1, StrLen(LocalProcedureLbl)));
-        exit(Method.Remove(1, StrLen(ProcedureLbl)));
+        if Method.Contains(LocalProcedureWithoutSpacesLbl) then
+            exit(Method.Remove(1, StrLen(LocalProcedureWithoutSpacesLbl)));
+        exit(Method.Remove(1, StrLen(ProcedureWithoutSpacesLbl)));
     end;
 
     [Scope('OnPrem')]
@@ -845,8 +843,6 @@ codeunit 50100 "Object Details Management"
     var
         GlobalMethods: List of [Text];
         LocalMethods: List of [Text];
-        ProcedureLbl: Label '    procedure';
-        LocalProcedureLbl: Label '    local procedure';
     begin
         if ObjectALCode.IndexOf(ProcedureLbl) <> -1 then
             GlobalMethods := GetMethods(ObjectALCode, ProcedureLbl);
@@ -889,8 +885,6 @@ codeunit 50100 "Object Details Management"
         ObjectALCode: DotNet String;
         UnusedParamsFromProcedures: List of [Text];
         UnusedParamsFromLocalProcedures: List of [Text];
-        ProcedureLbl: Label '    procedure';
-        LocalProcedureLbl: Label '    local procedure';
     begin
         GetObjectALCode(ObjectDetails, ObjectALCode);
         RemoveEventsFromObject(ObjectALCode);
@@ -915,25 +909,28 @@ codeunit 50100 "Object Details Management"
         MethodALCode: DotNet String;
         MethodHeader: DotNet String;
         MethodBody: DotNet String;
+        StringComparison: DotNet StringComparison;
         UnusedParameters: List of [Text];
         ParametersList: List of [Text];
         Parameter: Text;
-        EndLbl: Label '    end;';
         VarLbl: Label 'var ';
         Index: Integer;
+        BeginIndex: Integer;
+        EndIndex: Integer;
         SubstringIndex: Integer;
         SubstringIndexEnd: Integer;
     begin
         CopyObjectALCode := CopyObjectALCode.Copy(ObjectALCode);
-        Index := CopyObjectALCode.IndexOf(MethodType);
+        Index := GetIndexOfLabel(CopyObjectALCode, MethodType);
 
         while Index <> -1 do begin
-            MethodHeader := CopyObjectALCode.Substring(Index + 4);
             CopyObjectALCode := CopyObjectALCode.Substring(Index + 4);
-            SubstringIndex := MethodHeader.IndexOf('(');
-            SubstringIndexEnd := MethodHeader.IndexOf(')');
-            MethodBody := MethodHeader.Substring(SubstringIndexEnd + 2, MethodHeader.IndexOf(EndLbl) - (SubstringIndexEnd + 2) + StrLen(EndLbl));
-            MethodHeader := MethodHeader.Substring(0, SubstringIndexEnd + 1);
+            SubstringIndex := CopyObjectALCode.IndexOf('(');
+            SubstringIndexEnd := CopyObjectALCode.IndexOf(')');
+            BeginIndex := GetIndexOfLabel(CopyObjectALCode, BeginLbl);
+            EndIndex := GetIndexOfLabel(CopyObjectALCode, EndLbl);
+            MethodHeader := CopyObjectALCode.Substring(0, SubstringIndexEnd + 1);
+            MethodBody := CopyObjectALCode.Substring(BeginIndex, EndIndex - BeginIndex + StrLen(EndLbl));
 
             if SubstringIndexEnd - SubstringIndex <> 1 then
                 while (SubstringIndex <> 0) do begin
@@ -942,18 +939,38 @@ codeunit 50100 "Object Details Management"
                     Parameter := MethodHeader.Substring(1, SubstringIndex - 1);
                     if Parameter.Contains(VarLbl) then
                         Parameter := Parameter.Remove(1, 4);
-                    ParametersList.Add(Parameter);
+                    ParametersList.Add(' ' + LowerCase(Parameter));
                     SubstringIndex := MethodHeader.IndexOf(';') + 1;
                 end;
-            Index := CopyObjectALCode.IndexOf(MethodType);
+            Index := GetIndexOfLabel(CopyObjectALCode, MethodType);
 
             foreach Parameter in ParametersList do
-                if not MethodBody.Contains(Parameter) then
-                    UnusedParameters.Add(Parameter);
+                if MethodBody.IndexOf(Parameter, StringComparison.OrdinalIgnoreCase) = -1 then
+                    if MethodBody.IndexOf('(' + DelChr(Parameter, '<', ' '), StringComparison.OrdinalIgnoreCase) = -1 then
+                        UnusedParameters.Add(Parameter);
+
             ParametersList.RemoveRange(1, ParametersList.Count());
         end;
 
         exit(UnusedParameters);
+    end;
+
+    [Scope('OnPrem')]
+    local procedure GetIndexOfLabel(ObjectALCode: DotNet String; GivenLabel: Text): Integer
+    var
+        Character: Text;
+    begin
+        if ObjectALCode.IndexOf(GivenLabel) = -1 then
+            exit(-1);
+
+        Character := ObjectALCode.Substring(ObjectALCode.IndexOf(GivenLabel) - 1, 1);
+        // while character before given label is not newline search for the next one
+        while (Character[1] <> 10) do begin
+            ObjectALCode := ObjectALCode.Remove(ObjectALCode.IndexOf(GivenLabel), StrLen(GivenLabel));
+            Character := ObjectALCode.Substring(ObjectALCode.IndexOf(GivenLabel) - 1, 1);
+        end;
+
+        exit(ObjectALCode.IndexOf(GivenLabel));
     end;
 
     local procedure InsertUnusedParametersInObjectDetailsLine(ObjectDetails: Record "Object Details"; UnusedParameters: List of [Text])
@@ -972,11 +989,8 @@ codeunit 50100 "Object Details Management"
         ObjectALCode: DotNet String;
         UnusedReturnValuesFromProcedures: List of [Text];
         UnusedReturnValuesFromLocalProcedures: List of [Text];
-        ProcedureLbl: Label '    procedure';
-        LocalProcedureLbl: Label '    local procedure';
     begin
         GetObjectALCode(ObjectDetails, ObjectALCode);
-        RemoveEventsFromObject(ObjectALCode);
 
         UnusedReturnValuesFromProcedures := GetUnusedReturnValues(ObjectALCode, ProcedureLbl);
         UnusedReturnValuesFromLocalProcedures := GetUnusedReturnValues(ObjectALCode, LocalProcedureLbl);
@@ -1001,9 +1015,10 @@ codeunit 50100 "Object Details Management"
         UnusedReturnValues: List of [Text];
         CRLF: Text[2];
         ReturnValueType: Text;
-        EndLbl: Label '    end;';
         ExitLbl: Label '    exit(';
         Index: Integer;
+        BeginIndex: Integer;
+        EndIndex: Integer;
         SubstringIndex: Integer;
         SubstringIndexEnd: Integer;
     begin
@@ -1021,7 +1036,10 @@ codeunit 50100 "Object Details Management"
 
             if MethodHeader.Chars(MethodHeader.Length - 1) = ':' then begin
                 ReturnValueType := CopyObjectALCode.Substring(SubstringIndexEnd + 3, CopyObjectALCode.IndexOf(CRLF) - (SubstringIndexEnd + 4) + StrLen(CRLF));
-                MethodBody := CopyObjectALCode.Substring(SubstringIndexEnd + 2, CopyObjectALCode.IndexOf(EndLbl) - (SubstringIndexEnd + 2) + StrLen(EndLbl));
+                BeginIndex := GetIndexOfLabel(CopyObjectALCode, BeginLbl);
+                EndIndex := GetIndexOfLabel(CopyObjectALCode, EndLbl);
+                MethodBody := CopyObjectALCode.Substring(BeginIndex, EndIndex - BeginIndex + StrLen(EndLbl));
+
                 if MethodBody.IndexOf(ExitLbl) = -1 then
                     UnusedReturnValues.Add(ReturnValueType);
             end;
