@@ -493,6 +493,26 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateObjects - Method OnAction - NamedType SuccessfullyUpdatedLbl</note>
         </trans-unit>
+        <trans-unit id="Page 683374773 - Action 1271013808 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Update Variables</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateVariables - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 683374773 - Action 1271013808 - Method 1377591017 - NamedType 3848544714" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Do you want to update the variables for: %1 %2 - "%3"?</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateVariables - Method OnAction - NamedType UpdateVariablesLbl</note>
+        </trans-unit>
+        <trans-unit id="Page 683374773 - Action 1271013808 - Method 1377591017 - NamedType 2810089971" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Variables already updated!</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateVariables - Method OnAction - NamedType AlreadyUpdatedLbl</note>
+        </trans-unit>
+        <trans-unit id="Page 683374773 - Action 1271013808 - Method 1377591017 - NamedType 1494617514" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Variables successfully updated!</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateVariables - Method OnAction - NamedType SuccessfullyUpdatedLbl</note>
+        </trans-unit>
         <trans-unit id="Page 3625123773 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object Details Line List</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -839,7 +859,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Enum Types - EnumValue Global Method - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 2388510493 - EnumValue 2775910383 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Global Function</source>
+          <source>Global Variable</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Types - EnumValue Global Variable - Property Caption</note>
         </trans-unit>

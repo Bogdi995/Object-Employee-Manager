@@ -266,10 +266,34 @@ page 50101 "Object Details Card"
                     NeedsUpdate: array[4] of Boolean;
                 begin
                     if Confirm(StrSubstNo(UpdateMethodsEventsLbl, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then begin
-                        // ObjectDetailsManagement.UpdateMethodsEventsObjectDetailsLine(Rec, NeedsUpdate[1]);
-                        // ObjectDetailsManagement.UpdateUnusedMethods(Rec, NeedsUpdate[2]);
-                        // ObjectDetailsManagement.UpdateUnusedParameters(Rec, NeedsUpdate[3]);
-                        // ObjectDetailsManagement.UpdateUnusedReturnValues(Rec, NeedsUpdate[4]);
+                        ObjectDetailsManagement.UpdateMethodsEventsObjectDetailsLine(Rec, NeedsUpdate[1]);
+                        ObjectDetailsManagement.UpdateUnusedMethods(Rec, NeedsUpdate[2]);
+                        ObjectDetailsManagement.UpdateUnusedParameters(Rec, NeedsUpdate[3]);
+                        ObjectDetailsManagement.UpdateUnusedReturnValues(Rec, NeedsUpdate[4]);
+                        Message(GetMessageForUser(NeedsUpdate, AlreadyUpdatedLbl, SuccessfullyUpdatedLbl));
+                    end;
+                end;
+            }
+
+            action(UpdateVariables)
+            {
+                Caption = 'Update Variables';
+                ApplicationArea = All;
+                Image = UpdateXML;
+                Promoted = true;
+                PromotedOnly = true;
+                PromotedCategory = Process;
+
+                trigger OnAction()
+                var
+                    ObjectDetailsManagement: Codeunit "Object Details Management";
+                    UpdateVariablesLbl: Label 'Do you want to update the variables for: %1 %2 - "%3"?';
+                    AlreadyUpdatedLbl: Label 'Variables already updated!';
+                    SuccessfullyUpdatedLbl: Label 'Variables successfully updated!';
+                    NeedsUpdate: array[4] of Boolean;
+                begin
+                    if Confirm(StrSubstNo(UpdateVariablesLbl, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then begin
+
                         Message(GetMessageForUser(NeedsUpdate, AlreadyUpdatedLbl, SuccessfullyUpdatedLbl));
                     end;
                 end;

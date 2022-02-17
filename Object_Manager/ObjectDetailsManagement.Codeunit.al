@@ -599,13 +599,13 @@ codeunit 50100 "Object Details Management"
         UnusedLocalMethods := GetUnusedMethods(ObjectALCode, LocalProcedureLbl);
         UnusedGlobalMethods := GetUnusedGlobalMethods(ObjectDetails, ObjectALCode);
 
-        if UnusedGlobalMethods.Count() <> 0 then begin
+        if not CheckMethodsEvents(ObjectDetails, UnusedGlobalMethods, Types::"Global Method", false) then begin
             NeedsUpdate := true;
-            InsertUnusedMethodsInObjectDetailsLine(ObjectDetails, UnusedGlobalMethods, true);
+            UpdateMethodsEvents(ObjectDetails, UnusedGlobalMethods, Types::"Global Method", false);
         end;
-        if UnusedLocalMethods.Count() <> 0 then begin
+        if not CheckMethodsEvents(ObjectDetails, UnusedLocalMethods, Types::"Local Method", false) then begin
             NeedsUpdate := true;
-            InsertUnusedMethodsInObjectDetailsLine(ObjectDetails, UnusedLocalMethods, false);
+            UpdateMethodsEvents(ObjectDetails, UnusedLocalMethods, Types::"Local Method", false);
         end;
     end;
 
@@ -672,20 +672,25 @@ codeunit 50100 "Object Details Management"
     var
         VariableName: Text;
         Method: Text;
-        MethodFound: Text;
+        MethodsFoundIndex: List of [Integer];
+        Index: Integer;
+        No: Integer;
     begin
         if ObjectALCode.IndexOf(SearchText) <> -1 then begin
             VariableName := GetVariableName(ObjectALCode, SearchText);
-            MethodFound := '';
             foreach Method in MethodsName do
-                if ObjectALCode.IndexOf(VariableName + '.' + Method) <> -1 then
+                if (ObjectALCode.IndexOf(VariableName + '.' + Method) <> -1) then
                     if CheckIfMethodIsUsedInObject(ObjectALCode, VariableName + '.' + Method, ParametersNo.Get(MethodsName.IndexOf(Method))) then begin
-                        ParametersNo.Remove(ParametersNo.Get(MethodsName.IndexOf(Method)));
-                        UnusedGlobalMethods.Remove(UnusedGlobalMethods.Get(MethodsName.IndexOf(Method)));
-                        MethodFound := Method;
+                        MethodsFoundIndex.Add(MethodsName.IndexOf(Method) - No);
+                        No += 1;
                     end;
-            if MethodFound <> '' then
-                MethodsName.Remove(MethodFound);
+
+            if MethodsFoundIndex.Count() <> 0 then
+                foreach Index in MethodsFoundIndex do begin
+                    ParametersNo.RemoveAt(Index);
+                    UnusedGlobalMethods.RemoveAt(Index);
+                    MethodsName.RemoveAt(Index);
+                end;
         end;
     end;
 
@@ -861,21 +866,6 @@ codeunit 50100 "Object Details Management"
         foreach Member in LocalMethods do
             ObjectALCode := ObjectALCode.Remove(ObjectALCode.IndexOf(Member), StrLen(Member));
     end;
-
-    local procedure InsertUnusedMethodsInObjectDetailsLine(ObjectDetails: Record "Object Details"; UnusedMethods: List of [Text]; IsGlobal: Boolean)
-    var
-        Method: Text;
-    begin
-        foreach Method in UnusedMethods do
-            InsertObjectDetailsLine(ObjectDetails, Method, GetType(IsGlobal), false);
-    end;
-
-    local procedure GetType(IsGlobal: Boolean): Enum Types
-    begin
-        if IsGlobal then
-            exit(Types::"Global Method");
-        exit(Types::"Local Method");
-    end;
     // Unused Global/Local Methods -> End
 
     // Unused Parameters -> Start
@@ -892,13 +882,13 @@ codeunit 50100 "Object Details Management"
         UnusedParamsFromProcedures := GetUnusedParameters(ObjectALCode, ProcedureLbl);
         UnusedParamsFromLocalProcedures := GetUnusedParameters(ObjectALCode, LocalProcedureLbl);
 
-        if UnusedParamsFromProcedures.Count() <> 0 then begin
+        if not CheckMethodsEvents(ObjectDetails, UnusedParamsFromProcedures, Types::Parameter, false) then begin
             NeedsUpdate := true;
-            InsertUnusedParametersInObjectDetailsLine(ObjectDetails, UnusedParamsFromProcedures);
+            UpdateMethodsEvents(ObjectDetails, UnusedParamsFromProcedures, Types::Parameter, false);
         end;
-        if UnusedParamsFromLocalProcedures.Count() <> 0 then begin
+        if not CheckMethodsEvents(ObjectDetails, UnusedParamsFromLocalProcedures, Types::Parameter, false) then begin
             NeedsUpdate := true;
-            InsertUnusedParametersInObjectDetailsLine(ObjectDetails, UnusedParamsFromLocalProcedures);
+            UpdateMethodsEvents(ObjectDetails, UnusedParamsFromLocalProcedures, Types::Parameter, false);
         end;
     end;
 
@@ -972,14 +962,6 @@ codeunit 50100 "Object Details Management"
 
         exit(ObjectALCode.IndexOf(GivenLabel));
     end;
-
-    local procedure InsertUnusedParametersInObjectDetailsLine(ObjectDetails: Record "Object Details"; UnusedParameters: List of [Text])
-    var
-        Parameter: Text;
-    begin
-        foreach Parameter in UnusedParameters do
-            InsertObjectDetailsLine(ObjectDetails, Parameter, Types::Parameter, false);
-    end;
     // Unused Parameters -> End
 
     // Unused Return Values -> Start
@@ -995,13 +977,13 @@ codeunit 50100 "Object Details Management"
         UnusedReturnValuesFromProcedures := GetUnusedReturnValues(ObjectALCode, ProcedureLbl);
         UnusedReturnValuesFromLocalProcedures := GetUnusedReturnValues(ObjectALCode, LocalProcedureLbl);
 
-        if UnusedReturnValuesFromProcedures.Count() <> 0 then begin
+        if not CheckMethodsEvents(ObjectDetails, UnusedReturnValuesFromProcedures, Types::"Return Value", false) then begin
             NeedsUpdate := true;
-            InsertUnusedReturnValuesInObjectDetailsLine(ObjectDetails, UnusedReturnValuesFromProcedures);
+            UpdateMethodsEvents(ObjectDetails, UnusedReturnValuesFromProcedures, Types::"Return Value", false);
         end;
-        if UnusedReturnValuesFromLocalProcedures.Count() <> 0 then begin
+        if not CheckMethodsEvents(ObjectDetails, UnusedReturnValuesFromLocalProcedures, Types::"Return Value", false) then begin
             NeedsUpdate := true;
-            InsertUnusedReturnValuesInObjectDetailsLine(ObjectDetails, UnusedReturnValuesFromLocalProcedures);
+            UpdateMethodsEvents(ObjectDetails, UnusedReturnValuesFromLocalProcedures, Types::"Return Value", false);
         end;
     end;
 
@@ -1048,14 +1030,6 @@ codeunit 50100 "Object Details Management"
         end;
 
         exit(UnusedReturnValues);
-    end;
-
-    local procedure InsertUnusedReturnValuesInObjectDetailsLine(ObjectDetails: Record "Object Details"; UnusedReturnValues: List of [Text])
-    var
-        ReturnValue: Text;
-    begin
-        foreach ReturnValue in UnusedReturnValues do
-            InsertObjectDetailsLine(ObjectDetails, ReturnValue, Types::"Return Value", false);
     end;
     // Unused Return Values -> End
 
