@@ -38,10 +38,19 @@ table 50100 "Object Details"
             FieldClass = FlowField;
             CalcFormula = lookup(AllObjWithCaption."Object Caption" where("Object Type" = field(ObjectTypeCopy), "Object ID" = field(ObjectNo)));
         }
-        field(30; ObjectSubtype; Text[30])
+        field(30; SingleInstance; Boolean)
+        {
+            Caption = 'Single Instance';
+            FieldClass = FlowField;
+            CalcFormula = lookup("CodeUnit Metadata".SingleInstance where(ID = field(ObjectNo)));
+        }
+        field(40; ObjectSubtype; Option)
         {
             Caption = 'Object Subtype';
-            DataClassification = CustomerContent;
+            OptionMembers = Normal,Test,TestRunner,Upgrade;
+            OptionCaption = 'Normal,Test,TestRunner,Upgrade';
+            FieldClass = FlowField;
+            CalcFormula = lookup("CodeUnit Metadata".SubType where(ID = field(ObjectNo)));
         }
         field(50; NoTimesUsed; Integer)
         {

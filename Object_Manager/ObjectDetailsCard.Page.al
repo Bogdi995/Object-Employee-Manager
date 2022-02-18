@@ -35,7 +35,12 @@ page 50101 "Object Details Card"
                 group(Subtype)
                 {
                     ShowCaption = false;
-                    Visible = ShowSubtype;
+                    Visible = ShowSubtypeSingleInstance;
+                    field(SingleInstance; Rec.SingleInstance)
+                    {
+                        ToolTip = 'This field is visible only when the type of the object is Codeunit.';
+                        ApplicationArea = All;
+                    }
                     field(ObjectSubtype; Rec.ObjectSubtype)
                     {
                         ToolTip = 'This field is visible only when the type of the object is Codeunit.';
@@ -223,6 +228,7 @@ page 50101 "Object Details Card"
                 Caption = 'Update Fields and Keys';
                 ApplicationArea = All;
                 Image = UpdateXML;
+                Enabled = IsEnabled;
                 Promoted = true;
                 PromotedOnly = true;
                 PromotedCategory = Process;
@@ -236,12 +242,12 @@ page 50101 "Object Details Card"
                     NeedsUpdate: array[4] of Boolean;
                 begin
                     if Confirm(StrSubstNo(UpdateFieldsKeysLbl, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then begin
-                        if ObjectDetailsManagement.CheckUpdateTypeObjectDetailsLine(Rec, Types::"Key") then begin
-                            ObjectDetailsManagement.UpdateTypeObjectDetailsLine(Format(Rec.ObjectNo), Types::"Key");
-                            NeedsUpdate[1] := true;
-                        end;
                         if ObjectDetailsManagement.CheckUpdateTypeObjectDetailsLine(Rec, Types::Field) then begin
                             ObjectDetailsManagement.UpdateTypeObjectDetailsLine(Format(Rec.ObjectNo), Types::Field);
+                            NeedsUpdate[1] := true;
+                        end;
+                        if ObjectDetailsManagement.CheckUpdateTypeObjectDetailsLine(Rec, Types::"Key") then begin
+                            ObjectDetailsManagement.UpdateTypeObjectDetailsLine(Format(Rec.ObjectNo), Types::"Key");
                             NeedsUpdate[2] := true;
                         end;
                         Message(GetMessageForUser(NeedsUpdate, AlreadyUpdatedLbl, SuccessfullyUpdatedLbl));
@@ -266,7 +272,7 @@ page 50101 "Object Details Card"
                     NeedsUpdate: array[4] of Boolean;
                 begin
                     if Confirm(StrSubstNo(UpdateMethodsEventsLbl, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then begin
-                        ObjectDetailsManagement.UpdateMethodsEventsObjectDetailsLine(Rec, NeedsUpdate[1]);
+                        ObjectDetailsManagement.UpdateMethodsEvents(Rec, NeedsUpdate[1]);
                         ObjectDetailsManagement.UpdateUnusedMethods(Rec, NeedsUpdate[2]);
                         ObjectDetailsManagement.UpdateUnusedParameters(Rec, NeedsUpdate[3]);
                         ObjectDetailsManagement.UpdateUnusedReturnValues(Rec, NeedsUpdate[4]);
@@ -293,7 +299,7 @@ page 50101 "Object Details Card"
                     NeedsUpdate: array[4] of Boolean;
                 begin
                     if Confirm(StrSubstNo(UpdateVariablesLbl, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then begin
-
+                        ObjectDetailsManagement.UpdateVariables(Rec, NeedsUpdate[1]);
                         Message(GetMessageForUser(NeedsUpdate, AlreadyUpdatedLbl, SuccessfullyUpdatedLbl));
                     end;
                 end;
@@ -303,7 +309,9 @@ page 50101 "Object Details Card"
 
     var
         [InDataSet]
-        ShowSubtype, ShowNoUnusedTotalVariables, ShowNoUnusedGlobalVariables, ShowNoUnusedGlobalMethods, ShowNoUnusedLocalMethods : Boolean;
+        ShowSubtypeSingleInstance, ShowNoUnusedTotalVariables, ShowNoUnusedGlobalVariables, ShowNoUnusedGlobalMethods, ShowNoUnusedLocalMethods : Boolean;
+        [InDataSet]
+        IsEnabled: Boolean;
 
     trigger OnOpenPage()
     var
@@ -316,11 +324,12 @@ page 50101 "Object Details Card"
     var
         ObjectDetailsManagement: Codeunit "Object Details Management";
     begin
-        ShowSubtype := ObjectDetailsManagement.GetShowSubtype(Rec.ObjectType);
+        ShowSubtypeSingleInstance := ObjectDetailsManagement.GetShowSubtypeSingleInstance(Rec.ObjectType);
         ShowNoUnusedGlobalMethods := ObjectDetailsManagement.GetShowNoUnused(Rec.NoGlobalMethods);
         ShowNoUnusedLocalMethods := ObjectDetailsManagement.GetShowNoUnused(Rec.NoLocalMethods);
         ShowNoUnusedTotalVariables := ObjectDetailsManagement.GetShowNoUnused(Rec.NoTotalVariables);
         ShowNoUnusedGlobalVariables := ObjectDetailsManagement.GetShowNoUnused(Rec.NoGlobalVariables);
+        IsEnabled := ObjectDetailsManagement.GetIsEnabled(Rec);
     end;
 
     local procedure IsAlreadyUpdated(NeedsUpdate: array[4] of Boolean): Boolean

@@ -108,6 +108,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field ObjectSubtype - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3526115305 - Field 4160745019 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Normal,Test,TestRunner,Upgrade</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field ObjectSubtype - Property OptionCaption</note>
+        </trans-unit>
         <trans-unit id="Table 3526115305 - Field 4766335 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object Type</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -132,6 +137,11 @@
           <source>Relations To</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field RelationsTo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3526115305 - Field 2734879477 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Single Instance</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field SingleInstance - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3526115305 - Field 1211769881 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Used in No. of Objects</source>
@@ -218,6 +228,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType ProcedureLbl</note>
         </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - NamedType 156504254" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    trigger</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType TriggerLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - NamedType 3450148265" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    var</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType VarLbl</note>
+        </trans-unit>
         <trans-unit id="Codeunit 1029530680 - Method 3794091750 - NamedType 2326848645" size-unit="char" translate="yes" xml:space="preserve">
           <source>The objects are not updated, do you want to update them now?</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -283,10 +303,10 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetUnusedGlobalMethods - NamedType ProgressLbl</note>
         </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - Method 2934933108 - NamedType 3450148265" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Codeunit 1029530680 - Method 2934933108 - NamedType 137248018" size-unit="char" translate="yes" xml:space="preserve">
           <source>var </source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetUnusedParameters - NamedType VarLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetUnusedParameters - NamedType ParameterVarLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 1029530680 - Method 1786262572 - NamedType 3648783054" size-unit="char" translate="yes" xml:space="preserve">
           <source>    exit(</source>
@@ -407,6 +427,11 @@
           <source>This field is visible only when the type of the object is Codeunit.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control ObjectSubtype - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 683374773 - Control 2734879477 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>This field is visible only when the type of the object is Codeunit.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control SingleInstance - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Control 3344066439 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Variables</source>
