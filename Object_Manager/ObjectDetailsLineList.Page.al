@@ -47,11 +47,6 @@ page 50102 "Object Details Line List"
                     ToolTip = 'Specifies the data type and its length.';
                     ApplicationArea = All;
                 }
-                field(Used; Rec.Used)
-                {
-                    ToolTip = 'Applies only to methods, parameters and return values.';
-                    ApplicationArea = All;
-                }
             }
         }
     }

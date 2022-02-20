@@ -91,7 +91,7 @@ table 50100 "Object Details"
         {
             Caption = 'No. of Global Methods';
             FieldClass = FlowField;
-            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Global Method"), Used = const(true)));
+            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Global Method")));
         }
         field(120; NoUnusedGlobalMethods; Integer)
         {
@@ -103,7 +103,7 @@ table 50100 "Object Details"
         {
             Caption = 'No. of Local Methods';
             FieldClass = FlowField;
-            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Local Method"), Used = const(true)));
+            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Local Method")));
         }
         field(140; NoUnusedLocalMethods; Integer)
         {
@@ -115,7 +115,7 @@ table 50100 "Object Details"
         {
             Caption = 'No. of Total Variables';
             FieldClass = FlowField;
-            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = filter("Global Variable" | "Local Variable"), Used = const(true)));
+            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = filter("Global Variable" | "Local Variable")));
         }
         field(160; NoUnusedTotalVariables; Integer)
         {
@@ -127,7 +127,7 @@ table 50100 "Object Details"
         {
             Caption = 'No. of Global Variables';
             FieldClass = FlowField;
-            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Global Variable"), Used = const(true)));
+            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Global Variable")));
         }
         field(180; NoUnusedGlobalVariables; Integer)
         {

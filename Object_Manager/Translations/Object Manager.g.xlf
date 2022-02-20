@@ -578,11 +578,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Control TypeName - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 3625123773 - Control 3220827225 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Applies only to methods, parameters and return values.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Control Used - Property ToolTip</note>
-        </trans-unit>
         <trans-unit id="Page 3625123773 - Action 544469732 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Update Fields</source>
           <note from="Developer" annotates="general" priority="2"></note>

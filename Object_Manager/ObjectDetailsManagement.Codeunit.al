@@ -333,13 +333,13 @@ codeunit 50100 "Object Details Management"
             NeedsUpdate := true;
             UpdateObjectDetailsLine(ObjectDetails, LocalMethods, Types::"Local Method", true);
         end;
-        if not CheckObjectDetailsLine(ObjectDetails, IntegrationEvents, Types::"Integration Event", false) then begin
+        if not CheckObjectDetailsLine(ObjectDetails, IntegrationEvents, Types::"Integration Event", true) then begin
             NeedsUpdate := true;
-            UpdateObjectDetailsLine(ObjectDetails, IntegrationEvents, Types::"Integration Event", false);
+            UpdateObjectDetailsLine(ObjectDetails, IntegrationEvents, Types::"Integration Event", true);
         end;
-        if not CheckObjectDetailsLine(ObjectDetails, BusinessEvents, Types::"Business Event", false) then begin
+        if not CheckObjectDetailsLine(ObjectDetails, BusinessEvents, Types::"Business Event", true) then begin
             NeedsUpdate := true;
-            UpdateObjectDetailsLine(ObjectDetails, BusinessEvents, Types::"Business Event", false);
+            UpdateObjectDetailsLine(ObjectDetails, BusinessEvents, Types::"Business Event", true);
         end;
     end;
 
@@ -506,6 +506,29 @@ codeunit 50100 "Object Details Management"
         exit(Methods);
     end;
 
+    local procedure GetTypesFromObjectDetailsLine(ObjectDetails: Record "Object Details"; Type: Enum Types): List of [Text]
+    var
+        ObjectDetailsLine: Record "Object Details Line";
+        Types: List of [Text];
+    begin
+        ObjectDetailsLine.SetRange(ObjectType, ObjectDetails.ObjectType);
+        ObjectDetailsLine.SetRange(ObjectNo, ObjectDetails.ObjectNo);
+        ObjectDetailsLine.SetRange(Type, Type);
+        if ObjectDetailsLine.FindSet() then
+            repeat
+                Types.Add(ObjectDetailsLine.Name);
+            until ObjectDetailsLine.Next() = 0;
+
+        exit(Types);
+    end;
+
+    local procedure GetMethodTypeEnumFromMethodTypeText(MethodTypeText: Text): Enum Types
+    begin
+        if MethodTypeText = ProcedureLbl then
+            exit(Types::"Global Method");
+        exit(Types::"Local Method");
+    end;
+
     local procedure GetEvents(ObjectALCode: DotNet String; EventType: Text; MethodType: Text): List of [Text]
     var
         CopyObjectALCode: DotNet String;
@@ -547,7 +570,8 @@ codeunit 50100 "Object Details Management"
         ObjectDetailsLine.SetRange(ObjectType, ObjectDetails.ObjectType);
         ObjectDetailsLine.SetRange(ObjectNo, ObjectDetails.ObjectNo);
         ObjectDetailsLine.SetRange(Type, Type);
-        ObjectDetailsLine.SetRange(Used, IsUsed);
+        if not IsUsed then
+            ObjectDetailsLine.SetRange(Used, false);
 
         if (ObjectDetailsLine.Count() = 0) and (GivenList.Count() = 0) then
             exit(true);
@@ -572,15 +596,34 @@ codeunit 50100 "Object Details Management"
         ObjectDetailsLine.SetRange(ObjectType, ObjectDetails.ObjectType);
         ObjectDetailsLine.SetRange(ObjectNo, ObjectDetails.ObjectNo);
         ObjectDetailsLine.SetRange(Type, Type);
-        ObjectDetailsLine.SetRange(Used, IsUsed);
+
+        if not IsUsed then begin
+            ObjectDetailsLine.SetRange(Used, false);
+            if Type in [Types::"Global Method", Types::"Local Method", Types::"Global Variable", Types::"Local Variable"] then begin
+                ModifyUsedObjectDetailsLine(ObjectDetailsLine, GivenList);
+                exit;
+            end;
+        end;
+
         if ObjectDetailsLine.FindSet() then
             ObjectDetailsLine.DeleteAll();
 
         foreach Member in GivenList do
-            InsertObjectDetailsLine(ObjectDetails, Member, Type, IsUsed);
+            InsertObjectDetailsLine(ObjectDetails, Member, Type);
     end;
 
-    local procedure InsertObjectDetailsLine(ObjectDetails: Record "Object Details"; Name: Text; Type: Enum Types; IsUsed: Boolean)
+    local procedure ModifyUsedObjectDetailsLine(var ObjectDetailsLine: Record "Object Details Line"; GivenList: List of [Text])
+    begin
+        if ObjectDetailsLine.FindSet() then
+            repeat
+                if not GivenList.Contains(ObjectDetailsLine.Name) then begin
+                    ObjectDetailsLine.Validate(Used, true);
+                    ObjectDetailsLine.Modify(true);
+                end;
+            until ObjectDetailsLine.Next() = 0;
+    end;
+
+    local procedure InsertObjectDetailsLine(ObjectDetails: Record "Object Details"; Name: Text; Type: Enum Types)
     var
         ObjectDetailsLine: Record "Object Details Line";
     begin
@@ -590,7 +633,6 @@ codeunit 50100 "Object Details Management"
         ObjectDetailsLine.Validate(ObjectNo, ObjectDetails.ObjectNo);
         ObjectDetailsLine.Validate(Type, Type);
         ObjectDetailsLine.Validate(Name, Name);
-        ObjectDetailsLine.Validate(Used, IsUsed);
         ObjectDetailsLine.Insert(true);
     end;
     // Events/Methods -> End
@@ -606,7 +648,7 @@ codeunit 50100 "Object Details Management"
         GetObjectALCode(ObjectDetails, ObjectALCode);
         RemoveEventsFromObject(ObjectALCode);
 
-        UnusedLocalMethods := GetUnusedMethods(ObjectALCode, LocalProcedureLbl);
+        UnusedLocalMethods := GetUnusedMethods(ObjectDetails, ObjectALCode, LocalProcedureLbl);
         UnusedGlobalMethods := GetUnusedGlobalMethods(ObjectDetails, ObjectALCode);
 
         if not CheckObjectDetailsLine(ObjectDetails, UnusedGlobalMethods, Types::"Global Method", false) then begin
@@ -632,7 +674,7 @@ codeunit 50100 "Object Details Management"
         Progress: Dialog;
     begin
         CopyObjectALCode := CopyObjectALCode.Copy(ObjectALCode);
-        UnusedGlobalMethods := GetUnusedMethods(CopyObjectALCode, ProcedureLbl);
+        UnusedGlobalMethods := GetUnusedMethods(ObjectDetails, CopyObjectALCode, ProcedureLbl);
         foreach Method in UnusedGlobalMethods do begin
             MethodsName.Add(DelChr(GetMethodName(Method), '<', ' '));
         end;
@@ -739,7 +781,7 @@ codeunit 50100 "Object Details Management"
     end;
 
     [Scope('OnPrem')]
-    local procedure GetUnusedMethods(ObjectALCode: DotNet String; MethodType: Text): List of [Text]
+    local procedure GetUnusedMethods(ObjectDetails: Record "Object Details"; ObjectALCode: DotNet String; MethodType: Text): List of [Text]
     var
         CopyObjectALCode: DotNet String;
         Methods: List of [Text];
@@ -749,7 +791,7 @@ codeunit 50100 "Object Details Management"
         ParametersNo: Integer;
     begin
         if ObjectALCode.IndexOf(MethodType) <> -1 then
-            Methods := GetMethods(ObjectALCode, MethodType);
+            Methods := GetTypesFromObjectDetailsLine(ObjectDetails, GetMethodTypeEnumFromMethodTypeText(MethodType));
 
         CopyObjectALCode := CopyObjectALCode.Copy(ObjectALCode);
         RemoveMethodsFromObject(CopyObjectALCode);
@@ -1124,6 +1166,7 @@ codeunit 50100 "Object Details Management"
                     SubstringIndex := MethodVariables.IndexOf(':');
                     Variable := MethodVariables.Substring(0, SubstringIndex);
                     VariablesList.Add(Variable);
+                    MethodVariables := MethodVariables.Substring(MethodVariables.IndexOf(';'));
                     SubstringIndex := MethodVariables.IndexOf('        ') + StrLen('        ');
                 end;
             end;
@@ -1165,6 +1208,7 @@ codeunit 50100 "Object Details Management"
                 SubstringIndex := CopyObjectALCode.IndexOf(':');
                 Variable := CopyObjectALCode.Substring(0, SubstringIndex);
                 VariablesList.Add(Variable);
+                SubstringIndex := CopyObjectALCode.IndexOf(';');
                 CopyObjectALCode := CopyObjectALCode.Substring(SubstringIndex);
                 SubstringIndex := CopyObjectALCode.IndexOf('        ');
                 EndOfGlobalVariables := GetEndOfGlobalVariables(CopyObjectALCode, SubstringIndex);
@@ -1177,13 +1221,15 @@ codeunit 50100 "Object Details Management"
 
     local procedure GetEndOfGlobalVariables(ObjectALCode: DotNet String; IndexOfNextPossibleGlobalVariable: Integer): Boolean
     var
+        CopyObjectALCode: DotNet String;
         TriggerIndex: Integer;
         ProcedureIndex: Integer;
         LocalProcedureIndex: Integer;
     begin
-        TriggerIndex := GetIndexOfLabel(ObjectALCode, TriggerLbl);
-        ProcedureIndex := GetIndexOfLabel(ObjectALCode, ProcedureLbl);
-        LocalProcedureIndex := GetIndexOfLabel(ObjectALCode, LocalProcedureLbl);
+        CopyObjectALCode := CopyObjectALCode.Copy(ObjectALCode);
+        TriggerIndex := GetIndexOfLabel(CopyObjectALCode, TriggerLbl);
+        ProcedureIndex := GetIndexOfLabel(CopyObjectALCode, ProcedureLbl);
+        LocalProcedureIndex := GetIndexOfLabel(CopyObjectALCode, LocalProcedureLbl);
 
         if ((IndexOfNextPossibleGlobalVariable > TriggerIndex) and (TriggerIndex <> -1)) or
             ((IndexOfNextPossibleGlobalVariable > ProcedureIndex) and (ProcedureIndex <> -1)) or
@@ -1191,6 +1237,27 @@ codeunit 50100 "Object Details Management"
             exit(true);
 
         exit(false);
+    end;
+
+    procedure UpdateUnusedVariables(ObjectDetails: Record "Object Details"; var NeedsUpdate: Boolean)
+    var
+        ObjectALCode: DotNet String;
+        UnusedGlobalVariables: List of [Text];
+        UnusedLocalVariables: List of [Text];
+    begin
+        GetObjectALCode(ObjectDetails, ObjectALCode);
+
+        UnusedLocalVariables := GetLocalVariables(ObjectALCode);
+        UnusedGlobalVariables := GetGlobalVariables(ObjectALCode);
+
+        // if not CheckObjectDetailsLine(ObjectDetails, UnusedGlobalVariables, Types::"Global Variable", false) then begin
+        //     NeedsUpdate := true;
+        //     UpdateObjectDetailsLine(ObjectDetails, UnusedGlobalVariables, Types::"Global Variable", false);
+        // end;
+        // if not CheckObjectDetailsLine(ObjectDetails, UnusedLocalVariables, Types::"Local Variable", false) then begin
+        //     NeedsUpdate := true;
+        //     UpdateObjectDetailsLine(ObjectDetails, UnusedLocalVariables, Types::"Local Variable", false);
+        // end;
     end;
     // Global/Local Variables -> End
 
