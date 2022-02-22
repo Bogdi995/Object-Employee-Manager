@@ -299,7 +299,7 @@ page 50101 "Object Details Card"
                     NeedsUpdate: array[4] of Boolean;
                 begin
                     if Confirm(StrSubstNo(UpdateVariablesLbl, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then begin
-                        // ObjectDetailsManagement.UpdateVariables(Rec, NeedsUpdate[1]);
+                        ObjectDetailsManagement.UpdateVariables(Rec, NeedsUpdate[1]);
                         ObjectDetailsManagement.UpdateUnusedVariables(Rec, NeedsUpdate[2]);
                         Message(GetMessageForUser(NeedsUpdate, AlreadyUpdatedLbl, SuccessfullyUpdatedLbl));
                     end;

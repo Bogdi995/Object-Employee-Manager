@@ -1,6 +1,7 @@
 codeunit 50100 "Object Details Management"
 {
     var
+        ModifiedObjectALCode: DotNet String;
         TriggerLbl: Label '    trigger';
         ProcedureLbl: Label '    procedure';
         LocalProcedureLbl: Label '    local procedure';
@@ -569,6 +570,9 @@ codeunit 50100 "Object Details Management"
         if not IsUsed then
             ObjectDetailsLine.SetRange(Used, false);
 
+        if ObjectDetailsLine.Count() <> GivenList.Count() then
+            exit(false);
+
         if (ObjectDetailsLine.Count() = 0) and (GivenList.Count() = 0) then
             exit(true);
 
@@ -1131,7 +1135,6 @@ codeunit 50100 "Object Details Management"
     local procedure GetVariables(ObjectALCode: DotNet String; ProcedureLbl: Text; IsUsed: Boolean): List of [Text]
     var
         CopyObjectALCode: DotNet String;
-        ModifiedObjectALCode: DotNet String;
         MethodVariables: DotNet String;
         MethodBody: DotNet String;
         StringComparison: DotNet StringComparison;
@@ -1147,7 +1150,6 @@ codeunit 50100 "Object Details Management"
         RemoveIndex: Integer;
     begin
         CopyObjectALCode := CopyObjectALCode.Copy(ObjectALCode);
-        ModifiedObjectALCode := ModifiedObjectALCode.Copy(ObjectALCode);
         Index := GetIndexOfLabel(CopyObjectALCode, ProcedureLbl);
 
         while Index <> -1 do begin
@@ -1166,7 +1168,7 @@ codeunit 50100 "Object Details Management"
                     MethodVariables := MethodVariables.Substring(SubstringIndex);
                     SubstringIndex := MethodVariables.IndexOf(':');
                     Variable := MethodVariables.Substring(0, SubstringIndex);
-                    VariablesList.Add(GetFormattedVariable(Variable, IsUsed));
+                    VariablesList.Add(Variable);
                     MethodVariables := MethodVariables.Substring(MethodVariables.IndexOf(';'));
                     SubstringIndex := MethodVariables.IndexOf('        ') + StrLen('        ');
                 end;
@@ -1176,18 +1178,18 @@ codeunit 50100 "Object Details Management"
                     MethodBody := CopyObjectALCode.Substring(BeginIndex, EndIndex - BeginIndex + StrLen(EndLbl));
 
                     foreach Variable in VariablesList do begin
-                        if MethodBody.IndexOf(Variable, StringComparison.OrdinalIgnoreCase) = -1 then
-                            if MethodBody.IndexOf('(' + DelChr(Variable, '<', ' '), StringComparison.OrdinalIgnoreCase) = -1 then
+                        if MethodBody.IndexOf(' ' + Variable, StringComparison.OrdinalIgnoreCase) = -1 then
+                            if MethodBody.IndexOf('(' + Variable, StringComparison.OrdinalIgnoreCase) = -1 then
                                 UnusedVariablesList.Add(Variable);
 
-                        Index := CopyObjectALCode.IndexOf(MethodBody);
-                        while MethodBody.IndexOf(Variable) <> -1 do begin
-                            VariableIndex := MethodBody.IndexOf(Variable);
-                            MethodBody := MethodBody.Remove(Index + VariableIndex, StrLen(Variable));
-                            CopyObjectALCode := CopyObjectALCode.Remove(Index + VariableIndex, StrLen(Variable));
+                        VariableIndex := GetVariableIndex(MethodBody, Variable);
+                        while VariableIndex <> -1 do begin
+                            MethodBody := MethodBody.Remove(VariableIndex, StrLen(Variable) + 1);
+                            VariableIndex := GetVariableIndex(MethodBody, Variable);
                         end;
                     end;
 
+                    ModifiedObjectALCode := MethodBody.Concat(ModifiedObjectALCode, MethodBody);
                     VariablesList.RemoveRange(1, VariablesList.Count());
                 end;
             end;
@@ -1197,14 +1199,39 @@ codeunit 50100 "Object Details Management"
 
         if IsUsed then
             exit(VariablesList);
+
         exit(UnusedVariablesList);
     end;
 
-    local procedure GetFormattedVariable(Variable: Text; IsUsed: Boolean): Text
+    local procedure GetVariableIndex(Method: DotNet String; Variable: Text): Integer
+    var
+        Index: Integer;
     begin
-        if IsUsed then
-            exit(Variable);
-        exit(' ' + Variable);
+        Index := SearchIndexForVariable(Method, ' ' + Variable);
+        if Index <> -1 then
+            exit(Index);
+
+        Index := SearchIndexForVariable(Method, '(' + Variable);
+        if Index <> -1 then
+            exit(Index);
+
+        exit(-1);
+    end;
+
+    local procedure SearchIndexForVariable(Method: DotNet String; Variable: Text): Integer
+    begin
+        if Method.IndexOf(Variable) <> -1 then begin
+            if (Method.IndexOf(Variable + ' ') <> -1) then
+                exit(Method.IndexOf(Variable + ' '));
+            if (Method.IndexOf(Variable + ')') <> -1) then
+                exit(Method.IndexOf(Variable + ')'));
+            if (Method.IndexOf(Variable + ';') <> -1) then
+                exit(Method.IndexOf(Variable + ';'));
+            if (Method.IndexOf(Variable + '.') <> -1) then
+                exit(Method.IndexOf(Variable + '.'));
+        end;
+
+        exit(-1);
     end;
 
     local procedure GetListSum(FirstList: List of [Text]; SecondList: List of [Text]): List of [Text]
@@ -1278,16 +1305,33 @@ codeunit 50100 "Object Details Management"
         GetObjectALCode(ObjectDetails, ObjectALCode);
 
         UnusedLocalVariables := GetLocalVariables(ObjectALCode, false);
-        // UnusedGlobalVariables := GetUnusedGlobalVariables(ObjectALCode);
+        UnusedGlobalVariables := GetUnusedGlobalVariables(ObjectDetails);
 
-        // if not CheckObjectDetailsLine(ObjectDetails, UnusedGlobalVariables, Types::"Global Variable", false) then begin
-        //     NeedsUpdate := true;
-        //     UpdateObjectDetailsLine(ObjectDetails, UnusedGlobalVariables, Types::"Global Variable", false);
-        // end;
-        // if not CheckObjectDetailsLine(ObjectDetails, UnusedLocalVariables, Types::"Local Variable", false) then begin
-        //     NeedsUpdate := true;
-        //     UpdateObjectDetailsLine(ObjectDetails, UnusedLocalVariables, Types::"Local Variable", false);
-        // end;
+        if not CheckObjectDetailsLine(ObjectDetails, UnusedGlobalVariables, Types::"Global Variable", false) then begin
+            NeedsUpdate := true;
+            UpdateObjectDetailsLine(ObjectDetails, UnusedGlobalVariables, Types::"Global Variable", false);
+        end;
+        if not CheckObjectDetailsLine(ObjectDetails, UnusedLocalVariables, Types::"Local Variable", false) then begin
+            NeedsUpdate := true;
+            UpdateObjectDetailsLine(ObjectDetails, UnusedLocalVariables, Types::"Local Variable", false);
+        end;
+    end;
+
+    local procedure GetUnusedGlobalVariables(ObjectDetails: Record "Object Details"): List of [Text]
+    var
+        ObjectALCode: DotNet String;
+        GlobalVariables: List of [Text];
+        UnusedGlobalVariables: List of [Text];
+        Variable: Text;
+    begin
+        GlobalVariables := GetTypesFromObjectDetailsLine(ObjectDetails, Types::"Global Variable");
+        ObjectALCode := ObjectALCode.Copy(ModifiedObjectALCode);
+
+        foreach Variable in GlobalVariables do
+            if GetVariableIndex(ObjectALCode, Variable) = -1 then
+                UnusedGlobalVariables.Add(Variable);
+
+        exit(UnusedGlobalVariables);
     end;
     // Global/Local Variables -> End
 
