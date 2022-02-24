@@ -526,6 +526,7 @@ codeunit 50100 "Object Details Management"
         exit(Types::"Local Method");
     end;
 
+    [Scope('OnPrem')]
     local procedure GetEvents(ObjectALCode: DotNet String; EventType: Text; MethodType: Text): List of [Text]
     var
         CopyObjectALCode: DotNet String;
@@ -661,6 +662,7 @@ codeunit 50100 "Object Details Management"
         end;
     end;
 
+    [Scope('OnPrem')]
     local procedure GetUnusedGlobalMethods(ObjectDetails: Record "Object Details"; ObjectALCode: DotNet String): List of [Text]
     var
         ObjDetails: Record "Object Details";
@@ -720,6 +722,7 @@ codeunit 50100 "Object Details Management"
         end
     end;
 
+    [Scope('OnPrem')]
     local procedure UpdateUnusedGlobalMethods(var UnusedGlobalMethods: List of [Text]; var MethodsName: List of [Text]; ParametersNo: List of [Integer]; ObjectALCode: DotNet String; SearchText: Text)
     var
         VariableName: Text;
@@ -746,6 +749,7 @@ codeunit 50100 "Object Details Management"
         end;
     end;
 
+    [Scope('OnPrem')]
     local procedure GetVariableName(ObjectALCode: DotNet String; SearchText: Text): Text
     var
         Index: Integer;
@@ -1132,7 +1136,8 @@ codeunit 50100 "Object Details Management"
         exit(GetListSum(ListSum, VariablesFromLocalProcedures));
     end;
 
-    local procedure GetVariables(ObjectALCode: DotNet String; ProcedureLbl: Text; IsUsed: Boolean): List of [Text]
+    [Scope('OnPrem')]
+    local procedure GetVariables(ObjectALCode: DotNet String; Type: Text; IsUsed: Boolean): List of [Text]
     var
         CopyObjectALCode: DotNet String;
         MethodVariables: DotNet String;
@@ -1150,7 +1155,7 @@ codeunit 50100 "Object Details Management"
         RemoveIndex: Integer;
     begin
         CopyObjectALCode := CopyObjectALCode.Copy(ObjectALCode);
-        Index := GetIndexOfLabel(CopyObjectALCode, ProcedureLbl);
+        Index := GetIndexOfLabel(CopyObjectALCode, Type);
 
         while Index <> -1 do begin
             CopyObjectALCode := CopyObjectALCode.Substring(Index + 4);
@@ -1194,7 +1199,7 @@ codeunit 50100 "Object Details Management"
                 end;
             end;
 
-            Index := GetIndexOfLabel(CopyObjectALCode, ProcedureLbl);
+            Index := GetIndexOfLabel(CopyObjectALCode, Type);
         end;
 
         if IsUsed then
@@ -1203,6 +1208,7 @@ codeunit 50100 "Object Details Management"
         exit(UnusedVariablesList);
     end;
 
+    [Scope('OnPrem')]
     local procedure GetVariableIndex(Method: DotNet String; Variable: Text): Integer
     var
         Index: Integer;
@@ -1218,6 +1224,7 @@ codeunit 50100 "Object Details Management"
         exit(-1);
     end;
 
+    [Scope('OnPrem')]
     local procedure SearchIndexForVariable(Method: DotNet String; Variable: Text): Integer
     begin
         if Method.IndexOf(Variable) <> -1 then begin
@@ -1244,6 +1251,7 @@ codeunit 50100 "Object Details Management"
         exit(SecondList);
     end;
 
+    [Scope('OnPrem')]
     local procedure GetGlobalVariables(ObjectALCode: DotNet String): List of [Text]
     var
         CopyObjectALCode: DotNet String;
@@ -1276,6 +1284,7 @@ codeunit 50100 "Object Details Management"
         exit(VariablesList);
     end;
 
+    [Scope('OnPrem')]
     local procedure GetEndOfGlobalVariables(ObjectALCode: DotNet String; IndexOfNextPossibleGlobalVariable: Integer): Boolean
     var
         CopyObjectALCode: DotNet String;
@@ -1296,6 +1305,7 @@ codeunit 50100 "Object Details Management"
         exit(false);
     end;
 
+    [Scope('OnPrem')]
     procedure UpdateUnusedVariables(ObjectDetails: Record "Object Details"; var NeedsUpdate: Boolean)
     var
         ObjectALCode: DotNet String;
@@ -1317,6 +1327,7 @@ codeunit 50100 "Object Details Management"
         end;
     end;
 
+    [Scope('OnPrem')]
     local procedure GetUnusedGlobalVariables(ObjectDetails: Record "Object Details"): List of [Text]
     var
         ObjectALCode: DotNet String;
@@ -1336,6 +1347,48 @@ codeunit 50100 "Object Details Management"
     // Global/Local Variables -> End
 
     //  -------- Object Details Line (VARIABLES) --------> END
+
+
+
+    //  -------- Object Details Line (RELATIONS) --------> START
+
+    // No. of Objects Used in -> Start
+    [Scope('OnPrem')]
+    procedure UpdateNoOfObjectsUsedIn(ObjectDetails: Record "Object Details"; var NeedsUpdate: Boolean)
+    var
+        ObjectALCode: DotNet String;
+        ObjectsUsedInCode: List of [Text];
+    begin
+        GetObjectALCode(ObjectDetails, ObjectALCode);
+
+        ObjectsUsedInCode := GetObjectsUsedInCode(ObjectALCode);
+
+    end;
+
+    [Scope('OnPrem')]
+    local procedure GetObjectsUsedInCode(ObjectALCode: DotNet String): List of [Text]
+    var
+        ObjectsUsedInTriggers: List of [Text];
+        ObjectsUsedInProcedures: List of [Text];
+        ObjectsUsedInLocalProcedures: List of [Text];
+        ListSum: List of [Text];
+    begin
+        ObjectsUsedInTriggers := GetObjectsUsedIn(ObjectALCode, TriggerLbl);
+        ObjectsUsedInProcedures := GetObjectsUsedIn(ObjectALCode, ProcedureLbl);
+        ObjectsUsedInLocalProcedures := GetObjectsUsedIn(ObjectALCode, LocalProcedureLbl);
+        ListSum := GetListSum(ObjectsUsedInTriggers, ObjectsUsedInProcedures);
+
+        exit(GetListSum(ListSum, ObjectsUsedInLocalProcedures));
+    end;
+
+    local procedure GetObjectsUsedIn(ObjectALCode: DotNet String; Type: Text): List of [Text]
+    var
+    begin
+
+    end;
+    // No. of Objects Used in -> End
+
+    //  -------- Object Details Line (RELATIONS) --------> END
 
 
 

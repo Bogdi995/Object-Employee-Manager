@@ -305,6 +305,30 @@ page 50101 "Object Details Card"
                     end;
                 end;
             }
+
+            action(UpdateRelations)
+            {
+                Caption = 'Update Relations';
+                ApplicationArea = All;
+                Image = UpdateXML;
+                Promoted = true;
+                PromotedOnly = true;
+                PromotedCategory = Process;
+
+                trigger OnAction()
+                var
+                    ObjectDetailsManagement: Codeunit "Object Details Management";
+                    UpdateRelationsLbl: Label 'Do you want to update the relations for: %1 %2 - "%3"?';
+                    AlreadyUpdatedLbl: Label 'Relations already updated!';
+                    SuccessfullyUpdatedLbl: Label 'Relations successfully updated!';
+                    NeedsUpdate: array[4] of Boolean;
+                begin
+                    if Confirm(StrSubstNo(UpdateRelationsLbl, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then begin
+                        ObjectDetailsManagement.UpdateNoOfObjectsUsedIn(Rec, NeedsUpdate[3]);
+                        Message(GetMessageForUser(NeedsUpdate, AlreadyUpdatedLbl, SuccessfullyUpdatedLbl));
+                    end;
+                end;
+            }
         }
     }
 
