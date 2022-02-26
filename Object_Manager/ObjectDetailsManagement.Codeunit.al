@@ -10,6 +10,7 @@ codeunit 50100 "Object Details Management"
         VarLbl: Label '    var';
         BeginLbl: Label '    begin';
         EndLbl: Label '    end;';
+        RecordLbl: Label 'Record';
 
     //  -------- Object Details --------> START
     procedure ConfirmCheckUpdateObjectDetails()
@@ -1126,14 +1127,12 @@ codeunit 50100 "Object Details Management"
         VariablesFromTriggers: List of [Text];
         VariablesFromProcedures: List of [Text];
         VariablesFromLocalProcedures: List of [Text];
-        ListSum: List of [Text];
     begin
         VariablesFromTriggers := GetVariables(ObjectALCode, TriggerLbl, IsUsed);
         VariablesFromProcedures := GetVariables(ObjectALCode, ProcedureLbl, IsUsed);
         VariablesFromLocalProcedures := GetVariables(ObjectALCode, LocalProcedureLbl, IsUsed);
-        ListSum := GetListSum(VariablesFromTriggers, VariablesFromProcedures);
 
-        exit(GetListSum(ListSum, VariablesFromLocalProcedures));
+        exit(GetListSum(VariablesFromTriggers, VariablesFromProcedures, VariablesFromLocalProcedures));
     end;
 
     [Scope('OnPrem')]
@@ -1249,6 +1248,16 @@ codeunit 50100 "Object Details Management"
             SecondList.Add(Element);
 
         exit(SecondList);
+    end;
+
+    local procedure GetListSum(FirstList: List of [Text]; SecondList: List of [Text]; ThirdList: List of [Text]): List of [Text]
+    var
+        Element: Text;
+    begin
+        foreach Element in FirstList do
+            SecondList.Add(Element);
+
+        exit(GetListSum(SecondList, ThirdList));
     end;
 
     [Scope('OnPrem')]
@@ -1371,20 +1380,115 @@ codeunit 50100 "Object Details Management"
         ObjectsUsedInTriggers: List of [Text];
         ObjectsUsedInProcedures: List of [Text];
         ObjectsUsedInLocalProcedures: List of [Text];
-        ListSum: List of [Text];
     begin
         ObjectsUsedInTriggers := GetObjectsUsedIn(ObjectALCode, TriggerLbl);
         ObjectsUsedInProcedures := GetObjectsUsedIn(ObjectALCode, ProcedureLbl);
         ObjectsUsedInLocalProcedures := GetObjectsUsedIn(ObjectALCode, LocalProcedureLbl);
-        ListSum := GetListSum(ObjectsUsedInTriggers, ObjectsUsedInProcedures);
 
-        exit(GetListSum(ListSum, ObjectsUsedInLocalProcedures));
+        exit(GetListSum(ObjectsUsedInTriggers, ObjectsUsedInProcedures, ObjectsUsedInLocalProcedures));
     end;
 
+    [Scope('OnPrem')]
     local procedure GetObjectsUsedIn(ObjectALCode: DotNet String; Type: Text): List of [Text]
     var
+        CopyObjectALCode: DotNet String;
+        CodeFromType: Dotnet String;
+        TotalObjectsUsedIn: List of [Text];
+        ObjectsFromParameters: List of [Text];
+        ObjectsFromVariables: List of [Text];
+        Index: Integer;
+        EndIndex: Integer;
     begin
+        CopyObjectALCode := CopyObjectALCode.Copy(ObjectALCode);
+        Index := GetIndexOfLabel(CopyObjectALCode, Type);
 
+        while Index <> -1 do begin
+            CopyObjectALCode := CopyObjectALCode.Substring(Index + 4);
+            EndIndex := GetIndexOfLabel(CopyObjectALCode, EndLbl);
+            CodeFromType := CopyObjectALCode.Substring(0, EndIndex + StrLen(EndLbl));
+
+            if Type <> TriggerLbl then
+                ObjectsFromParameters := GetObjectsFromParameters(CodeFromType);
+
+            ObjectsFromVariables := GetObjectsFromVariables(CodeFromType);
+            TotalObjectsUsedIn := GetListSum(TotalObjectsUsedIn, ObjectsFromParameters, ObjectsFromVariables);
+            ObjectsFromParameters.RemoveRange(1, ObjectsFromParameters.Count());
+            ObjectsFromVariables.RemoveRange(1, ObjectsFromVariables.Count());
+            CopyObjectALCode := CopyObjectALCode.Substring(EndIndex + StrLen(EndLbl));
+            Index := GetIndexOfLabel(CopyObjectALCode, Type);
+        end;
+
+        exit(TotalObjectsUsedIn);
+    end;
+
+    [Scope('OnPrem')]
+    local procedure GetObjectsFromParameters(ALCode: DotNet String): List of [Text]
+    var
+        CopyALCode: DotNet String;
+        ObjectsFromParameters: List of [Text];
+        ParameterType: Text;
+        Index: Integer;
+        OpenParanthesisIndex: Integer;
+        CloseParanthesisIndex: Integer;
+    begin
+        CopyALCode := CopyALCode.Copy(ALCode);
+        OpenParanthesisIndex := CopyALCode.IndexOf('(');
+        CloseParanthesisIndex := CopyALCode.IndexOf(')');
+        CopyALCode := CopyALCode.Substring(OpenParanthesisIndex, CloseParanthesisIndex - OpenParanthesisIndex + 1);
+
+        if (CloseParanthesisIndex - OpenParanthesisIndex <> 1) then begin
+            Index := CopyALCode.IndexOf(';');
+
+            while Index <> -1 do begin
+                ParameterType := CopyALCode.Substring(CopyALCode.IndexOf(':') + 2, Index - (CopyALCode.IndexOf(':') + 2));
+                if ParameterType.Contains(RecordLbl) then
+                    ObjectsFromParameters.Add(ParameterType);
+
+                CopyALCode := CopyALCode.Substring(Index + 2);
+                Index := CopyALCode.IndexOf(';');
+            end;
+
+            ParameterType := CopyALCode.Substring(CopyALCode.IndexOf(':') + 2, CopyALCode.IndexOf(')') - (CopyALCode.IndexOf(':') + 2));
+            if ParameterType.Contains(RecordLbl) then
+                ObjectsFromParameters.Add(ParameterType);
+        end;
+
+        exit(ObjectsFromParameters);
+    end;
+
+    [Scope('OnPrem')]
+    local procedure GetObjectsFromVariables(ALCode: DotNet String): List of [Text]
+    var
+        CopyALCode: DotNet String;
+        ObjectsFromVariables: List of [Text];
+        VariableType: Text;
+        Index: Integer;
+        VarIndex: Integer;
+        BeginIndex: Integer;
+    begin
+        CopyALCode := CopyALCode.Copy(ALCode);
+        VarIndex := CopyALCode.IndexOf(VarLbl);
+
+        if VarIndex = -1 then
+            exit;
+
+        BeginIndex := CopyALCode.IndexOf(BeginLbl);
+        CopyALCode := CopyALCode.Substring(VarIndex, BeginIndex - VarIndex);
+
+        Index := CopyALCode.IndexOf('        ') + StrLen('        ');
+        while (Index <> 7) do begin
+            CopyALCode := CopyALCode.Substring(Index);
+            Index := CopyALCode.IndexOf(':');
+            VariableType := CopyALCode.Substring(Index + 2, CopyALCode.IndexOf(';') - (Index + 2));
+
+            if VariableType.Contains(RecordLbl) then
+                ObjectsFromVariables.Add(VariableType);
+
+            CopyALCode := CopyALCode.Substring(CopyALCode.IndexOf(';') + 1);
+            Index := CopyALCode.IndexOf('        ') + StrLen('        ');
+        end;
+
+        exit(ObjectsFromVariables);
     end;
     // No. of Objects Used in -> End
 

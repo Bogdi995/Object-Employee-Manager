@@ -228,6 +228,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType ProcedureLbl</note>
         </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - NamedType 672541161" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Record</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType RecordLbl</note>
+        </trans-unit>
         <trans-unit id="Codeunit 1029530680 - NamedType 156504254" size-unit="char" translate="yes" xml:space="preserve">
           <source>    trigger</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -517,6 +522,26 @@
           <source>Objects successfully updated!</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateObjects - Method OnAction - NamedType SuccessfullyUpdatedLbl</note>
+        </trans-unit>
+        <trans-unit id="Page 683374773 - Action 3052945040 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Update Relations</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateRelations - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 683374773 - Action 3052945040 - Method 1377591017 - NamedType 221113002" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Do you want to update the relations for: %1 %2 - "%3"?</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateRelations - Method OnAction - NamedType UpdateRelationsLbl</note>
+        </trans-unit>
+        <trans-unit id="Page 683374773 - Action 3052945040 - Method 1377591017 - NamedType 2810089971" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Relations already updated!</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateRelations - Method OnAction - NamedType AlreadyUpdatedLbl</note>
+        </trans-unit>
+        <trans-unit id="Page 683374773 - Action 3052945040 - Method 1377591017 - NamedType 1494617514" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Relations successfully updated!</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateRelations - Method OnAction - NamedType SuccessfullyUpdatedLbl</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Action 1271013808 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Update Variables</source>
