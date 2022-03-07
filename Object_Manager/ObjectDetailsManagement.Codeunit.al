@@ -11,6 +11,9 @@ codeunit 50100 "Object Details Management"
         BeginLbl: Label '    begin';
         EndLbl: Label '    end;';
         RecordLbl: Label 'Record';
+        PageLbl: Label 'Page';
+        ReportLbl: Label 'Report';
+        CodeunitLbl: Label 'Codeunit';
 
     //  -------- Object Details --------> START
     procedure ConfirmCheckUpdateObjectDetails()
@@ -1260,6 +1263,18 @@ codeunit 50100 "Object Details Management"
         exit(GetListSum(SecondList, ThirdList));
     end;
 
+    local procedure DeleteDuplicates(GivenList: List of [Text]): List of [Text]
+    var
+        Element: Text;
+        ResultList: List of [Text];
+    begin
+        foreach Element in GivenList do
+            if not ResultList.Contains(Element) then
+                ResultList.Add(Element);
+
+        exit(ResultList);
+    end;
+
     [Scope('OnPrem')]
     local procedure GetGlobalVariables(ObjectALCode: DotNet String): List of [Text]
     var
@@ -1385,7 +1400,7 @@ codeunit 50100 "Object Details Management"
         ObjectsUsedInProcedures := GetObjectsUsedIn(ObjectALCode, ProcedureLbl);
         ObjectsUsedInLocalProcedures := GetObjectsUsedIn(ObjectALCode, LocalProcedureLbl);
 
-        exit(GetListSum(ObjectsUsedInTriggers, ObjectsUsedInProcedures, ObjectsUsedInLocalProcedures));
+        exit(DeleteDuplicates(GetListSum(ObjectsUsedInTriggers, ObjectsUsedInProcedures, ObjectsUsedInLocalProcedures)));
     end;
 
     [Scope('OnPrem')]
@@ -1407,13 +1422,11 @@ codeunit 50100 "Object Details Management"
             EndIndex := GetIndexOfLabel(CopyObjectALCode, EndLbl);
             CodeFromType := CopyObjectALCode.Substring(0, EndIndex + StrLen(EndLbl));
 
-            if Type <> TriggerLbl then
-                ObjectsFromParameters := GetObjectsFromParameters(CodeFromType);
-
+            ObjectsFromParameters := GetObjectsFromParameters(CodeFromType);
             ObjectsFromVariables := GetObjectsFromVariables(CodeFromType);
-            TotalObjectsUsedIn := GetListSum(TotalObjectsUsedIn, ObjectsFromParameters, ObjectsFromVariables);
-            ObjectsFromParameters.RemoveRange(1, ObjectsFromParameters.Count());
-            ObjectsFromVariables.RemoveRange(1, ObjectsFromVariables.Count());
+            if (ObjectsFromParameters.Count() <> 0) or (ObjectsFromVariables.Count() <> 0) then
+                TotalObjectsUsedIn := GetListSum(TotalObjectsUsedIn, ObjectsFromParameters, ObjectsFromVariables);
+
             CopyObjectALCode := CopyObjectALCode.Substring(EndIndex + StrLen(EndLbl));
             Index := GetIndexOfLabel(CopyObjectALCode, Type);
         end;
@@ -1481,7 +1494,8 @@ codeunit 50100 "Object Details Management"
             Index := CopyALCode.IndexOf(':');
             VariableType := CopyALCode.Substring(Index + 2, CopyALCode.IndexOf(';') - (Index + 2));
 
-            if VariableType.Contains(RecordLbl) then
+            if VariableType.Contains(RecordLbl) or VariableType.Contains(PageLbl)
+                or VariableType.Contains(ReportLbl) or VariableType.Contains(CodeunitLbl) then
                 ObjectsFromVariables.Add(VariableType);
 
             CopyALCode := CopyALCode.Substring(CopyALCode.IndexOf(';') + 1);
