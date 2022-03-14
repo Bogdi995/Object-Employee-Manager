@@ -3,6 +3,7 @@ codeunit 50100 "Object Details Management"
     var
         ModifiedObjectALCode: DotNet String;
         TriggerLbl: Label '    trigger';
+        FieldTriggerLbl: Label '            trigger';
         ProcedureLbl: Label '    procedure';
         LocalProcedureLbl: Label '    local procedure';
         IntegrationEventLbl: Label '    [IntegrationEvent(%1, %2)]';
@@ -108,6 +109,13 @@ codeunit 50100 "Object Details Management"
     procedure GetShowSubtypeSingleInstance(ObjectType: Enum "Object Type"): Boolean
     begin
         if ObjectType = ObjectType::Codeunit then
+            exit(true);
+        exit(false);
+    end;
+
+    procedure GetShowRelations(ObjectType: Enum "Object Type"): Boolean
+    begin
+        if ObjectType = ObjectType::Table then
             exit(true);
         exit(false);
     end;
@@ -1263,6 +1271,16 @@ codeunit 50100 "Object Details Management"
         exit(GetListSum(SecondList, ThirdList));
     end;
 
+    local procedure GetListSum(FirstList: List of [Text]; SecondList: List of [Text]; ThirdList: List of [Text]; FourthList: List of [Text]): List of [Text]
+    var
+        Element: Text;
+    begin
+        foreach Element in FirstList do
+            SecondList.Add(Element);
+
+        exit(GetListSum(SecondList, ThirdList, FourthList));
+    end;
+
     local procedure DeleteDuplicates(GivenList: List of [Text]): List of [Text]
     var
         Element: Text;
@@ -1376,6 +1394,87 @@ codeunit 50100 "Object Details Management"
 
     //  -------- Object Details Line (RELATIONS) --------> START
 
+    // Relations From -> Start
+    procedure UpdateRelationsFrom(ObjectDetails: Record "Object Details"; var NeedsUpdate: Boolean)
+    begin
+        if not CheckRelationsFrom(ObjectDetails) then begin
+            NeedsUpdate := true;
+            UpdateRelationsFrom(ObjectDetails);
+        end;
+    end;
+
+    local procedure CheckRelationsFrom(ObjectDetails: Record "Object Details"): Boolean
+    var
+        TableRelationsMetadata: Record "Table Relations Metadata";
+        ObjectDetailsLine: Record "Object Details Line";
+    begin
+        TableRelationsMetadata.SetRange("Related Table ID", ObjectDetails.ObjectNo);
+        ObjectDetailsLine.SetRange(ObjectType, ObjectDetails.ObjectType);
+        ObjectDetailsLine.SetRange(ObjectNo, ObjectDetails.ObjectNo);
+        ObjectDetailsLine.SetRange(Type, Types::"Relation (External)");
+
+        if ObjectDetailsLine.Count() <> TableRelationsMetadata.Count() then
+            exit(false);
+
+        if (ObjectDetailsLine.Count() = 0) and (TableRelationsMetadata.Count() = 0) then
+            exit(true);
+
+        if ObjectDetailsLine.Count() = 0 then
+            exit(false);
+
+        if TableRelationsMetadata.FindSet() then
+            repeat
+                ObjectDetailsLine.SetRange(ID, TableRelationsMetadata."Table ID");
+                ObjectDetailsLine.SetFilter(TypeName, '%1', Format(TableRelationsMetadata."Field No.") + ' "' + TableRelationsMetadata."Field Name" + '"');
+                if ObjectDetailsLine.IsEmpty() then
+                    exit(false);
+            until TableRelationsMetadata.Next() = 0;
+
+        exit(true);
+    end;
+
+    local procedure UpdateRelationsFrom(ObjectDetails: Record "Object Details")
+    var
+        TableRelationsMetadata: Record "Table Relations Metadata";
+        ObjectDetailsLine: Record "Object Details Line";
+    begin
+        ObjectDetailsLine.SetRange(ObjectType, ObjectDetails.ObjectType);
+        ObjectDetailsLine.SetRange(ObjectNo, ObjectDetails.ObjectNo);
+        ObjectDetailsLine.SetRange(Type, Types::"Relation (External)");
+
+        if ObjectDetailsLine.FindSet() then
+            ObjectDetailsLine.DeleteAll();
+
+        TableRelationsMetadata.SetRange("Related Table ID", ObjectDetails.ObjectNo);
+        if TableRelationsMetadata.FindSet() then
+            repeat
+                InsertRelationObjectDetailsLine(ObjectDetails, TableRelationsMetadata);
+            until TableRelationsMetadata.Next() = 0;
+    end;
+
+    local procedure InsertRelationObjectDetailsLine(ObjectDetails: Record "Object Details"; TableRelationsMetadata: Record "Table Relations Metadata")
+    var
+        ObjectDetailsLine: Record "Object Details Line";
+    begin
+        ObjectDetailsLine.Init();
+        ObjectDetailsLine.ObjectType := "Object Type"::Table;
+        ObjectDetailsLine.ObjectNo := ObjectDetails.ObjectNo;
+        ObjectDetailsLine.Type := Types::"Relation (External)";
+        ObjectDetailsLine.ID := TableRelationsMetadata."Table ID";
+        ObjectDetailsLine.Name := TableRelationsMetadata."Table Name";
+        ObjectDetailsLine.TypeName := Format(TableRelationsMetadata."Field No.") + ' "' + TableRelationsMetadata."Field Name" + '"';
+        ObjectDetailsLine.Insert(true);
+    end;
+    // Relations From -> End
+
+    // Relations To -> Start
+    procedure UpdateRelationsTo(ObjectDetails: Record "Object Details"; var NeedsUpdate: Boolean)
+    var
+    begin
+
+    end;
+    // Relations To -> End
+
     // No. of Objects Used in -> Start
     [Scope('OnPrem')]
     procedure UpdateNoOfObjectsUsedIn(ObjectDetails: Record "Object Details"; var NeedsUpdate: Boolean)
@@ -1387,20 +1486,26 @@ codeunit 50100 "Object Details Management"
 
         ObjectsUsedInCode := GetObjectsUsedInCode(ObjectALCode);
 
+        if not CheckObjectDetailsLine(ObjectDetails, ObjectsUsedInCode, Types::"Object (Internal)", true) then begin
+            NeedsUpdate := true;
+            UpdateObjectDetailsLine(ObjectDetails, ObjectsUsedInCode, Types::"Object (Internal)", true);
+        end;
     end;
 
     [Scope('OnPrem')]
     local procedure GetObjectsUsedInCode(ObjectALCode: DotNet String): List of [Text]
     var
         ObjectsUsedInTriggers: List of [Text];
+        ObjectsUsedInFieldTriggers: List of [Text];
         ObjectsUsedInProcedures: List of [Text];
         ObjectsUsedInLocalProcedures: List of [Text];
     begin
         ObjectsUsedInTriggers := GetObjectsUsedIn(ObjectALCode, TriggerLbl);
+        ObjectsUsedInFieldTriggers := GetObjectsUsedIn(ObjectALCode, FieldTriggerLbl);
         ObjectsUsedInProcedures := GetObjectsUsedIn(ObjectALCode, ProcedureLbl);
         ObjectsUsedInLocalProcedures := GetObjectsUsedIn(ObjectALCode, LocalProcedureLbl);
 
-        exit(DeleteDuplicates(GetListSum(ObjectsUsedInTriggers, ObjectsUsedInProcedures, ObjectsUsedInLocalProcedures)));
+        exit(DeleteDuplicates(GetListSum(ObjectsUsedInTriggers, ObjectsUsedInFieldTriggers, ObjectsUsedInProcedures, ObjectsUsedInLocalProcedures)));
     end;
 
     [Scope('OnPrem')]
@@ -1423,7 +1528,7 @@ codeunit 50100 "Object Details Management"
             CodeFromType := CopyObjectALCode.Substring(0, EndIndex + StrLen(EndLbl));
 
             ObjectsFromParameters := GetObjectsFromParameters(CodeFromType);
-            ObjectsFromVariables := GetObjectsFromVariables(CodeFromType);
+            ObjectsFromVariables := GetObjectsFromVariables(CodeFromType, Type);
             if (ObjectsFromParameters.Count() <> 0) or (ObjectsFromVariables.Count() <> 0) then
                 TotalObjectsUsedIn := GetListSum(TotalObjectsUsedIn, ObjectsFromParameters, ObjectsFromVariables);
 
@@ -1470,11 +1575,12 @@ codeunit 50100 "Object Details Management"
     end;
 
     [Scope('OnPrem')]
-    local procedure GetObjectsFromVariables(ALCode: DotNet String): List of [Text]
+    local procedure GetObjectsFromVariables(ALCode: DotNet String; Type: Text): List of [Text]
     var
         CopyALCode: DotNet String;
         ObjectsFromVariables: List of [Text];
         VariableType: Text;
+        TextToSearch: Text;
         Index: Integer;
         VarIndex: Integer;
         BeginIndex: Integer;
@@ -1487,9 +1593,10 @@ codeunit 50100 "Object Details Management"
 
         BeginIndex := CopyALCode.IndexOf(BeginLbl);
         CopyALCode := CopyALCode.Substring(VarIndex, BeginIndex - VarIndex);
+        TextToSearch := GetTextToSearch(Type);
 
-        Index := CopyALCode.IndexOf('        ') + StrLen('        ');
-        while (Index <> 7) do begin
+        Index := CopyALCode.IndexOf(TextToSearch) + StrLen(TextToSearch);
+        while (Index <> StrLen(TextToSearch) - 1) do begin
             CopyALCode := CopyALCode.Substring(Index);
             Index := CopyALCode.IndexOf(':');
             VariableType := CopyALCode.Substring(Index + 2, CopyALCode.IndexOf(';') - (Index + 2));
@@ -1499,10 +1606,17 @@ codeunit 50100 "Object Details Management"
                 ObjectsFromVariables.Add(VariableType);
 
             CopyALCode := CopyALCode.Substring(CopyALCode.IndexOf(';') + 1);
-            Index := CopyALCode.IndexOf('        ') + StrLen('        ');
+            Index := CopyALCode.IndexOf(TextToSearch) + StrLen(TextToSearch);
         end;
 
         exit(ObjectsFromVariables);
+    end;
+
+    local procedure GetTextToSearch(Type: Text): Text
+    begin
+        if Type = FieldTriggerLbl then
+            exit('            ');
+        exit('        ');
     end;
     // No. of Objects Used in -> End
 

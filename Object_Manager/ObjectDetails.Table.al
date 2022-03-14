@@ -150,22 +150,26 @@ table 50100 "Object Details"
         field(210; RelationsTo; Integer)
         {
             Caption = 'Relations To';
-            DataClassification = CustomerContent;
+            FieldClass = FlowField;
+            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Relation (Internal)")));
         }
         field(220; RelationsFrom; Integer)
         {
             Caption = 'Relations From';
-            DataClassification = CustomerContent;
+            FieldClass = FlowField;
+            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Relation (External)")));
         }
         field(230; NoObjectsUsedIn; Integer)
         {
             Caption = 'No. of Objects Used in';
-            DataClassification = CustomerContent;
+            FieldClass = FlowField;
+            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Object (Internal)")));
         }
         field(240; UsedInNoObjects; Integer)
         {
             Caption = 'Used in No. of Objects';
-            DataClassification = CustomerContent;
+            FieldClass = FlowField;
+            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Object (External)")));
         }
         field(250; ObjectTypeCopy; Option)
         {

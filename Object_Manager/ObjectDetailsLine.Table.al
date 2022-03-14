@@ -43,7 +43,7 @@ table 50101 "Object Details Line"
             Caption = 'Caption';
             DataClassification = CustomerContent;
         }
-        field(50; TypeName; Text[30])
+        field(50; TypeName; Text[50])
         {
             Caption = 'Type Name';
             DataClassification = CustomerContent;

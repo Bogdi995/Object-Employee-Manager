@@ -3,13 +3,13 @@ enum 50101 Types
     Caption = 'Type';
     Extensible = true;
 
-    value(0; "Object")
+    value(0; "Object (Internal)")
     {
-        Caption = 'Object';
+        Caption = 'Internal Object';
     }
-    value(1; "Trigger")
+    value(1; "Object (External)")
     {
-        Caption = 'Trigger';
+        Caption = 'External Object';
     }
     value(2; "Key")
     {
@@ -50,5 +50,13 @@ enum 50101 Types
     value(11; "Return Value")
     {
         Caption = 'Return Value';
+    }
+    value(12; "Relation (Internal)")
+    {
+        Caption = 'Internal Relation';
+    }
+    value(13; "Relation (External)")
+    {
+        Caption = 'External Relation';
     }
 }

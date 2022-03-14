@@ -3,7 +3,7 @@ page 50103 "Object Details Subpage"
     PageType = ListPart;
     SourceTable = "Object Details Line";
     Caption = 'Object Details Subpage';
-    SourceTableView = sorting(Type, ID) order(ascending) where(Type = filter("Trigger" | "Key" | "Field" | "Global Method" | "Local Method" |
+    SourceTableView = sorting(Type, ID) order(ascending) where(Type = filter("Key" | "Field" | "Global Method" | "Local Method" |
                                                                              "Integration Event" | "Business Event"));
 
     layout

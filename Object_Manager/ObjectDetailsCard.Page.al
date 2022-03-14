@@ -69,16 +69,23 @@ page 50101 "Object Details Card"
                 }
                 group(Relations)
                 {
-                    field(RelationsFrom; Rec.RelationsFrom)
+                    group(RelationVisibility)
                     {
-                        ToolTip = 'Specifies the number of relations the object has from other objects.';
-                        ApplicationArea = All;
+                        ShowCaption = false;
+                        Visible = ShowRelations;
+
+                        field(RelationsFrom; Rec.RelationsFrom)
+                        {
+                            ToolTip = 'Specifies the number of relations the object has from other objects.';
+                            ApplicationArea = All;
+                        }
+                        field(RelationsTo; Rec.RelationsTo)
+                        {
+                            ToolTip = 'Specifies the number of relations the object has to other objects.';
+                            ApplicationArea = All;
+                        }
                     }
-                    field(RelationsTo; Rec.RelationsTo)
-                    {
-                        ToolTip = 'Specifies the number of relations the object has to other objects.';
-                        ApplicationArea = All;
-                    }
+
                     field(NoObjectsUsedIn; Rec.NoObjectsUsedIn)
                     {
                         ToolTip = 'Specifies the number of objects used in the object.';
@@ -324,6 +331,10 @@ page 50101 "Object Details Card"
                     NeedsUpdate: array[4] of Boolean;
                 begin
                     if Confirm(StrSubstNo(UpdateRelationsLbl, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then begin
+                        if Rec.ObjectType = Rec.ObjectType::Table then begin
+                            ObjectDetailsManagement.UpdateRelationsFrom(Rec, NeedsUpdate[1]);
+                            ObjectDetailsManagement.UpdateRelationsTo(Rec, NeedsUpdate[2]);
+                        end;
                         ObjectDetailsManagement.UpdateNoOfObjectsUsedIn(Rec, NeedsUpdate[3]);
                         Message(GetMessageForUser(NeedsUpdate, AlreadyUpdatedLbl, SuccessfullyUpdatedLbl));
                     end;
@@ -334,7 +345,7 @@ page 50101 "Object Details Card"
 
     var
         [InDataSet]
-        ShowSubtypeSingleInstance, ShowNoUnusedTotalVariables, ShowNoUnusedGlobalVariables, ShowNoUnusedGlobalMethods, ShowNoUnusedLocalMethods : Boolean;
+        ShowSubtypeSingleInstance, ShowNoUnusedTotalVariables, ShowNoUnusedGlobalVariables, ShowNoUnusedGlobalMethods, ShowNoUnusedLocalMethods, ShowRelations : Boolean;
         [InDataSet]
         IsEnabled: Boolean;
 
@@ -350,6 +361,7 @@ page 50101 "Object Details Card"
         ObjectDetailsManagement: Codeunit "Object Details Management";
     begin
         ShowSubtypeSingleInstance := ObjectDetailsManagement.GetShowSubtypeSingleInstance(Rec.ObjectType);
+        ShowRelations := ObjectDetailsManagement.GetShowRelations(Rec.ObjectType);
         ShowNoUnusedGlobalMethods := ObjectDetailsManagement.GetShowNoUnused(Rec.NoGlobalMethods);
         ShowNoUnusedLocalMethods := ObjectDetailsManagement.GetShowNoUnused(Rec.NoLocalMethods);
         ShowNoUnusedTotalVariables := ObjectDetailsManagement.GetShowNoUnused(Rec.NoTotalVariables);
