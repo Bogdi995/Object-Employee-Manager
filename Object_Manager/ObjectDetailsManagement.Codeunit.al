@@ -1136,14 +1136,16 @@ codeunit 50100 "Object Details Management"
     local procedure GetLocalVariables(ObjectALCode: DotNet String; IsUsed: Boolean): List of [Text]
     var
         VariablesFromTriggers: List of [Text];
+        VariablesFromFieldTriggers: List of [Text];
         VariablesFromProcedures: List of [Text];
         VariablesFromLocalProcedures: List of [Text];
     begin
         VariablesFromTriggers := GetVariables(ObjectALCode, TriggerLbl, IsUsed);
+        VariablesFromFieldTriggers := GetVariables(ObjectALCode, FieldTriggerLbl, IsUsed);
         VariablesFromProcedures := GetVariables(ObjectALCode, ProcedureLbl, IsUsed);
         VariablesFromLocalProcedures := GetVariables(ObjectALCode, LocalProcedureLbl, IsUsed);
 
-        exit(GetListSum(VariablesFromTriggers, VariablesFromProcedures, VariablesFromLocalProcedures));
+        exit(GetListSum(VariablesFromTriggers, VariablesFromFieldTriggers, VariablesFromProcedures, VariablesFromLocalProcedures));
     end;
 
     [Scope('OnPrem')]
@@ -1156,6 +1158,7 @@ codeunit 50100 "Object Details Management"
         VariablesList: List of [Text];
         UnusedVariablesList: List of [Text];
         Variable: Text;
+        TextToSearch: Text;
         Index: Integer;
         VarIndex: Integer;
         VariableIndex: Integer;
@@ -1166,6 +1169,7 @@ codeunit 50100 "Object Details Management"
     begin
         CopyObjectALCode := CopyObjectALCode.Copy(ObjectALCode);
         Index := GetIndexOfLabel(CopyObjectALCode, Type);
+        TextToSearch := GetTextToSearch(Type);
 
         while Index <> -1 do begin
             CopyObjectALCode := CopyObjectALCode.Substring(Index + 4);
@@ -1173,11 +1177,16 @@ codeunit 50100 "Object Details Management"
             VarIndex := GetIndexOfLabel(CopyObjectALCode, VarLbl);
             BeginIndex := GetIndexOfLabel(CopyObjectALCode, BeginLbl);
 
+            if not IsUsed then begin
+                EndIndex := GetIndexOfLabel(CopyObjectALCode, EndLbl);
+                MethodBody := CopyObjectALCode.Substring(BeginIndex, EndIndex - BeginIndex + StrLen(EndLbl));
+            end;
+
             if (VarIndex <> -1) and (VarIndex < BeginIndex) then begin
                 MethodVariables := CopyObjectALCode.Substring(VarIndex, BeginIndex - VarIndex);
                 RemoveIndex += VarIndex;
                 ObjectALCode := ObjectALCode.Remove(RemoveIndex, StrLen(VarLbl));
-                SubstringIndex := MethodVariables.IndexOf('        ') + StrLen('        ');
+                SubstringIndex := MethodVariables.IndexOf(TextToSearch) + StrLen(TextToSearch);
 
                 while (SubstringIndex <> 7) do begin
                     MethodVariables := MethodVariables.Substring(SubstringIndex);
@@ -1185,13 +1194,10 @@ codeunit 50100 "Object Details Management"
                     Variable := MethodVariables.Substring(0, SubstringIndex);
                     VariablesList.Add(Variable);
                     MethodVariables := MethodVariables.Substring(MethodVariables.IndexOf(';'));
-                    SubstringIndex := MethodVariables.IndexOf('        ') + StrLen('        ');
+                    SubstringIndex := MethodVariables.IndexOf(TextToSearch) + StrLen(TextToSearch);
                 end;
 
                 if not IsUsed then begin
-                    EndIndex := GetIndexOfLabel(CopyObjectALCode, EndLbl);
-                    MethodBody := CopyObjectALCode.Substring(BeginIndex, EndIndex - BeginIndex + StrLen(EndLbl));
-
                     foreach Variable in VariablesList do begin
                         if MethodBody.IndexOf(' ' + Variable, StringComparison.OrdinalIgnoreCase) = -1 then
                             if MethodBody.IndexOf('(' + Variable, StringComparison.OrdinalIgnoreCase) = -1 then
@@ -1204,10 +1210,12 @@ codeunit 50100 "Object Details Management"
                         end;
                     end;
 
-                    ModifiedObjectALCode := MethodBody.Concat(ModifiedObjectALCode, MethodBody);
                     VariablesList.RemoveRange(1, VariablesList.Count());
                 end;
             end;
+
+            if not IsUsed then
+                ModifiedObjectALCode := MethodBody.Concat(ModifiedObjectALCode, MethodBody);
 
             Index := GetIndexOfLabel(CopyObjectALCode, Type);
         end;
@@ -1246,6 +1254,8 @@ codeunit 50100 "Object Details Management"
                 exit(Method.IndexOf(Variable + ';'));
             if (Method.IndexOf(Variable + '.') <> -1) then
                 exit(Method.IndexOf(Variable + '.'));
+            if (Method.IndexOf(Variable + ',') <> -1) then
+                exit(Method.IndexOf(Variable + ','));
         end;
 
         exit(-1);
@@ -1357,7 +1367,7 @@ codeunit 50100 "Object Details Management"
         GetObjectALCode(ObjectDetails, ObjectALCode);
 
         UnusedLocalVariables := GetLocalVariables(ObjectALCode, false);
-        UnusedGlobalVariables := GetUnusedGlobalVariables(ObjectDetails);
+        UnusedGlobalVariables := GetUnusedGlobalVariables(ObjectALCode, ObjectDetails);
 
         if not CheckObjectDetailsLine(ObjectDetails, UnusedGlobalVariables, Types::"Global Variable", false) then begin
             NeedsUpdate := true;
@@ -1370,18 +1380,21 @@ codeunit 50100 "Object Details Management"
     end;
 
     [Scope('OnPrem')]
-    local procedure GetUnusedGlobalVariables(ObjectDetails: Record "Object Details"): List of [Text]
+    local procedure GetUnusedGlobalVariables(ObjectALCode: DotNet String; ObjectDetails: Record "Object Details"): List of [Text]
     var
-        ObjectALCode: DotNet String;
+        CopyObjectALCode: DotNet String;
         GlobalVariables: List of [Text];
         UnusedGlobalVariables: List of [Text];
         Variable: Text;
     begin
+        CopyObjectALCode := CopyObjectALCode.Copy(ObjectALCode);
         GlobalVariables := GetTypesFromObjectDetailsLine(ObjectDetails, Types::"Global Variable");
-        ObjectALCode := ObjectALCode.Copy(ModifiedObjectALCode);
+
+        if not ModifiedObjectALCode.IsNullOrEmpty(ModifiedObjectALCode) then
+            CopyObjectALCode := CopyObjectALCode.Copy(ModifiedObjectALCode);
 
         foreach Variable in GlobalVariables do
-            if GetVariableIndex(ObjectALCode, Variable) = -1 then
+            if GetVariableIndex(CopyObjectALCode, Variable) = -1 then
                 UnusedGlobalVariables.Add(Variable);
 
         exit(UnusedGlobalVariables);
