@@ -332,8 +332,8 @@ page 50101 "Object Details Card"
                 begin
                     if Confirm(StrSubstNo(UpdateRelationsLbl, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then begin
                         if Rec.ObjectType = Rec.ObjectType::Table then begin
-                            ObjectDetailsManagement.UpdateRelationsFrom(Rec, NeedsUpdate[1]);
-                            ObjectDetailsManagement.UpdateRelationsTo(Rec, NeedsUpdate[2]);
+                            ObjectDetailsManagement.UpdateRelations(Rec, NeedsUpdate[1], Types::"Relation (External)");
+                            ObjectDetailsManagement.UpdateRelations(Rec, NeedsUpdate[2], Types::"Relation (Internal)");
                         end;
                         ObjectDetailsManagement.UpdateNoOfObjectsUsedIn(Rec, NeedsUpdate[3]);
                         Message(GetMessageForUser(NeedsUpdate, AlreadyUpdatedLbl, SuccessfullyUpdatedLbl));

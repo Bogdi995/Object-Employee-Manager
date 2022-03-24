@@ -218,10 +218,25 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType EndLbl</note>
         </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - NamedType 4262079377" size-unit="char" translate="yes" xml:space="preserve">
+          <source>            begin</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType FieldBeginLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - NamedType 2472979001" size-unit="char" translate="yes" xml:space="preserve">
+          <source>            end;</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType FieldEndLbl</note>
+        </trans-unit>
         <trans-unit id="Codeunit 1029530680 - NamedType 2806155228" size-unit="char" translate="yes" xml:space="preserve">
           <source>            trigger</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType FieldTriggerLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - NamedType 1729677735" size-unit="char" translate="yes" xml:space="preserve">
+          <source>            var</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType FieldVarLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 1029530680 - NamedType 1018256172" size-unit="char" translate="yes" xml:space="preserve">
           <source>    [IntegrationEvent(%1, %2)]</source>

@@ -9,8 +9,11 @@ codeunit 50100 "Object Details Management"
         IntegrationEventLbl: Label '    [IntegrationEvent(%1, %2)]';
         BusinessEventLbl: Label '    [BusinessEvent(%1, %2)]';
         VarLbl: Label '    var';
+        FieldVarLbl: Label '            var';
         BeginLbl: Label '    begin';
+        FieldBeginLbl: Label '            begin';
         EndLbl: Label '    end;';
+        FieldEndLbl: Label '            end;';
         RecordLbl: Label 'Record';
         PageLbl: Label 'Page';
         ReportLbl: Label 'Report';
@@ -1159,6 +1162,9 @@ codeunit 50100 "Object Details Management"
         UnusedVariablesList: List of [Text];
         Variable: Text;
         TextToSearch: Text;
+        LocalVarLbl: Text;
+        LocalBeginLbl: Text;
+        LocalEndLbl: Text;
         Index: Integer;
         VarIndex: Integer;
         VariableIndex: Integer;
@@ -1170,25 +1176,26 @@ codeunit 50100 "Object Details Management"
         CopyObjectALCode := CopyObjectALCode.Copy(ObjectALCode);
         Index := GetIndexOfLabel(CopyObjectALCode, Type);
         TextToSearch := GetTextToSearch(Type);
+        SetLocalLabels(TextToSearch, LocalVarLbl, LocalBeginLbl, LocalEndLbl);
 
         while Index <> -1 do begin
             CopyObjectALCode := CopyObjectALCode.Substring(Index + 4);
             RemoveIndex := ObjectALCode.IndexOf(CopyObjectALCode);
-            VarIndex := GetIndexOfLabel(CopyObjectALCode, VarLbl);
-            BeginIndex := GetIndexOfLabel(CopyObjectALCode, BeginLbl);
+            VarIndex := GetIndexOfLabel(CopyObjectALCode, LocalVarLbl);
+            BeginIndex := GetIndexOfLabel(CopyObjectALCode, LocalBeginLbl);
 
             if not IsUsed then begin
-                EndIndex := GetIndexOfLabel(CopyObjectALCode, EndLbl);
-                MethodBody := CopyObjectALCode.Substring(BeginIndex, EndIndex - BeginIndex + StrLen(EndLbl));
+                EndIndex := GetIndexOfLabel(CopyObjectALCode, LocalEndLbl);
+                MethodBody := CopyObjectALCode.Substring(BeginIndex, EndIndex - BeginIndex + StrLen(LocalEndLbl));
             end;
 
             if (VarIndex <> -1) and (VarIndex < BeginIndex) then begin
                 MethodVariables := CopyObjectALCode.Substring(VarIndex, BeginIndex - VarIndex);
                 RemoveIndex += VarIndex;
-                ObjectALCode := ObjectALCode.Remove(RemoveIndex, StrLen(VarLbl));
+                ObjectALCode := ObjectALCode.Remove(RemoveIndex, StrLen(LocalVarLbl));
                 SubstringIndex := MethodVariables.IndexOf(TextToSearch) + StrLen(TextToSearch);
 
-                while (SubstringIndex <> 7) do begin
+                while (SubstringIndex <> StrLen(TextToSearch) - 1) do begin
                     MethodVariables := MethodVariables.Substring(SubstringIndex);
                     SubstringIndex := MethodVariables.IndexOf(':');
                     Variable := MethodVariables.Substring(0, SubstringIndex);
@@ -1224,6 +1231,32 @@ codeunit 50100 "Object Details Management"
             exit(VariablesList);
 
         exit(UnusedVariablesList);
+    end;
+
+    local procedure SetLocalLabels(TextToSearch: Text; var LocalVarLbl: Text; var LocalBeginLbl: Text; var LocalEndLbl: Text)
+    begin
+        if StrLen(TextToSearch) > 8 then begin
+            LocalVarLbl := FieldVarLbl;
+            LocalBeginLbl := FieldBeginLbl;
+            LocalEndLbl := FieldEndLbl;
+            exit;
+        end;
+
+        LocalVarLbl := VarLbl;
+        LocalBeginLbl := BeginLbl;
+        LocalEndLbl := EndLbl;
+    end;
+
+    local procedure SetLocalLabels(TextToSearch: Text; var LocalVarLbl: Text; var LocalBeginLbl: Text)
+    begin
+        if StrLen(TextToSearch) > 8 then begin
+            LocalVarLbl := FieldVarLbl;
+            LocalBeginLbl := FieldBeginLbl;
+            exit;
+        end;
+
+        LocalVarLbl := VarLbl;
+        LocalBeginLbl := BeginLbl;
     end;
 
     [Scope('OnPrem')]
@@ -1407,24 +1440,24 @@ codeunit 50100 "Object Details Management"
 
     //  -------- Object Details Line (RELATIONS) --------> START
 
-    // Relations From -> Start
-    procedure UpdateRelationsFrom(ObjectDetails: Record "Object Details"; var NeedsUpdate: Boolean)
+    // Relations From / Relations To -> Start
+    procedure UpdateRelations(ObjectDetails: Record "Object Details"; var NeedsUpdate: Boolean; RelationType: Enum Types)
     begin
-        if not CheckRelationsFrom(ObjectDetails) then begin
+        if not CheckRelations(ObjectDetails, RelationType) then begin
             NeedsUpdate := true;
-            UpdateRelationsFrom(ObjectDetails);
+            UpdateRelationType(ObjectDetails, RelationType);
         end;
     end;
 
-    local procedure CheckRelationsFrom(ObjectDetails: Record "Object Details"): Boolean
+    local procedure CheckRelations(ObjectDetails: Record "Object Details"; RelationType: Enum Types): Boolean
     var
         TableRelationsMetadata: Record "Table Relations Metadata";
         ObjectDetailsLine: Record "Object Details Line";
     begin
-        TableRelationsMetadata.SetRange("Related Table ID", ObjectDetails.ObjectNo);
+        SetCorrectRangeBasedOnRelationType(TableRelationsMetadata, ObjectDetails, RelationType);
         ObjectDetailsLine.SetRange(ObjectType, ObjectDetails.ObjectType);
         ObjectDetailsLine.SetRange(ObjectNo, ObjectDetails.ObjectNo);
-        ObjectDetailsLine.SetRange(Type, Types::"Relation (External)");
+        ObjectDetailsLine.SetRange(Type, RelationType);
 
         if ObjectDetailsLine.Count() <> TableRelationsMetadata.Count() then
             exit(false);
@@ -1437,7 +1470,7 @@ codeunit 50100 "Object Details Management"
 
         if TableRelationsMetadata.FindSet() then
             repeat
-                ObjectDetailsLine.SetRange(ID, TableRelationsMetadata."Table ID");
+                SetCorrectRangeObjectDetailsLineBasedOnRelationType(TableRelationsMetadata, ObjectDetailsLine, RelationType);
                 ObjectDetailsLine.SetFilter(TypeName, '%1', Format(TableRelationsMetadata."Field No.") + ' "' + TableRelationsMetadata."Field Name" + '"');
                 if ObjectDetailsLine.IsEmpty() then
                     exit(false);
@@ -1446,47 +1479,71 @@ codeunit 50100 "Object Details Management"
         exit(true);
     end;
 
-    local procedure UpdateRelationsFrom(ObjectDetails: Record "Object Details")
+    local procedure UpdateRelationType(ObjectDetails: Record "Object Details"; RelationType: Enum Types)
     var
         TableRelationsMetadata: Record "Table Relations Metadata";
         ObjectDetailsLine: Record "Object Details Line";
     begin
         ObjectDetailsLine.SetRange(ObjectType, ObjectDetails.ObjectType);
         ObjectDetailsLine.SetRange(ObjectNo, ObjectDetails.ObjectNo);
-        ObjectDetailsLine.SetRange(Type, Types::"Relation (External)");
+        ObjectDetailsLine.SetRange(Type, RelationType);
 
         if ObjectDetailsLine.FindSet() then
             ObjectDetailsLine.DeleteAll();
 
-        TableRelationsMetadata.SetRange("Related Table ID", ObjectDetails.ObjectNo);
+        SetCorrectRangeBasedOnRelationType(TableRelationsMetadata, ObjectDetails, RelationType);
+
         if TableRelationsMetadata.FindSet() then
             repeat
-                InsertRelationObjectDetailsLine(ObjectDetails, TableRelationsMetadata);
+                InsertRelationObjectDetailsLine(ObjectDetails, TableRelationsMetadata, RelationType);
             until TableRelationsMetadata.Next() = 0;
     end;
 
-    local procedure InsertRelationObjectDetailsLine(ObjectDetails: Record "Object Details"; TableRelationsMetadata: Record "Table Relations Metadata")
+    local procedure InsertRelationObjectDetailsLine(ObjectDetails: Record "Object Details"; TableRelationsMetadata: Record "Table Relations Metadata"; RelationType: Enum Types)
     var
         ObjectDetailsLine: Record "Object Details Line";
     begin
         ObjectDetailsLine.Init();
         ObjectDetailsLine.ObjectType := "Object Type"::Table;
         ObjectDetailsLine.ObjectNo := ObjectDetails.ObjectNo;
-        ObjectDetailsLine.Type := Types::"Relation (External)";
-        ObjectDetailsLine.ID := TableRelationsMetadata."Table ID";
-        ObjectDetailsLine.Name := TableRelationsMetadata."Table Name";
+        ObjectDetailsLine.Type := RelationType;
+        ObjectDetailsLine.ID := GetTableIDFromRelationType(TableRelationsMetadata, RelationType);
+        ObjectDetailsLine.Name := GetTableNameFromRelationType(TableRelationsMetadata, RelationType);
         ObjectDetailsLine.TypeName := Format(TableRelationsMetadata."Field No.") + ' "' + TableRelationsMetadata."Field Name" + '"';
         ObjectDetailsLine.Insert(true);
     end;
-    // Relations From -> End
 
-    // Relations To -> Start
-    procedure UpdateRelationsTo(ObjectDetails: Record "Object Details"; var NeedsUpdate: Boolean)
-    var
+    local procedure GetTableIDFromRelationType(TableRelationsMetadata: Record "Table Relations Metadata"; RelationType: Enum Types): Integer
     begin
-
+        if RelationType = RelationType::"Relation (External)" then
+            exit(TableRelationsMetadata."Table ID");
+        exit(TableRelationsMetadata."Related Table ID");
     end;
-    // Relations To -> End
+
+    local procedure GetTableNameFromRelationType(TableRelationsMetadata: Record "Table Relations Metadata"; RelationType: Enum Types): Text[30]
+    begin
+        if RelationType = RelationType::"Relation (External)" then
+            exit(TableRelationsMetadata."Table Name");
+        exit(TableRelationsMetadata."Related Table Name");
+    end;
+
+    local procedure SetCorrectRangeBasedOnRelationType(var TableRelationsMetadata: Record "Table Relations Metadata"; ObjectDetails: Record "Object Details"; RelationType: Enum Types)
+    begin
+        if RelationType = Types::"Relation (Internal)" then
+            TableRelationsMetadata.SetRange("Table ID", ObjectDetails.ObjectNo)
+        else
+            TableRelationsMetadata.SetRange("Related Table ID", ObjectDetails.ObjectNo);
+    end;
+
+    local procedure SetCorrectRangeObjectDetailsLineBasedOnRelationType(TableRelationsMetadata: Record "Table Relations Metadata"; var ObjectDetailsLine: Record "Object Details Line"; RelationType: Enum Types)
+    begin
+        if RelationType = Types::"Relation (Internal)" then
+            ObjectDetailsLine.SetRange(ID, TableRelationsMetadata."Related Table ID")
+        else
+            ObjectDetailsLine.SetRange(ID, TableRelationsMetadata."Table ID");
+    end;
+    // Relations From / Relations To -> End
+
 
     // No. of Objects Used in -> Start
     [Scope('OnPrem')]
@@ -1594,19 +1651,22 @@ codeunit 50100 "Object Details Management"
         ObjectsFromVariables: List of [Text];
         VariableType: Text;
         TextToSearch: Text;
+        LocalVarLbl: Text;
+        LocalBeginLbl: Text;
         Index: Integer;
         VarIndex: Integer;
         BeginIndex: Integer;
     begin
         CopyALCode := CopyALCode.Copy(ALCode);
-        VarIndex := CopyALCode.IndexOf(VarLbl);
+        TextToSearch := GetTextToSearch(Type);
+        SetLocalLabels(TextToSearch, LocalVarLbl, LocalBeginLbl);
+        VarIndex := CopyALCode.IndexOf(LocalVarLbl);
 
         if VarIndex = -1 then
             exit;
 
-        BeginIndex := CopyALCode.IndexOf(BeginLbl);
+        BeginIndex := CopyALCode.IndexOf(LocalBeginLbl);
         CopyALCode := CopyALCode.Substring(VarIndex, BeginIndex - VarIndex);
-        TextToSearch := GetTextToSearch(Type);
 
         Index := CopyALCode.IndexOf(TextToSearch) + StrLen(TextToSearch);
         while (Index <> StrLen(TextToSearch) - 1) do begin
@@ -1628,7 +1688,7 @@ codeunit 50100 "Object Details Management"
     local procedure GetTextToSearch(Type: Text): Text
     begin
         if Type = FieldTriggerLbl then
-            exit('            ');
+            exit('                ');
         exit('        ');
     end;
     // No. of Objects Used in -> End
