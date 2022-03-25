@@ -700,13 +700,14 @@ codeunit 50100 "Object Details Management"
 
         ObjDetails.SetFilter(ObjectType, '%1|%2|%3|%4|%5|%6', "Object Type"::Table, "Object Type"::"TableExtension", "Object Type"::Page, "Object Type"::"PageExtension", "Object Type"::Codeunit, "Object Type"::Report);
         ObjDetails.SetFilter(ObjectNo, '<%1', 2000000000);
-        if ObjDetails.FindFirst() then
+        if ObjDetails.FindFirst() then begin
+            Progress.Open(ProgressLbl);
             repeat
-                Progress.Open(ProgressLbl);
                 GetObjectALCode(ObjDetails, ObjectALCode);
                 UpdateUnusedGlobalMethods(UnusedGlobalMethods, MethodsName, ParametersNo, ObjectALCode, SearchText);
             until (ObjDetails.Next() = 0) or (UnusedGlobalMethods.Count() = 0);
-        Progress.Close();
+            Progress.Close();
+        end;
 
         exit(UnusedGlobalMethods);
     end;
@@ -1692,6 +1693,137 @@ codeunit 50100 "Object Details Management"
         exit('        ');
     end;
     // No. of Objects Used in -> End
+
+
+    // Used in No. of Objects -> Start
+    [Scope('OnPrem')]
+    procedure UpdateUsedInNoOfObjects(ObjectDetails: Record "Object Details"; var NeedsUpdate: Boolean)
+    var
+        UsedInNoObjectsList: List of [Text];
+    begin
+        UsedInNoObjectsList := GetUsedInNoObjectsList(ObjectDetails);
+
+        if not CheckUsedInNoObjectsObjectDetailsLine(ObjectDetails, UsedInNoObjectsList, Types::"Object (External)") then begin
+            NeedsUpdate := true;
+            UpdateUsedInNoObjectsObjectDetailsLine(ObjectDetails, UsedInNoObjectsList, Types::"Object (External)");
+        end;
+    end;
+
+    [Scope('OnPrem')]
+    local procedure GetUsedInNoObjectsList(ObjectDetails: Record "Object Details"): List of [Text]
+    var
+        ObjDetails: Record "Object Details";
+        ObjectALCode: DotNet String;
+        UsedInNoObjectsList: List of [Text];
+        SearchText: Text;
+        ProgressLbl: Label 'The number of times the object is used in other objects is being updated...';
+        Progress: Dialog;
+    begin
+        SearchText := GetSearchText(ObjectDetails);
+
+        ObjDetails.SetFilter(ObjectType, '%1|%2|%3|%4|%5|%6', "Object Type"::Table, "Object Type"::"TableExtension", "Object Type"::Page, "Object Type"::"PageExtension", "Object Type"::Codeunit, "Object Type"::Report);
+        ObjDetails.SetFilter(ObjectNo, '<%1', 2000000000);
+        if ObjDetails.FindFirst() then begin
+            Progress.Open(ProgressLbl);
+            repeat
+                GetObjectALCode(ObjDetails, ObjectALCode);
+                UpdateUsedInNoObjectsList(ObjDetails, UsedInNoObjectsList, ObjectALCode, SearchText);
+            until (ObjDetails.Next() = 0);
+            Progress.Close();
+        end;
+
+        exit(UsedInNoObjectsList);
+    end;
+
+    local procedure UpdateUsedInNoObjectsList(ObjectDetails: Record "Object Details"; var UsedInNoObjectsList: List of [Text]; ObjectALCode: Dotnet String; SearchText: Text)
+    begin
+        if ObjectALCode.IndexOf(SearchText) <> -1 then begin
+            UsedInNoObjectsList.Add(Format(ObjectDetails.ObjectType) + ' ' + Format(ObjectDetails.ObjectNo) + ' ' + GetObjectNameSearchText(ObjectDetails));
+        end;
+    end;
+
+    local procedure CheckUsedInNoObjectsObjectDetailsLine(ObjectDetails: Record "Object Details"; UsedInNoObjectsList: List of [Text]; Type: Enum Types): Boolean
+    var
+        ObjectDetailsLine: Record "Object Details Line";
+        Object: Text;
+    begin
+        ObjectDetailsLine.SetRange(ObjectType, ObjectDetails.ObjectType);
+        ObjectDetailsLine.SetRange(ObjectNo, ObjectDetails.ObjectNo);
+        ObjectDetailsLine.SetRange(Type, Type);
+
+        if (ObjectDetailsLine.Count() <> UsedInNoObjectsList.Count()) or (ObjectDetailsLine.Count() = 0) then
+            exit(false);
+
+        if (ObjectDetailsLine.Count() = 0) and (UsedInNoObjectsList.Count() = 0) then
+            exit(true);
+
+        foreach Object in UsedInNoObjectsList do begin
+            ObjectDetailsLine.SetRange(ID, GetObjectID(Object));
+            ObjectDetailsLine.SetRange(Name, GetObjectName(Object));
+            ObjectDetailsLine.SetRange(TypeName, Object);
+
+            if ObjectDetailsLine.IsEmpty() then
+                exit(false);
+        end;
+
+        exit(true);
+    end;
+
+    local procedure GetObjectID(Object: Text): Integer
+    var
+        ID: Integer;
+    begin
+        Object := CopyStr(Object, StrPos(Object, ' ') + 1, StrLen(Object) - 1);
+        Evaluate(ID, CopyStr(Object, 1, StrPos(Object, ' ') - 1));
+
+        exit(ID);
+    end;
+
+    local procedure GetObjectName(Object: Text): Text
+    var
+        Index: Integer;
+    begin
+        for Index := 1 to 2 do
+            Object := CopyStr(Object, StrPos(Object, ' ') + 1, StrLen(Object) - 1);
+
+        Object := DelChr(Object, '>', '"');
+        Object := DelChr(Object, '<', '"');
+
+        exit(Object);
+    end;
+
+    local procedure UpdateUsedInNoObjectsObjectDetailsLine(ObjectDetails: Record "Object Details"; UsedInNoObjectsList: List of [Text]; Type: Enum Types)
+    var
+        ObjectDetailsLine: Record "Object Details Line";
+        Object: Text;
+    begin
+        ObjectDetailsLine.SetRange(ObjectType, ObjectDetails.ObjectType);
+        ObjectDetailsLine.SetRange(ObjectNo, ObjectDetails.ObjectNo);
+        ObjectDetailsLine.SetRange(Type, Type);
+
+        if ObjectDetailsLine.FindSet() then
+            ObjectDetailsLine.DeleteAll();
+
+        foreach Object in UsedInNoObjectsList do
+            InsertUsedInNoObjectsObjectDetailsLine(ObjectDetails, Object, Type);
+
+    end;
+
+    local procedure InsertUsedInNoObjectsObjectDetailsLine(ObjectDetails: Record "Object Details"; Object: Text; Type: Enum Types)
+    var
+        ObjectDetailsLine: Record "Object Details Line";
+    begin
+        ObjectDetailsLine.Init();
+        ObjectDetailsLine.ObjectType := ObjectDetails.ObjectType;
+        ObjectDetailsLine.ObjectNo := ObjectDetails.ObjectNo;
+        ObjectDetailsLine.Type := Type;
+        ObjectDetailsLine.ID := GetObjectID(Object);
+        ObjectDetailsLine.Name := GetObjectName(Object);
+        ObjectDetailsLine.TypeName := Object;
+        ObjectDetailsLine.Insert(true);
+    end;
+    // Used in No. of Objects -> End
+
 
     //  -------- Object Details Line (RELATIONS) --------> END
 

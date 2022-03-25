@@ -353,6 +353,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetUnusedReturnValues - NamedType ExitLbl</note>
         </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 2419709797 - NamedType 3950098385" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The number of times the object is used in other objects is being updated...</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetUsedInNoObjectsList - NamedType ProgressLbl</note>
+        </trans-unit>
         <trans-unit id="Page 683374773 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object Details Card</source>
           <note from="Developer" annotates="general" priority="2"></note>

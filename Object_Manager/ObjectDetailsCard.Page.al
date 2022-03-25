@@ -335,7 +335,9 @@ page 50101 "Object Details Card"
                             ObjectDetailsManagement.UpdateRelations(Rec, NeedsUpdate[1], Types::"Relation (External)");
                             ObjectDetailsManagement.UpdateRelations(Rec, NeedsUpdate[2], Types::"Relation (Internal)");
                         end;
+
                         ObjectDetailsManagement.UpdateNoOfObjectsUsedIn(Rec, NeedsUpdate[3]);
+                        ObjectDetailsManagement.UpdateUsedInNoOfObjects(Rec, NeedsUpdate[4]);
                         Message(GetMessageForUser(NeedsUpdate, AlreadyUpdatedLbl, SuccessfullyUpdatedLbl));
                     end;
                 end;
