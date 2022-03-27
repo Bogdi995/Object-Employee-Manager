@@ -276,11 +276,15 @@ page 50101 "Object Details Card"
                     UpdateMethodsEventsLbl: Label 'Do you want to update the methods and events for: %1 %2 - "%3"?';
                     AlreadyUpdatedLbl: Label 'Methods and events already updated!';
                     SuccessfullyUpdatedLbl: Label 'Methods and events successfully updated!';
+                    UpdateUnusedMethodsLbl: Label 'The unused methods are being updated...';
+                    Progress: Dialog;
                     NeedsUpdate: array[4] of Boolean;
                 begin
                     if Confirm(StrSubstNo(UpdateMethodsEventsLbl, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then begin
                         ObjectDetailsManagement.UpdateMethodsEvents(Rec, NeedsUpdate[1]);
+                        Progress.Open(UpdateUnusedMethodsLbl);
                         ObjectDetailsManagement.UpdateUnusedMethods(Rec, NeedsUpdate[2]);
+                        Progress.Close();
                         ObjectDetailsManagement.UpdateUnusedParameters(Rec, NeedsUpdate[3]);
                         ObjectDetailsManagement.UpdateUnusedReturnValues(Rec, NeedsUpdate[4]);
                         Message(GetMessageForUser(NeedsUpdate, AlreadyUpdatedLbl, SuccessfullyUpdatedLbl));
@@ -328,16 +332,23 @@ page 50101 "Object Details Card"
                     UpdateRelationsLbl: Label 'Do you want to update the relations for: %1 %2 - "%3"?';
                     AlreadyUpdatedLbl: Label 'Relations already updated!';
                     SuccessfullyUpdatedLbl: Label 'Relations successfully updated!';
+                    UpdatingRelationsLbl: Label 'The relations are being updated...';
+                    UpdateUsedInNoOfObjectsLbl: Label 'The number of times the object is used in other objects is being updated...';
+                    Progress: Dialog;
                     NeedsUpdate: array[4] of Boolean;
                 begin
                     if Confirm(StrSubstNo(UpdateRelationsLbl, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then begin
                         if Rec.ObjectType = Rec.ObjectType::Table then begin
+                            Progress.Open(UpdatingRelationsLbl);
                             ObjectDetailsManagement.UpdateRelations(Rec, NeedsUpdate[1], Types::"Relation (External)");
                             ObjectDetailsManagement.UpdateRelations(Rec, NeedsUpdate[2], Types::"Relation (Internal)");
+                            Progress.Close();
                         end;
 
                         ObjectDetailsManagement.UpdateNoOfObjectsUsedIn(Rec, NeedsUpdate[3]);
+                        Progress.Open(UpdateUsedInNoOfObjectsLbl);
                         ObjectDetailsManagement.UpdateUsedInNoOfObjects(Rec, NeedsUpdate[4]);
+                        Progress.Close();
                         Message(GetMessageForUser(NeedsUpdate, AlreadyUpdatedLbl, SuccessfullyUpdatedLbl));
                     end;
                 end;

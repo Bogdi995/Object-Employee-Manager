@@ -249,11 +249,41 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType BusinessEventLbl</note>
         </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - NamedType 1453859403" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Codeunit</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType CodeunitLbl</note>
+        </trans-unit>
         <trans-unit id="Codeunit 1029530680 - NamedType 3609573591" size-unit="char" translate="yes" xml:space="preserve">
           <source>    end;</source>
           <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType EndLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - NamedType 4262079377" size-unit="char" translate="yes" xml:space="preserve">
+          <source>            begin</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType FieldBeginLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - NamedType 2472979001" size-unit="char" translate="yes" xml:space="preserve">
+          <source>            end;</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType FieldEndLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - NamedType 2806155228" size-unit="char" translate="yes" xml:space="preserve">
+          <source>            trigger</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType FieldTriggerLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - NamedType 1729677735" size-unit="char" translate="yes" xml:space="preserve">
+          <source>            var</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType FieldVarLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 1029530680 - NamedType 1018256172" size-unit="char" translate="yes" xml:space="preserve">
           <source>    [IntegrationEvent(%1, %2)]</source>
@@ -261,17 +291,41 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType IntegrationEventLbl</note>
         </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - NamedType 3216532524" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    internal procedure</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType InternalProcedureLbl</note>
+        </trans-unit>
         <trans-unit id="Codeunit 1029530680 - NamedType 4182917982" size-unit="char" translate="yes" xml:space="preserve">
           <source>    local procedure</source>
           <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType LocalProcedureLbl</note>
         </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - NamedType 1877187315" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Page</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType PageLbl</note>
+        </trans-unit>
         <trans-unit id="Codeunit 1029530680 - NamedType 141553153" size-unit="char" translate="yes" xml:space="preserve">
           <source>    procedure</source>
           <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType ProcedureLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - NamedType 672541161" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Record</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType RecordLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - NamedType 1687279216" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Report</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType ReportLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 1029530680 - NamedType 156504254" size-unit="char" translate="yes" xml:space="preserve">
           <source>    trigger</source>
@@ -356,12 +410,6 @@
           <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetTypeText - NamedType KeysLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - Method 2032994455 - NamedType 3950098385" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The Unused Global Methods are being updated...</source>
-          <target state="needs-translation"/>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetUnusedGlobalMethods - NamedType ProgressLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 1029530680 - Method 2934933108 - NamedType 137248018" size-unit="char" translate="yes" xml:space="preserve">
           <source>var </source>
@@ -597,6 +645,12 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateMethodsEvents - Method OnAction - NamedType SuccessfullyUpdatedLbl</note>
         </trans-unit>
+        <trans-unit id="Page 683374773 - Action 459552838 - Method 1377591017 - NamedType 3125721445" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The unused methods are being updated...</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateMethodsEvents - Method OnAction - NamedType UpdateUnusedMethodsLbl</note>
+        </trans-unit>
         <trans-unit id="Page 683374773 - Action 1001057769 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Update Objects</source>
           <target state="Objekte aktualisieren"/>
@@ -620,6 +674,42 @@
           <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateObjects - Method OnAction - NamedType SuccessfullyUpdatedLbl</note>
+        </trans-unit>
+        <trans-unit id="Page 683374773 - Action 3052945040 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Update Relations</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateRelations - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 683374773 - Action 3052945040 - Method 1377591017 - NamedType 221113002" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Do you want to update the relations for: %1 %2 - "%3"?</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateRelations - Method OnAction - NamedType UpdateRelationsLbl</note>
+        </trans-unit>
+        <trans-unit id="Page 683374773 - Action 3052945040 - Method 1377591017 - NamedType 2810089971" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Relations already updated!</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateRelations - Method OnAction - NamedType AlreadyUpdatedLbl</note>
+        </trans-unit>
+        <trans-unit id="Page 683374773 - Action 3052945040 - Method 1377591017 - NamedType 1494617514" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Relations successfully updated!</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateRelations - Method OnAction - NamedType SuccessfullyUpdatedLbl</note>
+        </trans-unit>
+        <trans-unit id="Page 683374773 - Action 3052945040 - Method 1377591017 - NamedType 3390896213" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The relations are being updated...</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateRelations - Method OnAction - NamedType UpdatingRelationsLbl</note>
+        </trans-unit>
+        <trans-unit id="Page 683374773 - Action 3052945040 - Method 1377591017 - NamedType 3271461599" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The number of times the object is used in other objects is being updated...</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateRelations - Method OnAction - NamedType UpdateUsedInNoOfObjectsLbl</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Action 1271013808 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Update Variables</source>
@@ -891,29 +981,47 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Control UsedInNoObjects - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 2172956895 - Action 642782499 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Page 2172956895 - Action 1001057769 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Update Objects</source>
-          <target state="Objekte aktualisieren"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Action Update - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Action UpdateObjects - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 2172956895 - Action 642782499 - Method 1377591017 - NamedType 817049054" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Page 2172956895 - Action 1001057769 - Method 1377591017 - NamedType 817049054" size-unit="char" translate="yes" xml:space="preserve">
           <source>Do you want to update the objects?</source>
-          <target state="Möchten Sie die Objekte aktualisieren"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Action Update - Method OnAction - NamedType UpdateObjectsText</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Action UpdateObjects - Method OnAction - NamedType UpdateObjectsText</note>
         </trans-unit>
-        <trans-unit id="Page 2172956895 - Action 642782499 - Method 1377591017 - NamedType 1772536322" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Page 2172956895 - Action 1001057769 - Method 1377591017 - NamedType 1772536322" size-unit="char" translate="yes" xml:space="preserve">
           <source>Objects already updated!</source>
-          <target state="Objekte bereits aktualisiert!"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Action Update - Method OnAction - NamedType AlreadyUpdatedText</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Action UpdateObjects - Method OnAction - NamedType AlreadyUpdatedText</note>
         </trans-unit>
-        <trans-unit id="Page 2172956895 - Action 642782499 - Method 1377591017 - NamedType 1840789904" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Page 2172956895 - Action 1001057769 - Method 1377591017 - NamedType 1840789904" size-unit="char" translate="yes" xml:space="preserve">
           <source>Objects successfully updated!</source>
-          <target state="Objekte erfolgreich aktualisiert!"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Action Update - Method OnAction - NamedType SuccessfullyUpdated</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Action UpdateObjects - Method OnAction - NamedType SuccessfullyUpdated</note>
+        </trans-unit>
+        <trans-unit id="Page 2172956895 - Action 1271013808 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Update Variables</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Action UpdateVariables - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2172956895 - Action 1271013808 - Method 1377591017 - NamedType 1000129349" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The variables are beign updated...\\#1</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Action UpdateVariables - Method OnAction - NamedType UpdatingVariablesLbl</note>
+        </trans-unit>
+        <trans-unit id="Page 2172956895 - Action 1271013808 - Method 1377591017 - NamedType 424999410" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The variables from all objects are successfully updated.</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Action UpdateVariables - Method OnAction - NamedType VariablesAreUpdated</note>
         </trans-unit>
         <trans-unit id="Page 2096197876 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object Details Subpage</source>
@@ -956,6 +1064,132 @@
           <target state="Objektdetails Zeilen Übersicht"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Metadata Page - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3157187060 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>RelationsMetadata</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3157187060 - Control 1153139698 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Condition Field No. field.</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Control Condition Field No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3157187060 - Control 3878457560 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Condition No. field.</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Control Condition No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3157187060 - Control 1759668749 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Condition Type field.</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Control Condition Type - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3157187060 - Control 4125648468 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Condition Value field.</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Control Condition Value - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3157187060 - Control 3070320983 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Field Name field.</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Control Field Name - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3157187060 - Control 3531868071 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Field No. field.</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Control Field No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3157187060 - Control 2075114126 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Related Field Name field.</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Control Related Field Name - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3157187060 - Control 453696006 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Related Field No. field.</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Control Related Field No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3157187060 - Control 2204602840 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Related Table ID field.</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Control Related Table ID - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3157187060 - Control 145100610 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Related Table Name field.</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Control Related Table Name - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3157187060 - Control 2508317795 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Relation No. field.</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Control Relation No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3157187060 - Control 577209412 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the SystemCreatedAt field.</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Control SystemCreatedAt - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3157187060 - Control 4000648066 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the SystemCreatedBy field.</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Control SystemCreatedBy - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3157187060 - Control 1367528460 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the SystemId field.</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Control SystemId - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3157187060 - Control 2453272523 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the SystemModifiedAt field.</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Control SystemModifiedAt - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3157187060 - Control 4085837753 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the SystemModifiedBy field.</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Control SystemModifiedBy - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3157187060 - Control 3135334477 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Table ID field.</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Control Table ID - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3157187060 - Control 3808951907 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Table Name field.</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Control Table Name - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3157187060 - Control 3933747786 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Test Table Relation field.</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Control Test Table Relation - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3157187060 - Control 125623250 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Validate Table Relation field.</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Control Validate Table Relation - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Enum 1085746399 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Type</source>
@@ -1083,11 +1317,17 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Types - EnumValue Local Variable - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Enum 2388510493 - EnumValue 2123958759 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Object</source>
-          <target state="Objekt"/>
+        <trans-unit id="Enum 2388510493 - EnumValue 556474299 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>External Object</source>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Enum Types - EnumValue Object - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Types - EnumValue Object (External) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 2388510493 - EnumValue 3793264821 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Internal Object</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Types - EnumValue Object (Internal) - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 2388510493 - EnumValue 75106347 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Parameter</source>
@@ -1095,17 +1335,23 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Types - EnumValue Parameter - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Enum 2388510493 - EnumValue 3094216566 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>External Relation</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Types - EnumValue Relation (External) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 2388510493 - EnumValue 1174634988 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Internal Relation</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Types - EnumValue Relation (Internal) - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Enum 2388510493 - EnumValue 3599159403 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Return Value</source>
           <target state="Rückgabewert"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Types - EnumValue Return Value - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Enum 2388510493 - EnumValue 3570832196 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Trigger</source>
-          <target state="Trigger"/>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Enum Types - EnumValue Trigger - Property Caption</note>
         </trans-unit>
       </group>
     </body>

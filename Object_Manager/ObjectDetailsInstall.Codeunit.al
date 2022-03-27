@@ -46,10 +46,10 @@ codeunit 50101 "Object Details Install"
     local procedure AddTypeToObjectDetailsLine(Type: Enum Types)
     var
         AllObj: Record AllObj;
+        ObjectDetailsManagement: Codeunit "Object Details Management";
         RecRef: RecordRef;
         FRef: FieldRef;
         TableNoFRef: FieldRef;
-        ObjectDetailsManagement: Codeunit "Object Details Management";
     begin
         RecRef.Open(ObjectDetailsManagement.GetTypeTable(Type));
         TableNoFRef := RecRef.Field(1);
@@ -61,9 +61,8 @@ codeunit 50101 "Object Details Install"
                 TableNoFRef.SetRange(AllObj."Object ID");
                 if RecRef.FindSet() then
                     repeat
-                        ObjectDetailsManagement.InsertObjectDetailsLine(RecRef, "Object Type"::Table, Type); // add also for other type of objects: Page, etc
+                        ObjectDetailsManagement.InsertObjectDetailsLine(RecRef, "Object Type"::Table, Type);
                     until RecRef.Next() = 0;
             until AllObj.Next() = 0;
     end;
-
 }

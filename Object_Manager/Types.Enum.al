@@ -35,27 +35,31 @@ enum 50101 Types
     {
         Caption = 'Local Method';
     }
-    value(8; "Global Variable")
+    value(8; "Internal Method")
+    {
+        Caption = 'Interna; Method';
+    }
+    value(9; "Global Variable")
     {
         Caption = 'Global Variable';
     }
-    value(9; "Local Variable")
+    value(10; "Local Variable")
     {
         Caption = 'Local Variable';
     }
-    value(10; "Parameter")
+    value(11; "Parameter")
     {
         Caption = 'Parameter';
     }
-    value(11; "Return Value")
+    value(12; "Return Value")
     {
         Caption = 'Return Value';
     }
-    value(12; "Relation (Internal)")
+    value(13; "Relation (Internal)")
     {
         Caption = 'Internal Relation';
     }
-    value(13; "Relation (External)")
+    value(14; "Relation (External)")
     {
         Caption = 'External Relation';
     }
