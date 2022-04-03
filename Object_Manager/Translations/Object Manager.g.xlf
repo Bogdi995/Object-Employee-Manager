@@ -208,11 +208,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType BusinessEventLbl</note>
         </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - NamedType 1453859403" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Codeunit</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType CodeunitLbl</note>
-        </trans-unit>
         <trans-unit id="Codeunit 1029530680 - NamedType 3609573591" size-unit="char" translate="yes" xml:space="preserve">
           <source>    end;</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -253,25 +248,15 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType LocalProcedureLbl</note>
         </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - NamedType 1877187315" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Page</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType PageLbl</note>
-        </trans-unit>
         <trans-unit id="Codeunit 1029530680 - NamedType 141553153" size-unit="char" translate="yes" xml:space="preserve">
           <source>    procedure</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType ProcedureLbl</note>
         </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - NamedType 672541161" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Record</source>
+        <trans-unit id="Codeunit 1029530680 - NamedType 1444276575" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    protected procedure</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType RecordLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - NamedType 1687279216" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Report</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType ReportLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType ProtectedProcedureLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 1029530680 - NamedType 156504254" size-unit="char" translate="yes" xml:space="preserve">
           <source>    trigger</source>
@@ -317,6 +302,26 @@
           <source>local procedure</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetMethodName - NamedType LocalProcedureWithoutSpacesLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 207881295 - NamedType 672541161" size-unit="char" translate="yes" xml:space="preserve">
+          <source>: Record </source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetObjectsUsedInCode - NamedType RecordLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 207881295 - NamedType 1877187315" size-unit="char" translate="yes" xml:space="preserve">
+          <source>: Page </source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetObjectsUsedInCode - NamedType PageLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 207881295 - NamedType 1687279216" size-unit="char" translate="yes" xml:space="preserve">
+          <source>: Report </source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetObjectsUsedInCode - NamedType ReportLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 207881295 - NamedType 1453859403" size-unit="char" translate="yes" xml:space="preserve">
+          <source>: Codeunit </source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetObjectsUsedInCode - NamedType CodeunitLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 1029530680 - Method 2008638802 - NamedType 672541161" size-unit="char" translate="yes" xml:space="preserve">
           <source>Record</source>
@@ -698,6 +703,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 2172956895 - Method 162125122 - NamedType 221113002" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The usage of objects is being updated...\\#1</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Method UpdateAllUsedInNoOfObjects - NamedType UpdateRelationsLbl</note>
+        </trans-unit>
+        <trans-unit id="Page 2172956895 - Method 162125122 - NamedType 3810549293" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The usage of all objects is successfully updated.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Method UpdateAllUsedInNoOfObjects - NamedType UsageSuccessfullyUpdatedLbl</note>
+        </trans-unit>
         <trans-unit id="Page 2172956895 - Control 2879900210 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the caption of the object.</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -838,25 +853,35 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Action UpdateObjects - Method OnAction - NamedType SuccessfullyUpdated</note>
         </trans-unit>
-        <trans-unit id="Page 2172956895 - Action 3052945040 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Update Relations</source>
+        <trans-unit id="Page 2172956895 - Action 2391702019 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Update Relations/Usage</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Action UpdateRelations - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Action UpdateRelationsUsage - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 2172956895 - Action 3052945040 - Method 1377591017 - NamedType 221113002" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Page 2172956895 - Action 2391702019 - Method 1377591017 - NamedType 482208662" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Do you want to update the relations and the usage of all objects?</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Action UpdateRelationsUsage - Method OnAction - NamedType UpdateAllRelationsUsageLbl</note>
+        </trans-unit>
+        <trans-unit id="Page 2172956895 - Action 2391702019 - Method 1377591017 - NamedType 221113002" size-unit="char" translate="yes" xml:space="preserve">
           <source>The relations are beign updated...\\#1</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Action UpdateRelations - Method OnAction - NamedType UpdateRelationsLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Action UpdateRelationsUsage - Method OnAction - NamedType UpdateRelationsLbl</note>
         </trans-unit>
-        <trans-unit id="Page 2172956895 - Action 3052945040 - Method 1377591017 - NamedType 541692581" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Page 2172956895 - Action 2391702019 - Method 1377591017 - NamedType 541692581" size-unit="char" translate="yes" xml:space="preserve">
           <source>The relations for all objects are successfully updated.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Action UpdateRelations - Method OnAction - NamedType RelationsSuccessfullyUpdatedLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Action UpdateRelationsUsage - Method OnAction - NamedType RelationsSuccessfullyUpdatedLbl</note>
         </trans-unit>
         <trans-unit id="Page 2172956895 - Action 1271013808 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Update Variables</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Action UpdateVariables - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2172956895 - Action 1271013808 - Method 1377591017 - NamedType 1465181905" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Do you want to update the variables of all objects?</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Action UpdateVariables - Method OnAction - NamedType UpdateAllVariablesLbl</note>
         </trans-unit>
         <trans-unit id="Page 2172956895 - Action 1271013808 - Method 1377591017 - NamedType 3848544714" size-unit="char" translate="yes" xml:space="preserve">
           <source>The variables are beign updated...\\#1</source>

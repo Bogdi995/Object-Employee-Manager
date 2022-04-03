@@ -7,6 +7,7 @@ codeunit 50100 "Object Details Management"
         ProcedureLbl: Label '    procedure';
         LocalProcedureLbl: Label '    local procedure';
         InternalProcedureLbl: Label '    internal procedure';
+        ProtectedProcedureLbl: Label '    protected procedure';
         IntegrationEventLbl: Label '    [IntegrationEvent(%1, %2)]';
         BusinessEventLbl: Label '    [BusinessEvent(%1, %2)]';
         VarLbl: Label '    var';
@@ -15,10 +16,6 @@ codeunit 50100 "Object Details Management"
         FieldBeginLbl: Label '            begin';
         EndLbl: Label '    end;';
         FieldEndLbl: Label '            end;';
-        RecordLbl: Label 'Record';
-        PageLbl: Label 'Page';
-        ReportLbl: Label 'Report';
-        CodeunitLbl: Label 'Codeunit';
 
     //  -------- Object Details --------> START
     procedure ConfirmCheckUpdateObjectDetails()
@@ -579,13 +576,10 @@ codeunit 50100 "Object Details Management"
         if not IsUsed then
             ObjectDetailsLine.SetRange(Used, false);
 
-        if ObjectDetailsLine.Count() <> GivenList.Count() then
-            exit(false);
-
         if (ObjectDetailsLine.Count() = 0) and (GivenList.Count() = 0) then
             exit(true);
 
-        if ObjectDetailsLine.Count() = 0 then
+        if (ObjectDetailsLine.Count() <> GivenList.Count()) or (ObjectDetailsLine.Count() = 0) then
             exit(false);
 
         if ObjectDetailsLine.FindSet() then
@@ -960,7 +954,6 @@ codeunit 50100 "Object Details Management"
         CopyObjectALCode: DotNet String;
         MethodHeader: DotNet String;
         MethodBody: DotNet String;
-        StringComparison: DotNet StringComparison;
         UnusedParameters: List of [Text];
         ParametersList: List of [Text];
         Parameter: Text;
@@ -996,8 +989,8 @@ codeunit 50100 "Object Details Management"
             Index := GetIndexOfLabel(CopyObjectALCode, MethodType);
 
             foreach Parameter in ParametersList do
-                if MethodBody.IndexOf(Parameter, StringComparison.OrdinalIgnoreCase) = -1 then
-                    if MethodBody.IndexOf('(' + DelChr(Parameter, '<', ' '), StringComparison.OrdinalIgnoreCase) = -1 then
+                if MethodBody.IndexOf(Parameter) = -1 then
+                    if MethodBody.IndexOf('(' + DelChr(Parameter, '<', ' ')) = -1 then
                         UnusedParameters.Add(Parameter);
 
             ParametersList.RemoveRange(1, ParametersList.Count());
@@ -1009,23 +1002,30 @@ codeunit 50100 "Object Details Management"
     [Scope('OnPrem')]
     local procedure GetIndexOfLabel(ObjectALCode: DotNet String; GivenLabel: Text): Integer
     var
+        CopyObjectALCode: DotNet String;
         Character: Text;
+        IndexOfGivenLabel: Integer;
     begin
-        if ObjectALCode.IndexOf(GivenLabel) = -1 then
+        CopyObjectALCode := CopyObjectALCode.Copy(ObjectALCode);
+        CopyObjectALCode := CopyObjectALCode.ToLower();
+        IndexOfGivenLabel := CopyObjectALCode.IndexOf(GivenLabel);
+
+        if IndexOfGivenLabel = -1 then
             exit(-1);
 
-        Character := ObjectALCode.Substring(ObjectALCode.IndexOf(GivenLabel) - 1, 1);
-        // while character before given label is not newline search for the next one
+        Character := CopyObjectALCode.Substring(IndexOfGivenLabel - 1, 1);
         while (Character[1] <> 10) do begin
-            ObjectALCode := ObjectALCode.Remove(ObjectALCode.IndexOf(GivenLabel), StrLen(GivenLabel));
+            ObjectALCode := ObjectALCode.Remove(IndexOfGivenLabel, StrLen(GivenLabel));
+            CopyObjectALCode := CopyObjectALCode.Remove(IndexOfGivenLabel, StrLen(GivenLabel));
+            IndexOfGivenLabel := CopyObjectALCode.IndexOf(GivenLabel);
 
-            if ObjectALCode.IndexOf(GivenLabel) <> -1 then
-                Character := ObjectALCode.Substring(ObjectALCode.IndexOf(GivenLabel) - 1, 1)
+            if IndexOfGivenLabel <> -1 then
+                Character := CopyObjectALCode.Substring(IndexOfGivenLabel - 1, 1)
             else
                 Character[1] := 10;
         end;
 
-        exit(ObjectALCode.IndexOf(GivenLabel));
+        exit(IndexOfGivenLabel);
     end;
 
     [Scope('OnPrem')]
@@ -1147,14 +1147,16 @@ codeunit 50100 "Object Details Management"
         VariablesFromProcedures: List of [Text];
         VariablesFromLocalProcedures: List of [Text];
         VariablesFromInternalProcedures: List of [Text];
+        VariablesFromProtectedProcedures: List of [Text];
     begin
         VariablesFromTriggers := GetVariables(ObjectALCode, TriggerLbl, IsUsed);
         VariablesFromFieldTriggers := GetVariables(ObjectALCode, FieldTriggerLbl, IsUsed);
         VariablesFromProcedures := GetVariables(ObjectALCode, ProcedureLbl, IsUsed);
         VariablesFromLocalProcedures := GetVariables(ObjectALCode, LocalProcedureLbl, IsUsed);
         VariablesFromInternalProcedures := GetVariables(ObjectALCode, InternalProcedureLbl, IsUsed);
+        VariablesFromProtectedProcedures := GetVariables(ObjectALCode, ProtectedProcedureLbl, IsUsed);
 
-        exit(GetListSum(VariablesFromTriggers, VariablesFromFieldTriggers, VariablesFromProcedures, VariablesFromLocalProcedures, VariablesFromInternalProcedures));
+        exit(GetListSum(GetListSum(VariablesFromTriggers, VariablesFromFieldTriggers, VariablesFromProcedures, VariablesFromLocalProcedures, VariablesFromInternalProcedures), VariablesFromProtectedProcedures));
     end;
 
     [Scope('OnPrem')]
@@ -1163,7 +1165,6 @@ codeunit 50100 "Object Details Management"
         CopyObjectALCode: DotNet String;
         MethodVariables: DotNet String;
         MethodBody: DotNet String;
-        StringComparison: DotNet StringComparison;
         VariablesList: List of [Text];
         UnusedVariablesList: List of [Text];
         Variable: Text;
@@ -1183,7 +1184,9 @@ codeunit 50100 "Object Details Management"
         CopyObjectALCode := CopyObjectALCode.Copy(ObjectALCode);
         Index := GetIndexOfLabel(CopyObjectALCode, Type);
         TextToSearch := GetTextToSearch(Type);
-        SetLocalLabels(TextToSearch, LocalVarLbl, LocalBeginLbl, LocalEndLbl);
+        LocalBeginLbl := GetLocalBeginLbl(TextToSearch);
+        LocalEndLbl := GetLocalEndLbl(TextToSearch);
+        LocalVarLbl := GetLocalVarLbl(TextToSearch);
 
         while Index <> -1 do begin
             CopyObjectALCode := CopyObjectALCode.Substring(Index + 4);
@@ -1206,6 +1209,8 @@ codeunit 50100 "Object Details Management"
                 while (SubstringIndex <> StrLen(TextToSearch) - 1) do begin
                     MethodVariables := MethodVariables.Substring(SubstringIndex);
                     SubstringIndex := MethodVariables.IndexOf(':');
+                    if SubstringIndex = -1 then
+                        break;
                     Variable := MethodVariables.Substring(0, SubstringIndex);
                     VariablesList.Add(Variable);
                     MethodVariables := MethodVariables.Substring(MethodVariables.IndexOf(';'));
@@ -1214,8 +1219,8 @@ codeunit 50100 "Object Details Management"
 
                 if not IsUsed then begin
                     foreach Variable in VariablesList do begin
-                        if MethodBody.IndexOf(' ' + Variable, StringComparison.OrdinalIgnoreCase) = -1 then
-                            if MethodBody.IndexOf('(' + Variable, StringComparison.OrdinalIgnoreCase) = -1 then
+                        if MethodBody.IndexOf(' ' + Variable) = -1 then
+                            if MethodBody.IndexOf('(' + Variable) = -1 then
                                 UnusedVariablesList.Add(Variable);
 
                         VariableIndex := GetVariableIndex(MethodBody, Variable);
@@ -1241,30 +1246,25 @@ codeunit 50100 "Object Details Management"
         exit(UnusedVariablesList);
     end;
 
-    local procedure SetLocalLabels(TextToSearch: Text; var LocalVarLbl: Text; var LocalBeginLbl: Text; var LocalEndLbl: Text)
+    local procedure GetLocalBeginLbl(TextToSearch: Text): Text
     begin
-        if StrLen(TextToSearch) > 8 then begin
-            LocalVarLbl := FieldVarLbl;
-            LocalBeginLbl := FieldBeginLbl;
-            LocalEndLbl := FieldEndLbl;
-            exit;
-        end;
-
-        LocalVarLbl := VarLbl;
-        LocalBeginLbl := BeginLbl;
-        LocalEndLbl := EndLbl;
+        if StrLen(TextToSearch) > 8 then
+            exit(FieldBeginLbl);
+        exit(BeginLbl);
     end;
 
-    local procedure SetLocalLabels(TextToSearch: Text; var LocalVarLbl: Text; var LocalBeginLbl: Text)
+    local procedure GetLocalEndLbl(TextToSearch: Text): Text
     begin
-        if StrLen(TextToSearch) > 8 then begin
-            LocalVarLbl := FieldVarLbl;
-            LocalBeginLbl := FieldBeginLbl;
-            exit;
-        end;
+        if StrLen(TextToSearch) > 8 then
+            exit(FieldEndLbl);
+        exit(EndLbl);
+    end;
 
-        LocalVarLbl := VarLbl;
-        LocalBeginLbl := BeginLbl;
+    local procedure GetLocalVarLbl(TextToSearch: Text): Text
+    begin
+        if StrLen(TextToSearch) > 8 then
+            exit(FieldVarLbl);
+        exit(VarLbl);
     end;
 
     [Scope('OnPrem')]
@@ -1360,6 +1360,7 @@ codeunit 50100 "Object Details Management"
         CopyObjectALCode: DotNet String;
         VariablesList: List of [Text];
         Variable: Text;
+        IndexesForNextGlobalVar: array[3] of Integer;
         Index: Integer;
         SubstringIndex: Integer;
         EndOfGlobalVariables: Boolean;
@@ -1376,11 +1377,11 @@ codeunit 50100 "Object Details Management"
                 SubstringIndex := CopyObjectALCode.IndexOf(':');
                 Variable := CopyObjectALCode.Substring(0, SubstringIndex);
                 VariablesList.Add(Variable);
-                SubstringIndex := CopyObjectALCode.IndexOf(';');
+                SubstringIndex := CopyObjectALCode.IndexOf(';') + 1;
                 CopyObjectALCode := CopyObjectALCode.Substring(SubstringIndex);
-                SubstringIndex := CopyObjectALCode.IndexOf('        ');
-                EndOfGlobalVariables := GetEndOfGlobalVariables(CopyObjectALCode, SubstringIndex);
-                SubstringIndex += StrLen('        ');
+                SetIndexesForNextGlobalVar(CopyObjectALCode, IndexesForNextGlobalVar);
+                EndOfGlobalVariables := GetEndOfGlobalVariables(CopyObjectALCode, IndexesForNextGlobalVar);
+                SubstringIndex := CopyObjectALCode.IndexOf('        ') + StrLen('        ');
             end;
         end;
 
@@ -1388,25 +1389,60 @@ codeunit 50100 "Object Details Management"
     end;
 
     [Scope('OnPrem')]
-    local procedure GetEndOfGlobalVariables(ObjectALCode: DotNet String; IndexOfNextPossibleGlobalVariable: Integer): Boolean
+    local procedure SetIndexesForNextGlobalVar(ObjectALCode: DotNet String;
+
+    var
+        IndexesForNextGlobalVar: array[3] of Integer)
+    begin
+        IndexesForNextGlobalVar[1] := ObjectALCode.IndexOf('        ');
+        IndexesForNextGlobalVar[2] := ObjectALCode.IndexOf(':');
+        IndexesForNextGlobalVar[3] := ObjectALCode.IndexOf(';');
+    end;
+
+    [Scope('OnPrem')]
+    local procedure GetEndOfGlobalVariables(ObjectALCode: DotNet String; IndexOfNextPossibleGlobalVariable: array[3] of Integer): Boolean
     var
         CopyObjectALCode: DotNet String;
         TriggerIndex: Integer;
         ProcedureIndex: Integer;
         LocalProcedureIndex: Integer;
         InternalProcedureIndex: Integer;
+        ProtectedProcedureIndex: Integer;
     begin
+        if not CheckCorrectIndexOfNextPossibleVariable(IndexOfNextPossibleGlobalVariable) then
+            exit(true);
+
         CopyObjectALCode := CopyObjectALCode.Copy(ObjectALCode);
         TriggerIndex := GetIndexOfLabel(CopyObjectALCode, TriggerLbl);
         ProcedureIndex := GetIndexOfLabel(CopyObjectALCode, ProcedureLbl);
         LocalProcedureIndex := GetIndexOfLabel(CopyObjectALCode, LocalProcedureLbl);
         InternalProcedureIndex := GetIndexOfLabel(CopyObjectALCode, InternalProcedureLbl);
+        ProtectedProcedureIndex := GetIndexOfLabel(CopyObjectALCode, ProtectedProcedureLbl);
 
-        if ((IndexOfNextPossibleGlobalVariable > TriggerIndex) and (TriggerIndex <> -1)) or
-            ((IndexOfNextPossibleGlobalVariable > ProcedureIndex) and (ProcedureIndex <> -1)) or
-            ((IndexOfNextPossibleGlobalVariable > LocalProcedureIndex) and (LocalProcedureIndex <> -1)) or
-            ((IndexOfNextPossibleGlobalVariable > InternalProcedureIndex) and (InternalProcedureIndex <> -1)) then
+        if CheckEndGivenIndex(TriggerIndex, IndexOfNextPossibleGlobalVariable) or CheckEndGivenIndex(ProcedureIndex, IndexOfNextPossibleGlobalVariable)
+            or CheckEndGivenIndex(LocalProcedureIndex, IndexOfNextPossibleGlobalVariable) or CheckEndGivenIndex(InternalProcedureIndex, IndexOfNextPossibleGlobalVariable)
+            or CheckEndGivenIndex(ProtectedProcedureIndex, IndexOfNextPossibleGlobalVariable) then
             exit(true);
+
+        exit(false);
+    end;
+
+    local procedure CheckCorrectIndexOfNextPossibleVariable(IndexOfNextPossibleGlobalVariable: array[3] of Integer): Boolean
+    begin
+        if (IndexOfNextPossibleGlobalVariable[1] < IndexOfNextPossibleGlobalVariable[2]) and
+            (IndexOfNextPossibleGlobalVariable[2] < IndexOfNextPossibleGlobalVariable[3]) then
+            exit(true);
+        exit(false);
+    end;
+
+    local procedure CheckEndGivenIndex(GivenIndex: Integer; IndexOfNextPossibleGlobalVariable: array[3] of Integer): Boolean
+    var
+        Index: Integer;
+    begin
+        if GivenIndex <> -1 then
+            for Index := 1 to 3 do
+                if IndexOfNextPossibleGlobalVariable[Index] > GivenIndex then
+                    exit(true);
 
         exit(false);
     end;
@@ -1577,124 +1613,65 @@ codeunit 50100 "Object Details Management"
     [Scope('OnPrem')]
     local procedure GetObjectsUsedInCode(ObjectALCode: DotNet String): List of [Text]
     var
-        ObjectsUsedInTriggers: List of [Text];
-        ObjectsUsedInFieldTriggers: List of [Text];
-        ObjectsUsedInProcedures: List of [Text];
-        ObjectsUsedInLocalProcedures: List of [Text];
+        RecordsUsedInCode: List of [Text];
+        PagesUsedInCode: List of [Text];
+        CodeunitsUsedInCode: List of [Text];
+        ReportsUsedInCode: List of [Text];
+        RecordLbl: Label ': Record ';
+        PageLbl: Label ': Page ';
+        ReportLbl: Label ': Report ';
+        CodeunitLbl: Label ': Codeunit ';
     begin
-        ObjectsUsedInTriggers := GetObjectsUsedIn(ObjectALCode, TriggerLbl);
-        ObjectsUsedInFieldTriggers := GetObjectsUsedIn(ObjectALCode, FieldTriggerLbl);
-        ObjectsUsedInProcedures := GetObjectsUsedIn(ObjectALCode, ProcedureLbl);
-        ObjectsUsedInLocalProcedures := GetObjectsUsedIn(ObjectALCode, LocalProcedureLbl);
+        RecordsUsedInCode := GetObjectTypeUsedIn(ObjectALCode, RecordLbl);
+        PagesUsedInCode := GetObjectTypeUsedIn(ObjectALCode, PageLbl);
+        ReportsUsedInCode := GetObjectTypeUsedIn(ObjectALCode, ReportLbl);
+        CodeunitsUsedInCode := GetObjectTypeUsedIn(ObjectALCode, CodeunitLbl);
 
-        exit(DeleteDuplicates(GetListSum(ObjectsUsedInTriggers, ObjectsUsedInFieldTriggers, ObjectsUsedInProcedures, ObjectsUsedInLocalProcedures)));
+        exit(DeleteDuplicates(GetListSum(RecordsUsedInCode, PagesUsedInCode, ReportsUsedInCode, CodeunitsUsedInCode)));
     end;
 
     [Scope('OnPrem')]
-    local procedure GetObjectsUsedIn(ObjectALCode: DotNet String; Type: Text): List of [Text]
+    local procedure GetObjectTypeUsedIn(ObjectALCode: DotNet String; GivenObjectType: Text): List of [Text]
     var
         CopyObjectALCode: DotNet String;
-        CodeFromType: Dotnet String;
-        TotalObjectsUsedIn: List of [Text];
-        ObjectsFromParameters: List of [Text];
-        ObjectsFromVariables: List of [Text];
-        Index: Integer;
+        ObjectsUsedIn: List of [Text];
+        Object: Text;
+        StartIndex: Integer;
         EndIndex: Integer;
     begin
         CopyObjectALCode := CopyObjectALCode.Copy(ObjectALCode);
-        Index := GetIndexOfLabel(CopyObjectALCode, Type);
+        StartIndex := CopyObjectALCode.IndexOf(GivenObjectType);
 
-        while Index <> -1 do begin
-            CopyObjectALCode := CopyObjectALCode.Substring(Index + 4);
-            EndIndex := GetIndexOfLabel(CopyObjectALCode, EndLbl);
-            CodeFromType := CopyObjectALCode.Substring(0, EndIndex + StrLen(EndLbl));
-
-            ObjectsFromParameters := GetObjectsFromParameters(CodeFromType);
-            ObjectsFromVariables := GetObjectsFromVariables(CodeFromType, Type);
-            if (ObjectsFromParameters.Count() <> 0) or (ObjectsFromVariables.Count() <> 0) then
-                TotalObjectsUsedIn := GetListSum(TotalObjectsUsedIn, ObjectsFromParameters, ObjectsFromVariables);
-
-            CopyObjectALCode := CopyObjectALCode.Substring(EndIndex + StrLen(EndLbl));
-            Index := GetIndexOfLabel(CopyObjectALCode, Type);
+        while StartIndex <> -1 do begin
+            CopyObjectALCode := CopyObjectALCode.Substring(StartIndex);
+            EndIndex := GetEndIndex(CopyObjectALCode);
+            Object := CopyObjectALCode.Substring(2, EndIndex - 2);
+            ObjectsUsedIn.Add(Object);
+            CopyObjectALCode := CopyObjectALCode.Substring(EndIndex);
+            StartIndex := CopyObjectALCode.IndexOf(GivenObjectType);
         end;
 
-        exit(TotalObjectsUsedIn);
+        exit(ObjectsUsedIn);
     end;
 
     [Scope('OnPrem')]
-    local procedure GetObjectsFromParameters(ALCode: DotNet String): List of [Text]
+    local procedure GetEndIndex(ObjectALCode: DotNet String): Integer
     var
-        CopyALCode: DotNet String;
-        ObjectsFromParameters: List of [Text];
-        ParameterType: Text;
-        Index: Integer;
-        OpenParanthesisIndex: Integer;
-        CloseParanthesisIndex: Integer;
+        IndexOfSemiColon: Integer;
+        IndexOfCloseParanthesis: Integer;
     begin
-        CopyALCode := CopyALCode.Copy(ALCode);
-        OpenParanthesisIndex := CopyALCode.IndexOf('(');
-        CloseParanthesisIndex := CopyALCode.IndexOf(')');
-        CopyALCode := CopyALCode.Substring(OpenParanthesisIndex, CloseParanthesisIndex - OpenParanthesisIndex + 1);
+        IndexOfSemiColon := ObjectALCode.IndexOf(';');
+        IndexOfCloseParanthesis := ObjectALCode.IndexOf(')');
 
-        if (CloseParanthesisIndex - OpenParanthesisIndex <> 1) then begin
-            Index := CopyALCode.IndexOf(';');
+        if IndexOfSemiColon = -1 then
+            exit(IndexOfCloseParanthesis);
 
-            while Index <> -1 do begin
-                ParameterType := CopyALCode.Substring(CopyALCode.IndexOf(':') + 2, Index - (CopyALCode.IndexOf(':') + 2));
-                if ParameterType.Contains(RecordLbl) then
-                    ObjectsFromParameters.Add(ParameterType);
+        if IndexOfCloseParanthesis = -1 then
+            exit(IndexOfSemiColon);
 
-                CopyALCode := CopyALCode.Substring(Index + 2);
-                Index := CopyALCode.IndexOf(';');
-            end;
-
-            ParameterType := CopyALCode.Substring(CopyALCode.IndexOf(':') + 2, CopyALCode.IndexOf(')') - (CopyALCode.IndexOf(':') + 2));
-            if ParameterType.Contains(RecordLbl) then
-                ObjectsFromParameters.Add(ParameterType);
-        end;
-
-        exit(ObjectsFromParameters);
-    end;
-
-    [Scope('OnPrem')]
-    local procedure GetObjectsFromVariables(ALCode: DotNet String; Type: Text): List of [Text]
-    var
-        CopyALCode: DotNet String;
-        ObjectsFromVariables: List of [Text];
-        VariableType: Text;
-        TextToSearch: Text;
-        LocalVarLbl: Text;
-        LocalBeginLbl: Text;
-        Index: Integer;
-        VarIndex: Integer;
-        BeginIndex: Integer;
-    begin
-        CopyALCode := CopyALCode.Copy(ALCode);
-        TextToSearch := GetTextToSearch(Type);
-        SetLocalLabels(TextToSearch, LocalVarLbl, LocalBeginLbl);
-        VarIndex := CopyALCode.IndexOf(LocalVarLbl);
-
-        if VarIndex = -1 then
-            exit;
-
-        BeginIndex := CopyALCode.IndexOf(LocalBeginLbl);
-        CopyALCode := CopyALCode.Substring(VarIndex, BeginIndex - VarIndex);
-
-        Index := CopyALCode.IndexOf(TextToSearch) + StrLen(TextToSearch);
-        while (Index <> StrLen(TextToSearch) - 1) do begin
-            CopyALCode := CopyALCode.Substring(Index);
-            Index := CopyALCode.IndexOf(':');
-            VariableType := CopyALCode.Substring(Index + 2, CopyALCode.IndexOf(';') - (Index + 2));
-
-            if VariableType.Contains(RecordLbl) or VariableType.Contains(PageLbl)
-                or VariableType.Contains(ReportLbl) or VariableType.Contains(CodeunitLbl) then
-                ObjectsFromVariables.Add(VariableType);
-
-            CopyALCode := CopyALCode.Substring(CopyALCode.IndexOf(';') + 1);
-            Index := CopyALCode.IndexOf(TextToSearch) + StrLen(TextToSearch);
-        end;
-
-        exit(ObjectsFromVariables);
+        if IndexOfSemiColon < IndexOfCloseParanthesis then
+            exit(IndexOfSemiColon);
+        exit(IndexOfCloseParanthesis);
     end;
 
     local procedure GetTextToSearch(Type: Text): Text
@@ -1829,6 +1806,28 @@ codeunit 50100 "Object Details Management"
         ObjectDetailsLine.TypeName := Object;
         ObjectDetailsLine.Insert(true);
     end;
+
+    procedure UpdateAllUsedInNoOfObjects(ObjectDetails: Record "Object Details")
+    var
+        ObjDetails: Record "Object Details";
+        ObjectDetailsLine: Record "Object Details Line";
+        UsedInNoObjectsList: List of [Text];
+        SearchText: Text;
+    begin
+        SearchText := GetObjectTypeText(ObjectDetails) + ' ' + GetObjectNameSearchText(ObjectDetails);
+
+        ObjectDetailsLine.SetRange(Type, Types::"Object (Internal)");
+        ObjectDetailsLine.SetRange(Name, SearchText);
+        if ObjectDetailsLine.FindSet() then
+            repeat
+                if ObjDetails.Get(ObjectDetailsLine.ObjectType, ObjectDetailsLine.ObjectNo) then
+                    UsedInNoObjectsList.Add(Format(ObjDetails.ObjectType) + ' ' + Format(ObjDetails.ObjectNo) + ' ' + GetObjectNameSearchText(ObjDetails));
+            until ObjectDetailsLine.Next() = 0;
+
+        if not CheckUsedInNoObjectsObjectDetailsLine(ObjectDetails, UsedInNoObjectsList, Types::"Object (External)") then
+            UpdateUsedInNoObjectsObjectDetailsLine(ObjectDetails, UsedInNoObjectsList, Types::"Object (External)");
+    end;
+
     // Used in No. of Objects -> End
 
     //  -------- Object Details Line (RELATIONS) --------> END
@@ -1866,35 +1865,35 @@ codeunit 50100 "Object Details Management"
         end;
     end;
 
-    procedure GetObjectTypeFromAllObj(AllObj: Record AllObj): Enum "Object Type"
-    var
-        ObjectDetails: Record "Object Details";
-    begin
-        case AllObj."Object Type" of
-            AllObj."Object Type"::Table:
-                exit(ObjectDetails.ObjectType::Table);
-            AllObj."Object Type"::"TableExtension":
-                exit(ObjectDetails.ObjectType::"TableExtension");
-            AllObj."Object Type"::Page:
-                exit(ObjectDetails.ObjectType::Page);
-            AllObj."Object Type"::"PageExtension":
-                exit(ObjectDetails.ObjectType::"PageExtension");
-            AllObj."Object Type"::Codeunit:
-                exit(ObjectDetails.ObjectType::Codeunit);
-            AllObj."Object Type"::Report:
-                exit(ObjectDetails.ObjectType::Report);
-            AllObj."Object Type"::Enum:
-                exit(ObjectDetails.ObjectType::Enum);
-            AllObj."Object Type"::EnumExtension:
-                exit(ObjectDetails.ObjectType::EnumExtension);
-            AllObj."Object Type"::XMLport:
-                exit(ObjectDetails.ObjectType::XMLPort);
-            AllObj."Object Type"::Query:
-                exit(ObjectDetails.ObjectType::Query);
-            AllObj."Object Type"::MenuSuite:
-                exit(ObjectDetails.ObjectType::MenuSuite);
-        end;
-    end;
+    // procedure GetObjectTypeFromAllObj(AllObj: Record AllObj): Enum "Object Type"
+    // var
+    //     ObjectDetails: Record "Object Details";
+    // begin
+    //     case AllObj."Object Type" of
+    //         AllObj."Object Type"::Table:
+    //             exit(ObjectDetails.ObjectType::Table);
+    //         AllObj."Object Type"::"TableExtension":
+    //             exit(ObjectDetails.ObjectType::"TableExtension");
+    //         AllObj."Object Type"::Page:
+    //             exit(ObjectDetails.ObjectType::Page);
+    //         AllObj."Object Type"::"PageExtension":
+    //             exit(ObjectDetails.ObjectType::"PageExtension");
+    //         AllObj."Object Type"::Codeunit:
+    //             exit(ObjectDetails.ObjectType::Codeunit);
+    //         AllObj."Object Type"::Report:
+    //             exit(ObjectDetails.ObjectType::Report);
+    //         AllObj."Object Type"::Enum:
+    //             exit(ObjectDetails.ObjectType::Enum);
+    //         AllObj."Object Type"::EnumExtension:
+    //             exit(ObjectDetails.ObjectType::EnumExtension);
+    //         AllObj."Object Type"::XMLport:
+    //             exit(ObjectDetails.ObjectType::XMLPort);
+    //         AllObj."Object Type"::Query:
+    //             exit(ObjectDetails.ObjectType::Query);
+    //         AllObj."Object Type"::MenuSuite:
+    //             exit(ObjectDetails.ObjectType::MenuSuite);
+    //     end;
+    // end;
     //  -------- Others -------> END
 
 }

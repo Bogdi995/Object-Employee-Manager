@@ -180,45 +180,40 @@ page 50100 "Object Details List"
 
                 trigger OnAction()
                 var
-                    AllObj: Record AllObj;
                     ObjectDetails: Record "Object Details";
                     ObjectDetailsManagement: Codeunit "Object Details Management";
                     Progress: Dialog;
                     Object: Text;
+                    UpdateAllVariablesLbl: Label 'Do you want to update the variables of all objects?';
                     UpdateVariablesLbl: Label 'The variables are beign updated...\\#1';
                     VariablesSuccessfullyUpdated: Label 'The variables from all objects are successfully updated.';
                     NeedsUpdate: array[4] of Boolean;
                 begin
-                    // AllObj.SetFilter("Object Type", '%1|%2|%3|%4|%5', AllObj."Object Type"::Table,
-                    //                  AllObj."Object Type"::"TableExtension", AllObj."Object Type"::Page,
-                    //                  AllObj."Object Type"::"PageExtension", AllObj."Object Type"::Codeunit);
-                    AllObj.SetRange("Object Type", AllObj."Object Type"::Codeunit);
-                    AllObj.SetFilter("Object ID", '<%1', 2000000000);
+                    if Confirm(UpdateAllVariablesLbl) then begin
+                        ObjectDetails.SetFilter(ObjectType, '%1|%2|%3|%4|%5', ObjectDetails.ObjectType::Table,
+                                                             ObjectDetails.ObjectType::"TableExtension", ObjectDetails.ObjectType::Page,
+                                                             ObjectDetails.ObjectType::"PageExtension", ObjectDetails.ObjectType::Codeunit);
+                        ObjectDetails.SetFilter(ObjectNo, '<%1', 2000000000);
 
-                    if AllObj.FindSet() then begin
-                        Progress.Open(UpdateVariablesLbl, Object);
-
-                        repeat
-                            ObjectDetails.SetRange(ObjectType, ObjectDetailsManagement.GetObjectTypeFromAllObj(AllObj));
-                            ObjectDetails.SetRange(ObjectNo, AllObj."Object ID");
-                            if ObjectDetails.FindFirst() then begin
+                        if ObjectDetails.FindSet() then begin
+                            Progress.Open(UpdateVariablesLbl, Object);
+                            repeat
                                 ObjectDetails.CalcFields(Name);
                                 Object := Format(ObjectDetails.ObjectType) + ' ' + Format(ObjectDetails.ObjectNo) + ' ' + ObjectDetails.Name;
                                 Progress.Update();
                                 ObjectDetailsManagement.UpdateVariables(ObjectDetails, NeedsUpdate[1]);
                                 ObjectDetailsManagement.UpdateUnusedVariables(ObjectDetails, NeedsUpdate[2]);
-                            end;
-                        until AllObj.Next() = 0;
-
-                        Progress.Close();
-                        Message(VariablesSuccessfullyUpdated);
+                            until ObjectDetails.Next() = 0;
+                            Progress.Close();
+                            Message(VariablesSuccessfullyUpdated);
+                        end;
                     end;
                 end;
             }
 
-            action(UpdateRelations)
+            action(UpdateRelationsUsage)
             {
-                Caption = 'Update Relations';
+                Caption = 'Update Relations/Usage';
                 ApplicationArea = All;
                 Image = UpdateXML;
                 Promoted = true;
@@ -227,44 +222,39 @@ page 50100 "Object Details List"
 
                 trigger OnAction()
                 var
-                    AllObj: Record AllObj;
                     ObjectDetails: Record "Object Details";
                     ObjectDetailsManagement: Codeunit "Object Details Management";
                     Progress: Dialog;
                     Object: Text;
+                    UpdateAllRelationsUsageLbl: Label 'Do you want to update the relations and the usage of all objects?';
                     UpdateRelationsLbl: Label 'The relations are beign updated...\\#1';
                     RelationsSuccessfullyUpdatedLbl: Label 'The relations for all objects are successfully updated.';
                     NeedsUpdate: array[4] of Boolean;
                 begin
-                    AllObj.SetFilter("Object Type", '%1|%2|%3|%4|%5|%6', AllObj."Object Type"::Table,
-                                             AllObj."Object Type"::"TableExtension", AllObj."Object Type"::Page,
-                                             AllObj."Object Type"::"PageExtension", AllObj."Object Type"::Report,
-                                             AllObj."Object Type"::Codeunit);
-                    AllObj.SetFilter("Object ID", '<%1', 2000000000);
+                    if Confirm(UpdateAllRelationsUsageLbl) then begin
+                        ObjectDetails.SetFilter(ObjectType, '%1|%2|%3|%4|%5|%6', ObjectDetails.ObjectType::Table,
+                                                             ObjectDetails.ObjectType::"TableExtension", ObjectDetails.ObjectType::Page,
+                                                             ObjectDetails.ObjectType::"PageExtension", ObjectDetails.ObjectType::Report,
+                                                             ObjectDetails.ObjectType::Codeunit);
+                        ObjectDetails.SetFilter(ObjectNo, '<%1', 2000000000);
 
-                    if AllObj.FindSet() then begin
-                        Progress.Open(UpdateRelationsLbl, Object);
-
-                        repeat
-                            ObjectDetails.SetRange(ObjectType, ObjectDetailsManagement.GetObjectTypeFromAllObj(AllObj));
-                            ObjectDetails.SetRange(ObjectNo, AllObj."Object ID");
-
-                            if ObjectDetails.FindFirst() then begin
+                        if ObjectDetails.FindSet() then begin
+                            Progress.Open(UpdateRelationsLbl, Object);
+                            repeat
                                 ObjectDetails.CalcFields(Name);
                                 Object := Format(ObjectDetails.ObjectType) + ' ' + Format(ObjectDetails.ObjectNo) + ' ' + ObjectDetails.Name;
                                 Progress.Update();
 
-                                if ObjectDetails.ObjectType = ObjectDetails.ObjectType::Table then begin
-                                    ObjectDetailsManagement.UpdateRelations(Rec, NeedsUpdate[1], Types::"Relation (External)");
-                                    ObjectDetailsManagement.UpdateRelations(Rec, NeedsUpdate[2], Types::"Relation (Internal)");
-                                end;
-                                ObjectDetailsManagement.UpdateNoOfObjectsUsedIn(Rec, NeedsUpdate[3]);
-
-                            end;
-                        until AllObj.Next() = 0;
-
-                        Progress.Close();
-                        Message(RelationsSuccessfullyUpdatedLbl);
+                                // if ObjectDetails.ObjectType = ObjectDetails.ObjectType::Table then begin
+                                //     ObjectDetailsManagement.UpdateRelations(ObjectDetails, NeedsUpdate[1], Types::"Relation (External)");
+                                //     ObjectDetailsManagement.UpdateRelations(ObjectDetails, NeedsUpdate[2], Types::"Relation (Internal)");
+                                // end;
+                                ObjectDetailsManagement.UpdateNoOfObjectsUsedIn(ObjectDetails, NeedsUpdate[3]);
+                            until ObjectDetails.Next() = 0;
+                            Progress.Close();
+                            UpdateAllUsedInNoOfObjects();
+                            Message(RelationsSuccessfullyUpdatedLbl);
+                        end;
                     end;
                 end;
             }
@@ -282,4 +272,30 @@ page 50100 "Object Details List"
         // obj2.DeleteAll();
     end;
 
+    local procedure UpdateAllUsedInNoOfObjects()
+    var
+        ObjectDetails: Record "Object Details";
+        ObjectDetailsManagement: Codeunit "Object Details Management";
+        Progress: Dialog;
+        Object: Text;
+        UpdateRelationsLbl: Label 'The usage of objects is being updated...\\#1';
+        UsageSuccessfullyUpdatedLbl: Label 'The usage of all objects is successfully updated.';
+    begin
+        ObjectDetails.SetFilter(ObjectType, '%1|%2|%3|%4|%5', ObjectDetails.ObjectType::Table,
+                                             ObjectDetails.ObjectType::"TableExtension", ObjectDetails.ObjectType::Page,
+                                             ObjectDetails.ObjectType::"PageExtension", ObjectDetails.ObjectType::Codeunit);
+        ObjectDetails.SetFilter(ObjectNo, '<%1', 2000000000);
+
+        if ObjectDetails.FindSet() then begin
+            Progress.Open(UpdateRelationsLbl, Object);
+            repeat
+                ObjectDetails.CalcFields(Name);
+                Object := Format(ObjectDetails.ObjectType) + ' ' + Format(ObjectDetails.ObjectNo) + ' ' + ObjectDetails.Name;
+                Progress.Update();
+                ObjectDetailsManagement.UpdateAllUsedInNoOfObjects(ObjectDetails);
+            until ObjectDetails.Next() = 0;
+            Progress.Close();
+            Message(UsageSuccessfullyUpdatedLbl);
+        end;
+    end;
 }
