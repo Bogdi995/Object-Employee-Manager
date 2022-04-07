@@ -1607,7 +1607,10 @@ codeunit 50100 "Object Details Management"
 
         ObjectsUsedInCode := GetObjectsUsedInCode(ObjectALCode);
 
-        CheckAndUpdateObjectDetailsLine(ObjectDetails, ObjectsUsedInCode, Types::"Object (Internal)", true, NeedsUpdate);
+        if not CheckObjectsObjectDetailsLine(ObjectDetails, ObjectsUsedInCode, Types::"Object (Internal)") then begin
+            NeedsUpdate := true;
+            UpdateObjectsObjectDetailsLine(ObjectDetails, ObjectsUsedInCode, Types::"Object (Internal)");
+        end;
     end;
 
     [Scope('OnPrem')]
@@ -1646,12 +1649,55 @@ codeunit 50100 "Object Details Management"
             CopyObjectALCode := CopyObjectALCode.Substring(StartIndex);
             EndIndex := GetEndIndex(CopyObjectALCode);
             Object := CopyObjectALCode.Substring(2, EndIndex - 2);
-            ObjectsUsedIn.Add(Object);
+            Object := GetObjectUsedIn(Object, GivenObjectType);
+            if Object <> '' then
+                ObjectsUsedIn.Add(Object);
             CopyObjectALCode := CopyObjectALCode.Substring(EndIndex);
             StartIndex := CopyObjectALCode.IndexOf(GivenObjectType);
         end;
 
         exit(ObjectsUsedIn);
+    end;
+
+    local procedure GetObjectUsedIn(Object: Text; ObjectType: Text): Text
+    var
+        ObjectDetails: Record "Object Details";
+        RecordLbl: Label ': Record ';
+        PageLbl: Label ': Page ';
+        ReportLbl: Label ': Report ';
+        CodeunitLbl: Label ': Codeunit ';
+    begin
+        case ObjectType of
+            RecordLbl:
+                begin
+                    Object := CopyStr(Object, 8, StrLen(Object) - 6);
+                    ObjectDetails.SetRange(ObjectType, ObjectDetails.ObjectType::Table);
+                end;
+            PageLbl:
+                begin
+                    Object := CopyStr(Object, 6, StrLen(Object) - 4);
+                    ObjectDetails.SetRange(ObjectType, ObjectDetails.ObjectType::Page);
+                end;
+            ReportLbl:
+                begin
+                    Object := CopyStr(Object, 8, StrLen(Object) - 6);
+                    ObjectDetails.SetRange(ObjectType, ObjectDetails.ObjectType::Report);
+                end;
+            CodeunitLbl:
+                begin
+                    Object := CopyStr(Object, 10, StrLen(Object) - 8);
+                    ObjectDetails.SetRange(ObjectType, ObjectDetails.ObjectType::Codeunit);
+                end;
+        end;
+
+        if StrPos(Object, ' temporary') > 0 then
+            Object := CopyStr(Object, 1, StrLen(Object) - StrLen(' temporary'));
+        Object := DelChr(Object, '<', '"');
+        Object := DelChr(Object, '>', '"');
+        ObjectDetails.SetRange(Name, Object);
+        if ObjectDetails.FindFirst() then
+            exit(Format(ObjectDetails.ObjectType) + ' ' + Format(ObjectDetails.ObjectNo) + ' ' + GetObjectNameSearchText(ObjectDetails));
+
     end;
 
     [Scope('OnPrem')]
@@ -1669,8 +1715,9 @@ codeunit 50100 "Object Details Management"
         if IndexOfCloseParanthesis = -1 then
             exit(IndexOfSemiColon);
 
-        if IndexOfSemiColon < IndexOfCloseParanthesis then
+        if (IndexOfSemiColon < IndexOfCloseParanthesis) then
             exit(IndexOfSemiColon);
+
         exit(IndexOfCloseParanthesis);
     end;
 
@@ -1690,9 +1737,9 @@ codeunit 50100 "Object Details Management"
     begin
         UsedInNoObjectsList := GetUsedInNoObjectsList(ObjectDetails);
 
-        if not CheckUsedInNoObjectsObjectDetailsLine(ObjectDetails, UsedInNoObjectsList, Types::"Object (External)") then begin
+        if not CheckObjectsObjectDetailsLine(ObjectDetails, UsedInNoObjectsList, Types::"Object (External)") then begin
             NeedsUpdate := true;
-            UpdateUsedInNoObjectsObjectDetailsLine(ObjectDetails, UsedInNoObjectsList, Types::"Object (External)");
+            UpdateObjectsObjectDetailsLine(ObjectDetails, UsedInNoObjectsList, Types::"Object (External)");
         end;
     end;
 
@@ -1726,7 +1773,7 @@ codeunit 50100 "Object Details Management"
             UsedInNoObjectsList.Add(Format(ObjectDetails.ObjectType) + ' ' + Format(ObjectDetails.ObjectNo) + ' ' + GetObjectNameSearchText(ObjectDetails));
     end;
 
-    local procedure CheckUsedInNoObjectsObjectDetailsLine(ObjectDetails: Record "Object Details"; UsedInNoObjectsList: List of [Text]; Type: Enum Types): Boolean
+    local procedure CheckObjectsObjectDetailsLine(ObjectDetails: Record "Object Details"; ObjectsList: List of [Text]; Type: Enum Types): Boolean
     var
         ObjectDetailsLine: Record "Object Details Line";
         Object: Text;
@@ -1735,13 +1782,13 @@ codeunit 50100 "Object Details Management"
         ObjectDetailsLine.SetRange(ObjectNo, ObjectDetails.ObjectNo);
         ObjectDetailsLine.SetRange(Type, Type);
 
-        if (ObjectDetailsLine.Count() <> UsedInNoObjectsList.Count()) or (ObjectDetailsLine.Count() = 0) then
+        if (ObjectDetailsLine.Count() <> ObjectsList.Count()) or (ObjectDetailsLine.Count() = 0) then
             exit(false);
 
-        if (ObjectDetailsLine.Count() = 0) and (UsedInNoObjectsList.Count() = 0) then
+        if (ObjectDetailsLine.Count() = 0) and (ObjectsList.Count() = 0) then
             exit(true);
 
-        foreach Object in UsedInNoObjectsList do begin
+        foreach Object in ObjectsList do begin
             ObjectDetailsLine.SetRange(ID, GetObjectID(Object));
             ObjectDetailsLine.SetRange(Name, GetObjectName(Object));
             ObjectDetailsLine.SetRange(TypeName, Object);
@@ -1776,7 +1823,7 @@ codeunit 50100 "Object Details Management"
         exit(Object);
     end;
 
-    local procedure UpdateUsedInNoObjectsObjectDetailsLine(ObjectDetails: Record "Object Details"; UsedInNoObjectsList: List of [Text]; Type: Enum Types)
+    local procedure UpdateObjectsObjectDetailsLine(ObjectDetails: Record "Object Details"; ObjectsList: List of [Text]; Type: Enum Types)
     var
         ObjectDetailsLine: Record "Object Details Line";
         Object: Text;
@@ -1788,12 +1835,12 @@ codeunit 50100 "Object Details Management"
         if ObjectDetailsLine.FindSet() then
             ObjectDetailsLine.DeleteAll();
 
-        foreach Object in UsedInNoObjectsList do
-            InsertUsedInNoObjectsObjectDetailsLine(ObjectDetails, Object, Type);
+        foreach Object in ObjectsList do
+            InsertObjectsObjectDetailsLine(ObjectDetails, Object, Type);
 
     end;
 
-    local procedure InsertUsedInNoObjectsObjectDetailsLine(ObjectDetails: Record "Object Details"; Object: Text; Type: Enum Types)
+    local procedure InsertObjectsObjectDetailsLine(ObjectDetails: Record "Object Details"; Object: Text; Type: Enum Types)
     var
         ObjectDetailsLine: Record "Object Details Line";
     begin
@@ -1824,8 +1871,8 @@ codeunit 50100 "Object Details Management"
                     UsedInNoObjectsList.Add(Format(ObjDetails.ObjectType) + ' ' + Format(ObjDetails.ObjectNo) + ' ' + GetObjectNameSearchText(ObjDetails));
             until ObjectDetailsLine.Next() = 0;
 
-        if not CheckUsedInNoObjectsObjectDetailsLine(ObjectDetails, UsedInNoObjectsList, Types::"Object (External)") then
-            UpdateUsedInNoObjectsObjectDetailsLine(ObjectDetails, UsedInNoObjectsList, Types::"Object (External)");
+        if not CheckObjectsObjectDetailsLine(ObjectDetails, UsedInNoObjectsList, Types::"Object (External)") then
+            UpdateObjectsObjectDetailsLine(ObjectDetails, UsedInNoObjectsList, Types::"Object (External)");
     end;
 
     // Used in No. of Objects -> End

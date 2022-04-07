@@ -252,7 +252,7 @@ page 50100 "Object Details List"
                                 ObjectDetailsManagement.UpdateNoOfObjectsUsedIn(ObjectDetails, NeedsUpdate[3]);
                             until ObjectDetails.Next() = 0;
                             Progress.Close();
-                            UpdateAllUsedInNoOfObjects();
+                            // UpdateAllUsedInNoOfObjects();
                             Message(RelationsSuccessfullyUpdatedLbl);
                         end;
                     end;

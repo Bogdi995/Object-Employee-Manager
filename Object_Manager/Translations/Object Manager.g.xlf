@@ -338,6 +338,26 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetObjectTypeText - NamedType CodeunitLbl</note>
         </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 1179762933 - NamedType 672541161" size-unit="char" translate="yes" xml:space="preserve">
+          <source>: Record </source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetObjectUsedIn - NamedType RecordLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 1179762933 - NamedType 1877187315" size-unit="char" translate="yes" xml:space="preserve">
+          <source>: Page </source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetObjectUsedIn - NamedType PageLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 1179762933 - NamedType 1687279216" size-unit="char" translate="yes" xml:space="preserve">
+          <source>: Report </source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetObjectUsedIn - NamedType ReportLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 1179762933 - NamedType 1453859403" size-unit="char" translate="yes" xml:space="preserve">
+          <source>: Codeunit </source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetObjectUsedIn - NamedType CodeunitLbl</note>
+        </trans-unit>
         <trans-unit id="Codeunit 1029530680 - Method 3929872973 - NamedType 2713365493" size-unit="char" translate="yes" xml:space="preserve">
           <source>fields</source>
           <note from="Developer" annotates="general" priority="2"></note>

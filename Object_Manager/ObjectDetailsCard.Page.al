@@ -338,12 +338,12 @@ page 50101 "Object Details Card"
                     NeedsUpdate: array[4] of Boolean;
                 begin
                     if Confirm(StrSubstNo(UpdateRelationsLbl, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then begin
-                        if Rec.ObjectType = Rec.ObjectType::Table then begin
-                            Progress.Open(UpdatingRelationsLbl);
-                            ObjectDetailsManagement.UpdateRelations(Rec, NeedsUpdate[1], Types::"Relation (External)");
-                            ObjectDetailsManagement.UpdateRelations(Rec, NeedsUpdate[2], Types::"Relation (Internal)");
-                            Progress.Close();
-                        end;
+                        // if Rec.ObjectType = Rec.ObjectType::Table then begin
+                        //     Progress.Open(UpdatingRelationsLbl);
+                        //     ObjectDetailsManagement.UpdateRelations(Rec, NeedsUpdate[1], Types::"Relation (External)");
+                        //     ObjectDetailsManagement.UpdateRelations(Rec, NeedsUpdate[2], Types::"Relation (Internal)");
+                        //     Progress.Close();
+                        // end;
 
                         ObjectDetailsManagement.UpdateNoOfObjectsUsedIn(Rec, NeedsUpdate[3]);
                         Progress.Open(UpdateUsedInNoOfObjectsLbl);
