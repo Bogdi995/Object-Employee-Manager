@@ -33,11 +33,6 @@ page 50100 "Object Details List"
                     ToolTip = 'Specifies the caption of the object.';
                     ApplicationArea = All;
                 }
-                field(NoTimesUsed; Rec.NoTimesUsed)
-                {
-                    ToolTip = 'Specifies the number of times the object was used.';
-                    ApplicationArea = All;
-                }
                 field(PrimaryKey; Rec.PrimaryKey)
                 {
                     ToolTip = 'Specifies the primary key of the object.';
@@ -71,6 +66,11 @@ page 50100 "Object Details List"
                 field(UsedInNoObjects; Rec.UsedInNoObjects)
                 {
                     ToolTip = 'Specifies the number of objects the object is used in.';
+                    ApplicationArea = All;
+                }
+                field(NoTimesUsed; Rec.NoTimesUsed)
+                {
+                    ToolTip = 'Specifies the number of times the object was used.';
                     ApplicationArea = All;
                 }
                 field(NoIntegrationEvents; Rec.NoIntegrationEvents)
@@ -245,14 +245,14 @@ page 50100 "Object Details List"
                                 Object := Format(ObjectDetails.ObjectType) + ' ' + Format(ObjectDetails.ObjectNo) + ' ' + ObjectDetails.Name;
                                 Progress.Update();
 
-                                // if ObjectDetails.ObjectType = ObjectDetails.ObjectType::Table then begin
-                                //     ObjectDetailsManagement.UpdateRelations(ObjectDetails, NeedsUpdate[1], Types::"Relation (External)");
-                                //     ObjectDetailsManagement.UpdateRelations(ObjectDetails, NeedsUpdate[2], Types::"Relation (Internal)");
-                                // end;
+                                if ObjectDetails.ObjectType = ObjectDetails.ObjectType::Table then begin
+                                    ObjectDetailsManagement.UpdateRelations(ObjectDetails, NeedsUpdate[1], Types::"Relation (External)");
+                                    ObjectDetailsManagement.UpdateRelations(ObjectDetails, NeedsUpdate[2], Types::"Relation (Internal)");
+                                end;
                                 ObjectDetailsManagement.UpdateNoOfObjectsUsedIn(ObjectDetails, NeedsUpdate[3]);
                             until ObjectDetails.Next() = 0;
                             Progress.Close();
-                            // UpdateAllUsedInNoOfObjects();
+                            UpdateAllUsedInNoOfObjects();
                             Message(RelationsSuccessfullyUpdatedLbl);
                         end;
                     end;

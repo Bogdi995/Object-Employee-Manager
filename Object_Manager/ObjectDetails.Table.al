@@ -71,7 +71,7 @@ table 50100 "Object Details"
         }
         field(80; NoFields; Integer)
         {
-            Caption = 'No. of fields';
+            Caption = 'No. of Fields';
             FieldClass = FlowField;
             CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const(Field)));
         }

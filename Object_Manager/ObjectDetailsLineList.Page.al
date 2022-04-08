@@ -47,6 +47,11 @@ page 50102 "Object Details Line List"
                     ToolTip = 'Specifies the data type and its length.';
                     ApplicationArea = All;
                 }
+                field(NoTimesUsed; Rec.NoTimesUsed)
+                {
+                    ToolTip = 'Specified the number of times the object was used';
+                    ApplicationArea = All;
+                }
             }
         }
     }

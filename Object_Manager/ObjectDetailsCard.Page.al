@@ -47,11 +47,6 @@ page 50101 "Object Details Card"
                         ApplicationArea = All;
                     }
                 }
-                field(NoTimesUsed; Rec.NoTimesUsed)
-                {
-                    ToolTip = 'Specifies the number of times the object was used.';
-                    ApplicationArea = All;
-                }
                 field(PrimaryKey; Rec.PrimaryKey)
                 {
                     ToolTip = 'Specifies the primary key of the object.';
@@ -95,6 +90,21 @@ page 50101 "Object Details Card"
                     {
                         ToolTip = 'Specifies the number of objects the object is used in.';
                         ApplicationArea = All;
+                    }
+                    field(NoTimesUsed; GetNoTimesUsed())
+                    {
+                        Caption = 'No. of Times Used';
+                        ToolTip = 'Specifies the number of times the object was used.';
+                        ApplicationArea = All;
+
+                        trigger OnLookup(var Text: Text): Boolean
+                        var
+                            ObjectDetailsLine: Record "Object Details Line";
+                        begin
+                            ObjectDetailsLine.SetRange(ObjectType, Rec.ObjectType);
+                            ObjectDetailsLine.SetRange(ObjectNo, Rec.ObjectNo);
+                            ObjectDetailsLine.SetRange(Type, Types::"Object (Used)");
+                        end;
                     }
                 }
                 group(MethodsEvents)
@@ -345,10 +355,11 @@ page 50101 "Object Details Card"
                         //     Progress.Close();
                         // end;
 
-                        ObjectDetailsManagement.UpdateNoOfObjectsUsedIn(Rec, NeedsUpdate[3]);
-                        Progress.Open(UpdateUsedInNoOfObjectsLbl);
-                        ObjectDetailsManagement.UpdateUsedInNoOfObjects(Rec, NeedsUpdate[4]);
-                        Progress.Close();
+                        // ObjectDetailsManagement.UpdateNoOfObjectsUsedIn(Rec, NeedsUpdate[3]);
+                        // Progress.Open(UpdateUsedInNoOfObjectsLbl);
+                        // ObjectDetailsManagement.UpdateUsedInNoOfObjects(Rec, NeedsUpdate[4]);
+                        // Progress.Close();
+                        ObjectDetailsManagement.UpdateNoTimesUsed(Rec);
                         Message(GetMessageForUser(NeedsUpdate, AlreadyUpdatedLbl, SuccessfullyUpdatedLbl));
                     end;
                 end;
@@ -397,6 +408,22 @@ page 50101 "Object Details Card"
         if IsAlreadyUpdated(NeedsUpdate) then
             exit(AlreadyUpdated);
         exit(SuccessfullyUpdated);
+    end;
+
+    local procedure GetNoTimesUsed(): Integer
+    var
+        NoTimesUsed: Integer;
+        ObjectDetailsLine: Record "Object Details Line";
+    begin
+        ObjectDetailsLine.SetRange(ObjectType, Rec.ObjectType);
+        ObjectDetailsLine.SetRange(ObjectNo, Rec.ObjectNo);
+        ObjectDetailsLine.SetRange(Type, Types::"Object (Used)");
+        if ObjectDetailsLine.FindSet() then
+            repeat
+                NoTimesUsed += ObjectDetailsLine.NoTimesUsed;
+            until ObjectDetailsLine.Next() = 0;
+
+        exit(NoTimesUsed);
     end;
 
 }

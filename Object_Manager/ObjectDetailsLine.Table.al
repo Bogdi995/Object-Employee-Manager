@@ -53,6 +53,11 @@ table 50101 "Object Details Line"
             Caption = 'Used';
             DataClassification = CustomerContent;
         }
+        field(70; NoTimesUsed; Integer)
+        {
+            Caption = 'No. of Times Used';
+            DataClassification = CustomerContent;
+        }
     }
 
     keys

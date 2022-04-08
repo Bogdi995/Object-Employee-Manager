@@ -24,7 +24,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field NoBusinessEvents - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3526115305 - Field 3389534604 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>No. of fields</source>
+          <source>No. of Fields</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field NoFields - Property Caption</note>
         </trans-unit>
@@ -172,6 +172,11 @@
           <source>Name</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details Line - Field Name - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2044131987 - Field 4116426244 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No. of Times Used</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Object Details Line - Field NoTimesUsed - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2044131987 - Field 1292293280 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object No.</source>
@@ -323,6 +328,26 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetObjectsUsedInCode - NamedType CodeunitLbl</note>
         </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 3429003653 - NamedType 3550368624" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Table</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetObjectTypeEnumFromText - NamedType TableLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 3429003653 - NamedType 1877187315" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Page</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetObjectTypeEnumFromText - NamedType PageLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 3429003653 - NamedType 1453859403" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Codeunit</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetObjectTypeEnumFromText - NamedType CodeunitLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - Method 3429003653 - NamedType 1687279216" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Report</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetObjectTypeEnumFromText - NamedType ReportLbl</note>
+        </trans-unit>
         <trans-unit id="Codeunit 1029530680 - Method 2008638802 - NamedType 672541161" size-unit="char" translate="yes" xml:space="preserve">
           <source>Record</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -448,11 +473,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control NoKeys - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 683374773 - Control 4116426244 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the number of times the object was used.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control NoTimesUsed - Property ToolTip</note>
-        </trans-unit>
         <trans-unit id="Page 683374773 - Control 1292293280 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of the object.</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -472,6 +492,16 @@
           <source>Specifies the number of objects used in the object.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control NoObjectsUsedIn - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 683374773 - Control 4116426244 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the number of times the object was used.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control NoTimesUsed - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 683374773 - Control 4116426244 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No. of Times Used</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control NoTimesUsed - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Control 2175232469 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of relations the object has from other objects.</source>
@@ -657,6 +687,11 @@
           <source>Specifies the name of the data.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Control Name - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3625123773 - Control 4116426244 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specified the number of times the object was used</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Control NoTimesUsed - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3625123773 - Control 1292293280 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of the object.</source>
@@ -1172,6 +1207,11 @@
           <source>Internal Object</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Types - EnumValue Object (Internal) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 2388510493 - EnumValue 2877627925 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Object (Used)</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Types - EnumValue Object (Used) - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 2388510493 - EnumValue 75106347 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Parameter</source>

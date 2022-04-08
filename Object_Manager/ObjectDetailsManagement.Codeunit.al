@@ -1691,7 +1691,7 @@ codeunit 50100 "Object Details Management"
         end;
 
         if StrPos(Object, ' temporary') > 0 then
-            Object := CopyStr(Object, 1, StrLen(Object) - StrLen(' temporary'));
+            Object := CopyStr(Object, 1, StrPos(Object, ' temporary') - 1);
         Object := DelChr(Object, '<', '"');
         Object := DelChr(Object, '>', '"');
         ObjectDetails.SetRange(Name, Object);
@@ -1836,11 +1836,11 @@ codeunit 50100 "Object Details Management"
             ObjectDetailsLine.DeleteAll();
 
         foreach Object in ObjectsList do
-            InsertObjectsObjectDetailsLine(ObjectDetails, Object, Type);
+            InsertObjectsObjectDetailsLine(ObjectDetails, Object, Type, 0);
 
     end;
 
-    local procedure InsertObjectsObjectDetailsLine(ObjectDetails: Record "Object Details"; Object: Text; Type: Enum Types)
+    local procedure InsertObjectsObjectDetailsLine(ObjectDetails: Record "Object Details"; Object: Text; Type: Enum Types; NoTimesUsed: Integer)
     var
         ObjectDetailsLine: Record "Object Details Line";
     begin
@@ -1851,6 +1851,8 @@ codeunit 50100 "Object Details Management"
         ObjectDetailsLine.ID := GetObjectID(Object);
         ObjectDetailsLine.Name := GetObjectName(Object);
         ObjectDetailsLine.TypeName := Object;
+        if NoTimesUsed <> 0 then
+            ObjectDetailsLine.NoTimesUsed := NoTimesUsed;
         ObjectDetailsLine.Insert(true);
     end;
 
@@ -1874,8 +1876,97 @@ codeunit 50100 "Object Details Management"
         if not CheckObjectsObjectDetailsLine(ObjectDetails, UsedInNoObjectsList, Types::"Object (External)") then
             UpdateObjectsObjectDetailsLine(ObjectDetails, UsedInNoObjectsList, Types::"Object (External)");
     end;
-
     // Used in No. of Objects -> End
+
+    // No of Times Used -> Begin
+    procedure UpdateNoTimesUsed(ObjectDetails: Record "Object Details")
+    var
+        ObjectDetailsLine: Record "Object Details Line";
+        NoTimesUsed: Integer;
+    begin
+        ObjectDetailsLine.SetRange(ObjectType, ObjectDetails.ObjectType);
+        ObjectDetailsLine.SetRange(ObjectNo, ObjectDetails.ObjectNo);
+        ObjectDetailsLine.SetRange(Type, Types::"Object (Used)");
+        if ObjectDetailsLine.FindSet() then
+            ObjectDetailsLine.DeleteAll();
+
+        ObjectDetailsLine.SetRange(Type, Types::"Object (External)");
+        if ObjectDetailsLine.FindSet() then
+            repeat
+                NoTimesUsed := GetNoTimesUsedInGivenObject(ObjectDetails, ObjectDetailsLine);
+                InsertObjectsObjectDetailsLine(ObjectDetails, ObjectDetailsLine.TypeName, Types::"Object (Used)", NoTimesUsed);
+            until ObjectDetailsLine.Next() = 0;
+    end;
+
+    local procedure GetNoTimesUsedInGivenObject(ObjectDetails: Record "Object Details"; ObjectDetailsLine: Record "Object Details Line"): Integer
+    var
+        ObjDetails: Record "Object Details";
+        ObjectALCode: DotNet String;
+        ObjectNames: List of [Text];
+        Object: Text;
+        SearchText: Text;
+        ObjectType: Text;
+        Index: Integer;
+        NoTimesUsed: Integer;
+    begin
+        SearchText := GetSearchText(ObjectDetails);
+        ObjectType := CopyStr(ObjectDetailsLine.TypeName, 1, StrPos(ObjectDetailsLine.TypeName, ' ') - 1);
+        if ObjDetails.Get(GetObjectTypeEnumFromText(ObjectType), ObjectDetailsLine.ID) then
+            GetObjectALCode(ObjDetails, ObjectALCode);
+
+        ObjectNames := GetObjectNames(ObjectALCode, SearchText);
+        foreach Object in ObjectNames do begin
+            Index := ObjectALCode.IndexOf(Object);
+            while (Index <> -1) do begin
+                NoTimesUsed += 1;
+                ObjectALCode := ObjectALCode.Remove(Index, StrLen(Object));
+                Index := ObjectALCode.IndexOf(Object);
+            end;
+        end;
+
+        exit(NoTimesUsed);
+    end;
+
+    local procedure GetObjectTypeEnumFromText(TextType: Text): Enum "Object Type"
+    var
+        TableLbl: Label 'Table';
+        PageLbl: Label 'Page';
+        CodeunitLbl: Label 'Codeunit';
+        ReportLbl: Label 'Report';
+    begin
+        case TextType of
+            TableLbl:
+                exit("Object Type"::Table);
+            PageLbl:
+                exit("Object Type"::Page);
+            CodeunitLbl:
+                exit("Object Type"::Codeunit);
+            ReportLbl:
+                exit("Object Type"::Report);
+        end;
+    end;
+
+    local procedure GetObjectNames(ObjectALCode: DotNet String; SearchText: Text): List of [Text]
+    var
+        ObjectNames: List of [Text];
+        IndexObject: Integer;
+        Index: Integer;
+    begin
+        IndexObject := ObjectALCode.IndexOf(SearchText);
+        while (IndexObject <> -1) do begin
+            Index := IndexObject - 2;
+            while (ObjectALCode.Substring(Index, 1) <> ' ') do
+                Index -= 1;
+
+            ObjectNames.Add(' ' + ObjectALCode.Substring(Index + 1, IndexObject - Index - 1) + '.');
+            ObjectNames.Add('(' + ObjectALCode.Substring(Index + 1, IndexObject - Index - 1) + '.');
+            ObjectALCode := ObjectALCode.Remove(IndexObject, StrLen(SearchText));
+            IndexObject := ObjectALCode.IndexOf(SearchText);
+        end;
+
+        exit(DeleteDuplicates(ObjectNames));
+    end;
+    // No of Times Used -> End
 
     //  -------- Object Details Line (RELATIONS) --------> END
 

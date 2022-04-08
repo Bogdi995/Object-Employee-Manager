@@ -11,55 +11,59 @@ enum 50101 Types
     {
         Caption = 'External Object';
     }
-    value(2; "Key")
+    value(2; "Object (Used)")
+    {
+        Caption = 'Object (Used)';
+    }
+    value(3; "Key")
     {
         Caption = 'Key';
     }
-    value(3; "Field")
+    value(4; "Field")
     {
         Caption = 'Field';
     }
-    value(4; "Integration Event")
+    value(5; "Integration Event")
     {
         Caption = 'Integration Event';
     }
-    value(5; "Business Event")
+    value(6; "Business Event")
     {
         Caption = 'Business Event';
     }
-    value(6; "Global Method")
+    value(7; "Global Method")
     {
         Caption = 'Global Method';
     }
-    value(7; "Local Method")
+    value(8; "Local Method")
     {
         Caption = 'Local Method';
     }
-    value(8; "Internal Method")
+    value(9; "Internal Method")
     {
         Caption = 'Interna; Method';
     }
-    value(9; "Global Variable")
+    value(10; "Global Variable")
     {
         Caption = 'Global Variable';
     }
-    value(10; "Local Variable")
+    value(11; "Local Variable")
     {
         Caption = 'Local Variable';
     }
-    value(11; "Parameter")
+    value(12; "Parameter")
     {
         Caption = 'Parameter';
     }
-    value(12; "Return Value")
+    value(13; "Return Value")
     {
         Caption = 'Return Value';
     }
-    value(13; "Relation (Internal)")
+    value(14; "Relation (Internal)")
     {
         Caption = 'Internal Relation';
     }
-    value(14; "Relation (External)")
+    value(15; "Relation (External)")
     {
         Caption = 'External Relation';
     }
