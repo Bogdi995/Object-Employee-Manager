@@ -276,17 +276,14 @@ page 50101 "Object Details Card"
                     UpdateMethodsEventsLbl: Label 'Do you want to update the methods and events for: %1 %2 - "%3"?';
                     AlreadyUpdatedLbl: Label 'Methods and events already updated!';
                     SuccessfullyUpdatedLbl: Label 'Methods and events successfully updated!';
-                    UpdateUnusedMethodsLbl: Label 'The unused methods are being updated...';
+                    UpdatingMethodsEventsLbl: Label 'The methods and the events are being updated...';
                     Progress: Dialog;
                     NeedsUpdate: array[4] of Boolean;
                 begin
                     if Confirm(StrSubstNo(UpdateMethodsEventsLbl, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then begin
-                        ObjectDetailsManagement.UpdateMethodsEvents(Rec, NeedsUpdate[1]);
-                        Progress.Open(UpdateUnusedMethodsLbl);
-                        ObjectDetailsManagement.UpdateUnusedMethods(Rec, NeedsUpdate[2], true);
+                        Progress.Open(UpdatingMethodsEventsLbl);
+                        ObjectDetailsManagement.UpdateMethodsEvents(Rec, NeedsUpdate);
                         Progress.Close();
-                        ObjectDetailsManagement.UpdateUnusedParameters(Rec, NeedsUpdate[3]);
-                        ObjectDetailsManagement.UpdateUnusedReturnValues(Rec, NeedsUpdate[4]);
                         Message(GetMessageForUser(NeedsUpdate, AlreadyUpdatedLbl, SuccessfullyUpdatedLbl));
                     end;
                 end;

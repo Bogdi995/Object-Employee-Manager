@@ -623,10 +623,10 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateMethodsEvents - Method OnAction - NamedType SuccessfullyUpdatedLbl</note>
         </trans-unit>
-        <trans-unit id="Page 683374773 - Action 459552838 - Method 1377591017 - NamedType 3125721445" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The unused methods are being updated...</source>
+        <trans-unit id="Page 683374773 - Action 459552838 - Method 1377591017 - NamedType 800370943" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The methods and the events are being updated...</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateMethodsEvents - Method OnAction - NamedType UpdateUnusedMethodsLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateMethodsEvents - Method OnAction - NamedType UpdatingMethodsEventsLbl</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Action 1001057769 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Update Objects</source>
