@@ -91,20 +91,10 @@ page 50101 "Object Details Card"
                         ToolTip = 'Specifies the number of objects the object is used in.';
                         ApplicationArea = All;
                     }
-                    field(NoTimesUsed; GetNoTimesUsed())
+                    field(NoTimesUsed; Rec.NoTimesUsed)
                     {
-                        Caption = 'No. of Times Used';
                         ToolTip = 'Specifies the number of times the object was used.';
                         ApplicationArea = All;
-
-                        trigger OnLookup(var Text: Text): Boolean
-                        var
-                            ObjectDetailsLine: Record "Object Details Line";
-                        begin
-                            ObjectDetailsLine.SetRange(ObjectType, Rec.ObjectType);
-                            ObjectDetailsLine.SetRange(ObjectNo, Rec.ObjectNo);
-                            ObjectDetailsLine.SetRange(Type, Types::"Object (Used)");
-                        end;
                     }
                 }
                 group(MethodsEvents)
@@ -293,7 +283,7 @@ page 50101 "Object Details Card"
                     if Confirm(StrSubstNo(UpdateMethodsEventsLbl, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then begin
                         ObjectDetailsManagement.UpdateMethodsEvents(Rec, NeedsUpdate[1]);
                         Progress.Open(UpdateUnusedMethodsLbl);
-                        ObjectDetailsManagement.UpdateUnusedMethods(Rec, NeedsUpdate[2]);
+                        ObjectDetailsManagement.UpdateUnusedMethods(Rec, NeedsUpdate[2], true);
                         Progress.Close();
                         ObjectDetailsManagement.UpdateUnusedParameters(Rec, NeedsUpdate[3]);
                         ObjectDetailsManagement.UpdateUnusedReturnValues(Rec, NeedsUpdate[4]);
@@ -348,17 +338,17 @@ page 50101 "Object Details Card"
                     NeedsUpdate: array[4] of Boolean;
                 begin
                     if Confirm(StrSubstNo(UpdateRelationsLbl, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then begin
-                        // if Rec.ObjectType = Rec.ObjectType::Table then begin
-                        //     Progress.Open(UpdatingRelationsLbl);
-                        //     ObjectDetailsManagement.UpdateRelations(Rec, NeedsUpdate[1], Types::"Relation (External)");
-                        //     ObjectDetailsManagement.UpdateRelations(Rec, NeedsUpdate[2], Types::"Relation (Internal)");
-                        //     Progress.Close();
-                        // end;
+                        if Rec.ObjectType = Rec.ObjectType::Table then begin
+                            Progress.Open(UpdatingRelationsLbl);
+                            ObjectDetailsManagement.UpdateRelations(Rec, NeedsUpdate[1], Types::"Relation (External)");
+                            ObjectDetailsManagement.UpdateRelations(Rec, NeedsUpdate[2], Types::"Relation (Internal)");
+                            Progress.Close();
+                        end;
 
-                        // ObjectDetailsManagement.UpdateNoOfObjectsUsedIn(Rec, NeedsUpdate[3]);
-                        // Progress.Open(UpdateUsedInNoOfObjectsLbl);
-                        // ObjectDetailsManagement.UpdateUsedInNoOfObjects(Rec, NeedsUpdate[4]);
-                        // Progress.Close();
+                        ObjectDetailsManagement.UpdateNoOfObjectsUsedIn(Rec, NeedsUpdate[3]);
+                        Progress.Open(UpdateUsedInNoOfObjectsLbl);
+                        ObjectDetailsManagement.UpdateUsedInNoOfObjects(Rec, NeedsUpdate[4]);
+                        Progress.Close();
                         ObjectDetailsManagement.UpdateNoTimesUsed(Rec);
                         Message(GetMessageForUser(NeedsUpdate, AlreadyUpdatedLbl, SuccessfullyUpdatedLbl));
                     end;
@@ -391,6 +381,7 @@ page 50101 "Object Details Card"
         ShowNoUnusedTotalVariables := ObjectDetailsManagement.GetShowNoUnused(Rec.NoTotalVariables);
         ShowNoUnusedGlobalVariables := ObjectDetailsManagement.GetShowNoUnused(Rec.NoGlobalVariables);
         IsEnabled := ObjectDetailsManagement.GetIsEnabled(Rec);
+        Rec.NoTimesUsed := ObjectDetailsManagement.GetNoTimesUsed(Rec);
     end;
 
     local procedure IsAlreadyUpdated(NeedsUpdate: array[4] of Boolean): Boolean
@@ -408,22 +399,6 @@ page 50101 "Object Details Card"
         if IsAlreadyUpdated(NeedsUpdate) then
             exit(AlreadyUpdated);
         exit(SuccessfullyUpdated);
-    end;
-
-    local procedure GetNoTimesUsed(): Integer
-    var
-        NoTimesUsed: Integer;
-        ObjectDetailsLine: Record "Object Details Line";
-    begin
-        ObjectDetailsLine.SetRange(ObjectType, Rec.ObjectType);
-        ObjectDetailsLine.SetRange(ObjectNo, Rec.ObjectNo);
-        ObjectDetailsLine.SetRange(Type, Types::"Object (Used)");
-        if ObjectDetailsLine.FindSet() then
-            repeat
-                NoTimesUsed += ObjectDetailsLine.NoTimesUsed;
-            until ObjectDetailsLine.Next() = 0;
-
-        exit(NoTimesUsed);
     end;
 
 }

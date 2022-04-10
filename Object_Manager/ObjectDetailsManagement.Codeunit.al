@@ -139,20 +139,6 @@ codeunit 50100 "Object Details Management"
 
 
     //  -------- Object Details Line (FIELDS and KEYS) --------> START
-    // procedure ConfirmCheckUpdateTypeObjectDetailsLine(Type: Enum Types)
-    // var
-    //     Progress: Dialog;
-    //     ConfirmMessage: Label 'The %1 are not updated, do you want to update them now?';
-    //     ProgressText: Label 'The %1 are being updated...';
-    // begin
-    //     if CheckUpdateTypeObjectDetailsLine(Type) then
-    //         if Confirm(StrSubstNo(ConfirmMessage, GetTypeText(Type)), true) then begin
-    //             Progress.Open(StrSubstNo(ProgressText, GetTypeText(Type)));
-    //             UpdateTypeObjectDetailsLine(Type);
-    //             Progress.Close();
-    //         end;
-    // end;
-
     procedure CheckUpdateTypeObjectDetailsLine(ObjectDetails: Record "Object Details"; Type: Enum Types): Boolean
     var
         ObjectDetailsLine: Record "Object Details Line";
@@ -306,6 +292,39 @@ codeunit 50100 "Object Details Management"
         ObjectDetailsLine.Validate(ID, RecRef.Field(2).Value);
         ObjectDetailsLine.Insert(true);
     end;
+
+    procedure UpdateAllType(Type: Enum Types)
+    var
+        AllObj: Record AllObj;
+        ObjectDetails: Record "Object Details";
+        Progress: Dialog;
+        Object: Text;
+    begin
+        ObjectDetails.SetRange(ObjectType, ObjectDetails.ObjectType::Table);
+
+        if ObjectDetails.FindSet() then begin
+            Progress.Open(GetLabel(Type), Object);
+            repeat
+                ObjectDetails.CalcFields(Name);
+                Object := Format(ObjectDetails.ObjectType) + ' ' + Format(ObjectDetails.ObjectNo) + ' ' + ObjectDetails.Name;
+                Progress.Update();
+
+                if CheckUpdateTypeObjectDetailsLine(ObjectDetails, Type) then
+                    UpdateTypeObjectDetailsLine(Format(ObjectDetails.ObjectNo), Type);
+            until ObjectDetails.Next() = 0;
+            Progress.Close();
+        end;
+    end;
+
+    local procedure GetLabel(Type: Enum Types): Text
+    var
+        UpdateFieldsLbl: Label 'The fields are beign updated...\\#1';
+        UpdateKeysLbl: Label 'The keys are beign updated...\\#1';
+    begin
+        if Type = Type::Field then
+            exit(UpdateFieldsLbl);
+        exit(UpdateKeysLbl);
+    end;
     //  -------- Object Details Line (FIELDS and KEYS) --------> END
 
 
@@ -380,6 +399,7 @@ codeunit 50100 "Object Details Management"
     [Scope('OnPrem')]
     local procedure UpdateEvents(var TypeEvents: List of [Text]; ObjectALCode: DotNet String; EventType: Text; ProcedureType: Text)
     var
+        StringComparison: DotNet StringComparison;
         TypeEventsAux: List of [Text];
         Member: Text;
     begin
@@ -388,7 +408,7 @@ codeunit 50100 "Object Details Management"
         if TypeEventsAux.Count() <> 0 then
             foreach Member in TypeEventsAux do begin
                 TypeEvents.Add(Member);
-                ObjectALCode := ObjectALCode.Remove(ObjectALCode.IndexOf(Member), StrLen(Member));
+                ObjectALCode := ObjectALCode.Remove(ObjectALCode.IndexOf(Member, StringComparison.OrdinalIgnoreCase), StrLen(Member));
             end;
     end;
 
@@ -406,12 +426,13 @@ codeunit 50100 "Object Details Management"
     [Scope('OnPrem')]
     local procedure RemoveEventsFromObject(ObjectALCode: DotNet String; IntegrationEvents: List of [Text]; BusinessEvents: List of [Text])
     var
+        StringComparison: DotNet StringComparison;
         Member: Text;
     begin
         foreach Member in IntegrationEvents do
-            ObjectALCode := ObjectALCode.Remove(ObjectALCode.IndexOf(Member), StrLen(Member));
+            ObjectALCode := ObjectALCode.Remove(ObjectALCode.IndexOf(Member, StringComparison.OrdinalIgnoreCase), StrLen(Member));
         foreach Member in BusinessEvents do
-            ObjectALCode := ObjectALCode.Remove(ObjectALCode.IndexOf(Member), StrLen(Member));
+            ObjectALCode := ObjectALCode.Remove(ObjectALCode.IndexOf(Member, StringComparison.OrdinalIgnoreCase), StrLen(Member));
     end;
 
     local procedure GetFormattedEvents(UnformattedEvents: List of [Text]): List of [Text]
@@ -445,16 +466,17 @@ codeunit 50100 "Object Details Management"
     [Scope('OnPrem')]
     local procedure GetEventParameters(ObjectALCode: DotNet String; EventType: Text): Text
     var
+        StringComparison: DotNet StringComparison;
         TrueLbl: Label 'true';
         FalseLbl: Label 'false';
     begin
-        if ObjectALCode.IndexOf(StrSubstNo(EventType, TrueLbl, TrueLbl)) <> -1 then
+        if ObjectALCode.IndexOf(StrSubstNo(EventType, TrueLbl, TrueLbl), StringComparison.OrdinalIgnoreCase) <> -1 then
             exit(StrSubstNo(EventType, TrueLbl, TrueLbl));
-        if ObjectALCode.IndexOf(StrSubstNo(EventType, TrueLbl, FalseLbl)) <> -1 then
+        if ObjectALCode.IndexOf(StrSubstNo(EventType, TrueLbl, FalseLbl), StringComparison.OrdinalIgnoreCase) <> -1 then
             exit(StrSubstNo(EventType, TrueLbl, FalseLbl));
-        if ObjectALCode.IndexOf(StrSubstNo(EventType, FalseLbl, TrueLbl)) <> -1 then
+        if ObjectALCode.IndexOf(StrSubstNo(EventType, FalseLbl, TrueLbl), StringComparison.OrdinalIgnoreCase) <> -1 then
             exit(StrSubstNo(EventType, FalseLbl, TrueLbl));
-        if ObjectALCode.IndexOf(StrSubstNo(EventType, FalseLbl, FalseLbl)) <> -1 then
+        if ObjectALCode.IndexOf(StrSubstNo(EventType, FalseLbl, FalseLbl), StringComparison.OrdinalIgnoreCase) <> -1 then
             exit(StrSubstNo(EventType, FalseLbl, FalseLbl));
     end;
 
@@ -462,15 +484,16 @@ codeunit 50100 "Object Details Management"
     local procedure GetEventsWithSpecificParameters(ObjectALCode: DotNet String; EventType: Text; ProcedureTypeTxt: Text): List of [Text]
     var
         CopyObjectALCode: DotNet String;
+        StringComparison: DotNet StringComparison;
         CRLF: Text[2];
         Index: Integer;
     begin
         CRLF[1] := 13;
         CRLF[2] := 10;
         CopyObjectALCode := CopyObjectALCode.Copy(ObjectALCode);
-        Index := CopyObjectALCode.IndexOf(EventType);
+        Index := CopyObjectALCode.IndexOf(EventType, StringComparison.OrdinalIgnoreCase);
         CopyObjectALCode := CopyObjectALCode.Substring(Index);
-        if CopyObjectALCode.IndexOf(EventType + CRLF + ProcedureTypeTxt) <> -1 then
+        if CopyObjectALCode.IndexOf(EventType + CRLF + ProcedureTypeTxt, StringComparison.OrdinalIgnoreCase) <> -1 then
             exit(GetEvents(CopyObjectALCode, EventType, ProcedureTypeTxt));
     end;
 
@@ -479,6 +502,7 @@ codeunit 50100 "Object Details Management"
     var
         CopyObjectALCode: DotNet String;
         Substring: DotNet String;
+        StringComparison: DotNet StringComparison;
         Methods: List of [Text];
         CRLF: Text[2];
         Method: Text;
@@ -489,10 +513,10 @@ codeunit 50100 "Object Details Management"
         CRLF[1] := 13;
         CRLF[2] := 10;
         CopyObjectALCode := CopyObjectALCode.Copy(ObjectALCode);
-        Index := CopyObjectALCode.IndexOf(MethodType);
+        Index := CopyObjectALCode.IndexOf(MethodType, StringComparison.OrdinalIgnoreCase);
 
         while Index <> -1 do begin
-            Character := CopyObjectALCode.Substring(CopyObjectALCode.IndexOf(MethodType) - 1, 1);
+            Character := CopyObjectALCode.Substring(CopyObjectALCode.IndexOf(MethodType, StringComparison.OrdinalIgnoreCase) - 1, 1);
             Substring := CopyObjectALCode.Substring(Index);
             SubstringIndex := Substring.IndexOf('(');
             Method := Substring.Substring(0, SubstringIndex);
@@ -502,7 +526,7 @@ codeunit 50100 "Object Details Management"
                 Methods.Add(Delchr(Method, '<', ' '));
 
             CopyObjectALCode := Substring.Substring(SubstringIndex);
-            Index := CopyObjectALCode.IndexOf(MethodType);
+            Index := CopyObjectALCode.IndexOf(MethodType, StringComparison.OrdinalIgnoreCase);
         end;
 
         exit(Methods);
@@ -536,6 +560,7 @@ codeunit 50100 "Object Details Management"
     var
         CopyObjectALCode: DotNet String;
         Substring: DotNet String;
+        StringComparison: DotNet StringComparison;
         Events: List of [Text];
         CRLF: Text[2];
         MyEvent: Text;
@@ -545,7 +570,7 @@ codeunit 50100 "Object Details Management"
         CRLF[1] := 13;
         CRLF[2] := 10;
         CopyObjectALCode := CopyObjectALCode.Copy(ObjectALCode);
-        Index := CopyObjectALCode.IndexOf(MethodType);
+        Index := CopyObjectALCode.IndexOf(MethodType, StringComparison.OrdinalIgnoreCase);
 
         while Index <> -1 do begin
             Substring := CopyObjectALCode.Substring(Index);
@@ -555,11 +580,11 @@ codeunit 50100 "Object Details Management"
             Events.Add(EventType + CRLF + MyEvent);
 
             CopyObjectALCode := Substring.Substring(SubstringIndex);
-            Index := CopyObjectALCode.IndexOf(EventType + CRLF + MethodType);
+            Index := CopyObjectALCode.IndexOf(EventType + CRLF + MethodType, StringComparison.OrdinalIgnoreCase);
 
             if Index <> -1 then begin
                 CopyObjectALCode := CopyObjectALCode.Substring(Index);
-                Index := CopyObjectALCode.IndexOf(MethodType);
+                Index := CopyObjectALCode.IndexOf(MethodType, StringComparison.OrdinalIgnoreCase);
             end;
         end;
 
@@ -650,7 +675,7 @@ codeunit 50100 "Object Details Management"
 
     // Unused Global/Local Methods -> Start
     [Scope('OnPrem')]
-    procedure UpdateUnusedMethods(ObjectDetails: Record "Object Details"; var NeedsUpdate: Boolean)
+    procedure UpdateUnusedMethods(ObjectDetails: Record "Object Details"; var NeedsUpdate: Boolean; UpdateUnusedGlobal: Boolean)
     var
         ObjectALCode: DotNet String;
         UnusedGlobalMethods: List of [Text];
@@ -660,10 +685,12 @@ codeunit 50100 "Object Details Management"
         RemoveEventsFromObject(ObjectALCode);
 
         UnusedLocalMethods := GetUnusedMethods(ObjectDetails, ObjectALCode, LocalProcedureLbl);
-        UnusedGlobalMethods := GetUnusedGlobalMethods(ObjectDetails, ObjectALCode);
-
-        CheckAndUpdateObjectDetailsLine(ObjectDetails, UnusedGlobalMethods, Types::"Global Method", false, NeedsUpdate);
         CheckAndUpdateObjectDetailsLine(ObjectDetails, UnusedLocalMethods, Types::"Local Method", false, NeedsUpdate);
+
+        if UpdateUnusedGlobal then begin
+            UnusedGlobalMethods := GetUnusedGlobalMethods(ObjectDetails, ObjectALCode);
+            CheckAndUpdateObjectDetailsLine(ObjectDetails, UnusedGlobalMethods, Types::"Global Method", false, NeedsUpdate);
+        end;
     end;
 
     [Scope('OnPrem')]
@@ -686,9 +713,9 @@ codeunit 50100 "Object Details Management"
         SearchText := GetSearchText(ObjectDetails);
 
         ObjDetails.SetFilter(ObjectType, '%1|%2|%3|%4|%5|%6', "Object Type"::Table,
-                             "Object Type"::"TableExtension", "Object Type"::Page,
-                             "Object Type"::"PageExtension", "Object Type"::Codeunit,
-                             "Object Type"::Report);
+                                "Object Type"::"TableExtension", "Object Type"::Page,
+                                "Object Type"::"PageExtension", "Object Type"::Codeunit,
+                                "Object Type"::Report);
         ObjDetails.SetFilter(ObjectNo, '<%1', 2000000000);
         if ObjDetails.FindSet() then
             repeat
@@ -801,7 +828,7 @@ codeunit 50100 "Object Details Management"
             Methods := GetTypesFromObjectDetailsLine(ObjectDetails, GetMethodTypeEnumFromMethodTypeText(MethodType));
 
         CopyObjectALCode := CopyObjectALCode.Copy(ObjectALCode);
-        RemoveMethodsFromObject(CopyObjectALCode);
+        RemoveMethodsFromObject(ObjectDetails, CopyObjectALCode);
 
         foreach Method in Methods do begin
             ParametersNo := GetParametersNumberForMethod(ObjectALCode, Method, ';', 0);
@@ -903,15 +930,15 @@ codeunit 50100 "Object Details Management"
     end;
 
     [Scope('OnPrem')]
-    local procedure RemoveMethodsFromObject(ObjectALCode: DotNet String)
+    local procedure RemoveMethodsFromObject(ObjectDetails: Record "Object Details"; ObjectALCode: DotNet String)
     var
         GlobalMethods: List of [Text];
         LocalMethods: List of [Text];
     begin
         if ObjectALCode.IndexOf(ProcedureLbl) <> -1 then
-            GlobalMethods := GetMethods(ObjectALCode, ProcedureLbl);
+            GlobalMethods := GetTypesFromObjectDetailsLine(ObjectDetails, Types::"Global Method");
         if ObjectALCode.IndexOf(LocalProcedureLbl) <> -1 then
-            LocalMethods := GetMethods(ObjectALCode, LocalProcedureLbl);
+            LocalMethods := GetTypesFromObjectDetailsLine(ObjectDetails, Types::"Local Method");
         RemoveMethodsFromObject(ObjectALCode, GlobalMethods, LocalMethods);
     end;
 
@@ -921,9 +948,9 @@ codeunit 50100 "Object Details Management"
         Member: Text;
     begin
         foreach Member in GlobalMethods do
-            ObjectALCode := ObjectALCode.Remove(ObjectALCode.IndexOf(Member), StrLen(Member));
+            ObjectALCode := ObjectALCode.Remove(ObjectALCode.IndexOf('    ' + Member), StrLen('    ') + StrLen(Member));
         foreach Member in LocalMethods do
-            ObjectALCode := ObjectALCode.Remove(ObjectALCode.IndexOf(Member), StrLen(Member));
+            ObjectALCode := ObjectALCode.Remove(ObjectALCode.IndexOf('    ' + Member), StrLen('    ') + StrLen(Member));
     end;
     // Unused Global/Local Methods -> End
 
@@ -1115,6 +1142,35 @@ codeunit 50100 "Object Details Management"
         exit(UnusedReturnValues);
     end;
     // Unused Return Values -> End
+
+    procedure UpdateAllMethodsEvents()
+    var
+        ObjectDetails: Record "Object Details";
+        Object: Text;
+        Progress: Dialog;
+        UpdateMethodsEventsLbl: Label 'The methods and events are beign updated...\\#1';
+        NeedsUpdate: array[4] of Boolean;
+    begin
+        ObjectDetails.SetFilter(ObjectType, '%1|%2|%3|%4|%5|%6', ObjectDetails.ObjectType::Table,
+                                    ObjectDetails.ObjectType::"TableExtension", ObjectDetails.ObjectType::Page,
+                                    ObjectDetails.ObjectType::"PageExtension", ObjectDetails.ObjectType::Codeunit,
+                                    ObjectDetails.ObjectType::Report);
+        ObjectDetails.SetFilter(ObjectNo, '<%1', 2000000000);
+
+        if ObjectDetails.FindSet() then begin
+            Progress.Open(UpdateMethodsEventsLbl, Object);
+            repeat
+                ObjectDetails.CalcFields(Name);
+                Object := Format(ObjectDetails.ObjectType) + ' ' + Format(ObjectDetails.ObjectNo) + ' ' + ObjectDetails.Name;
+                Progress.Update();
+                UpdateMethodsEvents(ObjectDetails, NeedsUpdate[1]);
+                UpdateUnusedMethods(ObjectDetails, NeedsUpdate[2], false);
+                UpdateUnusedParameters(ObjectDetails, NeedsUpdate[3]);
+                UpdateUnusedReturnValues(ObjectDetails, NeedsUpdate[4]);
+            until ObjectDetails.Next() = 0;
+            Progress.Close();
+        end;
+    end;
 
     //  -------- Object Details Line (METHODS and EVENTS) --------> END
 
@@ -1485,6 +1541,32 @@ codeunit 50100 "Object Details Management"
     end;
     // Global/Local Variables -> End
 
+    procedure UpdateAllVariables()
+    var
+        ObjectDetails: Record "Object Details";
+        Progress: Dialog;
+        Object: Text;
+        UpdateVariablesLbl: Label 'The variables are beign updated...\\#1';
+        NeedsUpdate: array[4] of Boolean;
+    begin
+        ObjectDetails.SetFilter(ObjectType, '%1|%2|%3|%4|%5', ObjectDetails.ObjectType::Table,
+                                    ObjectDetails.ObjectType::"TableExtension", ObjectDetails.ObjectType::Page,
+                                    ObjectDetails.ObjectType::"PageExtension", ObjectDetails.ObjectType::Codeunit);
+        ObjectDetails.SetFilter(ObjectNo, '<%1', 2000000000);
+
+        if ObjectDetails.FindSet() then begin
+            Progress.Open(UpdateVariablesLbl, Object);
+            repeat
+                ObjectDetails.CalcFields(Name);
+                Object := Format(ObjectDetails.ObjectType) + ' ' + Format(ObjectDetails.ObjectNo) + ' ' + ObjectDetails.Name;
+                Progress.Update();
+                UpdateVariables(ObjectDetails, NeedsUpdate[1]);
+                UpdateUnusedVariables(ObjectDetails, NeedsUpdate[2]);
+            until ObjectDetails.Next() = 0;
+            Progress.Close();
+        end;
+    end;
+
     //  -------- Object Details Line (VARIABLES) --------> END
 
 
@@ -1690,8 +1772,8 @@ codeunit 50100 "Object Details Management"
                 end;
         end;
 
-        if StrPos(Object, ' temporary') > 0 then
-            Object := CopyStr(Object, 1, StrPos(Object, ' temporary') - 1);
+        if StrPos(LowerCase(Object), ' temporary') > 0 then
+            Object := CopyStr(Object, 1, StrPos(LowerCase(Object), ' temporary') - 1);
         Object := DelChr(Object, '<', '"');
         Object := DelChr(Object, '>', '"');
         ObjectDetails.SetRange(Name, Object);
@@ -1966,7 +2048,82 @@ codeunit 50100 "Object Details Management"
 
         exit(DeleteDuplicates(ObjectNames));
     end;
+
+    procedure GetNoTimesUsed(ObjectDetails: Record "Object Details"): Integer
+    var
+        NoTimesUsed: Integer;
+        ObjectDetailsLine: Record "Object Details Line";
+    begin
+        ObjectDetailsLine.SetRange(ObjectType, ObjectDetails.ObjectType);
+        ObjectDetailsLine.SetRange(ObjectNo, ObjectDetails.ObjectNo);
+        ObjectDetailsLine.SetRange(Type, Types::"Object (Used)");
+        if ObjectDetailsLine.FindSet() then
+            repeat
+                NoTimesUsed += ObjectDetailsLine.NoTimesUsed;
+            until ObjectDetailsLine.Next() = 0;
+
+        exit(NoTimesUsed);
+    end;
     // No of Times Used -> End
+
+    procedure UpdateAllRelationsInternalUsageOfObjects()
+    var
+        ObjectDetails: Record "Object Details";
+        Object: Text;
+        Progress: Dialog;
+        UpdateRelationsLbl: Label 'The relations are beign updated...\\#1';
+        NeedsUpdate: array[4] of Boolean;
+    begin
+        ObjectDetails.SetFilter(ObjectType, '%1|%2|%3|%4|%5|%6', ObjectDetails.ObjectType::Table,
+                                    ObjectDetails.ObjectType::"TableExtension", ObjectDetails.ObjectType::Page,
+                                    ObjectDetails.ObjectType::"PageExtension", ObjectDetails.ObjectType::Codeunit,
+                                    ObjectDetails.ObjectType::Report);
+        ObjectDetails.SetFilter(ObjectNo, '<%1', 2000000000);
+
+        if ObjectDetails.FindSet() then begin
+            Progress.Open(UpdateRelationsLbl, Object);
+            repeat
+                ObjectDetails.CalcFields(Name);
+                Object := Format(ObjectDetails.ObjectType) + ' ' + Format(ObjectDetails.ObjectNo) + ' ' + ObjectDetails.Name;
+                Progress.Update();
+
+                if ObjectDetails.ObjectType = ObjectDetails.ObjectType::Table then begin
+                    UpdateRelations(ObjectDetails, NeedsUpdate[1], Types::"Relation (External)");
+                    UpdateRelations(ObjectDetails, NeedsUpdate[2], Types::"Relation (Internal)");
+                end;
+                UpdateNoOfObjectsUsedIn(ObjectDetails, NeedsUpdate[3]);
+            until ObjectDetails.Next() = 0;
+            Progress.Close();
+        end;
+    end;
+
+    procedure UpdateAllExternalUsageOfObject()
+    var
+        ObjectDetails: Record "Object Details";
+        Progress: Dialog;
+        Object: Text;
+        UpdateRelationsLbl: Label 'The usage of objects is being updated...\\#1';
+        UsageSuccessfullyUpdatedLbl: Label 'The usage of all objects is successfully updated.';
+    begin
+        ObjectDetails.SetFilter(ObjectType, '%1|%2|%3|%4|%5|%6', ObjectDetails.ObjectType::Table,
+                                    ObjectDetails.ObjectType::"TableExtension", ObjectDetails.ObjectType::Page,
+                                    ObjectDetails.ObjectType::"PageExtension", ObjectDetails.ObjectType::Codeunit,
+                                    ObjectDetails.ObjectType::Report);
+        ObjectDetails.SetFilter(ObjectNo, '<%1', 2000000000);
+
+        if ObjectDetails.FindSet() then begin
+            Progress.Open(UpdateRelationsLbl, Object);
+            repeat
+                ObjectDetails.CalcFields(Name);
+                Object := Format(ObjectDetails.ObjectType) + ' ' + Format(ObjectDetails.ObjectNo) + ' ' + ObjectDetails.Name;
+                Progress.Update();
+                UpdateAllUsedInNoOfObjects(ObjectDetails);
+                UpdateNoTimesUsed(ObjectDetails);
+            until ObjectDetails.Next() = 0;
+            Progress.Close();
+            Message(UsageSuccessfullyUpdatedLbl);
+        end;
+    end;
 
     //  -------- Object Details Line (RELATIONS) --------> END
 
@@ -2002,36 +2159,6 @@ codeunit 50100 "Object Details Management"
                 exit(AllObj."Object Type"::MenuSuite);
         end;
     end;
-
-    // procedure GetObjectTypeFromAllObj(AllObj: Record AllObj): Enum "Object Type"
-    // var
-    //     ObjectDetails: Record "Object Details";
-    // begin
-    //     case AllObj."Object Type" of
-    //         AllObj."Object Type"::Table:
-    //             exit(ObjectDetails.ObjectType::Table);
-    //         AllObj."Object Type"::"TableExtension":
-    //             exit(ObjectDetails.ObjectType::"TableExtension");
-    //         AllObj."Object Type"::Page:
-    //             exit(ObjectDetails.ObjectType::Page);
-    //         AllObj."Object Type"::"PageExtension":
-    //             exit(ObjectDetails.ObjectType::"PageExtension");
-    //         AllObj."Object Type"::Codeunit:
-    //             exit(ObjectDetails.ObjectType::Codeunit);
-    //         AllObj."Object Type"::Report:
-    //             exit(ObjectDetails.ObjectType::Report);
-    //         AllObj."Object Type"::Enum:
-    //             exit(ObjectDetails.ObjectType::Enum);
-    //         AllObj."Object Type"::EnumExtension:
-    //             exit(ObjectDetails.ObjectType::EnumExtension);
-    //         AllObj."Object Type"::XMLport:
-    //             exit(ObjectDetails.ObjectType::XMLPort);
-    //         AllObj."Object Type"::Query:
-    //             exit(ObjectDetails.ObjectType::Query);
-    //         AllObj."Object Type"::MenuSuite:
-    //             exit(ObjectDetails.ObjectType::MenuSuite);
-    //     end;
-    // end;
     //  -------- Others -------> END
 
 }

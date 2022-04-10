@@ -55,7 +55,8 @@ table 50100 "Object Details"
         field(50; NoTimesUsed; Integer)
         {
             Caption = 'No. of Times Used';
-            DataClassification = CustomerContent;
+            FieldClass = FlowField;
+            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Object (Used)")));
         }
         field(60; PrimaryKey; Text[250])
         {
