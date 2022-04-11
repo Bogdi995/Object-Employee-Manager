@@ -282,7 +282,7 @@ page 50101 "Object Details Card"
                 begin
                     if Confirm(StrSubstNo(UpdateMethodsEventsLbl, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then begin
                         Progress.Open(UpdatingMethodsEventsLbl);
-                        ObjectDetailsManagement.UpdateMethodsEvents(Rec, NeedsUpdate);
+                        ObjectDetailsManagement.UpdateMethodsEvents(Rec, NeedsUpdate, false);
                         Progress.Close();
                         Message(GetMessageForUser(NeedsUpdate, AlreadyUpdatedLbl, SuccessfullyUpdatedLbl));
                     end;

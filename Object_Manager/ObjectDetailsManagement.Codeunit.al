@@ -334,7 +334,7 @@ codeunit 50100 "Object Details Management"
 
     // Events/Methods -> Start
     [Scope('OnPrem')]
-    procedure UpdateMethodsEvents(ObjectDetails: Record "Object Details"; var NeedsUpdate: array[4] of Boolean)
+    procedure UpdateMethodsEvents(ObjectDetails: Record "Object Details"; var NeedsUpdate: array[4] of Boolean; UpdateUnusedGlobal: Boolean)
     var
         ObjectALCode: DotNet String;
         GlobalMethods: List of [Text];
@@ -364,7 +364,7 @@ codeunit 50100 "Object Details Management"
         CheckAndUpdateObjectDetailsLine(ObjectDetails, IntegrationEvents, Types::"Integration Event", true, NeedsUpdate[1]);
         CheckAndUpdateObjectDetailsLine(ObjectDetails, BusinessEvents, Types::"Business Event", true, NeedsUpdate[1]);
 
-        UpdateUnusedMethods(ObjectDetails, ObjectALCode, NeedsUpdate[2], true);
+        UpdateUnusedMethods(ObjectDetails, ObjectALCode, NeedsUpdate[2], UpdateUnusedGlobal);
         UpdateUnusedParameters(ObjectDetails, ObjectALCode, NeedsUpdate[3]);
         UpdateUnusedReturnValues(ObjectDetails, ObjectALCode, NeedsUpdate[4]);
     end;
@@ -714,7 +714,7 @@ codeunit 50100 "Object Details Management"
     begin
         ObjectTypeText := GetObjectTypeText(ObjectDetails);
         ObjectName := GetObjectNameSearchText(ObjectDetails);
-        exit(': ' + ObjectTypeText + ' ' + ObjectName + ';');
+        exit(': ' + ObjectTypeText + ' ' + ObjectName);
     end;
 
     local procedure GetObjectTypeText(ObjectDetails: Record "Object Details"): Text
@@ -826,23 +826,18 @@ codeunit 50100 "Object Details Management"
     var
         CopyObjectALCode: DotNet String;
         MethodHeader: DotNet String;
-        CRLF: Text[2];
         ParametersNo: Integer;
         Index: Integer;
         SubstringIndex: Integer;
         SubstringIndexEnd: Integer;
     begin
-        CRLF[1] := 13;
-        CRLF[1] := 10;
         CopyObjectALCode := CopyObjectALCode.Copy(ObjectALCode);
         Index := CopyObjectALCode.IndexOf(Method, StringComparison.OrdinalIgnoreCase);
 
         while Index <> -1 do begin
             CopyObjectALCode := CopyObjectALCode.Substring(Index + 1);
             SubstringIndex := CopyObjectALCode.IndexOf('(');
-            SubstringIndexEnd := CopyObjectALCode.IndexOf(';');
-            if (CopyObjectALCode.IndexOf(CRLF) <> -1) and (CopyObjectALCode.IndexOf(CRLF) < SubstringIndexEnd) then
-                SubstringIndexEnd := CopyObjectALCode.IndexOf(CRLF);
+            SubstringIndexEnd := GetEndOfMethod(CopyObjectALCode);
 
             // Delete the method definition from object (necessary in case of overloading)
             if Separator = ';' then begin
@@ -881,6 +876,30 @@ codeunit 50100 "Object Details Management"
                 MethodHeader := MethodHeader.Substring(MethodHeader.IndexOf(')'));
 
         exit(MethodHeader.IndexOf(Separator));
+    end;
+
+    [Scope('OnPrem')]
+    local procedure GetEndOfMethod(ObjectALCode: DotNet String): Integer
+    var
+        CRLF: Text[2];
+        Cnt: Integer;
+        Index: array[6] of Integer;
+        MinimumIndex: Integer;
+    begin
+        CRLF[1] := 13;
+        CRLF[2] := 10;
+        MinimumIndex := 2000000000;
+        Index[1] := ObjectALCode.IndexOf(');');
+        Index[2] := ObjectALCode.IndexOf(') ');
+        Index[3] := ObjectALCode.IndexOf(')' + CRLF);
+        Index[4] := ObjectALCode.IndexOf('));');
+        Index[5] := ObjectALCode.IndexOf(')) ');
+        Index[6] := ObjectALCode.IndexOf('))' + CRLF);
+        for Cnt := 1 to 4 do
+            if (Index[Cnt] <> -1) and (Index[Cnt] < MinimumIndex) then
+                MinimumIndex := Index[Cnt];
+
+        exit(MinimumIndex);
     end;
 
     local procedure GetMethodName(Method: Text): Text
@@ -1155,7 +1174,7 @@ codeunit 50100 "Object Details Management"
                 ObjectDetails.CalcFields(Name);
                 Object := Format(ObjectDetails.ObjectType) + ' ' + Format(ObjectDetails.ObjectNo) + ' ' + ObjectDetails.Name;
                 Progress.Update();
-                UpdateMethodsEvents(ObjectDetails, NeedsUpdate);
+                UpdateMethodsEvents(ObjectDetails, NeedsUpdate, false);
             until ObjectDetails.Next() = 0;
             Progress.Close();
         end;
