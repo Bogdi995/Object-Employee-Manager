@@ -213,6 +213,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType BusinessEventLbl</note>
         </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - NamedType 3534265827" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    //</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType CommentLbl</note>
+        </trans-unit>
         <trans-unit id="Codeunit 1029530680 - NamedType 3609573591" size-unit="char" translate="yes" xml:space="preserve">
           <source>    end;</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -253,6 +258,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType LocalProcedureLbl</note>
         </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - NamedType 4074014491" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    [NonDebuggable]</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType NonDebuggableLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - NamedType 603446117" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    [Obsolete</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType ObsoleteLbl</note>
+        </trans-unit>
         <trans-unit id="Codeunit 1029530680 - NamedType 141553153" size-unit="char" translate="yes" xml:space="preserve">
           <source>    procedure</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -262,6 +277,11 @@
           <source>    protected procedure</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType ProtectedProcedureLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1029530680 - NamedType 3615505117" size-unit="char" translate="yes" xml:space="preserve">
+          <source>    [Scope('OnPrem')]</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - NamedType ScopeOnPremLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 1029530680 - NamedType 156504254" size-unit="char" translate="yes" xml:space="preserve">
           <source>    trigger</source>
@@ -582,6 +602,26 @@
           <source>This field is visible only if the total number of variables is different than 0.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control NoUnusedTotalVariables - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 683374773 - Action 215494501 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Update Details</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateDetails - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 683374773 - Action 215494501 - Method 1377591017 - NamedType 2161219690" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Do you want to update the fields and keys for: %1 %2 - "%3"?</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateDetails - Method OnAction - NamedType UpdateFieldsKeysLbl</note>
+        </trans-unit>
+        <trans-unit id="Page 683374773 - Action 215494501 - Method 1377591017 - NamedType 2810089971" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Fields and keys already updated!</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateDetails - Method OnAction - NamedType AlreadyUpdatedLbl</note>
+        </trans-unit>
+        <trans-unit id="Page 683374773 - Action 215494501 - Method 1377591017 - NamedType 1494617514" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Fields and keys successfully updated!</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateDetails - Method OnAction - NamedType SuccessfullyUpdatedLbl</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Action 3450744784 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Update Fields and Keys</source>

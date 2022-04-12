@@ -17,6 +17,10 @@ codeunit 50100 "Object Details Management"
         FieldBeginLbl: Label '            begin';
         EndLbl: Label '    end;';
         FieldEndLbl: Label '            end;';
+        ScopeOnPremLbl: Label '    [Scope(''OnPrem'')]';
+        NonDebuggableLbl: Label '    [NonDebuggable]';
+        ObsoleteLbl: Label '    [Obsolete';
+        CommentLbl: Label '    //';
 
     //  -------- Object Details --------> START
     procedure ConfirmCheckUpdateObjectDetails()
@@ -340,10 +344,14 @@ codeunit 50100 "Object Details Management"
         GlobalMethods: List of [Text];
         LocalMethods: List of [Text];
         InternalMethods: List of [Text];
+        ProtectedMethods: List of [Text];
         IntegrationEvents: List of [Text];
         BusinessEvents: List of [Text];
     begin
         GetObjectALCode(ObjectDetails, ObjectALCode);
+        RemoveTypeFromObject(ObjectALCode, ScopeOnPremLbl);
+        RemoveTypeFromObject(ObjectALCode, NonDebuggableLbl);
+        RemoveObsoleteFromObject(ObjectALCode);
 
         IntegrationEvents := GetAllEvents(ObjectALCode, IntegrationEventLbl);
         BusinessEvents := GetAllEvents(ObjectALCode, BusinessEventLbl);
@@ -357,6 +365,8 @@ codeunit 50100 "Object Details Management"
             LocalMethods := GetMethods(ObjectALCode, LocalProcedureLbl);
         if ObjectALCode.IndexOf(InternalProcedureLbl, StringComparison.OrdinalIgnoreCase) <> -1 then
             InternalMethods := GetMethods(ObjectALCode, InternalProcedureLbl);
+        if ObjectALCode.IndexOf(ProtectedProcedureLbl, StringComparison.OrdinalIgnoreCase) <> -1 then
+            ProtectedMethods := GetMethods(ObjectALCode, ProtectedProcedureLbl);
 
         CheckAndUpdateObjectDetailsLine(ObjectDetails, GlobalMethods, Types::"Global Method", true, NeedsUpdate[1]);
         CheckAndUpdateObjectDetailsLine(ObjectDetails, LocalMethods, Types::"Local Method", true, NeedsUpdate[1]);
@@ -395,6 +405,8 @@ codeunit 50100 "Object Details Management"
             if TypeEvent <> '' then begin
                 UpdateEvents(TypeEvents, CopyObjectALCode, TypeEvent, ProcedureLbl);
                 UpdateEvents(TypeEvents, CopyObjectALCode, TypeEvent, LocalProcedureLbl);
+                UpdateEvents(TypeEvents, CopyObjectALCode, TypeEvent, InternalProcedureLbl);
+                UpdateEvents(TypeEvents, CopyObjectALCode, TypeEvent, ProtectedProcedureLbl);
             end;
         until TypeEvent = '';
 
@@ -425,6 +437,29 @@ codeunit 50100 "Object Details Management"
             ObjectALCode := ObjectALCode.Remove(ObjectALCode.IndexOf(Member, StringComparison.OrdinalIgnoreCase), StrLen(Member));
         foreach Member in BusinessEvents do
             ObjectALCode := ObjectALCode.Remove(ObjectALCode.IndexOf(Member, StringComparison.OrdinalIgnoreCase), StrLen(Member));
+    end;
+
+    [Scope('OnPrem')]
+    local procedure RemoveTypeFromObject(ObjectALCode: DotNet String; GivenType: Text)
+    begin
+        while ObjectALCode.IndexOf(GivenType, StringComparison.OrdinalIgnoreCase) <> -1 do
+            ObjectALCode := ObjectALCode.Remove(ObjectALCode.IndexOf(GivenType, StringComparison.OrdinalIgnoreCase) - 2, StrLen(GivenType) + 2);
+    end;
+
+    [Scope('OnPrem')]
+    local procedure RemoveObsoleteFromObject(ObjectALCode: DotNet String)
+    var
+        ObsoleteString: DotNet String;
+        ObsoleteIndex: Integer;
+    begin
+        ObsoleteIndex := ObjectALCode.IndexOf(ObsoleteLbl, StringComparison.OrdinalIgnoreCase);
+
+        while ObsoleteIndex <> -1 do begin
+            ObsoleteString := ObjectALCode.Substring(ObsoleteIndex);
+            ObsoleteString := ObsoleteString.Substring(0, ObsoleteString.IndexOf(']') + 1);
+            ObjectALCode := ObjectALCode.Remove(ObjectALCode.IndexOf(ObsoleteString, StringComparison.OrdinalIgnoreCase) - 2, StrLen(ObsoleteString) + 2);
+            ObsoleteIndex := ObjectALCode.IndexOf(ObsoleteLbl, StringComparison.OrdinalIgnoreCase);
+        end;
     end;
 
     local procedure GetFormattedEvents(UnformattedEvents: List of [Text]): List of [Text]
@@ -481,10 +516,12 @@ codeunit 50100 "Object Details Management"
         CRLF[1] := 13;
         CRLF[2] := 10;
         CopyObjectALCode := CopyObjectALCode.Copy(ObjectALCode);
-        Index := CopyObjectALCode.IndexOf(EventType, StringComparison.OrdinalIgnoreCase);
-        CopyObjectALCode := CopyObjectALCode.Substring(Index);
-        if CopyObjectALCode.IndexOf(EventType + CRLF + ProcedureTypeTxt, StringComparison.OrdinalIgnoreCase) <> -1 then
+        Index := CopyObjectALCode.IndexOf(EventType + CRLF + ProcedureTypeTxt, StringComparison.OrdinalIgnoreCase);
+
+        if Index <> -1 then begin
+            CopyObjectALCode := CopyObjectALCode.Substring(Index);
             exit(GetEvents(CopyObjectALCode, EventType, ProcedureTypeTxt));
+        end;
     end;
 
     [Scope('OnPrem')]
@@ -545,32 +582,21 @@ codeunit 50100 "Object Details Management"
     local procedure GetEvents(ObjectALCode: DotNet String; EventType: Text; MethodType: Text): List of [Text]
     var
         CopyObjectALCode: DotNet String;
-        Substring: DotNet String;
+        MethodDefinition: DotNet String;
         Events: List of [Text];
         CRLF: Text[2];
-        MyEvent: Text;
         Index: Integer;
-        SubstringIndex: Integer;
     begin
         CRLF[1] := 13;
         CRLF[2] := 10;
         CopyObjectALCode := CopyObjectALCode.Copy(ObjectALCode);
-        Index := CopyObjectALCode.IndexOf(MethodType, StringComparison.OrdinalIgnoreCase);
 
         while Index <> -1 do begin
-            Substring := CopyObjectALCode.Substring(Index);
-            SubstringIndex := Substring.IndexOf('(');
-
-            MyEvent := Substring.Substring(0, SubstringIndex);
-            Events.Add(EventType + CRLF + MyEvent);
-
-            CopyObjectALCode := Substring.Substring(SubstringIndex);
+            CopyObjectALCode := CopyObjectALCode.Substring(Index);
+            CopyObjectALCode := CopyObjectALCode.Substring(CopyObjectALCode.IndexOf(MethodType));
+            MethodDefinition := CopyObjectALCode.Substring(0, CopyObjectALCode.IndexOf('('));
+            Events.Add(EventType + CRLF + MethodDefinition);
             Index := CopyObjectALCode.IndexOf(EventType + CRLF + MethodType, StringComparison.OrdinalIgnoreCase);
-
-            if Index <> -1 then begin
-                CopyObjectALCode := CopyObjectALCode.Substring(Index);
-                Index := CopyObjectALCode.IndexOf(MethodType, StringComparison.OrdinalIgnoreCase);
-            end;
         end;
 
         exit(Events);
@@ -979,14 +1005,17 @@ codeunit 50100 "Object Details Management"
         UnusedParamsFromProcedures: List of [Text];
         UnusedParamsFromLocalProcedures: List of [Text];
         UnusedParamsFromInternalProcedures: List of [Text];
+        UnusedParamsFromProtectedProcedures: List of [Text];
     begin
         UnusedParamsFromProcedures := GetUnusedParameters(ObjectALCode, ProcedureLbl);
         UnusedParamsFromLocalProcedures := GetUnusedParameters(ObjectALCode, LocalProcedureLbl);
         UnusedParamsFromInternalProcedures := GetUnusedParameters(ObjectALCode, InternalProcedureLbl);
+        UnusedParamsFromProtectedProcedures := GetUnusedParameters(ObjectALCode, ProtectedProcedureLbl);
 
         CheckAndUpdateObjectDetailsLine(ObjectDetails, UnusedParamsFromProcedures, Types::Parameter, false, NeedsUpdate);
         CheckAndUpdateObjectDetailsLine(ObjectDetails, UnusedParamsFromLocalProcedures, Types::Parameter, false, NeedsUpdate);
         CheckAndUpdateObjectDetailsLine(ObjectDetails, UnusedParamsFromInternalProcedures, Types::Parameter, false, NeedsUpdate);
+        CheckAndUpdateObjectDetailsLine(ObjectDetails, UnusedParamsFromProtectedProcedures, Types::Parameter, false, NeedsUpdate);
     end;
 
     [Scope('OnPrem')]
@@ -1099,14 +1128,17 @@ codeunit 50100 "Object Details Management"
         UnusedReturnValuesFromProcedures: List of [Text];
         UnusedReturnValuesFromLocalProcedures: List of [Text];
         UnusedReturnValuesFromInternalProcedures: List of [Text];
+        UnusedReturnValuesFromProtectedProcedures: List of [Text];
     begin
         UnusedReturnValuesFromProcedures := GetUnusedReturnValues(ObjectALCode, ProcedureLbl);
         UnusedReturnValuesFromLocalProcedures := GetUnusedReturnValues(ObjectALCode, LocalProcedureLbl);
         UnusedReturnValuesFromInternalProcedures := GetUnusedReturnValues(ObjectALCode, InternalProcedureLbl);
+        UnusedReturnValuesFromProtectedProcedures := GetUnusedReturnValues(ObjectALCode, ProtectedProcedureLbl);
 
         CheckAndUpdateObjectDetailsLine(ObjectDetails, UnusedReturnValuesFromProcedures, Types::"Return Value", false, NeedsUpdate);
         CheckAndUpdateObjectDetailsLine(ObjectDetails, UnusedReturnValuesFromLocalProcedures, Types::"Return Value", false, NeedsUpdate);
         CheckAndUpdateObjectDetailsLine(ObjectDetails, UnusedReturnValuesFromInternalProcedures, Types::"Return Value", false, NeedsUpdate);
+        CheckAndUpdateObjectDetailsLine(ObjectDetails, UnusedReturnValuesFromProtectedProcedures, Types::Parameter, false, NeedsUpdate);
     end;
 
     [Scope('OnPrem')]
@@ -1162,11 +1194,15 @@ codeunit 50100 "Object Details Management"
         UpdateMethodsEventsLbl: Label 'The methods and events are beign updated...\\#1';
         NeedsUpdate: array[4] of Boolean;
     begin
-        ObjectDetails.SetFilter(ObjectType, '%1|%2|%3|%4|%5|%6', ObjectDetails.ObjectType::Table,
-                                    ObjectDetails.ObjectType::"TableExtension", ObjectDetails.ObjectType::Page,
-                                    ObjectDetails.ObjectType::"PageExtension", ObjectDetails.ObjectType::Codeunit,
-                                    ObjectDetails.ObjectType::Report);
-        ObjectDetails.SetFilter(ObjectNo, '<%1', 2000000000);
+        // ObjectDetails.SetFilter(ObjectType, '%1|%2|%3|%4|%5|%6', ObjectDetails.ObjectType::Table,
+        //                             ObjectDetails.ObjectType::"TableExtension", ObjectDetails.ObjectType::Page,
+        //                             ObjectDetails.ObjectType::"PageExtension", ObjectDetails.ObjectType::Codeunit,
+        //                             ObjectDetails.ObjectType::Report);
+        // ObjectDetails.SetFilter(ObjectNo, '<%1', 2000000000);
+
+        ObjectDetails.SetFilter(ObjectType, '%1', ObjectDetails.ObjectType::Codeunit);
+        ObjectDetails.SetFilter(ObjectNo, '>%1&<%2', 20200, 2000000000);
+
 
         if ObjectDetails.FindSet() then begin
             Progress.Open(UpdateMethodsEventsLbl, Object);

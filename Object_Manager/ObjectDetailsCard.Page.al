@@ -230,6 +230,37 @@ page 50101 "Object Details Card"
                     end;
                 end;
             }
+            action(UpdateDetails)
+            {
+                Caption = 'Update Details';
+                ApplicationArea = All;
+                Image = UpdateXML;
+                Enabled = IsEnabled;
+                Promoted = true;
+                PromotedOnly = true;
+                PromotedCategory = Process;
+
+                trigger OnAction()
+                var
+                    ObjectDetailsManagement: Codeunit "Object Details Management";
+                    UpdateFieldsKeysLbl: Label 'Do you want to update the fields and keys for: %1 %2 - "%3"?';
+                    AlreadyUpdatedLbl: Label 'Fields and keys already updated!';
+                    SuccessfullyUpdatedLbl: Label 'Fields and keys successfully updated!';
+                    NeedsUpdate: array[4] of Boolean;
+                begin
+                    if Confirm(StrSubstNo(UpdateFieldsKeysLbl, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then begin
+                        if ObjectDetailsManagement.CheckUpdateTypeObjectDetailsLine(Rec, Types::Field) then begin
+                            ObjectDetailsManagement.UpdateTypeObjectDetailsLine(Format(Rec.ObjectNo), Types::Field);
+                            NeedsUpdate[1] := true;
+                        end;
+                        if ObjectDetailsManagement.CheckUpdateTypeObjectDetailsLine(Rec, Types::"Key") then begin
+                            ObjectDetailsManagement.UpdateTypeObjectDetailsLine(Format(Rec.ObjectNo), Types::"Key");
+                            NeedsUpdate[2] := true;
+                        end;
+                        Message(GetMessageForUser(NeedsUpdate, AlreadyUpdatedLbl, SuccessfullyUpdatedLbl));
+                    end;
+                end;
+            }
             action(UpdateFieldsKeys)
             {
                 Caption = 'Update Fields and Keys';
