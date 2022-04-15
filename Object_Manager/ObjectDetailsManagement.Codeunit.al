@@ -352,6 +352,7 @@ codeunit 50100 "Object Details Management"
         RemoveTypeFromObject(ObjectALCode, ScopeOnPremLbl);
         RemoveTypeFromObject(ObjectALCode, NonDebuggableLbl);
         RemoveObsoleteFromObject(ObjectALCode);
+        RemoveCommentsFromObject(ObjectALCode);
 
         IntegrationEvents := GetAllEvents(ObjectALCode, IntegrationEventLbl);
         BusinessEvents := GetAllEvents(ObjectALCode, BusinessEventLbl);
@@ -375,6 +376,7 @@ codeunit 50100 "Object Details Management"
         CheckAndUpdateObjectDetailsLine(ObjectDetails, BusinessEvents, Types::"Business Event", true, NeedsUpdate[1]);
 
         UpdateUnusedMethods(ObjectDetails, ObjectALCode, NeedsUpdate[2], UpdateUnusedGlobal);
+        GetObjectALCode(ObjectDetails, ObjectALCode);
         UpdateUnusedParameters(ObjectDetails, ObjectALCode, NeedsUpdate[3]);
         UpdateUnusedReturnValues(ObjectDetails, ObjectALCode, NeedsUpdate[4]);
     end;
@@ -397,6 +399,7 @@ codeunit 50100 "Object Details Management"
         CopyObjectALCode: DotNet String;
         TypeEvents: List of [Text];
         TypeEvent: Text;
+        Index: Integer;
     begin
         CopyObjectALCode := CopyObjectALCode.Copy(ObjectALCode);
 
@@ -407,8 +410,9 @@ codeunit 50100 "Object Details Management"
                 UpdateEvents(TypeEvents, CopyObjectALCode, TypeEvent, LocalProcedureLbl);
                 UpdateEvents(TypeEvents, CopyObjectALCode, TypeEvent, InternalProcedureLbl);
                 UpdateEvents(TypeEvents, CopyObjectALCode, TypeEvent, ProtectedProcedureLbl);
+                Index += 1;
             end;
-        until TypeEvent = '';
+        until (TypeEvent = '') or (Index = 4);
 
         exit(TypeEvents);
     end;
@@ -459,6 +463,25 @@ codeunit 50100 "Object Details Management"
             ObsoleteString := ObsoleteString.Substring(0, ObsoleteString.IndexOf(']') + 1);
             ObjectALCode := ObjectALCode.Remove(ObjectALCode.IndexOf(ObsoleteString, StringComparison.OrdinalIgnoreCase) - 2, StrLen(ObsoleteString) + 2);
             ObsoleteIndex := ObjectALCode.IndexOf(ObsoleteLbl, StringComparison.OrdinalIgnoreCase);
+        end;
+    end;
+
+    [Scope('OnPrem')]
+    local procedure RemoveCommentsFromObject(ObjectALCode: DotNet String)
+    var
+        Comment: DotNet String;
+        CRLF: Text[2];
+        Index: Integer;
+    begin
+        CRLF[1] := 13;
+        CRLF[2] := 10;
+        Index := ObjectALCode.IndexOf(CommentLbl, StringComparison.OrdinalIgnoreCase);
+
+        while Index <> -1 do begin
+            Comment := ObjectALCode.Substring(Index);
+            Comment := Comment.Substring(0, Comment.IndexOf(CRLF));
+            ObjectALCode := ObjectALCode.Remove(ObjectALCode.IndexOf(Comment, StringComparison.OrdinalIgnoreCase) - 2, StrLen(Comment) + 2);
+            Index := ObjectALCode.IndexOf(CommentLbl, StringComparison.OrdinalIgnoreCase);
         end;
     end;
 
@@ -1170,7 +1193,10 @@ codeunit 50100 "Object Details Management"
             MethodHeader := MethodHeader.Substring(0, SubstringIndexEnd + 2);
 
             if MethodHeader.Chars(MethodHeader.Length - 1) = ':' then begin
-                ReturnValueType := CopyObjectALCode.Substring(SubstringIndexEnd + 3, CopyObjectALCode.IndexOf(CRLF) - (SubstringIndexEnd + 4) + StrLen(CRLF));
+                // ReturnValueType := CopyObjectALCode.Substring(SubstringIndexEnd + 3, CopyObjectALCode.IndexOf(CRLF) - (SubstringIndexEnd + 4) + StrLen(CRLF));
+                ReturnValueType := CopyObjectALCode.Substring(CopyObjectALCode.IndexOf(MethodHeader) + StrLen(MethodHeader) + 1);
+                ReturnValueType := ReturnValueType.Substring(1, ReturnValueType.IndexOf(CRLF));
+                ReturnValueType := DelChr(ReturnValueType, '=', ';');
                 BeginIndex := GetIndexOfLabel(CopyObjectALCode, BeginLbl);
                 EndIndex := GetIndexOfLabel(CopyObjectALCode, EndLbl);
                 MethodBody := CopyObjectALCode.Substring(BeginIndex, EndIndex - BeginIndex + StrLen(EndLbl));
@@ -1201,7 +1227,7 @@ codeunit 50100 "Object Details Management"
         // ObjectDetails.SetFilter(ObjectNo, '<%1', 2000000000);
 
         ObjectDetails.SetFilter(ObjectType, '%1', ObjectDetails.ObjectType::Codeunit);
-        ObjectDetails.SetFilter(ObjectNo, '>%1&<%2', 20200, 2000000000);
+        ObjectDetails.SetFilter(ObjectNo, '>%1&<%2', 6000, 2000000000);
 
 
         if ObjectDetails.FindSet() then begin
