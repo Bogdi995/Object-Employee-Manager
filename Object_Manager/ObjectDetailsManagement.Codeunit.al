@@ -180,16 +180,15 @@ codeunit 50100 "Object Details Management"
         exit(true);
     end;
 
-
-    local procedure GetTypeText(Type: Enum Types): Text
-    var
-        FieldsLbl: Label 'fields';
-        KeysLbl: Label 'keys';
-    begin
-        if Type = Types::Field then
-            exit(FieldsLbl);
-        exit(KeysLbl);
-    end;
+    // local procedure GetTypeText(Type: Enum Types): Text
+    // var
+    //     FieldsLbl: Label 'fields';
+    //     KeysLbl: Label 'keys';
+    // begin
+    //     if Type = Types::Field then
+    //         exit(FieldsLbl);
+    //     exit(KeysLbl);
+    // end;
 
     procedure GetTypeTable(Type: Enum Types): Integer
     begin
@@ -360,6 +359,9 @@ codeunit 50100 "Object Details Management"
         IntegrationEvents := GetFormattedEvents(IntegrationEvents);
         BusinessEvents := GetFormattedEvents(BusinessEvents);
 
+        UpdateUnusedParameters(ObjectDetails, ObjectALCode, NeedsUpdate[3]);
+        UpdateUnusedReturnValues(ObjectDetails, ObjectALCode, NeedsUpdate[4]);
+
         if ObjectALCode.IndexOf(ProcedureLbl, StringComparison.OrdinalIgnoreCase) <> -1 then
             GlobalMethods := GetMethods(ObjectALCode, ProcedureLbl);
         if ObjectALCode.IndexOf(LocalProcedureLbl, StringComparison.OrdinalIgnoreCase) <> -1 then
@@ -376,9 +378,6 @@ codeunit 50100 "Object Details Management"
         CheckAndUpdateObjectDetailsLine(ObjectDetails, BusinessEvents, Types::"Business Event", true, NeedsUpdate[1]);
 
         UpdateUnusedMethods(ObjectDetails, ObjectALCode, NeedsUpdate[2], UpdateUnusedGlobal);
-        GetObjectALCode(ObjectDetails, ObjectALCode);
-        UpdateUnusedParameters(ObjectDetails, ObjectALCode, NeedsUpdate[3]);
-        UpdateUnusedReturnValues(ObjectDetails, ObjectALCode, NeedsUpdate[4]);
     end;
 
     [Scope('OnPrem')]
@@ -662,7 +661,7 @@ codeunit 50100 "Object Details Management"
         if not IsUsed then begin
             ObjectDetailsLine.SetRange(Used, false);
             if Type in [Types::"Global Method", Types::"Local Method", Types::"Global Variable", Types::"Local Variable"] then begin
-                ModifyUsedObjectDetailsLine(ObjectDetailsLine, GivenList);
+                ModifyUsedObjectDetailsLine(ObjectDetails, ObjectDetailsLine, GivenList, Type);
                 exit;
             end;
         end;
@@ -682,15 +681,22 @@ codeunit 50100 "Object Details Management"
         end;
     end;
 
-    local procedure ModifyUsedObjectDetailsLine(var ObjectDetailsLine: Record "Object Details Line"; GivenList: List of [Text])
+    local procedure ModifyUsedObjectDetailsLine(ObjectDetails: Record "Object Details"; var ObjectDetailsLine: Record "Object Details Line"; GivenList: List of [Text]; Type: Enum Types)
+    var
+        Member: Text;
     begin
         if ObjectDetailsLine.FindSet() then
             repeat
                 if not GivenList.Contains(ObjectDetailsLine.Name) then begin
                     ObjectDetailsLine.Validate(Used, true);
                     ObjectDetailsLine.Modify(true);
-                end;
+                end else
+                    GivenList.Remove(ObjectDetailsLine.Name);
             until ObjectDetailsLine.Next() = 0;
+
+        if GivenList.Count <> 0 then
+            foreach Member in GivenList do
+                InsertObjectDetailsLine(ObjectDetails, Member, Type);
     end;
 
     local procedure InsertObjectDetailsLine(ObjectDetails: Record "Object Details"; Name: Text; Type: Enum Types)
@@ -795,7 +801,7 @@ codeunit 50100 "Object Details Management"
             VariableName := GetVariableName(ObjectALCode, SearchText);
             foreach Method in MethodsName do
                 if (ObjectALCode.IndexOf(VariableName + '.' + Method, StringComparison.OrdinalIgnoreCase) <> -1) then
-                    if CheckIfMethodIsUsedInObject(ObjectALCode, VariableName + '.' + Method, ParametersNo.Get(MethodsName.IndexOf(Method))) then begin
+                    if CheckIfMethodIsUsedInObject(ObjectALCode, VariableName + '.' + Method, ParametersNo.Get(MethodsName.IndexOf(Method)), false) then begin
                         MethodsFoundIndex.Add(MethodsName.IndexOf(Method) - No);
                         No += 1;
                     end;
@@ -850,12 +856,25 @@ codeunit 50100 "Object Details Management"
         CopyObjectALCode: DotNet String;
         Methods: List of [Text];
         UnusedMethods: List of [Text];
+        NotOverloadedMethods: List of [Text];
+        MethodsToRemove: List of [Text];
         Method: Text;
         MethodName: Text;
         ParametersNo: Integer;
+        Overloaded: Boolean;
     begin
         if ObjectALCode.IndexOf(MethodType, StringComparison.OrdinalIgnoreCase) <> -1 then
             Methods := GetTypesFromObjectDetailsLine(ObjectDetails, GetMethodTypeEnumFromMethodTypeText(MethodType));
+
+        foreach Method in Methods do
+            if not NotOverloadedMethods.Contains(Method) then
+                NotOverloadedMethods.Add(Method)
+            else
+                if not MethodsToRemove.Contains(Method) then
+                    MethodsToRemove.Add(Method);
+
+        foreach Method in MethodsToRemove do
+            NotOverloadedMethods.Remove(Method);
 
         CopyObjectALCode := CopyObjectALCode.Copy(ObjectALCode);
         RemoveMethodsFromObject(ObjectDetails, CopyObjectALCode);
@@ -863,7 +882,8 @@ codeunit 50100 "Object Details Management"
         foreach Method in Methods do begin
             ParametersNo := GetParametersNumberForMethod(ObjectALCode, Method, ';', 0);
             MethodName := GetMethodName(Method);
-            if not CheckIfMethodIsUsedInObject(CopyObjectALCode, MethodName, ParametersNo) then
+            Overloaded := not (NotOverloadedMethods.Contains(Method));
+            if not CheckIfMethodIsUsedInObject(CopyObjectALCode, MethodName, ParametersNo, Overloaded) then
                 UnusedMethods.Add(Method);
         end;
 
@@ -962,7 +982,7 @@ codeunit 50100 "Object Details Management"
     end;
 
     [Scope('OnPrem')]
-    local procedure CheckIfMethodIsUsedInObject(ObjectALCode: DotNet String; MethodName: Text; ParametersNo: Integer): Boolean
+    local procedure CheckIfMethodIsUsedInObject(ObjectALCode: DotNet String; MethodName: Text; ParametersNo: Integer; Overloaded: Boolean): Boolean
     var
         Index: Integer;
     begin
@@ -976,6 +996,9 @@ codeunit 50100 "Object Details Management"
             if ObjectALCode.IndexOf(MethodName, StringComparison.OrdinalIgnoreCase) = -1 then
                 exit(false);
         end;
+
+        if not Overloaded then
+            exit(true);
 
         // If method is used in object and doesn't have parameters
         if ParametersNo = 0 then
@@ -1193,7 +1216,6 @@ codeunit 50100 "Object Details Management"
             MethodHeader := MethodHeader.Substring(0, SubstringIndexEnd + 2);
 
             if MethodHeader.Chars(MethodHeader.Length - 1) = ':' then begin
-                // ReturnValueType := CopyObjectALCode.Substring(SubstringIndexEnd + 3, CopyObjectALCode.IndexOf(CRLF) - (SubstringIndexEnd + 4) + StrLen(CRLF));
                 ReturnValueType := CopyObjectALCode.Substring(CopyObjectALCode.IndexOf(MethodHeader) + StrLen(MethodHeader) + 1);
                 ReturnValueType := ReturnValueType.Substring(1, ReturnValueType.IndexOf(CRLF));
                 ReturnValueType := DelChr(ReturnValueType, '=', ';');
@@ -1220,15 +1242,11 @@ codeunit 50100 "Object Details Management"
         UpdateMethodsEventsLbl: Label 'The methods and events are beign updated...\\#1';
         NeedsUpdate: array[4] of Boolean;
     begin
-        // ObjectDetails.SetFilter(ObjectType, '%1|%2|%3|%4|%5|%6', ObjectDetails.ObjectType::Table,
-        //                             ObjectDetails.ObjectType::"TableExtension", ObjectDetails.ObjectType::Page,
-        //                             ObjectDetails.ObjectType::"PageExtension", ObjectDetails.ObjectType::Codeunit,
-        //                             ObjectDetails.ObjectType::Report);
-        // ObjectDetails.SetFilter(ObjectNo, '<%1', 2000000000);
-
-        ObjectDetails.SetFilter(ObjectType, '%1', ObjectDetails.ObjectType::Codeunit);
-        ObjectDetails.SetFilter(ObjectNo, '>%1&<%2', 6000, 2000000000);
-
+        ObjectDetails.SetFilter(ObjectType, '%1|%2|%3|%4|%5|%6', ObjectDetails.ObjectType::Table,
+                                    ObjectDetails.ObjectType::"TableExtension", ObjectDetails.ObjectType::Page,
+                                    ObjectDetails.ObjectType::"PageExtension", ObjectDetails.ObjectType::Codeunit,
+                                    ObjectDetails.ObjectType::Report);
+        ObjectDetails.SetFilter(ObjectNo, '<%1', 2000000000);
 
         if ObjectDetails.FindSet() then begin
             Progress.Open(UpdateMethodsEventsLbl, Object);
@@ -1515,9 +1533,7 @@ codeunit 50100 "Object Details Management"
     end;
 
     [Scope('OnPrem')]
-    local procedure SetIndexesForNextGlobalVar(ObjectALCode: DotNet String;
-    var
-        IndexesForNextGlobalVar: array[3] of Integer)
+    local procedure SetIndexesForNextGlobalVar(ObjectALCode: DotNet String; var IndexesForNextGlobalVar: array[3] of Integer)
     begin
         IndexesForNextGlobalVar[1] := ObjectALCode.IndexOf('        ');
         IndexesForNextGlobalVar[2] := ObjectALCode.IndexOf(':');

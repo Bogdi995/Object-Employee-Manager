@@ -5,6 +5,7 @@ page 50101 "Object Details Card"
     Caption = 'Object Details Card';
     ApplicationArea = All;
     UsageCategory = Administration;
+    PromotedActionCategories = 'New,Process,Report,Update';
 
     layout
     {
@@ -211,7 +212,7 @@ page 50101 "Object Details Card"
                 Image = UpdateDescription;
                 Promoted = true;
                 PromotedOnly = true;
-                PromotedCategory = Process;
+                PromotedCategory = Category4;
 
                 trigger OnAction()
                 var
@@ -235,29 +236,59 @@ page 50101 "Object Details Card"
                 Caption = 'Update Details';
                 ApplicationArea = All;
                 Image = UpdateXML;
-                Enabled = IsEnabled;
                 Promoted = true;
                 PromotedOnly = true;
-                PromotedCategory = Process;
+                PromotedCategory = Category4;
 
                 trigger OnAction()
                 var
                     ObjectDetailsManagement: Codeunit "Object Details Management";
-                    UpdateFieldsKeysLbl: Label 'Do you want to update the fields and keys for: %1 %2 - "%3"?';
-                    AlreadyUpdatedLbl: Label 'Fields and keys already updated!';
-                    SuccessfullyUpdatedLbl: Label 'Fields and keys successfully updated!';
-                    NeedsUpdate: array[4] of Boolean;
+                    UpdateDetailsLbl: Label 'Do you want to update the details for: %1 %2 - "%3"?';
+                    SuccessfullyUpdatedLbl: Label 'Details successfully updated!';
+                    AlreadyUpdatedLbl: Label 'Details already updated!';
+                    UpdatingMethodsEventsLbl: Label 'The methods and the events are being updated...';
+                    UpdatingRelationsLbl: Label 'The relations are being updated...';
+                    UpdateUsedInNoOfObjectsLbl: Label 'The number of times the object is used in other objects is being updated...';
+                    Progress: Dialog;
+                    NeedsUpdate: array[12] of Boolean;
+                    Index: Integer;
                 begin
-                    if Confirm(StrSubstNo(UpdateFieldsKeysLbl, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then begin
+                    if Confirm(StrSubstNo(UpdateDetailsLbl, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then begin
                         if ObjectDetailsManagement.CheckUpdateTypeObjectDetailsLine(Rec, Types::Field) then begin
                             ObjectDetailsManagement.UpdateTypeObjectDetailsLine(Format(Rec.ObjectNo), Types::Field);
-                            NeedsUpdate[1] := true;
+                            NeedsUpdate[5] := true;
                         end;
                         if ObjectDetailsManagement.CheckUpdateTypeObjectDetailsLine(Rec, Types::"Key") then begin
                             ObjectDetailsManagement.UpdateTypeObjectDetailsLine(Format(Rec.ObjectNo), Types::"Key");
-                            NeedsUpdate[2] := true;
+                            NeedsUpdate[6] := true;
                         end;
-                        Message(GetMessageForUser(NeedsUpdate, AlreadyUpdatedLbl, SuccessfullyUpdatedLbl));
+
+                        Progress.Open(UpdatingMethodsEventsLbl);
+                        ObjectDetailsManagement.UpdateMethodsEvents(Rec, NeedsUpdate, true);
+                        Progress.Close();
+
+                        ObjectDetailsManagement.UpdateVariables(Rec, NeedsUpdate[7]);
+                        ObjectDetailsManagement.UpdateUnusedVariables(Rec, NeedsUpdate[8]);
+
+                        if Rec.ObjectType = Rec.ObjectType::Table then begin
+                            Progress.Open(UpdatingRelationsLbl);
+                            ObjectDetailsManagement.UpdateRelations(Rec, NeedsUpdate[9], Types::"Relation (External)");
+                            ObjectDetailsManagement.UpdateRelations(Rec, NeedsUpdate[10], Types::"Relation (Internal)");
+                            Progress.Close();
+                        end;
+
+                        ObjectDetailsManagement.UpdateNoOfObjectsUsedIn(Rec, NeedsUpdate[11]);
+                        Progress.Open(UpdateUsedInNoOfObjectsLbl);
+                        ObjectDetailsManagement.UpdateUsedInNoOfObjects(Rec, NeedsUpdate[12]);
+                        Progress.Close();
+                        ObjectDetailsManagement.UpdateNoTimesUsed(Rec);
+
+                        for Index := 1 to 12 do
+                            if NeedsUpdate[Index] then begin
+                                Message(SuccessfullyUpdatedLbl);
+                                exit;
+                            end;
+                        Message(AlreadyUpdatedLbl);
                     end;
                 end;
             }
@@ -269,7 +300,7 @@ page 50101 "Object Details Card"
                 Enabled = IsEnabled;
                 Promoted = true;
                 PromotedOnly = true;
-                PromotedCategory = Process;
+                PromotedCategory = Category4;
 
                 trigger OnAction()
                 var
@@ -299,7 +330,7 @@ page 50101 "Object Details Card"
                 Image = UpdateXML;
                 Promoted = true;
                 PromotedOnly = true;
-                PromotedCategory = Process;
+                PromotedCategory = Category4;
 
                 trigger OnAction()
                 var
@@ -313,7 +344,7 @@ page 50101 "Object Details Card"
                 begin
                     if Confirm(StrSubstNo(UpdateMethodsEventsLbl, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then begin
                         Progress.Open(UpdatingMethodsEventsLbl);
-                        ObjectDetailsManagement.UpdateMethodsEvents(Rec, NeedsUpdate, false);
+                        ObjectDetailsManagement.UpdateMethodsEvents(Rec, NeedsUpdate, true);
                         Progress.Close();
                         Message(GetMessageForUser(NeedsUpdate, AlreadyUpdatedLbl, SuccessfullyUpdatedLbl));
                     end;
@@ -327,7 +358,7 @@ page 50101 "Object Details Card"
                 Image = UpdateXML;
                 Promoted = true;
                 PromotedOnly = true;
-                PromotedCategory = Process;
+                PromotedCategory = Category4;
 
                 trigger OnAction()
                 var
@@ -352,7 +383,7 @@ page 50101 "Object Details Card"
                 Image = UpdateXML;
                 Promoted = true;
                 PromotedOnly = true;
-                PromotedCategory = Process;
+                PromotedCategory = Category4;
 
                 trigger OnAction()
                 var

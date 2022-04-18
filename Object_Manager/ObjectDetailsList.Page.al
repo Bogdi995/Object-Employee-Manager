@@ -6,6 +6,7 @@ page 50100 "Object Details List"
     ApplicationArea = All;
     UsageCategory = Administration;
     CardPageId = "Object Details Card";
+    PromotedActionCategories = 'New,Process,Report,Update';
 
     layout
     {
@@ -150,7 +151,7 @@ page 50100 "Object Details List"
                 Image = UpdateDescription;
                 Promoted = true;
                 PromotedOnly = true;
-                PromotedCategory = Process;
+                PromotedCategory = Category4;
 
                 trigger OnAction()
                 var
@@ -169,6 +170,33 @@ page 50100 "Object Details List"
                 end;
             }
 
+            action(UpdateDetails)
+            {
+                Caption = 'Update Details';
+                ApplicationArea = All;
+                Image = UpdateXML;
+                Promoted = true;
+                PromotedOnly = true;
+                PromotedCategory = Category4;
+
+                trigger OnAction()
+                var
+                    ObjectDetailsManagement: Codeunit "Object Details Management";
+                    UpdateDetailsLbl: Label 'Do you want to update the details of all objects?';
+                    DetailsSuccessfullyUpdated: Label 'All details are successfully updated.';
+                begin
+                    if Confirm(UpdateDetailsLbl) then begin
+                        ObjectDetailsManagement.UpdateAllType(Types::Field);
+                        ObjectDetailsManagement.UpdateAllType(Types::"Key");
+                        ObjectDetailsManagement.UpdateAllMethodsEvents();
+                        ObjectDetailsManagement.UpdateAllVariables();
+                        ObjectDetailsManagement.UpdateAllRelationsInternalUsageOfObjects();
+                        ObjectDetailsManagement.UpdateAllExternalUsageOfObject();
+                        Message(DetailsSuccessfullyUpdated);
+                    end;
+                end;
+            }
+
             action(UpdateFieldKeys)
             {
                 Caption = 'Update Fields and Keys';
@@ -176,7 +204,7 @@ page 50100 "Object Details List"
                 Image = UpdateXML;
                 Promoted = true;
                 PromotedOnly = true;
-                PromotedCategory = Process;
+                PromotedCategory = Category4;
 
                 trigger OnAction()
                 var
@@ -199,7 +227,7 @@ page 50100 "Object Details List"
                 Image = UpdateXML;
                 Promoted = true;
                 PromotedOnly = true;
-                PromotedCategory = Process;
+                PromotedCategory = Category4;
 
                 trigger OnAction()
                 var
@@ -221,7 +249,7 @@ page 50100 "Object Details List"
                 Image = UpdateXML;
                 Promoted = true;
                 PromotedOnly = true;
-                PromotedCategory = Process;
+                PromotedCategory = Category4;
 
                 trigger OnAction()
                 var
@@ -243,7 +271,7 @@ page 50100 "Object Details List"
                 Image = UpdateXML;
                 Promoted = true;
                 PromotedOnly = true;
-                PromotedCategory = Process;
+                PromotedCategory = Category4;
 
                 trigger OnAction()
                 var

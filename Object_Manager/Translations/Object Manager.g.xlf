@@ -413,16 +413,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetObjectUsedIn - NamedType CodeunitLbl</note>
         </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - Method 3929872973 - NamedType 2713365493" size-unit="char" translate="yes" xml:space="preserve">
-          <source>fields</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetTypeText - NamedType FieldsLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - Method 3929872973 - NamedType 3724190090" size-unit="char" translate="yes" xml:space="preserve">
-          <source>keys</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetTypeText - NamedType KeysLbl</note>
-        </trans-unit>
         <trans-unit id="Codeunit 1029530680 - Method 2934933108 - NamedType 137248018" size-unit="char" translate="yes" xml:space="preserve">
           <source>var </source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -457,6 +447,11 @@
           <source>The variables are beign updated...\\#1</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method UpdateAllVariables - NamedType UpdateVariablesLbl</note>
+        </trans-unit>
+        <trans-unit id="Page 683374773 - Property 2019332006" size-unit="char" translate="yes" xml:space="preserve">
+          <source>New,Process,Report,Update</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Property PromotedActionCategories</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object Details Card</source>
@@ -608,20 +603,35 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateDetails - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 683374773 - Action 215494501 - Method 1377591017 - NamedType 2161219690" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Do you want to update the fields and keys for: %1 %2 - "%3"?</source>
+        <trans-unit id="Page 683374773 - Action 215494501 - Method 1377591017 - NamedType 583845779" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Do you want to update the details for: %1 %2 - "%3"?</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateDetails - Method OnAction - NamedType UpdateFieldsKeysLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateDetails - Method OnAction - NamedType UpdateDetailsLbl</note>
+        </trans-unit>
+        <trans-unit id="Page 683374773 - Action 215494501 - Method 1377591017 - NamedType 1494617514" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Details successfully updated!</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateDetails - Method OnAction - NamedType SuccessfullyUpdatedLbl</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Action 215494501 - Method 1377591017 - NamedType 2810089971" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Fields and keys already updated!</source>
+          <source>Details already updated!</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateDetails - Method OnAction - NamedType AlreadyUpdatedLbl</note>
         </trans-unit>
-        <trans-unit id="Page 683374773 - Action 215494501 - Method 1377591017 - NamedType 1494617514" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Fields and keys successfully updated!</source>
+        <trans-unit id="Page 683374773 - Action 215494501 - Method 1377591017 - NamedType 800370943" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The methods and the events are being updated...</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateDetails - Method OnAction - NamedType SuccessfullyUpdatedLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateDetails - Method OnAction - NamedType UpdatingMethodsEventsLbl</note>
+        </trans-unit>
+        <trans-unit id="Page 683374773 - Action 215494501 - Method 1377591017 - NamedType 3390896213" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The relations are being updated...</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateDetails - Method OnAction - NamedType UpdatingRelationsLbl</note>
+        </trans-unit>
+        <trans-unit id="Page 683374773 - Action 215494501 - Method 1377591017 - NamedType 3271461599" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The number of times the object is used in other objects is being updated...</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateDetails - Method OnAction - NamedType UpdateUsedInNoOfObjectsLbl</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Action 3450744784 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Update Fields and Keys</source>
@@ -823,6 +833,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Action UpdateKeys - Method OnAction - NamedType SuccessfullyUpdatedLbl</note>
         </trans-unit>
+        <trans-unit id="Page 2172956895 - Property 2019332006" size-unit="char" translate="yes" xml:space="preserve">
+          <source>New,Process,Report,Update</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Property PromotedActionCategories</note>
+        </trans-unit>
         <trans-unit id="Page 2172956895 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object Details List</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -947,6 +962,21 @@
           <source>Specifies the number of objects the object is used in.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Control UsedInNoObjects - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2172956895 - Action 215494501 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Update Details</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Action UpdateDetails - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2172956895 - Action 215494501 - Method 1377591017 - NamedType 583845779" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Do you want to update the details of all objects?</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Action UpdateDetails - Method OnAction - NamedType UpdateDetailsLbl</note>
+        </trans-unit>
+        <trans-unit id="Page 2172956895 - Action 215494501 - Method 1377591017 - NamedType 2151118842" size-unit="char" translate="yes" xml:space="preserve">
+          <source>All details are successfully updated.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Action UpdateDetails - Method OnAction - NamedType DetailsSuccessfullyUpdated</note>
         </trans-unit>
         <trans-unit id="Page 2172956895 - Action 4059609273 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Update Fields and Keys</source>
