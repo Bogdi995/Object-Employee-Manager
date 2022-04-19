@@ -3,6 +3,71 @@
   <file datatype="xml" source-language="en-US" target-language="en-US" original="Object Manager">
     <body>
       <group id="body">
+        <trans-unit id="Table 2260039069 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Employee Leave History</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Employee Leave History - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2260039069 - Field 2990466407 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Accuracy</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Employee Leave History - Field Accuracy - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2260039069 - Field 3042984175 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Average Monthly Hours</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Employee Leave History - Field AverageMonthlyHours - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2260039069 - Field 4228702944 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Last Evaluation</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Employee Leave History - Field LastEvaluation - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2260039069 - Field 3206779141 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Left</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Employee Leave History - Field Left - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2260039069 - Field 1165969121 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Line No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Employee Leave History - Field LineNo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2260039069 - Field 3206646442 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Number Project</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Employee Leave History - Field NumberProject - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2260039069 - Field 2848169428 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Promotion Last 5 years</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Employee Leave History - Field PromotionLast5years - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2260039069 - Field 3900201624 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Salary</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Employee Leave History - Field Salary - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2260039069 - Field 1406942772 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sales</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Employee Leave History - Field Sales - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2260039069 - Field 1055570782 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Satisfaction Level</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Employee Leave History - Field SatisfactionLevel - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2260039069 - Field 3181563866 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Time Spend Company</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Employee Leave History - Field TimeSpendCompany - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2260039069 - Field 3660663534 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Work Accident</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Employee Leave History - Field WorkAccident - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3526115305 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object Details</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -202,6 +267,101 @@
           <source>Used</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details Line - Field Used - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4249140647 - Method 816029031 - NamedType 3021917930" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Could not find a token with key %1</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Employee Leave History Mgt - Method GetJsonToken - NamedType ErrorTokenKeyLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4249140647 - Method 3676935992 - NamedType 3758905860" size-unit="char" translate="yes" xml:space="preserve">
+          <source>satisfaction_level</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Employee Leave History Mgt - Method InsertEmployeeLeaveHistoryData - NamedType SatisfactionLevelLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4249140647 - Method 3676935992 - NamedType 2908985530" size-unit="char" translate="yes" xml:space="preserve">
+          <source>last_evaluation</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Employee Leave History Mgt - Method InsertEmployeeLeaveHistoryData - NamedType LastEvaluationLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4249140647 - Method 3676935992 - NamedType 2229311088" size-unit="char" translate="yes" xml:space="preserve">
+          <source>number_project</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Employee Leave History Mgt - Method InsertEmployeeLeaveHistoryData - NamedType NumberProjectLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4249140647 - Method 3676935992 - NamedType 2158104465" size-unit="char" translate="yes" xml:space="preserve">
+          <source>average_montly_hours</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Employee Leave History Mgt - Method InsertEmployeeLeaveHistoryData - NamedType AverageMonthlyHoursLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4249140647 - Method 3676935992 - NamedType 1100223200" size-unit="char" translate="yes" xml:space="preserve">
+          <source>time_spend_company</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Employee Leave History Mgt - Method InsertEmployeeLeaveHistoryData - NamedType TimeSpendCompanyLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4249140647 - Method 3676935992 - NamedType 3865268948" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Work_accident</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Employee Leave History Mgt - Method InsertEmployeeLeaveHistoryData - NamedType WorkAccidentLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4249140647 - Method 3676935992 - NamedType 3514860979" size-unit="char" translate="yes" xml:space="preserve">
+          <source>left</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Employee Leave History Mgt - Method InsertEmployeeLeaveHistoryData - NamedType LeftLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4249140647 - Method 3676935992 - NamedType 205723694" size-unit="char" translate="yes" xml:space="preserve">
+          <source>promotion_last_5years</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Employee Leave History Mgt - Method InsertEmployeeLeaveHistoryData - NamedType PromotionLast5YearsLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4249140647 - Method 3676935992 - NamedType 3096777198" size-unit="char" translate="yes" xml:space="preserve">
+          <source>sales</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Employee Leave History Mgt - Method InsertEmployeeLeaveHistoryData - NamedType SalesLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4249140647 - Method 3676935992 - NamedType 2214073522" size-unit="char" translate="yes" xml:space="preserve">
+          <source>salary</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Employee Leave History Mgt - Method InsertEmployeeLeaveHistoryData - NamedType SalaryLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4249140647 - Method 2794511013 - NamedType 4106688136" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Could not find a token with path %1</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Employee Leave History Mgt - Method SelectJsonToken - NamedType ErrorTokenPathLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4249140647 - Method 2972397565 - NamedType 294324486" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The employee leave history is being updated...#1</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Employee Leave History Mgt - Method UpdateHistory - NamedType UpdateEmployeeLeaveHistory</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4249140647 - Method 2972397565 - NamedType 3515535966" size-unit="char" translate="yes" xml:space="preserve">
+          <source>User-Agent</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Employee Leave History Mgt - Method UpdateHistory - NamedType UserAgentLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4249140647 - Method 2972397565 - NamedType 3637614977" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Business Central</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Employee Leave History Mgt - Method UpdateHistory - NamedType BusinessCentralLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4249140647 - Method 2972397565 - NamedType 969992077" size-unit="char" translate="yes" xml:space="preserve">
+          <source>https://dkatsonpublicdatasource.blob.core.windows.net/machinelearning/BC-ML-Prediction-API-Blog-Employee leave data.json</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Employee Leave History Mgt - Method UpdateHistory - NamedType EmployeeLeaveDataJsonLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4249140647 - Method 2972397565 - NamedType 3436807880" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The call to the web service failed.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Employee Leave History Mgt - Method UpdateHistory - NamedType WebServiceFailedLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4249140647 - Method 2972397565 - NamedType 43882713" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The web service returned an error message:\ Status code: %1 \ Description: %2</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Employee Leave History Mgt - Method UpdateHistory - NamedType WebServiceErrorLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4249140647 - Method 2972397565 - NamedType 3004918753" size-unit="char" translate="yes" xml:space="preserve">
+          <source>History updated successfully!</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Employee Leave History Mgt - Method UpdateHistory - NamedType DataRefreshedSuccessfullyLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 1029530680 - NamedType 463538287" size-unit="char" translate="yes" xml:space="preserve">
           <source>    begin</source>
@@ -447,6 +607,66 @@
           <source>The variables are beign updated...\\#1</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method UpdateAllVariables - NamedType UpdateVariablesLbl</note>
+        </trans-unit>
+        <trans-unit id="Page 2260039069 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Employee Leave History</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Employee Leave History - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2260039069 - Control 3042984175 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies how many hours the employee worked on average monthly.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Employee Leave History - Control AverageMonthlyHours - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2260039069 - Control 4228702944 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the last evaluation satisfaction level of the employee.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Employee Leave History - Control LastEvaluation - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2260039069 - Control 3206779141 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies if the employee left or not</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Employee Leave History - Control Left - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2260039069 - Control 3206646442 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the number of projects the employee had in the company.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Employee Leave History - Control NumberProject - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2260039069 - Control 2848169428 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies how many promotions the employee got in the last 5 years.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Employee Leave History - Control PromotionLast5years - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2260039069 - Control 3900201624 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the salary of the employee (low, medium, high).</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Employee Leave History - Control Salary - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2260039069 - Control 1406942772 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the department in which the employee worked.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Employee Leave History - Control Sales - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2260039069 - Control 1055570782 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the satisfaction level of the employee.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Employee Leave History - Control SatisfactionLevel - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2260039069 - Control 3181563866 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies how many years the employee spent in the company.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Employee Leave History - Control TimeSpendCompany - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2260039069 - Control 3660663534 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies how many work related accidents the employee had.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Employee Leave History - Control WorkAccident - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2260039069 - Action 2972397565 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Update History</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Employee Leave History - Action UpdateHistory - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Property 2019332006" size-unit="char" translate="yes" xml:space="preserve">
           <source>New,Process,Report,Update</source>
