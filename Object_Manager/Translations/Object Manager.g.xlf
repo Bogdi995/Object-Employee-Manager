@@ -68,6 +68,36 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Employee Leave History - Field WorkAccident - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 898723146 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Employee Leave Setup</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Employee Leave Setup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 898723146 - Field 3650642145 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Features</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Employee Leave Setup - Field Features - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 898723146 - Field 1457054730 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Label</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Employee Leave Setup - Field Label - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 898723146 - Field 1695122201 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Model</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Employee Leave Setup - Field Model - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 898723146 - Field 503497542 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Model Quality</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Employee Leave Setup - Field ModelQuality - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 898723146 - Field 2333076789 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Primary Key</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Employee Leave Setup - Field PrimaryKey - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3526115305 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object Details</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1313,110 +1343,90 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Metadata Page - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 3157187060 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>RelationsMetadata</source>
+        <trans-unit id="PageExtension 713152267 - Property 2019332006" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 272934828">
+          <source>New,Process,Report,Leave</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Employee Extension List - Property PromotedActionCategories</note>
         </trans-unit>
-        <trans-unit id="Page 3157187060 - Control 1153139698 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the value of the Condition Field No. field.</source>
+        <trans-unit id="PageExtension 713152267 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 272934828">
+          <source>Employees</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Control Condition Field No. - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Employee Extension List - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 3157187060 - Control 3878457560 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the value of the Condition No. field.</source>
+        <trans-unit id="PageExtension 713152267 - Action 1817795259 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 272934828">
+          <source>Leave History</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Control Condition No. - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Employee Extension List - Action LeaveHistory - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 3157187060 - Control 1759668749 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the value of the Condition Type field.</source>
+        <trans-unit id="PageExtension 713152267 - Control 2021255090 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 272934828">
+          <source>Predicts if the employee will leave or not.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Control Condition Type - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Employee Extension List - Control LeavePrediction - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 3157187060 - Control 4125648468 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the value of the Condition Value field.</source>
+        <trans-unit id="PageExtension 713152267 - Control 2021255090 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 272934828">
+          <source>Leave Prediction</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Control Condition Value - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Employee Extension List - Control LeavePrediction - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 3157187060 - Control 3070320983 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the value of the Field Name field.</source>
+        <trans-unit id="PageExtension 713152267 - Control 2548090092 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 272934828">
+          <source>Specifies the accuracy of the leave prediction. High is above 90%, Medium is between 80% and 90%, and Low is less than 80%.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Control Field Name - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Employee Extension List - Control PredictionAccuracy - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 3157187060 - Control 3531868071 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the value of the Field No. field.</source>
+        <trans-unit id="PageExtension 713152267 - Control 2548090092 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 272934828">
+          <source>Prediction Accuracy</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Control Field No. - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Employee Extension List - Control PredictionAccuracy - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 3157187060 - Control 2075114126 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the value of the Related Field Name field.</source>
+        <trans-unit id="PageExtension 713152267 - Control 2726823431 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 272934828">
+          <source>Specifies the percentage of the prediction accuracy.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Control Related Field Name - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Employee Extension List - Control PredictionAccuracy% - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 3157187060 - Control 453696006 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the value of the Related Field No. field.</source>
+        <trans-unit id="PageExtension 713152267 - Control 2726823431 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 272934828">
+          <source>Prediction Accuracy %</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Control Related Field No. - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Employee Extension List - Control PredictionAccuracy% - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 3157187060 - Control 2204602840 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the value of the Related Table ID field.</source>
+        <trans-unit id="TableExtension 4245112373 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1498446062">
+          <source>Employee Extension</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Control Related Table ID - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension Employee Extension - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 3157187060 - Control 145100610 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the value of the Related Table Name field.</source>
+        <trans-unit id="TableExtension 4245112373 - Field 2021255090 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1498446062">
+          <source>Leave Prediction</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Control Related Table Name - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension Employee Extension - Field LeavePrediction - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 3157187060 - Control 2508317795 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the value of the Relation No. field.</source>
+        <trans-unit id="TableExtension 4245112373 - Field 2548090092 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1498446062">
+          <source>Prediction Accuracy</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Control Relation No. - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension Employee Extension - Field PredictionAccuracy - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 3157187060 - Control 577209412 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the value of the SystemCreatedAt field.</source>
+        <trans-unit id="TableExtension 4245112373 - Field 2726823431 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1498446062">
+          <source>Prediction Accuracy %</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Control SystemCreatedAt - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension Employee Extension - Field PredictionAccuracy% - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 3157187060 - Control 4000648066 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the value of the SystemCreatedBy field.</source>
+        <trans-unit id="Enum 2637097570 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Leave Prediction</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Control SystemCreatedBy - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Leave Prediction - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 3157187060 - Control 1367528460 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the value of the SystemId field.</source>
+        <trans-unit id="Enum 2637097570 - EnumValue 1371923692 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Control SystemId - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Leave Prediction - EnumValue   - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 3157187060 - Control 2453272523 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the value of the SystemModifiedAt field.</source>
+        <trans-unit id="Enum 2637097570 - EnumValue 3212359541 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Will probably leave</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Control SystemModifiedAt - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Leave Prediction - EnumValue Leave - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 3157187060 - Control 4085837753 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the value of the SystemModifiedBy field.</source>
+        <trans-unit id="Enum 2637097570 - EnumValue 1063039729 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Will probably stay</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Control SystemModifiedBy - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 3157187060 - Control 3135334477 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the value of the Table ID field.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Control Table ID - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 3157187060 - Control 3808951907 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the value of the Table Name field.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Control Table Name - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 3157187060 - Control 3933747786 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the value of the Test Table Relation field.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Control Test Table Relation - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 3157187060 - Control 125623250 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the value of the Validate Table Relation field.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page RelationsMetadata - Control Validate Table Relation - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Leave Prediction - EnumValue Stay - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 1085746399 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Type</source>
@@ -1477,6 +1487,31 @@
           <source>XMLPort</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Object Type - EnumValue XMLPort - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 997826188 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Prediction Accuracy</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Prediction Accuracy - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 997826188 - EnumValue 1371923692 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source> </source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Prediction Accuracy - EnumValue   - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 997826188 - EnumValue 3116416530 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>High</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Prediction Accuracy - EnumValue High - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 997826188 - EnumValue 3592530208 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Low</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Prediction Accuracy - EnumValue Low - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 997826188 - EnumValue 432767615 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Medium</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Prediction Accuracy - EnumValue Medium - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 2388510493 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Type</source>
