@@ -17,7 +17,7 @@ pageextension 50105 "Employee Extension List" extends "Employee List"
             field(PredictionAccuracy; Rec.PredictionAccuracy)
             {
                 Caption = 'Prediction Accuracy';
-                ToolTip = 'Specifies the accuracy of the leave prediction. High is above 90%, Medium is between 80% and 90%, and Low is less than 80%.';
+                ToolTip = 'Specifies the accuracy of the leave prediction. "Low" is less than 80%, "Medium" is between 80% and 90% and "High" is above 90%.';
                 ApplicationArea = All;
                 StyleExpr = Style;
             }
@@ -36,6 +36,41 @@ pageextension 50105 "Employee Extension List" extends "Employee List"
     {
         addafter("E&mployee")
         {
+            action(PredictLeave)
+            {
+                Caption = 'Predict Leave';
+                Image = Calculate;
+                ApplicationArea = All;
+                Promoted = true;
+                PromotedOnly = true;
+                PromotedCategory = Category4;
+
+                trigger OnAction()
+                var
+                    PredictEmployeeLeave: Codeunit "Predict Employee Leave";
+                begin
+                    PredictEmployeeLeave.PredictBatch();
+                    CurrPage.Update();
+                end;
+            }
+
+            action(WhyLeave)
+            {
+                Caption = 'Why Leave';
+                Image = Questionaire;
+                ApplicationArea = All;
+                Promoted = true;
+                PromotedOnly = true;
+                PromotedCategory = Category4;
+
+                trigger OnAction()
+                var
+                    TrainEmployeeLeaveML: Codeunit "Train Employee Leavee";
+                begin
+                    TrainEmployeeLeaveML.DownloadPlotOfTheModel();
+                end;
+            }
+
             action(LeaveHistory)
             {
                 Caption = 'Leave History';
@@ -55,20 +90,21 @@ pageextension 50105 "Employee Extension List" extends "Employee List"
     trigger OnAfterGetRecord()
     begin
         Style := SetStyle;
-        // ShowPdfInViewer();
     end;
 
     procedure SetStyle(): Text
+    var
+        FavorableLbl: Label 'Favorable';
+        AmbiguousLbl: Label 'Ambiguous';
+        AttentionLbl: Label 'Attention';
     begin
-        if Rec.LeavePrediction = Rec.LeavePrediction::Leave then
-            exit('Attention');
-        exit('')
+        case Rec.LeavePrediction of
+            Rec.LeavePrediction::Stay:
+                exit(FavorableLbl);
+            Rec.LeavePrediction::ChanceLeave:
+                exit(AmbiguousLbl);
+            Rec.LeavePrediction::Leave:
+                exit(AttentionLbl);
+        end;
     end;
-
-    // local procedure ShowPdfInViewer()
-    // var
-    //     TrainEmployeeLeaveML: Codeunit "Train EmployeeLeave ML";
-    // begin
-    //     CurrPage.PDFViewer.Page.LoadPdfFromBase64(TrainEmployeeLeaveML.GetPlotOfTheModel());
-    // end;
 }

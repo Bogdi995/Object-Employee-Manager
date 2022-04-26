@@ -2,6 +2,8 @@ table 50106 "Employee Leave Setup"
 {
     Caption = 'Employee Leave Setup';
     DataClassification = CustomerContent;
+    LookupPageId = "Object Details List";
+    DrillDownPageId = "Object Details List";
 
     fields
     {
@@ -35,6 +37,16 @@ table 50106 "Employee Leave Setup"
             DataClassification = CustomerContent;
             Editable = false;
         }
+        field(50; APIKey; Text[512])
+        {
+            Caption = 'API Key';
+            DataClassification = CustomerContent;
+        }
+        field(60; EndpointURI; Text[1024])
+        {
+            Caption = 'Endpoint URI';
+            DataClassification = CustomerContent;
+        }
     }
 
     keys
@@ -52,16 +64,6 @@ table 50106 "Employee Leave Setup"
             Rec.Init();
             Rec.Insert(true);
         end;
-    end;
-
-    procedure GetEndpointURI(): Text
-    begin
-        exit('https://ussouthcentral.services.azureml.net/workspaces/820c7d417fb24e968b51e2f5c3d91e75/services/3adcd177fb384c2091ccf49f31dbbe0d/execute?api-version=2.0&details=true');
-    end;
-
-    procedure GetAPIKey(): Text
-    begin
-        exit('NreopaOqYw3WSJd6twUV4gP4FftpraAbUW0aUrOw/4b5zKeLelZlvgTJHFs+XpEFb0+be3UicRkCB5YYXnCACw==');
     end;
 
     procedure SetEmployeeLeaveModel(ModelAsText: Text)

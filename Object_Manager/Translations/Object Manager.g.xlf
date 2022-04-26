@@ -73,6 +73,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Employee Leave Setup - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 898723146 - Field 1951792025 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>API Key</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Employee Leave Setup - Field APIKey - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 898723146 - Field 868775663 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Endpoint URI</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Employee Leave Setup - Field EndpointURI - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 898723146 - Field 3650642145 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Features</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -638,6 +648,66 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method UpdateAllVariables - NamedType UpdateVariablesLbl</note>
         </trans-unit>
+        <trans-unit id="Codeunit 1935565232 - Method 464549259 - NamedType 1964856785" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Predicting if the employees will leave...</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Predict Employee Leave - Method PredictBatch - NamedType PredictLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1935565232 - Method 3204629571 - NamedType 1692136706" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Secretary</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Predict Employee Leave - Method PrepareData - NamedType SecretaryLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1935565232 - Method 3204629571 - NamedType 2953816657" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Designer</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Predict Employee Leave - Method PrepareData - NamedType DesignerLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1935565232 - Method 3204629571 - NamedType 2638249163" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sales Manager</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Predict Employee Leave - Method PrepareData - NamedType SalesManagerLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1935565232 - Method 3204629571 - NamedType 661262415" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Production Assistant</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Predict Employee Leave - Method PrepareData - NamedType ProductionAssistantLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1935565232 - Method 3204629571 - NamedType 4194242890" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Managing Director</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Predict Employee Leave - Method PrepareData - NamedType ManagingDirectorLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1935565232 - Method 3204629571 - NamedType 3533943941" size-unit="char" translate="yes" xml:space="preserve">
+          <source>accounting</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Predict Employee Leave - Method PrepareData - NamedType AccountingLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1935565232 - Method 3204629571 - NamedType 3053887458" size-unit="char" translate="yes" xml:space="preserve">
+          <source>marketing</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Predict Employee Leave - Method PrepareData - NamedType MarketingLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1935565232 - Method 3204629571 - NamedType 3096777198" size-unit="char" translate="yes" xml:space="preserve">
+          <source>sales</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Predict Employee Leave - Method PrepareData - NamedType SalesLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1935565232 - Method 3204629571 - NamedType 2919673695" size-unit="char" translate="yes" xml:space="preserve">
+          <source>product_mng</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Predict Employee Leave - Method PrepareData - NamedType ProductMngLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1935565232 - Method 3204629571 - NamedType 11658499" size-unit="char" translate="yes" xml:space="preserve">
+          <source>management</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Predict Employee Leave - Method PrepareData - NamedType ManagementLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3609114144 - Method 3685264004 - NamedType 2491614119" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The model is being trained...</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Train Employee Leavee - Method Train - NamedType TrainModelLbl</note>
+        </trans-unit>
         <trans-unit id="Page 2260039069 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Employee Leave History</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -693,10 +763,40 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Employee Leave History - Control WorkAccident - Property ToolTip</note>
         </trans-unit>
+        <trans-unit id="Page 2260039069 - Action 257643353 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Train the model based on the current data.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Employee Leave History - Action TrainModel - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2260039069 - Action 257643353 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Train Model</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Employee Leave History - Action TrainModel - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 2260039069 - Action 2972397565 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Update History</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Employee Leave History - Action UpdateHistory - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 898723146 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Employee Leave Setup</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Employee Leave Setup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 898723146 - Control 846657449 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Web Service Details</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Employee Leave Setup - Control WebServiceDetails - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 898723146 - Control 1951792025 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the API key</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Employee Leave Setup - Control APIKey - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 898723146 - Control 868775663 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the endpoint URI</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Employee Leave Setup - Control EndpointURI - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Property 2019332006" size-unit="char" translate="yes" xml:space="preserve">
           <source>New,Process,Report,Update</source>
@@ -1353,10 +1453,35 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Employee Extension List - Property Caption</note>
         </trans-unit>
+        <trans-unit id="PageExtension 713152267 - Method 946729327 - NamedType 739791144" size-unit="char" translate="yes" xml:space="preserve" al-object-target="PageExtension 713152267">
+          <source>Favorable</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Employee Extension List - Method SetStyle - NamedType FavorableLbl</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 713152267 - Method 946729327 - NamedType 644283978" size-unit="char" translate="yes" xml:space="preserve" al-object-target="PageExtension 713152267">
+          <source>Ambiguous</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Employee Extension List - Method SetStyle - NamedType AmbiguousLbl</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 713152267 - Method 946729327 - NamedType 3312324272" size-unit="char" translate="yes" xml:space="preserve" al-object-target="PageExtension 713152267">
+          <source>Attention</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Employee Extension List - Method SetStyle - NamedType AttentionLbl</note>
+        </trans-unit>
         <trans-unit id="PageExtension 713152267 - Action 1817795259 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 272934828">
           <source>Leave History</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Employee Extension List - Action LeaveHistory - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 713152267 - Action 2774788154 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 272934828">
+          <source>Predict Leave</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Employee Extension List - Action PredictLeave - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 713152267 - Action 2516529895 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 272934828">
+          <source>Why Leave</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Employee Extension List - Action WhyLeave - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 713152267 - Control 2021255090 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 272934828">
           <source>Predicts if the employee will leave or not.</source>
@@ -1369,7 +1494,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Employee Extension List - Control LeavePrediction - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 713152267 - Control 2548090092 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 272934828">
-          <source>Specifies the accuracy of the leave prediction. High is above 90%, Medium is between 80% and 90%, and Low is less than 80%.</source>
+          <source>Specifies the accuracy of the leave prediction. "Low" is less than 80%, "Medium" is between 80% and 90% and "High" is above 90%.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Employee Extension List - Control PredictionAccuracy - Property ToolTip</note>
         </trans-unit>
@@ -1417,6 +1542,11 @@
           <source> </source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Leave Prediction - EnumValue   - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 2637097570 - EnumValue 1257422379 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>There's a chance to leave</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Leave Prediction - EnumValue ChanceLeave - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 2637097570 - EnumValue 3212359541 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Will probably leave</source>

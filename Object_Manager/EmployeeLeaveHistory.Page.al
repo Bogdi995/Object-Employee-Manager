@@ -88,6 +88,24 @@ page 50105 "Employee Leave History"
                     if Rec.FindFirst() then;
                 end;
             }
+
+            action(TrainModel)
+            {
+                Caption = 'Train Model';
+                ToolTip = 'Train the model based on the current data.';
+                Image = Task;
+                ApplicationArea = All;
+                Promoted = true;
+                PromotedOnly = true;
+                PromotedCategory = Process;
+
+                trigger OnAction()
+                var
+                    RestForecastTrain: Codeunit "Train Employee Leavee";
+                begin
+                    RestForecastTrain.Train();
+                end;
+            }
         }
     }
 
