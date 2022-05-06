@@ -37,7 +37,7 @@ codeunit 50101 "Object Details Install"
         if AllObj.FindSet() then
             repeat
                 ObjectDetails.Init();
-                ObjectDetails.Validate(ObjectType, ObjectTypeObjectDetails);
+                ObjectDetails.Validate("Object Type", ObjectTypeObjectDetails);
                 ObjectDetails.Validate(ObjectNo, AllObj."Object ID");
                 ObjectDetails.Insert(true);
             until AllObj.Next() = 0;

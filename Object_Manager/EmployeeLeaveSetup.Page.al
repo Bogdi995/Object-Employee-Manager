@@ -25,6 +25,11 @@ page 50106 "Employee Leave Setup"
                     ToolTip = 'Specifies the endpoint URI';
                     ApplicationArea = All;
                 }
+                field(DatasetLink; Rec.DatasetLink)
+                {
+                    ToolTip = 'Specifies the link to the dataset';
+                    ApplicationArea = All;
+                }
             }
         }
     }

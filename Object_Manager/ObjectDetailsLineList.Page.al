@@ -12,7 +12,7 @@ page 50102 "Object Details Line List"
         {
             repeater(General)
             {
-                field("ObjectType"; Rec."ObjectType")
+                field("ObjectType"; Rec."Object Type")
                 {
                     ToolTip = 'Specifies the type of the object.';
                     ApplicationArea = All;
@@ -128,11 +128,11 @@ page 50102 "Object Details Line List"
         Field: Record Field;
         Keys: Record "Key";
     begin
-        if (Rec.ObjectType = "Object Type"::Table) and (Rec.Type = Types::Field) then
+        if (Rec."Object Type" = "Object Type"::Table) and (Rec.Type = Types::Field) then
             if Field.Get(Rec.ObjectNo, Rec.ID) then
                 exit(Field.FieldName);
 
-        if (Rec.ObjectType = "Object Type"::Table) and (Rec.Type = Types::"Key") then
+        if (Rec."Object Type" = "Object Type"::Table) and (Rec.Type = Types::"Key") then
             if Keys.Get(Rec.ObjectNo, Rec.ID) then
                 exit(Keys."Key");
 
@@ -143,7 +143,7 @@ page 50102 "Object Details Line List"
     var
         Field: Record Field;
     begin
-        if (Rec.ObjectType <> "Object Type"::Table) or (Rec.Type <> Types::Field) then
+        if (Rec."Object Type" <> "Object Type"::Table) or (Rec.Type <> Types::Field) then
             exit(Rec.Caption);
         if Field.Get(Rec.ObjectNo, Rec.ID) then
             exit(Field."Field Caption");
@@ -153,7 +153,7 @@ page 50102 "Object Details Line List"
     var
         Field: Record Field;
     begin
-        if (Rec.ObjectType <> "Object Type"::Table) or (Rec.Type <> Types::Field) then
+        if (Rec."Object Type" <> "Object Type"::Table) or (Rec.Type <> Types::Field) then
             exit(Rec.TypeName);
         if Field.Get(Rec.ObjectNo, Rec.ID) then
             exit(Field."Type Name");

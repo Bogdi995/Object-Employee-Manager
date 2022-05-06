@@ -14,7 +14,7 @@ page 50100 "Object Details List"
         {
             repeater(group)
             {
-                field(ObjectType; Rec.ObjectType)
+                field(ObjectType; Rec."Object Type")
                 {
                     ToolTip = 'Specifies the type of the object.';
                     ApplicationArea = All;

@@ -7,7 +7,7 @@ table 50100 "Object Details"
 
     fields
     {
-        field(1; ObjectType; Enum "Object Type")
+        field(1; "Object Type"; Enum "Object Type")
         {
             Caption = 'Object Type';
             DataClassification = CustomerContent;
@@ -56,7 +56,7 @@ table 50100 "Object Details"
         {
             Caption = 'No. of Times Used';
             FieldClass = FlowField;
-            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Object (Used)")));
+            CalcFormula = count("Object Details Line" where("Object Type" = field("Object Type"), ObjectNo = field(ObjectNo), Type = const("Object (Used)")));
         }
         field(60; PrimaryKey; Text[250])
         {
@@ -68,109 +68,109 @@ table 50100 "Object Details"
         {
             Caption = 'No. of Keys';
             FieldClass = FlowField;
-            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Key")));
+            CalcFormula = count("Object Details Line" where("Object Type" = field("Object Type"), ObjectNo = field(ObjectNo), Type = const("Key")));
         }
         field(80; NoFields; Integer)
         {
             Caption = 'No. of Fields';
             FieldClass = FlowField;
-            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const(Field)));
+            CalcFormula = count("Object Details Line" where("Object Type" = field("Object Type"), ObjectNo = field(ObjectNo), Type = const(Field)));
         }
         field(90; NoIntegrationEvents; Integer)
         {
             Caption = 'No. of Integration Events';
             FieldClass = FlowField;
-            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Integration Event")));
+            CalcFormula = count("Object Details Line" where("Object Type" = field("Object Type"), ObjectNo = field(ObjectNo), Type = const("Integration Event")));
         }
         field(100; NoBusinessEvents; Integer)
         {
             Caption = 'No. of Business Events';
             FieldClass = FlowField;
-            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Business Event")));
+            CalcFormula = count("Object Details Line" where("Object Type" = field("Object Type"), ObjectNo = field(ObjectNo), Type = const("Business Event")));
         }
         field(110; NoGlobalMethods; Integer)
         {
             Caption = 'No. of Global Methods';
             FieldClass = FlowField;
-            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Global Method")));
+            CalcFormula = count("Object Details Line" where("Object Type" = field("Object Type"), ObjectNo = field(ObjectNo), Type = const("Global Method")));
         }
         field(120; NoUnusedGlobalMethods; Integer)
         {
             Caption = 'No. of Unused Global Methods';
             FieldClass = FlowField;
-            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Global Method"), Used = const(false)));
+            CalcFormula = count("Object Details Line" where("Object Type" = field("Object Type"), ObjectNo = field(ObjectNo), Type = const("Global Method"), Used = const(false)));
         }
         field(130; NoLocalMethods; Integer)
         {
             Caption = 'No. of Local Methods';
             FieldClass = FlowField;
-            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Local Method")));
+            CalcFormula = count("Object Details Line" where("Object Type" = field("Object Type"), ObjectNo = field(ObjectNo), Type = const("Local Method")));
         }
         field(140; NoUnusedLocalMethods; Integer)
         {
             Caption = 'No. of Unused Local Methods';
             FieldClass = FlowField;
-            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Local Method"), Used = const(false)));
+            CalcFormula = count("Object Details Line" where("Object Type" = field("Object Type"), ObjectNo = field(ObjectNo), Type = const("Local Method"), Used = const(false)));
         }
         field(150; NoTotalVariables; Integer)
         {
             Caption = 'No. of Total Variables';
             FieldClass = FlowField;
-            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = filter("Global Variable" | "Local Variable")));
+            CalcFormula = count("Object Details Line" where("Object Type" = field("Object Type"), ObjectNo = field(ObjectNo), Type = filter("Global Variable" | "Local Variable")));
         }
         field(160; NoUnusedTotalVariables; Integer)
         {
             Caption = 'No. of Unused Total Variables';
             FieldClass = FlowField;
-            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = filter("Global Variable" | "Local Variable"), Used = const(false)));
+            CalcFormula = count("Object Details Line" where("Object Type" = field("Object Type"), ObjectNo = field(ObjectNo), Type = filter("Global Variable" | "Local Variable"), Used = const(false)));
         }
         field(170; NoGlobalVariables; Integer)
         {
             Caption = 'No. of Global Variables';
             FieldClass = FlowField;
-            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Global Variable")));
+            CalcFormula = count("Object Details Line" where("Object Type" = field("Object Type"), ObjectNo = field(ObjectNo), Type = const("Global Variable")));
         }
         field(180; NoUnusedGlobalVariables; Integer)
         {
             Caption = 'No. of Unused Global Variables';
             FieldClass = FlowField;
-            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Global Variable"), Used = const(false)));
+            CalcFormula = count("Object Details Line" where("Object Type" = field("Object Type"), ObjectNo = field(ObjectNo), Type = const("Global Variable"), Used = const(false)));
         }
         field(190; NoUnusedParameters; Integer)
         {
             Caption = 'No. of Unused Parameters';
             FieldClass = FlowField;
-            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const(Parameter), Used = const(false)));
+            CalcFormula = count("Object Details Line" where("Object Type" = field("Object Type"), ObjectNo = field(ObjectNo), Type = const(Parameter), Used = const(false)));
         }
         field(200; NoUnusedReturnValues; Integer)
         {
             Caption = 'No. of Unused Return Values';
             FieldClass = FlowField;
-            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Return Value"), Used = const(false)));
+            CalcFormula = count("Object Details Line" where("Object Type" = field("Object Type"), ObjectNo = field(ObjectNo), Type = const("Return Value"), Used = const(false)));
         }
         field(210; RelationsTo; Integer)
         {
             Caption = 'Relations To';
             FieldClass = FlowField;
-            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Relation (Internal)")));
+            CalcFormula = count("Object Details Line" where("Object Type" = field("Object Type"), ObjectNo = field(ObjectNo), Type = const("Relation (Internal)")));
         }
         field(220; RelationsFrom; Integer)
         {
             Caption = 'Relations From';
             FieldClass = FlowField;
-            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Relation (External)")));
+            CalcFormula = count("Object Details Line" where("Object Type" = field("Object Type"), ObjectNo = field(ObjectNo), Type = const("Relation (External)")));
         }
         field(230; NoObjectsUsedIn; Integer)
         {
             Caption = 'No. of Objects Used in';
             FieldClass = FlowField;
-            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Object (Internal)")));
+            CalcFormula = count("Object Details Line" where("Object Type" = field("Object Type"), ObjectNo = field(ObjectNo), Type = const("Object (Internal)")));
         }
         field(240; UsedInNoObjects; Integer)
         {
             Caption = 'Used in No. of Objects';
             FieldClass = FlowField;
-            CalcFormula = count("Object Details Line" where(ObjectType = field(ObjectType), ObjectNo = field(ObjectNo), Type = const("Object (External)")));
+            CalcFormula = count("Object Details Line" where("Object Type" = field("Object Type"), ObjectNo = field(ObjectNo), Type = const("Object (External)")));
         }
         field(250; ObjectTypeCopy; Option)
         {
@@ -181,7 +181,7 @@ table 50100 "Object Details"
 
     keys
     {
-        key(PK; ObjectType, ObjectNo)
+        key(PK; "Object Type", ObjectNo)
         {
             Clustered = true;
         }
@@ -196,8 +196,8 @@ table 50100 "Object Details"
     var
         ObjectDetailsLine: Record "Object Details Line";
     begin
-        ObjectDetailsLine.SetCurrentKey(ObjectType, ObjectNo);
-        ObjectDetailsLine.SetRange(ObjectType, ObjectDetails.ObjectType);
+        ObjectDetailsLine.SetCurrentKey("Object Type", ObjectNo);
+        ObjectDetailsLine.SetRange("Object Type", ObjectDetails."Object Type");
         ObjectDetailsLine.SetRange(ObjectNo, ObjectDetails.ObjectNo);
         ObjectDetailsLine.DeleteAll();
     end;

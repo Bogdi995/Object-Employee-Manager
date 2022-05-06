@@ -13,7 +13,7 @@ table 50101 "Object Details Line"
             DataClassification = CustomerContent;
             AutoIncrement = true;
         }
-        field(2; ObjectType; Enum "Object Type")
+        field(2; "Object Type"; Enum "Object Type")
         {
             Caption = 'Object Type';
             DataClassification = CustomerContent;
@@ -66,7 +66,7 @@ table 50101 "Object Details Line"
         {
             Clustered = true;
         }
-        key(Fk; ObjectType, ObjectNo)
+        key(Fk; "Object Type", ObjectNo)
         {
 
         }

@@ -8,6 +8,7 @@ codeunit 50106 "Train Employee Leavee"
         MyModel: Text;
         Progress: Dialog;
         TrainModelLbl: Label 'The model is being trained...';
+        ModelTrainedLbl: Label 'The model is trained. The quality is %1%';
         MyModelQuality: Decimal;
     begin
         Progress.Open(TrainModelLbl);
@@ -27,7 +28,7 @@ codeunit 50106 "Train Employee Leavee"
         EmployeeLeaveSetup.Modify(true);
         Progress.Close();
 
-        Message('The model is trained. The quality is %1%', Round(MyModelQuality * 100, 1));
+        Message(StrSubstNo(ModelTrainedLbl, Round(MyModelQuality * 100, 1)));
     end;
 
     local procedure AddFeatures(var MLPredictionManagement: Codeunit "ML Prediction Management"; EmployeeLeaveHistory: Record "Employee Leave History")

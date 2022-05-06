@@ -13,7 +13,7 @@ page 50101 "Object Details Card"
         {
             group(Details)
             {
-                field(ObjectType; Rec.ObjectType)
+                field(ObjectType; Rec."Object Type")
                 {
                     ToolTip = 'Specifies the type of the object.';
                     ApplicationArea = All;
@@ -195,7 +195,7 @@ page 50101 "Object Details Card"
             {
                 part("Object Details Subpage"; "Object Details Subpage")
                 {
-                    SubPageLink = ObjectType = field(ObjectType), ObjectNo = field(ObjectNo);
+                    SubPageLink = "Object Type" = field("Object Type"), ObjectNo = field(ObjectNo);
                 }
             }
         }
@@ -253,7 +253,7 @@ page 50101 "Object Details Card"
                     NeedsUpdate: array[12] of Boolean;
                     Index: Integer;
                 begin
-                    if Confirm(StrSubstNo(UpdateDetailsLbl, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then begin
+                    if Confirm(StrSubstNo(UpdateDetailsLbl, Rec."Object Type", Rec.ObjectNo, Rec.Name), true) then begin
                         if ObjectDetailsManagement.CheckUpdateTypeObjectDetailsLine(Rec, Types::Field) then begin
                             ObjectDetailsManagement.UpdateTypeObjectDetailsLine(Format(Rec.ObjectNo), Types::Field);
                             NeedsUpdate[5] := true;
@@ -270,7 +270,7 @@ page 50101 "Object Details Card"
                         ObjectDetailsManagement.UpdateVariables(Rec, NeedsUpdate[7]);
                         ObjectDetailsManagement.UpdateUnusedVariables(Rec, NeedsUpdate[8]);
 
-                        if Rec.ObjectType = Rec.ObjectType::Table then begin
+                        if Rec."Object Type" = Rec."Object Type"::Table then begin
                             Progress.Open(UpdatingRelationsLbl);
                             ObjectDetailsManagement.UpdateRelations(Rec, NeedsUpdate[9], Types::"Relation (External)");
                             ObjectDetailsManagement.UpdateRelations(Rec, NeedsUpdate[10], Types::"Relation (Internal)");
@@ -310,7 +310,7 @@ page 50101 "Object Details Card"
                     SuccessfullyUpdatedLbl: Label 'Fields and keys successfully updated!';
                     NeedsUpdate: array[4] of Boolean;
                 begin
-                    if Confirm(StrSubstNo(UpdateFieldsKeysLbl, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then begin
+                    if Confirm(StrSubstNo(UpdateFieldsKeysLbl, Rec."Object Type", Rec.ObjectNo, Rec.Name), true) then begin
                         if ObjectDetailsManagement.CheckUpdateTypeObjectDetailsLine(Rec, Types::Field) then begin
                             ObjectDetailsManagement.UpdateTypeObjectDetailsLine(Format(Rec.ObjectNo), Types::Field);
                             NeedsUpdate[1] := true;
@@ -342,7 +342,7 @@ page 50101 "Object Details Card"
                     Progress: Dialog;
                     NeedsUpdate: array[4] of Boolean;
                 begin
-                    if Confirm(StrSubstNo(UpdateMethodsEventsLbl, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then begin
+                    if Confirm(StrSubstNo(UpdateMethodsEventsLbl, Rec."Object Type", Rec.ObjectNo, Rec.Name), true) then begin
                         Progress.Open(UpdatingMethodsEventsLbl);
                         ObjectDetailsManagement.UpdateMethodsEvents(Rec, NeedsUpdate, true);
                         Progress.Close();
@@ -368,7 +368,7 @@ page 50101 "Object Details Card"
                     SuccessfullyUpdatedLbl: Label 'Variables successfully updated!';
                     NeedsUpdate: array[4] of Boolean;
                 begin
-                    if Confirm(StrSubstNo(UpdateVariablesLbl, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then begin
+                    if Confirm(StrSubstNo(UpdateVariablesLbl, Rec."Object Type", Rec.ObjectNo, Rec.Name), true) then begin
                         ObjectDetailsManagement.UpdateVariables(Rec, NeedsUpdate[1]);
                         ObjectDetailsManagement.UpdateUnusedVariables(Rec, NeedsUpdate[2]);
                         Message(GetMessageForUser(NeedsUpdate, AlreadyUpdatedLbl, SuccessfullyUpdatedLbl));
@@ -396,8 +396,8 @@ page 50101 "Object Details Card"
                     Progress: Dialog;
                     NeedsUpdate: array[4] of Boolean;
                 begin
-                    if Confirm(StrSubstNo(UpdateRelationsLbl, Rec.ObjectType, Rec.ObjectNo, Rec.Name), true) then begin
-                        if Rec.ObjectType = Rec.ObjectType::Table then begin
+                    if Confirm(StrSubstNo(UpdateRelationsLbl, Rec."Object Type", Rec.ObjectNo, Rec.Name), true) then begin
+                        if Rec."Object Type" = Rec."Object Type"::Table then begin
                             Progress.Open(UpdatingRelationsLbl);
                             ObjectDetailsManagement.UpdateRelations(Rec, NeedsUpdate[1], Types::"Relation (External)");
                             ObjectDetailsManagement.UpdateRelations(Rec, NeedsUpdate[2], Types::"Relation (Internal)");
@@ -433,8 +433,8 @@ page 50101 "Object Details Card"
     var
         ObjectDetailsManagement: Codeunit "Object Details Management";
     begin
-        ShowSubtypeSingleInstance := ObjectDetailsManagement.GetShowSubtypeSingleInstance(Rec.ObjectType);
-        ShowRelations := ObjectDetailsManagement.GetShowRelations(Rec.ObjectType);
+        ShowSubtypeSingleInstance := ObjectDetailsManagement.GetShowSubtypeSingleInstance(Rec."Object Type");
+        ShowRelations := ObjectDetailsManagement.GetShowRelations(Rec."Object Type");
         ShowNoUnusedGlobalMethods := ObjectDetailsManagement.GetShowNoUnused(Rec.NoGlobalMethods);
         ShowNoUnusedLocalMethods := ObjectDetailsManagement.GetShowNoUnused(Rec.NoLocalMethods);
         ShowNoUnusedTotalVariables := ObjectDetailsManagement.GetShowNoUnused(Rec.NoTotalVariables);

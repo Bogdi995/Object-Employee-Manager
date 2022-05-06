@@ -47,6 +47,11 @@ table 50106 "Employee Leave Setup"
             Caption = 'Endpoint URI';
             DataClassification = CustomerContent;
         }
+        field(70; DatasetLink; Text[2048])
+        {
+            Caption = 'Dataset Link';
+            DataClassification = CustomerContent;
+        }
     }
 
     keys

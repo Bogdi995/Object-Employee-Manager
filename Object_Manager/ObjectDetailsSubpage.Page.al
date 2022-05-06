@@ -46,11 +46,11 @@ page 50103 "Object Details Subpage"
         Field: Record Field;
         Keys: Record "Key";
     begin
-        if (Rec.ObjectType = "Object Type"::Table) and (Rec.Type = Types::Field) then
+        if (Rec."Object Type" = "Object Type"::Table) and (Rec.Type = Types::Field) then
             if Field.Get(Rec.ObjectNo, Rec.ID) then
                 exit(Field.FieldName);
 
-        if (Rec.ObjectType = "Object Type"::Table) and (Rec.Type = Types::"Key") then
+        if (Rec."Object Type" = "Object Type"::Table) and (Rec.Type = Types::"Key") then
             if Keys.Get(Rec.ObjectNo, Rec.ID) then
                 exit(Keys."Key");
 
@@ -61,7 +61,7 @@ page 50103 "Object Details Subpage"
     var
         Field: Record Field;
     begin
-        if (Rec.ObjectType <> "Object Type"::Table) or (Rec.Type <> Types::Field) then
+        if (Rec."Object Type" <> "Object Type"::Table) or (Rec.Type <> Types::Field) then
             exit(Rec.Caption);
         if Field.Get(Rec.ObjectNo, Rec.ID) then
             exit(Field."Field Caption");
@@ -71,7 +71,7 @@ page 50103 "Object Details Subpage"
     var
         Field: Record Field;
     begin
-        if (Rec.ObjectType <> "Object Type"::Table) or (Rec.Type <> Types::Field) then
+        if (Rec."Object Type" <> "Object Type"::Table) or (Rec.Type <> Types::Field) then
             exit(Rec.TypeName);
         if Field.Get(Rec.ObjectNo, Rec.ID) then
             exit(Field."Type Name");

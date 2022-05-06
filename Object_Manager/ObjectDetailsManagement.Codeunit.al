@@ -82,7 +82,7 @@ codeunit 50100 "Object Details Management"
         ObjectDetails: Record "Object Details";
     begin
         AllObj.SetRange("Object Type", ObjectTypeAllObj);
-        ObjectDetails.SetRange(ObjectType, ObjectTypeObjectDetails);
+        ObjectDetails.SetRange("Object Type", ObjectTypeObjectDetails);
 
         if AllObj.FindSet() then
             if ObjectDetails.FindSet() then begin
@@ -107,7 +107,7 @@ codeunit 50100 "Object Details Management"
         ObjectDetails: Record "Object Details";
     begin
         ObjectDetails.Init();
-        ObjectDetails.Validate(ObjectType, TypeOfObject);
+        ObjectDetails.Validate("Object Type", TypeOfObject);
         ObjectDetails.Validate(ObjectNo, AllObj."Object ID");
         ObjectDetails.Insert(true);
     end;
@@ -135,7 +135,7 @@ codeunit 50100 "Object Details Management"
 
     procedure GetIsEnabled(ObjectDetails: Record "Object Details"): Boolean
     begin
-        if ObjectDetails.ObjectType in ["Object Type"::Table, "Object Type"::"TableExtension"] then
+        if ObjectDetails."Object Type" in ["Object Type"::Table, "Object Type"::"TableExtension"] then
             exit(true);
         exit(false);
     end;
@@ -156,7 +156,7 @@ codeunit 50100 "Object Details Management"
         TableNoFRef.SetRange(ObjectDetails.ObjectNo);
         FilterOutSystemValues(Type, FRef, RecRef);
 
-        ObjectDetailsLine.SetRange(ObjectType, ObjectDetails.ObjectType);
+        ObjectDetailsLine.SetRange("Object Type", ObjectDetails."Object Type");
         ObjectDetailsLine.SetRange(ObjectNo, ObjectDetails.ObjectNo);
         ObjectDetailsLine.SetRange(Type, Type);
 
@@ -270,7 +270,7 @@ codeunit 50100 "Object Details Management"
         TableNoFRef := RecRef.Field(1);
         FilterOutSystemValues(Type, FRef, RecRef);
 
-        ObjectDetailsLine.SetRange(ObjectType, "Object Type"::Table);
+        ObjectDetailsLine.SetRange("Object Type", "Object Type"::Table);
         ObjectDetailsLine.SetRange(Type, Type);
         AllObj.SetRange("Object Type", AllObj."Object Type"::Table);
         if AllObj.FindSet() then
@@ -290,7 +290,7 @@ codeunit 50100 "Object Details Management"
     begin
         ObjectDetailsLine.Init();
         ObjectDetailsLine.EntryNo := 0;
-        ObjectDetailsLine.Validate(ObjectType, ObjectType);
+        ObjectDetailsLine.Validate("Object Type", ObjectType);
         ObjectDetailsLine.Validate(ObjectNo, RecRef.Field(1).Value);
         ObjectDetailsLine.Validate(Type, Type);
         ObjectDetailsLine.Validate(ID, RecRef.Field(2).Value);
@@ -304,13 +304,13 @@ codeunit 50100 "Object Details Management"
         Progress: Dialog;
         Object: Text;
     begin
-        ObjectDetails.SetRange(ObjectType, ObjectDetails.ObjectType::Table);
+        ObjectDetails.SetRange("Object Type", ObjectDetails."Object Type"::Table);
 
         if ObjectDetails.FindSet() then begin
             Progress.Open(GetLabel(Type), Object);
             repeat
                 ObjectDetails.CalcFields(Name);
-                Object := Format(ObjectDetails.ObjectType) + ' ' + Format(ObjectDetails.ObjectNo) + ' ' + ObjectDetails.Name;
+                Object := Format(ObjectDetails."Object Type") + ' ' + Format(ObjectDetails.ObjectNo) + ' ' + ObjectDetails.Name;
                 Progress.Update();
 
                 if CheckUpdateTypeObjectDetailsLine(ObjectDetails, Type) then
@@ -582,7 +582,7 @@ codeunit 50100 "Object Details Management"
         ObjectDetailsLine: Record "Object Details Line";
         Types: List of [Text];
     begin
-        ObjectDetailsLine.SetRange(ObjectType, ObjectDetails.ObjectType);
+        ObjectDetailsLine.SetRange("Object Type", ObjectDetails."Object Type");
         ObjectDetailsLine.SetRange(ObjectNo, ObjectDetails.ObjectNo);
         ObjectDetailsLine.SetRange(Type, Type);
         if ObjectDetailsLine.FindSet() then
@@ -628,7 +628,7 @@ codeunit 50100 "Object Details Management"
     var
         ObjectDetailsLine: Record "Object Details Line";
     begin
-        ObjectDetailsLine.SetRange(ObjectType, ObjectDetails.ObjectType);
+        ObjectDetailsLine.SetRange("Object Type", ObjectDetails."Object Type");
         ObjectDetailsLine.SetRange(ObjectNo, ObjectDetails.ObjectNo);
         ObjectDetailsLine.SetRange(Type, Type);
         if not IsUsed then
@@ -654,7 +654,7 @@ codeunit 50100 "Object Details Management"
         ObjectDetailsLine: Record "Object Details Line";
         Member: Text;
     begin
-        ObjectDetailsLine.SetRange(ObjectType, ObjectDetails.ObjectType);
+        ObjectDetailsLine.SetRange("Object Type", ObjectDetails."Object Type");
         ObjectDetailsLine.SetRange(ObjectNo, ObjectDetails.ObjectNo);
         ObjectDetailsLine.SetRange(Type, Type);
 
@@ -705,7 +705,7 @@ codeunit 50100 "Object Details Management"
     begin
         ObjectDetailsLine.Init();
         ObjectDetailsLine.EntryNo := 0;
-        ObjectDetailsLine.Validate(ObjectType, ObjectDetails.ObjectType);
+        ObjectDetailsLine.Validate("Object Type", ObjectDetails."Object Type");
         ObjectDetailsLine.Validate(ObjectNo, ObjectDetails.ObjectNo);
         ObjectDetailsLine.Validate(Type, Type);
         ObjectDetailsLine.Validate(Name, Name);
@@ -748,7 +748,7 @@ codeunit 50100 "Object Details Management"
         ParametersNo := GetParametersNumberForGivenMethods(ObjectALCode, UnusedGlobalMethods);
         SearchText := GetSearchText(ObjectDetails);
 
-        ObjDetails.SetFilter(ObjectType, '%1|%2|%3|%4|%5|%6', "Object Type"::Table,
+        ObjDetails.SetFilter("Object Type", '%1|%2|%3|%4|%5|%6', "Object Type"::Table,
                                 "Object Type"::"TableExtension", "Object Type"::Page,
                                 "Object Type"::"PageExtension", "Object Type"::Codeunit,
                                 "Object Type"::Report);
@@ -778,7 +778,7 @@ codeunit 50100 "Object Details Management"
         PageLbl: Label 'Page';
         CodeunitLbl: Label 'Codeunit';
     begin
-        case ObjectDetails.ObjectType of
+        case ObjectDetails."Object Type" of
             "Object Type"::Table, "Object Type"::TableExtension:
                 exit(RecordLbl);
             "Object Type"::Page, "Object Type"::"PageExtension":
@@ -1242,17 +1242,17 @@ codeunit 50100 "Object Details Management"
         UpdateMethodsEventsLbl: Label 'The methods and events are beign updated...\\#1';
         NeedsUpdate: array[4] of Boolean;
     begin
-        ObjectDetails.SetFilter(ObjectType, '%1|%2|%3|%4|%5|%6', ObjectDetails.ObjectType::Table,
-                                    ObjectDetails.ObjectType::"TableExtension", ObjectDetails.ObjectType::Page,
-                                    ObjectDetails.ObjectType::"PageExtension", ObjectDetails.ObjectType::Codeunit,
-                                    ObjectDetails.ObjectType::Report);
+        ObjectDetails.SetFilter("Object Type", '%1|%2|%3|%4|%5|%6', ObjectDetails."Object Type"::Table,
+                                    ObjectDetails."Object Type"::"TableExtension", ObjectDetails."Object Type"::Page,
+                                    ObjectDetails."Object Type"::"PageExtension", ObjectDetails."Object Type"::Codeunit,
+                                    ObjectDetails."Object Type"::Report);
         ObjectDetails.SetFilter(ObjectNo, '<%1', 2000000000);
 
         if ObjectDetails.FindSet() then begin
             Progress.Open(UpdateMethodsEventsLbl, Object);
             repeat
                 ObjectDetails.CalcFields(Name);
-                Object := Format(ObjectDetails.ObjectType) + ' ' + Format(ObjectDetails.ObjectNo) + ' ' + ObjectDetails.Name;
+                Object := Format(ObjectDetails."Object Type") + ' ' + Format(ObjectDetails.ObjectNo) + ' ' + ObjectDetails.Name;
                 Progress.Update();
                 UpdateMethodsEvents(ObjectDetails, NeedsUpdate, false);
             until ObjectDetails.Next() = 0;
@@ -1634,16 +1634,16 @@ codeunit 50100 "Object Details Management"
         UpdateVariablesLbl: Label 'The variables are beign updated...\\#1';
         NeedsUpdate: array[4] of Boolean;
     begin
-        ObjectDetails.SetFilter(ObjectType, '%1|%2|%3|%4|%5', ObjectDetails.ObjectType::Table,
-                                    ObjectDetails.ObjectType::"TableExtension", ObjectDetails.ObjectType::Page,
-                                    ObjectDetails.ObjectType::"PageExtension", ObjectDetails.ObjectType::Codeunit);
+        ObjectDetails.SetFilter("Object Type", '%1|%2|%3|%4|%5', ObjectDetails."Object Type"::Table,
+                                    ObjectDetails."Object Type"::"TableExtension", ObjectDetails."Object Type"::Page,
+                                    ObjectDetails."Object Type"::"PageExtension", ObjectDetails."Object Type"::Codeunit);
         ObjectDetails.SetFilter(ObjectNo, '<%1', 2000000000);
 
         if ObjectDetails.FindSet() then begin
             Progress.Open(UpdateVariablesLbl, Object);
             repeat
                 ObjectDetails.CalcFields(Name);
-                Object := Format(ObjectDetails.ObjectType) + ' ' + Format(ObjectDetails.ObjectNo) + ' ' + ObjectDetails.Name;
+                Object := Format(ObjectDetails."Object Type") + ' ' + Format(ObjectDetails.ObjectNo) + ' ' + ObjectDetails.Name;
                 Progress.Update();
                 UpdateVariables(ObjectDetails, NeedsUpdate[1]);
                 UpdateUnusedVariables(ObjectDetails, NeedsUpdate[2]);
@@ -1673,7 +1673,7 @@ codeunit 50100 "Object Details Management"
         ObjectDetailsLine: Record "Object Details Line";
     begin
         SetCorrectRangeBasedOnRelationType(TableRelationsMetadata, ObjectDetails, RelationType);
-        ObjectDetailsLine.SetRange(ObjectType, ObjectDetails.ObjectType);
+        ObjectDetailsLine.SetRange("Object Type", ObjectDetails."Object Type");
         ObjectDetailsLine.SetRange(ObjectNo, ObjectDetails.ObjectNo);
         ObjectDetailsLine.SetRange(Type, RelationType);
 
@@ -1702,7 +1702,7 @@ codeunit 50100 "Object Details Management"
         TableRelationsMetadata: Record "Table Relations Metadata";
         ObjectDetailsLine: Record "Object Details Line";
     begin
-        ObjectDetailsLine.SetRange(ObjectType, ObjectDetails.ObjectType);
+        ObjectDetailsLine.SetRange("Object Type", ObjectDetails."Object Type");
         ObjectDetailsLine.SetRange(ObjectNo, ObjectDetails.ObjectNo);
         ObjectDetailsLine.SetRange(Type, RelationType);
 
@@ -1722,7 +1722,7 @@ codeunit 50100 "Object Details Management"
         ObjectDetailsLine: Record "Object Details Line";
     begin
         ObjectDetailsLine.Init();
-        ObjectDetailsLine.ObjectType := "Object Type"::Table;
+        ObjectDetailsLine."Object Type" := "Object Type"::Table;
         ObjectDetailsLine.ObjectNo := ObjectDetails.ObjectNo;
         ObjectDetailsLine.Type := RelationType;
         ObjectDetailsLine.ID := GetTableIDFromRelationType(TableRelationsMetadata, RelationType);
@@ -1838,22 +1838,22 @@ codeunit 50100 "Object Details Management"
             RecordLbl:
                 begin
                     Object := CopyStr(Object, 8, StrLen(Object) - 6);
-                    ObjectDetails.SetRange(ObjectType, ObjectDetails.ObjectType::Table);
+                    ObjectDetails.SetRange("Object Type", ObjectDetails."Object Type"::Table);
                 end;
             PageLbl:
                 begin
                     Object := CopyStr(Object, 6, StrLen(Object) - 4);
-                    ObjectDetails.SetRange(ObjectType, ObjectDetails.ObjectType::Page);
+                    ObjectDetails.SetRange("Object Type", ObjectDetails."Object Type"::Page);
                 end;
             ReportLbl:
                 begin
                     Object := CopyStr(Object, 8, StrLen(Object) - 6);
-                    ObjectDetails.SetRange(ObjectType, ObjectDetails.ObjectType::Report);
+                    ObjectDetails.SetRange("Object Type", ObjectDetails."Object Type"::Report);
                 end;
             CodeunitLbl:
                 begin
                     Object := CopyStr(Object, 10, StrLen(Object) - 8);
-                    ObjectDetails.SetRange(ObjectType, ObjectDetails.ObjectType::Codeunit);
+                    ObjectDetails.SetRange("Object Type", ObjectDetails."Object Type"::Codeunit);
                 end;
         end;
 
@@ -1863,7 +1863,7 @@ codeunit 50100 "Object Details Management"
         Object := DelChr(Object, '>', '"');
         ObjectDetails.SetRange(Name, Object);
         if ObjectDetails.FindFirst() then
-            exit(Format(ObjectDetails.ObjectType) + ' ' + Format(ObjectDetails.ObjectNo) + ' ' + GetObjectNameSearchText(ObjectDetails));
+            exit(Format(ObjectDetails."Object Type") + ' ' + Format(ObjectDetails.ObjectNo) + ' ' + GetObjectNameSearchText(ObjectDetails));
 
     end;
 
@@ -1919,7 +1919,7 @@ codeunit 50100 "Object Details Management"
     begin
         SearchText := GetSearchText(ObjectDetails);
 
-        ObjDetails.SetFilter(ObjectType, '%1|%2|%3|%4|%5|%6', "Object Type"::Table,
+        ObjDetails.SetFilter("Object Type", '%1|%2|%3|%4|%5|%6', "Object Type"::Table,
                              "Object Type"::"TableExtension", "Object Type"::Page,
                              "Object Type"::"PageExtension", "Object Type"::Codeunit,
                              "Object Type"::Report);
@@ -1937,7 +1937,7 @@ codeunit 50100 "Object Details Management"
     local procedure UpdateUsedInNoObjectsList(ObjectDetails: Record "Object Details"; var UsedInNoObjectsList: List of [Text]; ObjectALCode: Dotnet String; SearchText: Text)
     begin
         if ObjectALCode.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) <> -1 then
-            UsedInNoObjectsList.Add(Format(ObjectDetails.ObjectType) + ' ' + Format(ObjectDetails.ObjectNo) + ' ' + GetObjectNameSearchText(ObjectDetails));
+            UsedInNoObjectsList.Add(Format(ObjectDetails."Object Type") + ' ' + Format(ObjectDetails.ObjectNo) + ' ' + GetObjectNameSearchText(ObjectDetails));
     end;
 
     local procedure CheckObjectsObjectDetailsLine(ObjectDetails: Record "Object Details"; ObjectsList: List of [Text]; Type: Enum Types): Boolean
@@ -1945,7 +1945,7 @@ codeunit 50100 "Object Details Management"
         ObjectDetailsLine: Record "Object Details Line";
         Object: Text;
     begin
-        ObjectDetailsLine.SetRange(ObjectType, ObjectDetails.ObjectType);
+        ObjectDetailsLine.SetRange("Object Type", ObjectDetails."Object Type");
         ObjectDetailsLine.SetRange(ObjectNo, ObjectDetails.ObjectNo);
         ObjectDetailsLine.SetRange(Type, Type);
 
@@ -1995,7 +1995,7 @@ codeunit 50100 "Object Details Management"
         ObjectDetailsLine: Record "Object Details Line";
         Object: Text;
     begin
-        ObjectDetailsLine.SetRange(ObjectType, ObjectDetails.ObjectType);
+        ObjectDetailsLine.SetRange("Object Type", ObjectDetails."Object Type");
         ObjectDetailsLine.SetRange(ObjectNo, ObjectDetails.ObjectNo);
         ObjectDetailsLine.SetRange(Type, Type);
 
@@ -2012,7 +2012,7 @@ codeunit 50100 "Object Details Management"
         ObjectDetailsLine: Record "Object Details Line";
     begin
         ObjectDetailsLine.Init();
-        ObjectDetailsLine.ObjectType := ObjectDetails.ObjectType;
+        ObjectDetailsLine."Object Type" := ObjectDetails."Object Type";
         ObjectDetailsLine.ObjectNo := ObjectDetails.ObjectNo;
         ObjectDetailsLine.Type := Type;
         ObjectDetailsLine.ID := GetObjectID(Object);
@@ -2036,8 +2036,8 @@ codeunit 50100 "Object Details Management"
         ObjectDetailsLine.SetRange(Name, SearchText);
         if ObjectDetailsLine.FindSet() then
             repeat
-                if ObjDetails.Get(ObjectDetailsLine.ObjectType, ObjectDetailsLine.ObjectNo) then
-                    UsedInNoObjectsList.Add(Format(ObjDetails.ObjectType) + ' ' + Format(ObjDetails.ObjectNo) + ' ' + GetObjectNameSearchText(ObjDetails));
+                if ObjDetails.Get(ObjectDetailsLine."Object Type", ObjectDetailsLine.ObjectNo) then
+                    UsedInNoObjectsList.Add(Format(ObjDetails."Object Type") + ' ' + Format(ObjDetails.ObjectNo) + ' ' + GetObjectNameSearchText(ObjDetails));
             until ObjectDetailsLine.Next() = 0;
 
         if not CheckObjectsObjectDetailsLine(ObjectDetails, UsedInNoObjectsList, Types::"Object (External)") then
@@ -2051,7 +2051,7 @@ codeunit 50100 "Object Details Management"
         ObjectDetailsLine: Record "Object Details Line";
         NoTimesUsed: Integer;
     begin
-        ObjectDetailsLine.SetRange(ObjectType, ObjectDetails.ObjectType);
+        ObjectDetailsLine.SetRange("Object Type", ObjectDetails."Object Type");
         ObjectDetailsLine.SetRange(ObjectNo, ObjectDetails.ObjectNo);
         ObjectDetailsLine.SetRange(Type, Types::"Object (Used)");
         if ObjectDetailsLine.FindSet() then
@@ -2139,7 +2139,7 @@ codeunit 50100 "Object Details Management"
         NoTimesUsed: Integer;
         ObjectDetailsLine: Record "Object Details Line";
     begin
-        ObjectDetailsLine.SetRange(ObjectType, ObjectDetails.ObjectType);
+        ObjectDetailsLine.SetRange("Object Type", ObjectDetails."Object Type");
         ObjectDetailsLine.SetRange(ObjectNo, ObjectDetails.ObjectNo);
         ObjectDetailsLine.SetRange(Type, Types::"Object (Used)");
         if ObjectDetailsLine.FindSet() then
@@ -2159,20 +2159,20 @@ codeunit 50100 "Object Details Management"
         UpdateRelationsLbl: Label 'The relations are beign updated...\\#1';
         NeedsUpdate: array[4] of Boolean;
     begin
-        ObjectDetails.SetFilter(ObjectType, '%1|%2|%3|%4|%5|%6', ObjectDetails.ObjectType::Table,
-                                    ObjectDetails.ObjectType::"TableExtension", ObjectDetails.ObjectType::Page,
-                                    ObjectDetails.ObjectType::"PageExtension", ObjectDetails.ObjectType::Codeunit,
-                                    ObjectDetails.ObjectType::Report);
+        ObjectDetails.SetFilter("Object Type", '%1|%2|%3|%4|%5|%6', ObjectDetails."Object Type"::Table,
+                                    ObjectDetails."Object Type"::"TableExtension", ObjectDetails."Object Type"::Page,
+                                    ObjectDetails."Object Type"::"PageExtension", ObjectDetails."Object Type"::Codeunit,
+                                    ObjectDetails."Object Type"::Report);
         ObjectDetails.SetFilter(ObjectNo, '<%1', 2000000000);
 
         if ObjectDetails.FindSet() then begin
             Progress.Open(UpdateRelationsLbl, Object);
             repeat
                 ObjectDetails.CalcFields(Name);
-                Object := Format(ObjectDetails.ObjectType) + ' ' + Format(ObjectDetails.ObjectNo) + ' ' + ObjectDetails.Name;
+                Object := Format(ObjectDetails."Object Type") + ' ' + Format(ObjectDetails.ObjectNo) + ' ' + ObjectDetails.Name;
                 Progress.Update();
 
-                if ObjectDetails.ObjectType = ObjectDetails.ObjectType::Table then begin
+                if ObjectDetails."Object Type" = ObjectDetails."Object Type"::Table then begin
                     UpdateRelations(ObjectDetails, NeedsUpdate[1], Types::"Relation (External)");
                     UpdateRelations(ObjectDetails, NeedsUpdate[2], Types::"Relation (Internal)");
                 end;
@@ -2190,17 +2190,17 @@ codeunit 50100 "Object Details Management"
         UpdateRelationsLbl: Label 'The usage of objects is being updated...\\#1';
         UsageSuccessfullyUpdatedLbl: Label 'The usage of all objects is successfully updated.';
     begin
-        ObjectDetails.SetFilter(ObjectType, '%1|%2|%3|%4|%5|%6', ObjectDetails.ObjectType::Table,
-                                    ObjectDetails.ObjectType::"TableExtension", ObjectDetails.ObjectType::Page,
-                                    ObjectDetails.ObjectType::"PageExtension", ObjectDetails.ObjectType::Codeunit,
-                                    ObjectDetails.ObjectType::Report);
+        ObjectDetails.SetFilter("Object Type", '%1|%2|%3|%4|%5|%6', ObjectDetails."Object Type"::Table,
+                                    ObjectDetails."Object Type"::"TableExtension", ObjectDetails."Object Type"::Page,
+                                    ObjectDetails."Object Type"::"PageExtension", ObjectDetails."Object Type"::Codeunit,
+                                    ObjectDetails."Object Type"::Report);
         ObjectDetails.SetFilter(ObjectNo, '<%1', 2000000000);
 
         if ObjectDetails.FindSet() then begin
             Progress.Open(UpdateRelationsLbl, Object);
             repeat
                 ObjectDetails.CalcFields(Name);
-                Object := Format(ObjectDetails.ObjectType) + ' ' + Format(ObjectDetails.ObjectNo) + ' ' + ObjectDetails.Name;
+                Object := Format(ObjectDetails."Object Type") + ' ' + Format(ObjectDetails.ObjectNo) + ' ' + ObjectDetails.Name;
                 Progress.Update();
                 UpdateAllUsedInNoOfObjects(ObjectDetails);
                 UpdateNoTimesUsed(ObjectDetails);
@@ -2219,7 +2219,7 @@ codeunit 50100 "Object Details Management"
     var
         AllObj: Record AllObj;
     begin
-        case ObjectDetails.ObjectType of
+        case ObjectDetails."Object Type" of
             "Object Type"::Table:
                 exit(AllObj."Object Type"::Table);
             "Object Type"::"TableExtension":

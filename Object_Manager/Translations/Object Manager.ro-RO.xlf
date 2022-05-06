@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
-  <file datatype="xml" source-language="en-US" target-language="de-DE" original="Object Manager">
+  <file datatype="xml" source-language="en-US" target-language="ro-RO" original="Object Manager">
     <body>
       <group id="body">
         <trans-unit id="Table 2260039069 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
@@ -137,115 +137,115 @@
         </trans-unit>
         <trans-unit id="Table 3526115305 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object Details</source>
-          <target state="Objektdetails"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3526115305 - Field 2879900210 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Caption</source>
-          <target state="Beschriftung"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field Caption - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3526115305 - Field 2961552353 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Name</source>
-          <target state="Name"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field Name - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3526115305 - Field 613261596 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No. of Business Events</source>
-          <target state="Anzahl der Business Events"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field NoBusinessEvents - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3526115305 - Field 3389534604 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No. of Fields</source>
-          <target state="Anzahl der Felder"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field NoFields - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3526115305 - Field 1588700698 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No. of Global Methods</source>
-          <target state="Anzahl der globalen Methoden"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field NoGlobalMethods - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3526115305 - Field 2234269193 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No. of Global Variables</source>
-          <target state="Anzahl der globalen Variablen"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field NoGlobalVariables - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3526115305 - Field 334014308 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No. of Integration Events</source>
-          <target state="Anzahl der Integration Events"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field NoIntegrationEvents - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3526115305 - Field 2577746007 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No. of Keys</source>
-          <target state="Anzahl der Schlüssel"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field NoKeys - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3526115305 - Field 562526676 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No. of Local Methods</source>
-          <target state="Anzahl der lokalen Methoden"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field NoLocalMethods - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3526115305 - Field 963562025 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No. of Objects Used in</source>
-          <target state="Anzahl der Objekte verwendet in"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field NoObjectsUsedIn - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3526115305 - Field 4116426244 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No. of Times Used</source>
-          <target state="Anzahl der Verwendungen"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field NoTimesUsed - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3526115305 - Field 654246682 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No. of Total Variables</source>
-          <target state="Anzahl der Gesamtvariablen"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field NoTotalVariables - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3526115305 - Field 858146990 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No. of Unused Global Methods</source>
-          <target state="Anzahl der nicht verwendeten globalen Methoden"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field NoUnusedGlobalMethods - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3526115305 - Field 1549279293 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No. of Unused Global Variables</source>
-          <target state="Anzahl der nicht verwendeten globalen Variablen"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field NoUnusedGlobalVariables - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3526115305 - Field 857568640 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No. of Unused Local Methods</source>
-          <target state="Anzahl der nicht verwendeten lokalen Methoden"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field NoUnusedLocalMethods - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3526115305 - Field 84662585 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No. of Unused Parameters</source>
-          <target state="Anzahl der nicht verwendeten Parameter"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field NoUnusedParameters - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3526115305 - Field 791912353 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No. of Unused Return Values</source>
-          <target state="Anzahl der nicht verwendeten Rückgabewerte"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field NoUnusedReturnValues - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3526115305 - Field 3619688046 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No. of Unused Total Variables</source>
-          <target state="Anzahl der nicht verwendeten Gesamtvariablen"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field NoUnusedTotalVariables - Property Caption</note>
         </trans-unit>
@@ -257,13 +257,13 @@
         </trans-unit>
         <trans-unit id="Table 3526115305 - Field 1292293280 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object No.</source>
-          <target state="Objektnr."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field ObjectNo - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3526115305 - Field 4160745019 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object Subtype</source>
-          <target state="Objekt Untertyp"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field ObjectSubtype - Property Caption</note>
         </trans-unit>
@@ -275,25 +275,25 @@
         </trans-unit>
         <trans-unit id="Table 3526115305 - Field 2467211492 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>ObjectTypeCopy</source>
-          <target state="ObjektTypKopie"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field ObjectTypeCopy - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3526115305 - Field 2333076789 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Primary Key</source>
-          <target state="Primärschlüssel"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field PrimaryKey - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3526115305 - Field 2175232469 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Relations From</source>
-          <target state="Beziehungen von"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field RelationsFrom - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3526115305 - Field 1472867162 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Relations To</source>
-          <target state="Beziehungen zu"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field RelationsTo - Property Caption</note>
         </trans-unit>
@@ -305,37 +305,37 @@
         </trans-unit>
         <trans-unit id="Table 3526115305 - Field 1211769881 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Used in No. of Objects</source>
-          <target state="Verwendet in Anzahl von Objekten"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field UsedInNoObjects - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2044131987 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object Details Line</source>
-          <target state="Objektdetails Zeile"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details Line - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2044131987 - Field 2879900210 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Caption</source>
-          <target state="Beschriftung"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details Line - Field Caption - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2044131987 - Field 1016130111 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Entry No.</source>
-          <target state="Eintragsnummer"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details Line - Field EntryNo - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2044131987 - Field 3641927271 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>ID</source>
-          <target state="ID"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details Line - Field ID - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2044131987 - Field 2961552353 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Name</source>
-          <target state="Name"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details Line - Field Name - Property Caption</note>
         </trans-unit>
@@ -353,19 +353,19 @@
         </trans-unit>
         <trans-unit id="Table 2044131987 - Field 1292293280 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object No.</source>
-          <target state="Objektnr."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details Line - Field ObjectNo - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2044131987 - Field 1878130204 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Type</source>
-          <target state="Typ"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details Line - Field Type - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2044131987 - Field 1674963993 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Type Name</source>
-          <target state="Typenname"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details Line - Field TypeName - Property Caption</note>
         </trans-unit>
@@ -599,7 +599,7 @@
         </trans-unit>
         <trans-unit id="Codeunit 1029530680 - Method 1901864069 - NamedType 308218838" size-unit="char" translate="yes" xml:space="preserve">
           <source>$systemId</source>
-          <target state="$systemId"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method FilterOutSystemValues - NamedType SystemKey</note>
         </trans-unit>
@@ -971,139 +971,139 @@
         </trans-unit>
         <trans-unit id="Page 683374773 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object Details Card</source>
-          <target state="Objektdetails Karte"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Control 2879900210 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the caption of the object.</source>
-          <target state="Gibt die Beschriftung des Objekts an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control Caption - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Control 1571018173 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Methods and Events</source>
-          <target state="Methoden und Ereignisse"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control MethodsEvents - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Control 613261596 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of business events.</source>
-          <target state="Gibt die Anzahl der Business Events an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control NoBusinessEvents - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Control 1588700698 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of global methods.</source>
-          <target state="Gibt die Anzahl der globalen Methoden an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control NoGlobalMethods - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Control 334014308 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of integration events.</source>
-          <target state="Gibt die Anzahl der Integration Events an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control NoIntegrationEvents - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Control 562526676 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of local methods.</source>
-          <target state="Gibt die Anzahl der lokalen Methoden an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control NoLocalMethods - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Control 84662585 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of unused parameters.</source>
-          <target state="Gibt die Anzahl der nicht verwendeten Parameter an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control NoUnusedParameters - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Control 791912353 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of unused return values.</source>
-          <target state="Gibt die Anzahl der nicht verwendeten Rückgabewerte an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control NoUnusedReturnValues - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Control 858146990 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>This field is visible only if the number of unused global methods is different than 0.</source>
-          <target state="Gibt die Anzahl der nicht verwendeten globalen Methoden an"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control NoUnusedGlobalMethods - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Control 857568640 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>This field is visible only if the number of unused local methods is different than 0.</source>
-          <target state="Gibt die Anzahl der nicht verwendeten lokalen Methoden an"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control NoUnusedLocalMethods - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Control 2961552353 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the name of the object.</source>
-          <target state="Gibt den Namen des Objekts an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control Name - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Control 3389534604 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of fields the object has.</source>
-          <target state="Gibt die Anzahl der Felder an, die das Objekt hat."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control NoFields - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Control 2577746007 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of keys the object has.</source>
-          <target state="Specifies the number of keys the object has."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control NoKeys - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Control 1292293280 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of the object.</source>
-          <target state="Gibt die Nummer des Objekts an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control ObjectNo - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Control 4766335 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the type of the object.</source>
-          <target state="Gibt den Typ des Objekts an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control ObjectType - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Control 2333076789 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the primary key of the object.</source>
-          <target state="Gibt den Primärschlüssel des Objekts an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control PrimaryKey - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Control 963562025 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of objects used in the object.</source>
-          <target state="Gibt die Anzahl der im Objekt verwendeten Objekte an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control NoObjectsUsedIn - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Control 4116426244 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of times the object was used.</source>
-          <target state="Gibt an, wie oft das Objekt verwendet wurde."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control NoTimesUsed - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Control 2175232469 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of relations the object has from other objects.</source>
-          <target state="Gibt die Anzahl der Beziehungen an, die das Objekt von anderen Objekten hat."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control RelationsFrom - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Control 1472867162 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of relations the object has to other objects.</source>
-          <target state="Gibt die Anzahl der Beziehungen an, die das Objekt zu anderen Objekten hat."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control RelationsTo - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Control 1211769881 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of objects the object is used in.</source>
-          <target state="Gibt die Anzahl der Objekte an, in denen das Objekt verwendet wird."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control UsedInNoObjects - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Control 4160745019 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>This field is visible only when the type of the object is Codeunit.</source>
-          <target state="Gibt den Subtyp des Objekts an. Dieses Feld ist nur sichtbar, wenn der Typ des Objekts Codeunit ist."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control ObjectSubtype - Property ToolTip</note>
         </trans-unit>
@@ -1115,31 +1115,31 @@
         </trans-unit>
         <trans-unit id="Page 683374773 - Control 3344066439 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Variables</source>
-          <target state="Variablen"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control Variables - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Control 2234269193 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of global variables.</source>
-          <target state="Gibt die Anzahl der globalen Variablen an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control NoGlobalVariables - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Control 654246682 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the total number of variables.</source>
-          <target state="Gibt die Gesamtzahl der Variablen an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control NoTotalVariables - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Control 1549279293 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>This field is visible only if the number of global variables is different than 0.</source>
-          <target state="Gibt die Anzahl der nicht verwendeten globalen Variablen an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control NoUnusedGlobalVariables - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Control 3619688046 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>This field is visible only if the total number of variables is different than 0.</source>
-          <target state="Gibt die Gesamtzahl der nicht verwendeten Variablen an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control NoUnusedTotalVariables - Property ToolTip</note>
         </trans-unit>
@@ -1211,7 +1211,7 @@
         </trans-unit>
         <trans-unit id="Page 683374773 - Action 459552838 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Update Methods and Events</source>
-          <target state="Methoden und Ereignisse aktualisieren"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateMethodsEvents - Property Caption</note>
         </trans-unit>
@@ -1241,7 +1241,7 @@
         </trans-unit>
         <trans-unit id="Page 683374773 - Action 1001057769 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Update Objects</source>
-          <target state="Objekte aktualisieren"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateObjects - Property Caption</note>
         </trans-unit>
@@ -1325,25 +1325,25 @@
         </trans-unit>
         <trans-unit id="Page 3625123773 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object Details Line List</source>
-          <target state="Objektdetails Zeilen Übersicht"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3625123773 - Control 2879900210 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the caption of the data.</source>
-          <target state="Gibt die Beschriftung der Daten an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Control Caption - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3625123773 - Control 3641927271 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the ID of the data.</source>
-          <target state="Gibt die ID der Daten an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Control ID - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3625123773 - Control 2961552353 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the name of the data.</source>
-          <target state="Gibt den Namen der Daten an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Control Name - Property ToolTip</note>
         </trans-unit>
@@ -1355,31 +1355,31 @@
         </trans-unit>
         <trans-unit id="Page 3625123773 - Control 1292293280 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of the object.</source>
-          <target state="Gibt die Nummer des Objekts an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Control ObjectNo - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3625123773 - Control 4766335 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the type of the object.</source>
-          <target state="Gibt den Typ des Objekts an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Control ObjectType - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3625123773 - Control 1878130204 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the type of the data.</source>
-          <target state="Gibt den Typ der Daten an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Control Type - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3625123773 - Control 1674963993 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the data type and its length.</source>
-          <target state="Gibt den Datentyp und seine Länge an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Control TypeName - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3625123773 - Action 544469732 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Update Fields</source>
-          <target state="Felder aktualisieren"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Action UpdateFields - Property Caption</note>
         </trans-unit>
@@ -1403,7 +1403,7 @@
         </trans-unit>
         <trans-unit id="Page 3625123773 - Action 3473419439 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Update Keys</source>
-          <target state="Schlüssel aktualisieren"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Action UpdateKeys - Property Caption</note>
         </trans-unit>
@@ -1433,151 +1433,151 @@
         </trans-unit>
         <trans-unit id="Page 2172956895 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object Details List</source>
-          <target state="Objektdetails Übersicht"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 2172956895 - Control 2879900210 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the caption of the object.</source>
-          <target state="Gibt die Beschriftung des Objekts an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Control Caption - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2172956895 - Control 2961552353 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the name of the object.</source>
-          <target state="Gibt den Namen des Objekts an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Control Name - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2172956895 - Control 613261596 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of business events.</source>
-          <target state="Gibt die Anzahl der Business Eregnisse an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Control NoBusinessEvents - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2172956895 - Control 3389534604 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of fields the object has.</source>
-          <target state="Gibt die Anzahl der Felder an, die das Objekt hat."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Control NoFields - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2172956895 - Control 1588700698 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of global methods.</source>
-          <target state="Gibt die Anzahl der globalen Methoden an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Control NoGlobalMethods - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2172956895 - Control 2234269193 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of global variables.</source>
-          <target state="Gibt die Anzahl der globalen Variablen an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Control NoGlobalVariables - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2172956895 - Control 334014308 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of integration events.</source>
-          <target state="Gibt die Anzahl der Integration Eregnisse an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Control NoIntegrationEvents - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2172956895 - Control 2577746007 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of keys the object has.</source>
-          <target state="Gibt die Anzahl der Schlüssel an, die das Objekt hat."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Control NoKeys - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2172956895 - Control 562526676 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of local methods.</source>
-          <target state="Gibt die Anzahl der lokalen Methoden an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Control NoLocalMethods - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2172956895 - Control 963562025 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of objects used in the object.</source>
-          <target state="Gibt die Anzahl der im Objekt verwendeten Objekte an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Control NoObjectsUsedIn - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2172956895 - Control 4116426244 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of times the object was used.</source>
-          <target state="Gibt an, wie oft das Objekt verwendet wurde."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Control NoTimesUsed - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2172956895 - Control 654246682 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the total number of variables.</source>
-          <target state="Gibt die Gesamtzahl der Variablen an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Control NoTotalVariables - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2172956895 - Control 858146990 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of unused global methods.</source>
-          <target state="Gibt die Anzahl der nicht verwendeten globalen Methoden an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Control NoUnusedGlobalMethods - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2172956895 - Control 1549279293 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of unused global variables.</source>
-          <target state="Gibt die Anzahl der nicht verwendeten globalen Variablen an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Control NoUnusedGlobalVariables - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2172956895 - Control 857568640 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of unused local methods.</source>
-          <target state="Gibt die Anzahl der nicht verwendeten lokalen Methoden an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Control NoUnusedLocalMethods - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2172956895 - Control 84662585 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of unused parameters.</source>
-          <target state="Gibt die Anzahl der nicht verwendeten Parameter an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Control NoUnusedParameters - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2172956895 - Control 791912353 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of unused return values.</source>
-          <target state="Gibt die Anzahl der nicht verwendeten Rückgabewerte an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Control NoUnusedReturnValues - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2172956895 - Control 3619688046 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the total number of unused variables.</source>
-          <target state="Gibt die Gesamtzahl der nicht verwendeten Variablen an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Control NoUnusedTotalVariables - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2172956895 - Control 1292293280 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of the object.</source>
-          <target state="Gibt die Nummer des Objekts an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Control ObjectNo - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2172956895 - Control 4766335 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the type of the object.</source>
-          <target state="Gibt den Typ des Objekts an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Control ObjectType - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2172956895 - Control 2333076789 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the primary key of the object.</source>
-          <target state="Gibt den Primärschlüssel des Objekts an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Control PrimaryKey - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2172956895 - Control 2175232469 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of relations the object has from other objects.</source>
-          <target state="Gibt die Anzahl der Beziehungen an, die das Objekt von anderen Objekten hat."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Control RelationsFrom - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2172956895 - Control 1472867162 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of relations the object has to other objects.</source>
-          <target state="Gibt die Anzahl der Beziehungen an, die das Objekt zu anderen Objekten hat."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Control RelationsTo - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2172956895 - Control 1211769881 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of objects the object is used in.</source>
-          <target state="Gibt die Anzahl der Objekte an, in denen das Objekt verwendet wird."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Control UsedInNoObjects - Property ToolTip</note>
         </trans-unit>
@@ -1697,43 +1697,43 @@
         </trans-unit>
         <trans-unit id="Page 2096197876 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object Details Subpage</source>
-          <target state="Objektdetails Unterseite"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Subpage - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 2096197876 - Control 2879900210 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the caption of the data.</source>
-          <target state="Gibt die Beschriftung der Daten an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Subpage - Control Caption - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2096197876 - Control 3641927271 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the ID of the data.</source>
-          <target state="Gibt die ID der Daten an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Subpage - Control ID - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2096197876 - Control 2961552353 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the name of the data.</source>
-          <target state="Gibt den Namen der Daten an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Subpage - Control Name - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2096197876 - Control 1878130204 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the type of the data.</source>
-          <target state="Gibt den Typ der Daten an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Subpage - Control Type - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2096197876 - Control 1674963993 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the data type and its length.</source>
-          <target state="Gibt den Datentyp und seine Länge an."/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Subpage - Control TypeName - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2942433581 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object Metadata Page</source>
-          <target state="Objektdetails Zeilen Übersicht"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Metadata Page - Property Caption</note>
         </trans-unit>
@@ -1991,73 +1991,73 @@
         </trans-unit>
         <trans-unit id="Enum 1085746399 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Type</source>
-          <target state="Typ"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Object Type - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 1085746399 - EnumValue 1392872285 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Codeunit</source>
-          <target state="Codeunit"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Object Type - EnumValue Codeunit - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 1085746399 - EnumValue 3692015037 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Enum</source>
-          <target state="Enum"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Object Type - EnumValue Enum - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 1085746399 - EnumValue 1371073078 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>EnumExtension</source>
-          <target state="EnumExtension"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Object Type - EnumValue EnumExtension - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 1085746399 - EnumValue 1658707567 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>MenuSuite</source>
-          <target state="MenuSuite"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Object Type - EnumValue MenuSuite - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 1085746399 - EnumValue 438909893 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Page</source>
-          <target state="Seite"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Object Type - EnumValue Page - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 1085746399 - EnumValue 3382280526 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>PageExtension</source>
-          <target state="SeiteErweiterung"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Object Type - EnumValue PageExtension - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 1085746399 - EnumValue 1269526094 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Query</source>
-          <target state="Abfrage"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Object Type - EnumValue Query - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 1085746399 - EnumValue 3375155882 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Report</source>
-          <target state="Bericht"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Object Type - EnumValue Report - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 1085746399 - EnumValue 1500409770 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Table</source>
-          <target state="Tabelle"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Object Type - EnumValue Table - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 1085746399 - EnumValue 4084081897 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>TableExtension</source>
-          <target state="TabelleErweiterung"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Object Type - EnumValue TableExtension - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 1085746399 - EnumValue 1979631940 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>XMLPort</source>
-          <target state="XMLPort"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Object Type - EnumValue XMLPort - Property Caption</note>
         </trans-unit>
@@ -2093,37 +2093,37 @@
         </trans-unit>
         <trans-unit id="Enum 2388510493 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Type</source>
-          <target state="Typ"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Types - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 2388510493 - EnumValue 1072962558 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Business Event</source>
-          <target state="Business Ereignis"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Types - EnumValue Business Event - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 2388510493 - EnumValue 1884737638 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Field</source>
-          <target state="Feld"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Types - EnumValue Field - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 2388510493 - EnumValue 224824536 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Global Method</source>
-          <target state="Globale Methode"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Types - EnumValue Global Method - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 2388510493 - EnumValue 2775910383 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Global Variable</source>
-          <target state="Globale Funktion"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Types - EnumValue Global Variable - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 2388510493 - EnumValue 573893934 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Integration Event</source>
-          <target state="Integration Ereignis"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Types - EnumValue Integration Event - Property Caption</note>
         </trans-unit>
@@ -2135,19 +2135,19 @@
         </trans-unit>
         <trans-unit id="Enum 2388510493 - EnumValue 3348941625 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Key</source>
-          <target state="Schlüssel"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Types - EnumValue Key - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 2388510493 - EnumValue 2557494494 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Local Method</source>
-          <target state="Lokale Methode"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Types - EnumValue Local Method - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 2388510493 - EnumValue 1438539573 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Local Variable</source>
-          <target state="Lokale Variable"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Types - EnumValue Local Variable - Property Caption</note>
         </trans-unit>
@@ -2171,7 +2171,7 @@
         </trans-unit>
         <trans-unit id="Enum 2388510493 - EnumValue 75106347 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Parameter</source>
-          <target state="Parameter"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Types - EnumValue Parameter - Property Caption</note>
         </trans-unit>
@@ -2189,7 +2189,7 @@
         </trans-unit>
         <trans-unit id="Enum 2388510493 - EnumValue 3599159403 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Return Value</source>
-          <target state="Rückgabewert"/>
+          <target state="needs-translation"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Types - EnumValue Return Value - Property Caption</note>
         </trans-unit>

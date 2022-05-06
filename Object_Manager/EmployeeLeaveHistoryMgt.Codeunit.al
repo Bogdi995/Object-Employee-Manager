@@ -3,6 +3,7 @@ codeunit 50105 "Employee Leave History Mgt"
     procedure UpdateHistory();
     var
         EmployeeLeaveHistory: Record "Employee Leave History";
+        EmployeeLeaveSetup: Record "Employee Leave Setup";
         Client: HttpClient;
         ResponseMessage: HttpResponseMessage;
         JArray: JsonArray;
@@ -14,16 +15,16 @@ codeunit 50105 "Employee Leave History Mgt"
         UpdateEmployeeLeaveHistory: Label 'The employee leave history is being updated...#1';
         UserAgentLbl: Label 'User-Agent';
         BusinessCentralLbl: Label 'Business Central';
-        EmployeeLeaveDataJsonLbl: Label 'https://dkatsonpublicdatasource.blob.core.windows.net/machinelearning/BC-ML-Prediction-API-Blog-Employee leave data.json';
         WebServiceFailedLbl: Label 'The call to the web service failed.';
         WebServiceErrorLbl: Label 'The web service returned an error message:\ Status code: %1 \ Description: %2';
         DataRefreshedSuccessfullyLbl: Label 'History updated successfully!';
         Index: Integer;
     begin
+        EmployeeLeaveSetup.Get();
         EmployeeLeaveHistory.DeleteAll();
 
         Client.DefaultRequestHeaders.Add(UserAgentLbl, BusinessCentralLbl);
-        if not Client.Get(EmployeeLeaveDataJsonLbl, ResponseMessage) then
+        if not Client.Get(EmployeeLeaveSetup.DatasetLink, ResponseMessage) then
             Error(WebServiceFailedLbl);
 
         if not ResponseMessage.IsSuccessStatusCode then
@@ -86,13 +87,4 @@ codeunit 50105 "Employee Leave History Mgt"
         if not JObject.Get(TokenKey, JToken) then
             Error(ErrorTokenKeyLbl, TokenKey);
     end;
-
-    procedure SelectJsonToken(JObject: JsonObject; Path: text) JToken: JsonToken;
-    var
-        ErrorTokenPathLbl: Label 'Could not find a token with path %1';
-    begin
-        if not JObject.SelectToken(Path, JToken) then
-            Error(ErrorTokenPathLbl, Path);
-    end;
-
 }
