@@ -39,6 +39,12 @@ report 50100 "Object Details Customer View"
             column(FieldsTxt; FieldsTxt)
             {
             }
+            column(FieldsCount; FieldsCount)
+            {
+            }
+            column(FieldsURL; FieldsURL)
+            {
+            }
             column(Object_Type_Fields; "Object Type")
             {
             }
@@ -54,21 +60,28 @@ report 50100 "Object Details Customer View"
             column(Name_Fields; Name)
             {
             }
-            column(Caption_Fields; Caption)
-            {
-            }
             column(TypeName_Fields; TypeName)
             {
             }
 
             trigger OnPreDataItem()
             begin
-                ObjectFields.SetRange("Object Type", "Object Type");
-                ObjectFields.SetRange(ObjectNo, ObjectNo);
+                ObjectFields.SetRange("Object Type", ObjType);
+                ObjectFields.SetRange(ObjectNo, ObjNo);
                 ObjectFields.SetRange(Type, ObjectFields.Type::Field);
 
                 FieldsCount := ObjectFields.Count;
-                FieldsURL := GetUrl(ClientType::Default, CompanyName, ObjectType::Page, Page::"Object Details Line List", ObjectFields, true);
+                FieldsURL := GetUrl(ClientType::Web, CompanyName, ObjectType::Page, Page::"Object Details Line List", ObjectFields, true);
+            end;
+
+            trigger OnAfterGetRecord()
+            var
+                Field: Record Field;
+            begin
+                if Field.Get(ObjectNo, ID) then begin
+                    Name := Field.FieldName;
+                    TypeName := Field."Type Name";
+                end;
             end;
         }
 
@@ -77,6 +90,12 @@ report 50100 "Object Details Customer View"
             DataItemTableView = sorting(EntryNo) order(ascending);
 
             column(KeysTxt; KeysTxt)
+            {
+            }
+            column(KeysCount; KeysCount)
+            {
+            }
+            column(KeysURL; KeysURL)
             {
             }
             column(Object_Type_Keys; "Object Type")
@@ -97,12 +116,20 @@ report 50100 "Object Details Customer View"
 
             trigger OnPreDataItem()
             begin
-                ObjectKeys.SetRange("Object Type", "Object Type");
-                ObjectKeys.SetRange(ObjectNo, ObjectNo);
+                ObjectKeys.SetRange("Object Type", ObjType);
+                ObjectKeys.SetRange(ObjectNo, ObjNo);
                 ObjectKeys.SetRange(Type, ObjectKeys.Type::"Key");
 
                 KeysCount := ObjectKeys.Count;
-                KeysURL := GetUrl(ClientType::Default, CompanyName, ObjectType::Page, Page::"Object Details Line List", ObjectKeys, true);
+                KeysURL := GetUrl(ClientType::Web, CompanyName, ObjectType::Page, Page::"Object Details Line List", ObjectKeys, true);
+            end;
+
+            trigger OnAfterGetRecord()
+            var
+                Keys: Record "Key";
+            begin
+                if Keys.Get(ObjectNo, ID) then
+                    Name := Keys."Key";
             end;
         }
 
@@ -111,6 +138,12 @@ report 50100 "Object Details Customer View"
             DataItemTableView = sorting(EntryNo) order(ascending);
 
             column(EventsTxt; EventsTxt)
+            {
+            }
+            column(EventsCount; EventsCount)
+            {
+            }
+            column(EventsURL; EventsURL)
             {
             }
             column(Object_Type_Events; "Object Type")
@@ -128,12 +161,12 @@ report 50100 "Object Details Customer View"
 
             trigger OnPreDataItem()
             begin
-                ObjectEvents.SetRange("Object Type", "Object Type");
-                ObjectEvents.SetRange(ObjectNo, ObjectNo);
+                ObjectEvents.SetRange("Object Type", ObjType);
+                ObjectEvents.SetRange(ObjectNo, ObjNo);
                 ObjectEvents.SetFilter(Type, '%1|%2', ObjectMethods.Type::"Business Event", ObjectMethods.Type::"Integration Event");
 
                 EventsCount := ObjectEvents.Count;
-                EventsURL := GetUrl(ClientType::Default, CompanyName, ObjectType::Page, Page::"Object Details Line List", ObjectEvents, true);
+                EventsURL := GetUrl(ClientType::Web, CompanyName, ObjectType::Page, Page::"Object Details Line List", ObjectEvents, true);
             end;
         }
 
@@ -142,6 +175,12 @@ report 50100 "Object Details Customer View"
             DataItemTableView = sorting(EntryNo) order(ascending);
 
             column(MethodsTxt; MethodsTxt)
+            {
+            }
+            column(MethodsCount; MethodsCount)
+            {
+            }
+            column(MethodsURL; MethodsURL)
             {
             }
             column(Object_Type_Methods; "Object Type")
@@ -159,12 +198,12 @@ report 50100 "Object Details Customer View"
 
             trigger OnPreDataItem()
             begin
-                ObjectMethods.SetRange("Object Type", "Object Type");
-                ObjectMethods.SetRange(ObjectNo, ObjectNo);
+                ObjectMethods.SetRange("Object Type", ObjType);
+                ObjectMethods.SetRange(ObjectNo, ObjNo);
                 ObjectMethods.SetFilter(Type, '%1|%2', ObjectMethods.Type::"Global Method", ObjectMethods.Type::"Local Method");
 
                 MethodsCount := ObjectMethods.Count;
-                MethodsURL := GetUrl(ClientType::Default, CompanyName, ObjectType::Page, Page::"Object Details Line List", ObjectMethods, true);
+                MethodsURL := GetUrl(ClientType::Web, CompanyName, ObjectType::Page, Page::"Object Details Line List", ObjectMethods, true);
             end;
         }
 
@@ -173,6 +212,12 @@ report 50100 "Object Details Customer View"
             DataItemTableView = sorting(EntryNo) order(ascending);
 
             column(UnusedMethodsTxt; UnusedMethodsTxt)
+            {
+            }
+            column(UnusedMethodsCount; UnusedMethodsCount)
+            {
+            }
+            column(UnusedMethodsURL; UnusedMethodsURL)
             {
             }
             column(Object_Type_UnusedMethods; "Object Type")
@@ -190,13 +235,13 @@ report 50100 "Object Details Customer View"
 
             trigger OnPreDataItem()
             begin
-                ObjectUnusedMethods.SetRange("Object Type", "Object Type");
-                ObjectUnusedMethods.SetRange(ObjectNo, ObjectNo);
+                ObjectUnusedMethods.SetRange("Object Type", ObjType);
+                ObjectUnusedMethods.SetRange(ObjectNo, ObjNo);
                 ObjectUnusedMethods.SetFilter(Type, '%1|%2', ObjectUnusedMethods.Type::"Global Method", ObjectMethods.Type::"Local Method");
                 ObjectUnusedMethods.SetRange(Used, false);
 
                 UnusedMethodsCount := ObjectUnusedMethods.Count;
-                UnusedMethodsURL := GetUrl(ClientType::Default, CompanyName, ObjectType::Page, Page::"Object Details Line List", ObjectUnusedMethods, true);
+                UnusedMethodsURL := GetUrl(ClientType::Web, CompanyName, ObjectType::Page, Page::"Object Details Line List", ObjectUnusedMethods, true);
             end;
         }
 
@@ -205,6 +250,12 @@ report 50100 "Object Details Customer View"
             DataItemTableView = sorting(EntryNo) order(ascending);
 
             column(UnusedReturnValuesTxt; UnusedReturnValuesTxt)
+            {
+            }
+            column(UnusedReturnValuesCount; UnusedReturnValuesCount)
+            {
+            }
+            column(UnusedReturnValuesURL; UnusedReturnValuesURL)
             {
             }
             column(Object_Type_UnusedReturnValues; "Object Type")
@@ -222,13 +273,13 @@ report 50100 "Object Details Customer View"
 
             trigger OnPreDataItem()
             begin
-                ObjectUnusedReturnValues.SetRange("Object Type", "Object Type");
-                ObjectUnusedReturnValues.SetRange(ObjectNo, ObjectNo);
+                ObjectUnusedReturnValues.SetRange("Object Type", ObjType);
+                ObjectUnusedReturnValues.SetRange(ObjectNo, ObjNo);
                 ObjectUnusedReturnValues.SetRange(Type, ObjectUnusedReturnValues.Type::"Return Value");
                 ObjectUnusedReturnValues.SetRange(Used, false);
 
                 UnusedReturnValuesCount := ObjectUnusedReturnValues.Count;
-                UnusedReturnValuesURL := GetUrl(ClientType::Default, CompanyName, ObjectType::Page, Page::"Object Details Line List", ObjectUnusedReturnValues, true);
+                UnusedReturnValuesURL := GetUrl(ClientType::Web, CompanyName, ObjectType::Page, Page::"Object Details Line List", ObjectUnusedReturnValues, true);
             end;
         }
 
@@ -237,6 +288,12 @@ report 50100 "Object Details Customer View"
             DataItemTableView = sorting(EntryNo) order(ascending);
 
             column(UnusedParametersTxt; UnusedParametersTxt)
+            {
+            }
+            column(UnusedParametersCount; UnusedParametersCount)
+            {
+            }
+            column(UnusedParametersURL; UnusedParametersURL)
             {
             }
             column(Object_Type_UnusedParameters; "Object Type")
@@ -254,13 +311,13 @@ report 50100 "Object Details Customer View"
 
             trigger OnPreDataItem()
             begin
-                ObjectUnusedParameters.SetRange("Object Type", "Object Type");
-                ObjectUnusedParameters.SetRange(ObjectNo, ObjectNo);
+                ObjectUnusedParameters.SetRange("Object Type", ObjType);
+                ObjectUnusedParameters.SetRange(ObjectNo, ObjNo);
                 ObjectUnusedParameters.SetRange(Type, ObjectUnusedParameters.Type::Parameter);
                 ObjectUnusedParameters.SetRange(Used, false);
 
                 UnusedParametersCount := ObjectUnusedParameters.Count;
-                UnusedParametersURL := GetUrl(ClientType::Default, CompanyName, ObjectType::Page, Page::"Object Details Line List", ObjectUnusedParameters, true);
+                UnusedParametersURL := GetUrl(ClientType::Web, CompanyName, ObjectType::Page, Page::"Object Details Line List", ObjectUnusedParameters, true);
             end;
         }
 
@@ -269,6 +326,12 @@ report 50100 "Object Details Customer View"
             DataItemTableView = sorting(EntryNo) order(ascending);
 
             column(VariablesTxt; VariablesTxt)
+            {
+            }
+            column(VariablesCount; VariablesCount)
+            {
+            }
+            column(VariablesURL; VariablesURL)
             {
             }
             column(Object_Type_Variables; "Object Type")
@@ -286,12 +349,12 @@ report 50100 "Object Details Customer View"
 
             trigger OnPreDataItem()
             begin
-                ObjectVariables.SetRange("Object Type", "Object Type");
-                ObjectVariables.SetRange(ObjectNo, ObjectNo);
+                ObjectVariables.SetRange("Object Type", ObjType);
+                ObjectVariables.SetRange(ObjectNo, ObjNo);
                 ObjectVariables.SetFilter(Type, '%1|%2', ObjectVariables.Type::"Global Variable", ObjectVariables.Type::"Local Variable");
 
                 VariablesCount := ObjectVariables.Count;
-                VariablesURL := GetUrl(ClientType::Default, CompanyName, ObjectType::Page, Page::"Object Details Line List", ObjectVariables, true);
+                VariablesURL := GetUrl(ClientType::Web, CompanyName, ObjectType::Page, Page::"Object Details Line List", ObjectVariables, true);
             end;
         }
 
@@ -300,6 +363,12 @@ report 50100 "Object Details Customer View"
             DataItemTableView = sorting(EntryNo) order(ascending);
 
             column(UnusedVariablesTxt; UnusedVariablesTxt)
+            {
+            }
+            column(UnusedVariablesCount; UnusedVariablesCount)
+            {
+            }
+            column(UnusedVariablesURL; UnusedVariablesURL)
             {
             }
             column(Object_Type_UnusedVariables; "Object Type")
@@ -317,13 +386,13 @@ report 50100 "Object Details Customer View"
 
             trigger OnPreDataItem()
             begin
-                ObjectUnusedVariables.SetRange("Object Type", "Object Type");
-                ObjectUnusedVariables.SetRange(ObjectNo, ObjectNo);
+                ObjectUnusedVariables.SetRange("Object Type", ObjType);
+                ObjectUnusedVariables.SetRange(ObjectNo, ObjNo);
                 ObjectUnusedVariables.SetFilter(Type, '%1|%2', ObjectUnusedVariables.Type::"Global Variable", ObjectUnusedVariables.Type::"Local Variable");
                 ObjectUnusedVariables.SetRange(Used, false);
 
                 UnusedVariablesCount := ObjectUnusedVariables.Count;
-                UnusedVariablesURL := GetUrl(ClientType::Default, CompanyName, ObjectType::Page, Page::"Object Details Line List", ObjectUnusedVariables, true);
+                UnusedVariablesURL := GetUrl(ClientType::Web, CompanyName, ObjectType::Page, Page::"Object Details Line List", ObjectUnusedVariables, true);
             end;
         }
 
@@ -332,6 +401,12 @@ report 50100 "Object Details Customer View"
             DataItemTableView = sorting(EntryNo) order(ascending);
 
             column(RelationsTxt; RelationsTxt)
+            {
+            }
+            column(RelationsCount; RelationsCount)
+            {
+            }
+            column(RelationsURL; RelationsURL)
             {
             }
             column(Object_Type_Relations; "Object Type")
@@ -343,7 +418,7 @@ report 50100 "Object Details Customer View"
             column(Type_Relations; Type)
             {
             }
-            column(ID_Relation; ID)
+            column(ID_Relations; ID)
             {
             }
             column(Name_Relations; Name)
@@ -355,12 +430,12 @@ report 50100 "Object Details Customer View"
 
             trigger OnPreDataItem()
             begin
-                ObjectRelations.SetRange("Object Type", "Object Type");
-                ObjectRelations.SetRange(ObjectNo, ObjectNo);
+                ObjectRelations.SetRange("Object Type", ObjType);
+                ObjectRelations.SetRange(ObjectNo, ObjNo);
                 ObjectRelations.SetFilter(Type, '%1|%2', ObjectRelations.Type::"Relation (Internal)", ObjectRelations.Type::"Relation (External)");
 
                 RelationsCount := ObjectRelations.Count;
-                RelationsURL := GetUrl(ClientType::Default, CompanyName, ObjectType::Page, Page::"Object Details Line List", ObjectRelations, true);
+                RelationsURL := GetUrl(ClientType::Web, CompanyName, ObjectType::Page, Page::"Object Details Line List", ObjectRelations, true);
             end;
         }
 
@@ -369,6 +444,12 @@ report 50100 "Object Details Customer View"
             DataItemTableView = sorting(EntryNo) order(ascending);
 
             column(NoObjectsUsedInTxt; NoObjectsUsedInTxt)
+            {
+            }
+            column(NoObjectsUsedInCount; NoObjectsUsedInCount)
+            {
+            }
+            column(NoObjectsUsedInURL; NoObjectsUsedInURL)
             {
             }
             column(Object_Type_NoObjectsUsedIn; "Object Type")
@@ -392,12 +473,12 @@ report 50100 "Object Details Customer View"
 
             trigger OnPreDataItem()
             begin
-                NoObjectsUsedIn.SetRange("Object Type", "Object Type");
-                NoObjectsUsedIn.SetRange(ObjectNo, ObjectNo);
+                NoObjectsUsedIn.SetRange("Object Type", ObjType);
+                NoObjectsUsedIn.SetRange(ObjectNo, ObjNo);
                 NoObjectsUsedIn.SetRange(Type, NoObjectsUsedIn.Type::"Object (Internal)");
 
                 NoObjectsUsedInCount := NoObjectsUsedIn.Count;
-                NoObjectsUsedInURL := GetUrl(ClientType::Default, CompanyName, ObjectType::Page, Page::"Object Details Line List", NoObjectsUsedIn, true);
+                NoObjectsUsedInURL := GetUrl(ClientType::Web, CompanyName, ObjectType::Page, Page::"Object Details Line List", NoObjectsUsedIn, true);
             end;
         }
 
@@ -406,6 +487,12 @@ report 50100 "Object Details Customer View"
             DataItemTableView = sorting(EntryNo) order(ascending);
 
             column(UsedInNoObjectsTxt; UsedInNoObjectsTxt)
+            {
+            }
+            column(UsedInNoObjectsCount; UsedInNoObjectsCount)
+            {
+            }
+            column(UsedInNoObjectsURL; UsedInNoObjectsURL)
             {
             }
             column(Object_Type_UsedInNoObjects; "Object Type")
@@ -429,12 +516,12 @@ report 50100 "Object Details Customer View"
 
             trigger OnPreDataItem()
             begin
-                UsedInNoObjects.SetRange("Object Type", "Object Type");
-                UsedInNoObjects.SetRange(ObjectNo, ObjectNo);
+                UsedInNoObjects.SetRange("Object Type", ObjType);
+                UsedInNoObjects.SetRange(ObjectNo, ObjNo);
                 UsedInNoObjects.SetRange(Type, UsedInNoObjects.Type::"Object (External)");
 
                 UsedInNoObjectsCount := UsedInNoObjects.Count;
-                UsedInNoObjectsURL := GetUrl(ClientType::Default, CompanyName, ObjectType::Page, Page::"Object Details Line List", UsedInNoObjects, true);
+                UsedInNoObjectsURL := GetUrl(ClientType::Web, CompanyName, ObjectType::Page, Page::"Object Details Line List", UsedInNoObjects, true);
             end;
         }
 
@@ -443,6 +530,12 @@ report 50100 "Object Details Customer View"
             DataItemTableView = sorting(EntryNo) order(ascending);
 
             column(NoTimesUsedTxt; NoTimesUsedTxt)
+            {
+            }
+            column(NoTimesUsedCount; NoTimesUsedCount)
+            {
+            }
+            column(NoTimesUsedURL; NoTimesUsedURL)
             {
             }
             column(Object_Type_NoOfTimesUsed; "Object Type")
@@ -463,18 +556,25 @@ report 50100 "Object Details Customer View"
             column(TypeName_NoOfTimesUsed; TypeName)
             {
             }
+            column(NoTimesUsed; NoTimesUsed)
+            {
+            }
 
             trigger OnPreDataItem()
             begin
-                NoOfTimesUsed.SetRange("Object Type", "Object Type");
-                NoOfTimesUsed.SetRange(ObjectNo, ObjectNo);
+                NoOfTimesUsed.SetRange("Object Type", ObjType);
+                NoOfTimesUsed.SetRange(ObjectNo, ObjNo);
                 NoOfTimesUsed.SetRange(Type, NoOfTimesUsed.Type::"Object (Used)");
 
-                NoTimesUsedCount := NoOfTimesUsed.Count;
-                NoTimesUsedURL := GetUrl(ClientType::Default, CompanyName, ObjectType::Page, Page::"Object Details Line List", NoOfTimesUsed, true);
+                if NoOfTimesUsed.FindSet() then
+                    repeat
+                        NoTimesUsedCount += NoOfTimesUsed.NoTimesUsed;
+                    until NoOfTimesUsed.Next() = 0;
+                NoTimesUsedURL := GetUrl(ClientType::Web, CompanyName, ObjectType::Page, Page::"Object Details Line List", NoOfTimesUsed, true);
             end;
         }
     }
+
 
     requestpage
     {
@@ -486,12 +586,12 @@ report 50100 "Object Details Customer View"
             {
                 group(Options)
                 {
-                    field("Object Type"; "Object Type")
+                    field("Object Type"; ObjType)
                     {
                         Caption = 'Object Type';
                         ApplicationArea = All;
                     }
-                    field(ObjectNo; ObjectNo)
+                    field(ObjectNo; ObjNo)
                     {
                         Caption = 'Object No.';
                         TableRelation = "Object Details".ObjectNo;
@@ -507,20 +607,27 @@ report 50100 "Object Details Customer View"
     {
         DetailsLbl = 'Details';
         CountLbl = 'Count';
+        ObjectTypeLbl = 'Object Type';
+        ObjectNoLbl = 'Object No.';
+        TypeLbl = 'Type';
+        IDLbl = 'ID';
+        NameLbl = 'Name';
+        TypeNameLbl = 'Type Name';
+        NoTimesUsedLbl = 'No. Times Used';
     }
 
     trigger OnPreReport()
     var
         ObjectDetails: Record "Object Details";
     begin
-        if ObjectDetails.Get("Object Type", ObjectNo) then begin
+        if ObjectDetails.Get(ObjType, ObjNo) then begin
             ObjectDetails.CalcFields(Name);
-            ReportName := StrSubstNo(ReportNameTxt, "Object Type", ObjectNo, ObjectDetails.Name);
+            ReportName := StrSubstNo(ReportNameTxt, ObjType, ObjNo, ObjectDetails.Name);
         end;
     end;
 
     var
-        "Object Type": Enum "Object Type";
+        ObjType: Enum "Object Type";
         ReportName: Text;
         FieldsURL: Text;
         KeysURL: Text;
@@ -549,7 +656,7 @@ report 50100 "Object Details Customer View"
         NoObjectsUsedInTxt: Label 'No of Objects Used In';
         UsedInNoObjectsTxt: Label 'Used In No of Objects';
         NoTimesUsedTxt: Label 'No of times used';
-        ObjectNo: Integer;
+        ObjNo: Integer;
         FieldsCount: Integer;
         KeysCount: Integer;
         EventsCount: Integer;
@@ -563,5 +670,4 @@ report 50100 "Object Details Customer View"
         NoObjectsUsedInCount: Integer;
         UsedInNoObjectsCount: Integer;
         NoTimesUsedCount: Integer;
-
 }

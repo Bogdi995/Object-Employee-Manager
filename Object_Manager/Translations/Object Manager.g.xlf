@@ -1453,10 +1453,75 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Report 2752833042 - NamedType 2985443577" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Events</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - NamedType EventsTxt</note>
+        </trans-unit>
+        <trans-unit id="Report 2752833042 - NamedType 400823947" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Fields</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - NamedType FieldsTxt</note>
+        </trans-unit>
+        <trans-unit id="Report 2752833042 - NamedType 1530047184" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Keys</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - NamedType KeysTxt</note>
+        </trans-unit>
+        <trans-unit id="Report 2752833042 - NamedType 2917820552" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Methods</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - NamedType MethodsTxt</note>
+        </trans-unit>
+        <trans-unit id="Report 2752833042 - NamedType 2494615809" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No of Objects Used In</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - NamedType NoObjectsUsedInTxt</note>
+        </trans-unit>
+        <trans-unit id="Report 2752833042 - NamedType 4062480804" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No of times used</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - NamedType NoTimesUsedTxt</note>
+        </trans-unit>
+        <trans-unit id="Report 2752833042 - NamedType 3451549983" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Relations</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - NamedType RelationsTxt</note>
+        </trans-unit>
         <trans-unit id="Report 2752833042 - NamedType 3260529299" size-unit="char" translate="yes" xml:space="preserve">
           <source>Customer view: %1 %2 "%3"</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - NamedType ReportNameTxt</note>
+        </trans-unit>
+        <trans-unit id="Report 2752833042 - NamedType 3380582908" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Unused Methods</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - NamedType UnusedMethodsTxt</note>
+        </trans-unit>
+        <trans-unit id="Report 2752833042 - NamedType 4036819314" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Unused Parameters</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - NamedType UnusedParametersTxt</note>
+        </trans-unit>
+        <trans-unit id="Report 2752833042 - NamedType 162497658" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Unused Return Values</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - NamedType UnusedReturnValuesTxt</note>
+        </trans-unit>
+        <trans-unit id="Report 2752833042 - NamedType 1614453859" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Unused Variables</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - NamedType UnusedVariablesTxt</note>
+        </trans-unit>
+        <trans-unit id="Report 2752833042 - NamedType 1637714513" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Used In No of Objects</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - NamedType UsedInNoObjectsTxt</note>
+        </trans-unit>
+        <trans-unit id="Report 2752833042 - NamedType 1979324175" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Variables</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - NamedType VariablesTxt</note>
         </trans-unit>
         <trans-unit id="Report 2752833042 - ReportLabel 3071622107" size-unit="char" translate="yes" xml:space="preserve">
           <source>Count</source>
@@ -1468,70 +1533,40 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel DetailsLbl</note>
         </trans-unit>
-        <trans-unit id="Report 2752833042 - ReportLabel 3356734079" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Events</source>
+        <trans-unit id="Report 2752833042 - ReportLabel 2837938697" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ID</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel EventsLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel IDLbl</note>
         </trans-unit>
-        <trans-unit id="Report 2752833042 - ReportLabel 2713365493" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Fields</source>
+        <trans-unit id="Report 2752833042 - ReportLabel 1981706351" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Name</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel FieldsLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel NameLbl</note>
         </trans-unit>
-        <trans-unit id="Report 2752833042 - ReportLabel 3724190090" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Keys</source>
+        <trans-unit id="Report 2752833042 - ReportLabel 217683198" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No. Times Used</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel KeysLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel NoTimesUsedLbl</note>
         </trans-unit>
-        <trans-unit id="Report 2752833042 - ReportLabel 3624994578" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Methods</source>
+        <trans-unit id="Report 2752833042 - ReportLabel 534296058" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Object No.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel MethodsLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel ObjectNoLbl</note>
         </trans-unit>
-        <trans-unit id="Report 2752833042 - ReportLabel 2411955063" size-unit="char" translate="yes" xml:space="preserve">
-          <source>No of Objects Used In</source>
+        <trans-unit id="Report 2752833042 - ReportLabel 3850977377" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Object Type</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel NoObjectsUsedInLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel ObjectTypeLbl</note>
         </trans-unit>
-        <trans-unit id="Report 2752833042 - ReportLabel 2515511117" size-unit="char" translate="yes" xml:space="preserve">
-          <source>No of times used</source>
+        <trans-unit id="Report 2752833042 - ReportLabel 961827798" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Type</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel NoTimesUsedURL</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel TypeLbl</note>
         </trans-unit>
-        <trans-unit id="Report 2752833042 - ReportLabel 4112328345" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Relations</source>
+        <trans-unit id="Report 2752833042 - ReportLabel 3565295079" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Type Name</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel RelationsLbl</note>
-        </trans-unit>
-        <trans-unit id="Report 2752833042 - ReportLabel 2178989414" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Unused Methods</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel UnusedMethodsLbl</note>
-        </trans-unit>
-        <trans-unit id="Report 2752833042 - ReportLabel 4030399208" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Unused Parameters</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel UnusedParametersLbl</note>
-        </trans-unit>
-        <trans-unit id="Report 2752833042 - ReportLabel 4007295264" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Unused Return Values</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel UnusedReturnValuesLbl</note>
-        </trans-unit>
-        <trans-unit id="Report 2752833042 - ReportLabel 2275232221" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Unused Variables</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel UnusedVariablesLbl</note>
-        </trans-unit>
-        <trans-unit id="Report 2752833042 - ReportLabel 1001199064" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Used In No of Objects</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel UsedInNoObjectsURL</note>
-        </trans-unit>
-        <trans-unit id="Report 2752833042 - ReportLabel 2889212841" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Variables</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel VariablesLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel TypeNameLbl</note>
         </trans-unit>
         <trans-unit id="Report 2752833042 - Control 1085746399 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object Type</source>

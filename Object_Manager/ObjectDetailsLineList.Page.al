@@ -116,23 +116,16 @@ page 50102 "Object Details Line List"
         }
     }
 
-    trigger OnOpenPage()
-    var
-        ObjectDetailsManagement: Codeunit "Object Details Management";
-    begin
-
-    end;
-
     local procedure GetName(): Text[250]
     var
         Field: Record Field;
         Keys: Record "Key";
     begin
-        if (Rec."Object Type" = "Object Type"::Table) and (Rec.Type = Types::Field) then
+        if (Rec."Object Type" = Rec."Object Type"::Table) and (Rec.Type = Types::Field) then
             if Field.Get(Rec.ObjectNo, Rec.ID) then
                 exit(Field.FieldName);
 
-        if (Rec."Object Type" = "Object Type"::Table) and (Rec.Type = Types::"Key") then
+        if (Rec."Object Type" = Rec."Object Type"::Table) and (Rec.Type = Types::"Key") then
             if Keys.Get(Rec.ObjectNo, Rec.ID) then
                 exit(Keys."Key");
 
@@ -143,7 +136,7 @@ page 50102 "Object Details Line List"
     var
         Field: Record Field;
     begin
-        if (Rec."Object Type" <> "Object Type"::Table) or (Rec.Type <> Types::Field) then
+        if (Rec."Object Type" <> Rec."Object Type"::Table) or (Rec.Type <> Types::Field) then
             exit(Rec.Caption);
         if Field.Get(Rec.ObjectNo, Rec.ID) then
             exit(Field."Field Caption");
@@ -153,7 +146,7 @@ page 50102 "Object Details Line List"
     var
         Field: Record Field;
     begin
-        if (Rec."Object Type" <> "Object Type"::Table) or (Rec.Type <> Types::Field) then
+        if (Rec."Object Type" <> Rec."Object Type"::Table) or (Rec.Type <> Types::Field) then
             exit(Rec.TypeName);
         if Field.Get(Rec.ObjectNo, Rec.ID) then
             exit(Field."Type Name");
