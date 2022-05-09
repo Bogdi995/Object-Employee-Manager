@@ -414,6 +414,26 @@ page 50101 "Object Details Card"
                 end;
             }
         }
+
+        area(Reporting)
+        {
+            action(CustomerView)
+            {
+                Caption = 'Customer view';
+                ApplicationArea = All;
+                Image = Report;
+                Promoted = true;
+                PromotedOnly = true;
+                PromotedCategory = Report;
+
+                trigger OnAction()
+                var
+                    XmlParameters: Label '<?xml version="1.0" standalone="yes"?><ReportParameters name="Object Details Customer View" id="50100"><Options><Field name="ObjType">%1</Field><Field name="ObjNo">%2</Field></Options><DataItems><DataItem name="Header">VERSION(1) SORTING(Field1)</DataItem><DataItem name="ObjectFields">VERSION(1) SORTING(Field1)</DataItem><DataItem name="ObjectKeys">VERSION(1) SORTING(Field1)</DataItem><DataItem name="ObjectEvents">VERSION(1) SORTING(Field1)</DataItem><DataItem name="ObjectMethods">VERSION(1) SORTING(Field1)</DataItem><DataItem name="ObjectUnusedMethods">VERSION(1) SORTING(Field1)</DataItem><DataItem name="ObjectUnusedReturnValues">VERSION(1) SORTING(Field1)</DataItem><DataItem name="ObjectUnusedParameters">VERSION(1) SORTING(Field1)</DataItem><DataItem name="ObjectVariables">VERSION(1) SORTING(Field1)</DataItem><DataItem name="ObjectUnusedVariables">VERSION(1) SORTING(Field1)</DataItem><DataItem name="ObjectRelations">VERSION(1) SORTING(Field1)</DataItem><DataItem name="NoObjectsUsedIn">VERSION(1) SORTING(Field1)</DataItem><DataItem name="UsedInNoObjects">VERSION(1) SORTING(Field1)</DataItem><DataItem name="NoOfTimesUsed">VERSION(1) SORTING(Field1)</DataItem></DataItems></ReportParameters>';
+                begin
+                    Report.Execute(Report::"Object Details Customer View", StrSubstNo(XmlParameters, Rec."Object Type".AsInteger(), Rec.ObjectNo));
+                end;
+            }
+        }
     }
 
     var

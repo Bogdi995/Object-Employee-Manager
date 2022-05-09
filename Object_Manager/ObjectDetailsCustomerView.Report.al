@@ -3,6 +3,7 @@ report 50100 "Object Details Customer View"
     DefaultLayout = RDLC;
     RDLCLayout = './ObjectDetailsCustomerView.rdlc';
 
+    Extensible = true;
     Caption = 'Object Details Customer View';
     PreviewMode = PrintLayout;
     EnableHyperlinks = true;

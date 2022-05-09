@@ -1103,6 +1103,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateVariables - Method OnAction - NamedType SuccessfullyUpdatedLbl</note>
         </trans-unit>
+        <trans-unit id="Page 683374773 - Action 539311483 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer view</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action CustomerView - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 683374773 - Action 539311483 - Method 1377591017 - NamedType 2334713109" size-unit="char" translate="yes" xml:space="preserve">
+          <source>&lt;?xml version="1.0" standalone="yes"?&gt;&lt;ReportParameters name="Object Details Customer View" id="50100"&gt;&lt;Options&gt;&lt;Field name="ObjType"&gt;%1&lt;/Field&gt;&lt;Field name="ObjNo"&gt;%2&lt;/Field&gt;&lt;/Options&gt;&lt;DataItems&gt;&lt;DataItem name="Header"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;DataItem name="ObjectFields"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;DataItem name="ObjectKeys"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;DataItem name="ObjectEvents"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;DataItem name="ObjectMethods"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;DataItem name="ObjectUnusedMethods"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;DataItem name="ObjectUnusedReturnValues"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;DataItem name="ObjectUnusedParameters"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;DataItem name="ObjectVariables"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;DataItem name="ObjectUnusedVariables"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;DataItem name="ObjectRelations"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;DataItem name="NoObjectsUsedIn"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;DataItem name="UsedInNoObjects"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;DataItem name="NoOfTimesUsed"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;/DataItems&gt;&lt;/ReportParameters&gt;</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action CustomerView - Method OnAction - NamedType XmlParameters</note>
+        </trans-unit>
         <trans-unit id="Page 3625123773 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object Details Line List</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1412,6 +1422,11 @@
           <source>The variables from all objects are successfully updated.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Action UpdateVariables - Method OnAction - NamedType VariablesSuccessfullyUpdated</note>
+        </trans-unit>
+        <trans-unit id="Page 2172956895 - Action 539311483 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer view</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Action CustomerView - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 2096197876 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object Details Subpage</source>

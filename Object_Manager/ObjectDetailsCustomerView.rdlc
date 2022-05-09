@@ -208,7 +208,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox5</rd:DefaultName>
@@ -328,7 +330,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox111</rd:DefaultName>
@@ -847,6 +851,7 @@
                           </Style>
                         </Textbox>
                         <ColSpan>7</ColSpan>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell />
@@ -1434,7 +1439,6 @@
                           </Style>
                         </Textbox>
                         <ColSpan>12</ColSpan>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell />
@@ -7575,12 +7579,12 @@
                           <TablixMembers>
                             <TablixMember />
                           </TablixMembers>
-                          <Visibility>
-                            <Hidden>=IIf(Globals!RenderFormat.Name = "ExcelOpenXml", True, False)</Hidden>
-                            <ToggleItem>KeysTxt</ToggleItem>
-                          </Visibility>
                         </TablixMember>
                       </TablixMembers>
+                      <Visibility>
+                        <Hidden>=IIf(Globals!RenderFormat.Name = "ExcelOpenXml", True, False)</Hidden>
+                        <ToggleItem>KeysTxt</ToggleItem>
+                      </Visibility>
                     </TablixMember>
                   </TablixMembers>
                 </TablixMember>
@@ -7671,12 +7675,12 @@
                       <TablixMembers>
                         <TablixMember>
                           <Group Name="Details_Methods" />
-                          <Visibility>
-                            <Hidden>=IIf(Globals!RenderFormat.Name = "ExcelOpenXml", True, False)</Hidden>
-                            <ToggleItem>MethodsTxt</ToggleItem>
-                          </Visibility>
                         </TablixMember>
                       </TablixMembers>
+                      <Visibility>
+                        <Hidden>=IIf(Globals!RenderFormat.Name = "ExcelOpenXml", True, False)</Hidden>
+                        <ToggleItem>MethodsTxt</ToggleItem>
+                      </Visibility>
                     </TablixMember>
                   </TablixMembers>
                 </TablixMember>
@@ -7716,12 +7720,12 @@
                       <TablixMembers>
                         <TablixMember>
                           <Group Name="Details_UnusedMethods" />
-                          <Visibility>
-                            <Hidden>=IIf(Globals!RenderFormat.Name = "ExcelOpenXml", True, False)</Hidden>
-                            <ToggleItem>UnusedMethodsTxt</ToggleItem>
-                          </Visibility>
                         </TablixMember>
                       </TablixMembers>
+                      <Visibility>
+                        <Hidden>=IIf(Globals!RenderFormat.Name = "ExcelOpenXml", True, False)</Hidden>
+                        <ToggleItem>UnusedMethodsTxt</ToggleItem>
+                      </Visibility>
                     </TablixMember>
                   </TablixMembers>
                 </TablixMember>
@@ -7761,12 +7765,12 @@
                       <TablixMembers>
                         <TablixMember>
                           <Group Name="Details_UnusedReturnValues" />
-                          <Visibility>
-                            <Hidden>=IIf(Globals!RenderFormat.Name = "ExcelOpenXml", True, False)</Hidden>
-                            <ToggleItem>UnusedReturnValuesTxt</ToggleItem>
-                          </Visibility>
                         </TablixMember>
                       </TablixMembers>
+                      <Visibility>
+                        <Hidden>=IIf(Globals!RenderFormat.Name = "ExcelOpenXml", True, False)</Hidden>
+                        <ToggleItem>UnusedReturnValuesTxt</ToggleItem>
+                      </Visibility>
                     </TablixMember>
                   </TablixMembers>
                 </TablixMember>
@@ -7806,12 +7810,12 @@
                       <TablixMembers>
                         <TablixMember>
                           <Group Name="Details_UnusedParameters" />
-                          <Visibility>
-                            <Hidden>=IIf(Globals!RenderFormat.Name = "ExcelOpenXml", True, False)</Hidden>
-                            <ToggleItem>UnusedParametersTxt</ToggleItem>
-                          </Visibility>
                         </TablixMember>
                       </TablixMembers>
+                      <Visibility>
+                        <Hidden>=IIf(Globals!RenderFormat.Name = "ExcelOpenXml", True, False)</Hidden>
+                        <ToggleItem>UnusedParametersTxt</ToggleItem>
+                      </Visibility>
                     </TablixMember>
                   </TablixMembers>
                 </TablixMember>
@@ -7851,12 +7855,12 @@
                       <TablixMembers>
                         <TablixMember>
                           <Group Name="Details_Variables" />
-                          <Visibility>
-                            <Hidden>=IIf(Globals!RenderFormat.Name = "ExcelOpenXml", True, False)</Hidden>
-                            <ToggleItem>VariablesTxt</ToggleItem>
-                          </Visibility>
                         </TablixMember>
                       </TablixMembers>
+                      <Visibility>
+                        <Hidden>=IIf(Globals!RenderFormat.Name = "ExcelOpenXml", True, False)</Hidden>
+                        <ToggleItem>VariablesTxt</ToggleItem>
+                      </Visibility>
                     </TablixMember>
                   </TablixMembers>
                 </TablixMember>
@@ -7896,12 +7900,12 @@
                       <TablixMembers>
                         <TablixMember>
                           <Group Name="Details_UnusedVariables" />
-                          <Visibility>
-                            <Hidden>=IIf(Globals!RenderFormat.Name = "ExcelOpenXml", True, False)</Hidden>
-                            <ToggleItem>UnusedVariablesTxt</ToggleItem>
-                          </Visibility>
                         </TablixMember>
                       </TablixMembers>
+                      <Visibility>
+                        <Hidden>=IIf(Globals!RenderFormat.Name = "ExcelOpenXml", True, False)</Hidden>
+                        <ToggleItem>UnusedVariablesTxt</ToggleItem>
+                      </Visibility>
                     </TablixMember>
                   </TablixMembers>
                 </TablixMember>
@@ -7941,12 +7945,12 @@
                       <TablixMembers>
                         <TablixMember>
                           <Group Name="Details_Relations" />
-                          <Visibility>
-                            <Hidden>=IIf(Globals!RenderFormat.Name = "ExcelOpenXml", True, False)</Hidden>
-                            <ToggleItem>RelationsTxt</ToggleItem>
-                          </Visibility>
                         </TablixMember>
                       </TablixMembers>
+                      <Visibility>
+                        <Hidden>=IIf(Globals!RenderFormat.Name = "ExcelOpenXml", True, False)</Hidden>
+                        <ToggleItem>RelationsTxt</ToggleItem>
+                      </Visibility>
                     </TablixMember>
                   </TablixMembers>
                 </TablixMember>
@@ -7986,12 +7990,12 @@
                       <TablixMembers>
                         <TablixMember>
                           <Group Name="Details_NoObjectsUsedIn" />
-                          <Visibility>
-                            <Hidden>=IIf(Globals!RenderFormat.Name = "ExcelOpenXml", True, False)</Hidden>
-                            <ToggleItem>NoObjectsUsedInTxt</ToggleItem>
-                          </Visibility>
                         </TablixMember>
                       </TablixMembers>
+                      <Visibility>
+                        <Hidden>=IIf(Globals!RenderFormat.Name = "ExcelOpenXml", True, False)</Hidden>
+                        <ToggleItem>NoObjectsUsedInTxt</ToggleItem>
+                      </Visibility>
                     </TablixMember>
                   </TablixMembers>
                 </TablixMember>
@@ -8036,12 +8040,12 @@
                               <Value>1</Value>
                             </SortExpression>
                           </SortExpressions>
-                          <Visibility>
-                            <Hidden>=IIf(Globals!RenderFormat.Name = "ExcelOpenXml", True, False)</Hidden>
-                            <ToggleItem>UsedInNoObjectsTxt</ToggleItem>
-                          </Visibility>
                         </TablixMember>
                       </TablixMembers>
+                      <Visibility>
+                        <Hidden>=IIf(Globals!RenderFormat.Name = "ExcelOpenXml", True, False)</Hidden>
+                        <ToggleItem>UsedInNoObjectsTxt</ToggleItem>
+                      </Visibility>
                     </TablixMember>
                   </TablixMembers>
                 </TablixMember>
@@ -8081,12 +8085,12 @@
                       <TablixMembers>
                         <TablixMember>
                           <Group Name="Details_NoTimesUsedTxt" />
-                          <Visibility>
-                            <Hidden>=IIf(Globals!RenderFormat.Name = "ExcelOpenXml", True, False)</Hidden>
-                            <ToggleItem>NoTimesUsedTxt</ToggleItem>
-                          </Visibility>
                         </TablixMember>
                       </TablixMembers>
+                      <Visibility>
+                        <Hidden>=IIf(Globals!RenderFormat.Name = "ExcelOpenXml", True, False)</Hidden>
+                        <ToggleItem>NoTimesUsedTxt</ToggleItem>
+                      </Visibility>
                     </TablixMember>
                   </TablixMembers>
                 </TablixMember>

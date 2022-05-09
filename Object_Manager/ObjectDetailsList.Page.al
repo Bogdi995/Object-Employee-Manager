@@ -287,6 +287,24 @@ page 50100 "Object Details List"
                 end;
             }
         }
+
+        area(Reporting)
+        {
+            action(CustomerView)
+            {
+                Caption = 'Customer view';
+                ApplicationArea = All;
+                Image = Report;
+                Promoted = true;
+                PromotedOnly = true;
+                PromotedCategory = Report;
+
+                trigger OnAction()
+                begin
+                    Report.Run(Report::"Object Details Customer View");
+                end;
+            }
+        }
     }
 
     trigger OnOpenPage()
