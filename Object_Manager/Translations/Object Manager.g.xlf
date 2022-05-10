@@ -1593,6 +1593,51 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - Control ObjectNo - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Report 2805527838 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Object Statistics Top 10</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 3816575399 - NamedType 3203928494" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Options: </source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetFilters - NamedType OptionsLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 3816575399 - NamedType 961827798" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Type: </source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetFilters - NamedType TypeLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 3816575399 - NamedType 828691623" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Used: </source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetFilters - NamedType UsedLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - ReportLabel 617781293" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Object Statistics Top 10</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel ReportNameLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Control 2346885236 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Options</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Control Options - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Control 3909007884 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Options Types</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Control OptionTypes - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Control 3909007884 - Method 2126772001 - NamedType 254198846" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Options Type cannot be empty!</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Control OptionTypes - Method OnValidate - NamedType ErrorNotEmptyLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Control 3220827225 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Used</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Control Used - Property Caption</note>
+        </trans-unit>
         <trans-unit id="PageExtension 713152267 - Property 2019332006" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 272934828">
           <source>New,Process,Report,Leave</source>
           <note from="Developer" annotates="general" priority="2"></note>
