@@ -59,7 +59,8 @@ report 50101 "Object Statistics Top 10"
                 if not Used then
                     ObjectDetailsLine.SetRange(Used, false);
 
-                FilterTop10Objects(ObjectDetailsLine, OptionTypes, Used);
+                // FilterTop10Objects(ObjectDetailsLine, OptionTypes, Used);
+
             end;
         }
     }
@@ -145,7 +146,11 @@ report 50101 "Object Statistics Top 10"
         exit(Filters);
     end;
 
-    local procedure FilterTop10Objects(var ObjectDetailsLine: Record "Object Details Line"; OptionTypes: Option " ","Key","Field","Integration Event","Business Event","Global Method","Local Method","Global Variable","Local Variable","Parameter","Return Value","Relations From","Relations To","No. of Objects Used in","Used in No. of Objects","No. of Times Used"; Used: Boolean)
+    // local procedure FilterTop10Objects(var ObjectDetailsLine: Record "Object Details Line"; OptionTypes: Option " ","Key","Field","Integration Event","Business Event","Global Method","Local Method","Global Variable","Local Variable","Parameter","Return Value","Relations From","Relations To","No. of Objects Used in","Used in No. of Objects","No. of Times Used"; Used: Boolean)
+    // var
+    // begin
+
+    // end;
 
     local procedure GetEnumTypeFromOptionsType(OptionTypes: Option " ","Key","Field","Integration Event","Business Event","Global Method","Local Method","Global Variable","Local Variable","Parameter","Return Value","Relations From","Relations To","No. of Objects Used in","Used in No. of Objects","No. of Times Used"): Enum Types
     begin

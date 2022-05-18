@@ -381,7 +381,7 @@ codeunit 50100 "Object Details Management"
     end;
 
     [Scope('OnPrem')]
-    local procedure GetObjectALCode(ObjectDetails: Record "Object Details"; var ObjectALCode: DotNet String)
+    procedure GetObjectALCode(var ObjectDetails: Record "Object Details"; var ObjectALCode: DotNet String)
     var
         ObjectMetadataPage: Page "Object Metadata Page";
         Encoding: DotNet Encoding;
@@ -2242,6 +2242,32 @@ codeunit 50100 "Object Details Management"
                 exit(AllObj."Object Type"::Query);
             "Object Type"::MenuSuite:
                 exit(AllObj."Object Type"::MenuSuite);
+        end;
+    end;
+
+    procedure GetObjectTypeFromText(TextObjectType: Text): Enum "Object Type"
+    begin
+        case TextObjectType of
+            'Table':
+                exit("Object Type"::Table);
+            'TableExtension':
+                exit("Object Type"::"TableExtension");
+            'Page':
+                exit("Object Type"::Page);
+            'PageExtension':
+                exit("Object Type"::"PageExtension");
+            'Report':
+                exit("Object Type"::Report);
+            'Codeunit':
+                exit("Object Type"::Codeunit);
+            'Enum':
+                exit("Object Type"::Enum);
+            'EnumExtension':
+                exit("Object Type"::EnumExtension);
+            'Query':
+                exit("Object Type"::Query);
+            'MenuSuite':
+                exit("Object Type"::MenuSuite);
         end;
     end;
     //  -------- Others -------> END

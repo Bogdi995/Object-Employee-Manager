@@ -46,6 +46,16 @@ page 50102 "Object Details Line List"
                 {
                     ToolTip = 'Specifies the data type and its length.';
                     ApplicationArea = All;
+
+                    trigger OnDrillDown()
+                    begin
+                        case Rec.Type of
+                            Types::"Relation (Internal)", Types::"Object (Internal)":
+                                DrillDownInternal();
+                            Types::"Relation (External)", Types::"Object (External)", Types::"Object (Used)":
+                                DrillDownExternal();
+                        end;
+                    end;
                 }
                 field(NoTimesUsed; Rec.NoTimesUsed)
                 {
@@ -152,4 +162,35 @@ page 50102 "Object Details Line List"
             exit(Field."Type Name");
     end;
 
+    local procedure DrillDownInternal()
+    var
+        ObjectDetails: Record "Object Details";
+        ObjectDetailsManagement: Codeunit "Object Details Management";
+        ObjectALCode: DotNet String;
+    begin
+        ObjectDetails.SetRange("Object Type", Rec."Object Type");
+        ObjectDetails.SetRange(ObjectNo, Rec.ObjectNo);
+
+        if ObjectDetails.FindFirst() then begin
+            ObjectDetailsManagement.GetObjectALCode(ObjectDetails, ObjectALCode);
+            Message(ObjectALCode);
+        end;
+    end;
+
+    local procedure DrillDownExternal()
+    var
+        ObjectDetails: Record "Object Details";
+        ObjectDetailsManagement: Codeunit "Object Details Management";
+        ObjectALCode: DotNet String;
+        ObjectType: Text;
+    begin
+        ObjectType := CopyStr(Rec.TypeName, 1, StrPos(Rec.TypeName, ' ') - 1);
+
+        ObjectDetails.SetRange("Object Type", ObjectDetailsManagement.GetObjectTypeFromText(ObjectType));
+        ObjectDetails.SetRange(ObjectNo, Rec.ID);
+        if ObjectDetails.FindFirst() then begin
+            ObjectDetailsManagement.GetObjectALCode(ObjectDetails, ObjectALCode);
+            Message(ObjectALCode);
+        end;
+    end;
 }

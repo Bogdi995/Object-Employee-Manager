@@ -77,11 +77,6 @@ page 50145 "Object Metadata Page"
         Message(StreamReader.StreamReader(InStr, Encoding.UTF8).ReadToEnd());
     end;
 
-    // procedure GetKeyForObject(ObjectType: Text; ObjectID: Text): Text
-    // begin
-    //     exit(ObjectType + ObjectID);
-    // end;
-
     procedure GetUserALCodeInstream(ObjectType: Option; ObjectID: Integer): InStream
     var
         InStr: InStream;
