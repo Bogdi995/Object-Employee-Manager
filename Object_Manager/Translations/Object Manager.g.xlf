@@ -704,7 +704,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Train Employee Leavee - Method Train - NamedType TrainModelLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 3609114144 - Method 3685264004 - NamedType 2818680536" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The model is trained. The quality is %1%</source>
+          <source>The model is trained. The quality is %1.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Train Employee Leavee - Method Train - NamedType ModelTrainedLbl</note>
         </trans-unit>

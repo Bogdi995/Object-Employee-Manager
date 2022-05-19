@@ -8,7 +8,7 @@ codeunit 50106 "Train Employee Leavee"
         MyModel: Text;
         Progress: Dialog;
         TrainModelLbl: Label 'The model is being trained...';
-        ModelTrainedLbl: Label 'The model is trained. The quality is %1%';
+        ModelTrainedLbl: Label 'The model is trained. The quality is %1.';
         MyModelQuality: Decimal;
     begin
         Progress.Open(TrainModelLbl);
