@@ -366,14 +366,14 @@ codeunit 50100 "Object Details Management"
             GlobalMethods := GetMethods(ObjectALCode, ProcedureLbl);
         if ObjectALCode.IndexOf(LocalProcedureLbl, StringComparison.OrdinalIgnoreCase) <> -1 then
             LocalMethods := GetMethods(ObjectALCode, LocalProcedureLbl);
-        if ObjectALCode.IndexOf(InternalProcedureLbl, StringComparison.OrdinalIgnoreCase) <> -1 then
-            InternalMethods := GetMethods(ObjectALCode, InternalProcedureLbl);
+        // if ObjectALCode.IndexOf(InternalProcedureLbl, StringComparison.OrdinalIgnoreCase) <> -1 then
+        //     InternalMethods := GetMethods(ObjectALCode, InternalProcedureLbl);
         if ObjectALCode.IndexOf(ProtectedProcedureLbl, StringComparison.OrdinalIgnoreCase) <> -1 then
             ProtectedMethods := GetMethods(ObjectALCode, ProtectedProcedureLbl);
 
         CheckAndUpdateObjectDetailsLine(ObjectDetails, GlobalMethods, Types::"Global Method", true, NeedsUpdate[1]);
         CheckAndUpdateObjectDetailsLine(ObjectDetails, LocalMethods, Types::"Local Method", true, NeedsUpdate[1]);
-        CheckAndUpdateObjectDetailsLine(ObjectDetails, InternalMethods, Types::"Internal Method", true, NeedsUpdate[1]);
+        // CheckAndUpdateObjectDetailsLine(ObjectDetails, InternalMethods, Types::"Internal Method", true, NeedsUpdate[1]);
         CheckAndUpdateObjectDetailsLine(ObjectDetails, IntegrationEvents, Types::"Integration Event", true, NeedsUpdate[1]);
         CheckAndUpdateObjectDetailsLine(ObjectDetails, BusinessEvents, Types::"Business Event", true, NeedsUpdate[1]);
 

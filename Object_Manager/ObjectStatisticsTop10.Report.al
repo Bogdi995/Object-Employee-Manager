@@ -3,18 +3,61 @@ report 50101 "Object Statistics Top 10"
     DefaultLayout = RDLC;
     RDLCLayout = './ObjectStatisticsTop10.rdlc';
 
-    Extensible = true;
     Caption = 'Object Statistics Top 10';
     PreviewMode = PrintLayout;
     EnableHyperlinks = true;
+    Extensible = true;
     UsageCategory = Administration;
     ApplicationArea = All;
 
     dataset
     {
-        dataitem(Header; "Integer")
+        dataitem(ObjectDetails; "Object Details")
         {
-            DataItemTableView = sorting(Number) order(ascending) where(Number = const(1));
+            DataItemTableView = sorting("Object Type", ObjectNo) order(ascending);
+
+            trigger OnPreDataItem()
+            begin
+                Progress.Open(SortingObjectsTxt, Number);
+                Index := 0;
+                ObjectDetailsAmount.DeleteAll();
+            end;
+
+            trigger OnAfterGetRecord()
+            var
+                ObjectDetailsRef: RecordRef;
+                FRef: FieldRef;
+            begin
+                Number += 1;
+                Progress.Update();
+                ObjectDetailsRef.GetTable(ObjectDetails);
+                FRef := ObjectDetailsRef.Field(GetFieldNoFromOptionsType(OptionTypes));
+                FRef.CalcField();
+                Evaluate(FieldCount, Format(FRef));
+
+                if FieldCount = 0 then
+                    CurrReport.Skip();
+
+                ObjectDetailsAmount.Init();
+                ObjectDetailsAmount."Object Type" := "Object Type";
+                ObjectDetailsAmount.ObjectNo := ObjectNo;
+                ObjectDetailsAmount.FieldCount := FieldCount;
+                ObjectDetailsAmount.Insert();
+
+                if (NoOfRecordsToPrint = 0) or (Index < NoOfRecordsToPrint) then
+                    Index := Index + 1
+                else begin
+                    if ObjectDetailsAmount.FindFirst() then
+                        ObjectDetailsAmount.Delete();
+                end;
+
+                TotalCount += FieldCount;
+            end;
+        }
+
+        dataitem("Integer"; "Integer")
+        {
+            DataItemTableView = sorting(Number) order(ascending) where(Number = filter(1 ..));
 
             column(CurrUserID; Format(UserId))
             {
@@ -31,42 +74,57 @@ report 50101 "Object Statistics Top 10"
             column(Filters; Filters)
             {
             }
-        }
-
-        dataitem(ObjectDetailsLine; "Object Details Line")
-        {
-            DataItemTableView = sorting(EntryNo) order(ascending);
-
-            column(Object_Type; "Object Type")
+            column(ObjectType_ObjectDetails; ObjectDetails."Object Type")
             {
             }
-            column(ObjectNo; ObjectNo)
+            column(ObjectNo_ObjectDetails; ObjectDetails.ObjectNo)
             {
             }
-            column(Type; Type)
+            column(Name_ObjectDetails; ObjectDetails.Name)
             {
             }
-            column(ID; ID)
+            column(FieldCount; FieldCount)
             {
             }
-            column(Name; Name)
+            column(TotalCount; TotalCount)
+            {
+            }
+            column(ChartType; ChartType)
             {
             }
 
             trigger OnPreDataItem()
             begin
-                ObjectDetailsLine.SetRange(Type, GetEnumTypeFromOptionsType(OptionTypes));
-                if not Used then
-                    ObjectDetailsLine.SetRange(Used, false);
+                Progress.Close;
+            end;
 
-                // FilterTop10Objects(ObjectDetailsLine, OptionTypes, Used);
+            trigger OnAfterGetRecord()
+            var
+                ObjectDetailsRef: RecordRef;
+                FRef: FieldRef;
+            begin
+                if Number = 1 then begin
+                    if not ObjectDetailsAmount.FindFirst() then
+                        CurrReport.Break();
+                end else
+                    if ObjectDetailsAmount.Next() = 0 then
+                        CurrReport.Break();
 
+                if ObjectDetails.Get(ObjectDetailsAmount."Object Type", ObjectDetailsAmount.ObjectNo) then begin
+                    ObjectDetails.CalcFields(Name);
+                    ObjectDetailsRef.GetTable(ObjectDetails);
+                    FRef := ObjectDetailsRef.Field(GetFieldNoFromOptionsType(OptionTypes));
+                    FRef.CalcField();
+                    Evaluate(FieldCount, Format(FRef));
+                end;
             end;
         }
     }
 
     requestpage
     {
+        SaveValues = true;
+
         layout
         {
             area(Content)
@@ -110,14 +168,48 @@ report 50101 "Object Statistics Top 10"
                         Editable = IsEditable;
                         ApplicationArea = All;
                     }
+                    field(NoOfRecordsToPrint; NoOfRecordsToPrint)
+                    {
+                        Caption = 'Number of Objects';
+                        ToolTip = 'Specifies the number of objects that will be included in the report.';
+                        ApplicationArea = All;
+
+                        trigger OnValidate()
+                        var
+                            NoOfRecordsToPrintErr: Label 'The value must be a positive number.';
+                        begin
+                            if NoOfRecordsToPrint <= 0 then
+                                Error(NoOfRecordsToPrintErr);
+                        end;
+                    }
+                    field(ChartType; ChartType)
+                    {
+                        Caption = 'Chart Type';
+                        OptionCaption = 'Column chart,Line chart,Pie chart,Bar chart,Area chart,Range chart,Scatter chart,Polar chart';
+                        ToolTip = 'Specifies the chart type.';
+                        ApplicationArea = All;
+                    }
                 }
             }
         }
+
+        trigger OnOpenPage()
+        begin
+            if NoOfRecordsToPrint = 0 then
+                NoOfRecordsToPrint := 10;
+        end;
     }
 
     labels
     {
         ReportNameLbl = 'Object Statistics Top 10';
+        ObjectTypeLbl = 'Object Type';
+        ObjectNoLbl = 'Object No.';
+        NameLbl = 'Name';
+        CountLbl = 'Count';
+        TotalLbl = 'Total';
+        TotalDatabase = 'Total database';
+        TotalDatabasePercent = 'Total database %';
     }
 
     trigger OnPreReport()
@@ -126,8 +218,17 @@ report 50101 "Object Statistics Top 10"
     end;
 
     var
-        OptionTypes: Option " ","Key","Field","Integration Event","Business Event","Global Method","Local Method","Global Variable","Local Variable","Parameter","Return Value","Relations From","Relations To","No. of Objects Used in","Used in No. of Objects","No. of Times Used";
+        ObjectDetailsAmount: Record "Object Details Amount" temporary;
+        OptionTypes: Option " ","Key","Field","Integration Event","Business Event","Global Method","Local Method","Global Variable","Total Variable","Parameter","Return Value","Relations From","Relations To","No. of Objects Used in","Used in No. of Objects","No. of Times Used";
+        ChartType: Option "Column chart","Line chart","Pie chart","Bar chart","Area chart","Range chart","Scatter chart","Polar chart";
         Filters: Text;
+        Progress: Dialog;
+        SortingObjectsTxt: Label 'Sorting the objects...#1';
+        NoOfRecordsToPrint: Integer;
+        TotalCount: Integer;
+        FieldCount: Integer;
+        Number: Integer;
+        Index: Integer;
         Used: Boolean;
         [InDataSet]
         IsEditable: Boolean;
@@ -146,45 +247,41 @@ report 50101 "Object Statistics Top 10"
         exit(Filters);
     end;
 
-    // local procedure FilterTop10Objects(var ObjectDetailsLine: Record "Object Details Line"; OptionTypes: Option " ","Key","Field","Integration Event","Business Event","Global Method","Local Method","Global Variable","Local Variable","Parameter","Return Value","Relations From","Relations To","No. of Objects Used in","Used in No. of Objects","No. of Times Used"; Used: Boolean)
-    // var
-    // begin
-
-    // end;
-
-    local procedure GetEnumTypeFromOptionsType(OptionTypes: Option " ","Key","Field","Integration Event","Business Event","Global Method","Local Method","Global Variable","Local Variable","Parameter","Return Value","Relations From","Relations To","No. of Objects Used in","Used in No. of Objects","No. of Times Used"): Enum Types
+    local procedure GetFieldNoFromOptionsType(OptionTypes: Option " ","Key","Field","Integration Event","Business Event","Global Method","Local Method","Global Variable","Total Variable","Parameter","Return Value","Relations From","Relations To","No. of Objects Used in","Used in No. of Objects","No. of Times Used"): Integer
+    var
+        ObjectDetails: Record "Object Details";
     begin
         case OptionTypes of
             OptionTypes::"Key":
-                exit(Types::"Key");
+                exit(ObjectDetails.FieldNo(NoKeys));
             OptionTypes::Field:
-                exit(Types::Field);
+                exit(ObjectDetails.FieldNo(NoFields));
             OptionTypes::"Integration Event":
-                exit(Types::"Integration Event");
+                exit(ObjectDetails.FieldNo(NoIntegrationEvents));
             OptionTypes::"Business Event":
-                exit(Types::"Business Event");
+                exit(ObjectDetails.FieldNo(NoBusinessEvents));
             OptionTypes::"Global Method":
-                exit(Types::"Global Method");
+                exit(ObjectDetails.FieldNo(NoGlobalMethods));
             OptionTypes::"Local Method":
-                exit(Types::"Local Method");
+                exit(ObjectDetails.FieldNo(NoLocalMethods));
             OptionTypes::Parameter:
-                exit(Types::Parameter);
+                exit(ObjectDetails.FieldNo(NoUnusedParameters));
             OptionTypes::"Return Value":
-                exit(Types::"Return Value");
+                exit(ObjectDetails.FieldNo(NoUnusedReturnValues));
             OptionTypes::"Global Variable":
-                exit(Types::"Global Variable");
-            OptionTypes::"Local Variable":
-                exit(Types::"Local Variable");
+                exit(ObjectDetails.FieldNo(NoGlobalVariables));
+            OptionTypes::"Total Variable":
+                exit(ObjectDetails.FieldNo(NoTotalVariables));
             OptionTypes::"Relations From":
-                exit(Types::"Relation (Internal)");
+                exit(ObjectDetails.FieldNo(RelationsFrom));
             OptionTypes::"Relations To":
-                exit(Types::"Relation (External)");
+                exit(ObjectDetails.FieldNo(RelationsTo));
             OptionTypes::"No. of Objects Used in":
-                exit(Types::"Object (Internal)");
+                exit(ObjectDetails.FieldNo(NoObjectsUsedIn));
             OptionTypes::"Used in No. of Objects":
-                exit(Types::"Object (External)");
+                exit(ObjectDetails.FieldNo(UsedInNoObjects));
             OptionTypes::"No. of Times Used":
-                exit(Types::"Object (Used)");
+                exit(ObjectDetails.FieldNo(NoObjectsUsedIn));
         end;
     end;
 }

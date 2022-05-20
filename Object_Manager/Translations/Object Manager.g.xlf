@@ -258,6 +258,26 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field UsedInNoObjects - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 2656185541 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Object Details Amount</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Object Details Amount - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2656185541 - Field 681475195 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Total Count</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Object Details Amount - Field FieldCount - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2656185541 - Field 1085746399 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Object Type</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Object Details Amount - Field Object Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2656185541 - Field 1292293280 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Object No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Object Details Amount - Field ObjectNo - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 2044131987 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object Details Line</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1598,6 +1618,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Report 2805527838 - NamedType 3890247928" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sorting the objects...#1</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - NamedType SortingObjectsTxt</note>
+        </trans-unit>
         <trans-unit id="Report 2805527838 - Method 3816575399 - NamedType 3203928494" size-unit="char" translate="yes" xml:space="preserve">
           <source>Options: </source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1613,15 +1638,80 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetFilters - NamedType UsedLbl</note>
         </trans-unit>
+        <trans-unit id="Report 2805527838 - ReportLabel 3071622107" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Count</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel CountLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - ReportLabel 1981706351" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Name</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel NameLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - ReportLabel 534296058" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Object No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel ObjectNoLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - ReportLabel 3850977377" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Object Type</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel ObjectTypeLbl</note>
+        </trans-unit>
         <trans-unit id="Report 2805527838 - ReportLabel 617781293" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object Statistics Top 10</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel ReportNameLbl</note>
         </trans-unit>
+        <trans-unit id="Report 2805527838 - ReportLabel 2497946921" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Total database</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel TotalDatabase</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - ReportLabel 816026312" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Total database %</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel TotalDatabasePercent</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - ReportLabel 2410138484" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Total</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel TotalLbl</note>
+        </trans-unit>
         <trans-unit id="Report 2805527838 - Control 2346885236 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Options</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Control Options - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Control 2130841768 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the chart type.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Control ChartType - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Control 2130841768 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Chart Type</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Control ChartType - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Control 2130841768 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Column chart,Line chart,Pie chart,Bar chart,Area chart,Range chart,Scatter chart,Polar chart</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Control ChartType - Property OptionCaption</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Control 246488296 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the number of objects that will be included in the report.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Control NoOfRecordsToPrint - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Control 246488296 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Number of Objects</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Control NoOfRecordsToPrint - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Control 246488296 - Method 2126772001 - NamedType 2318461883" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The value must be a positive number.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Control NoOfRecordsToPrint - Method OnValidate - NamedType NoOfRecordsToPrintErr</note>
         </trans-unit>
         <trans-unit id="Report 2805527838 - Control 3909007884 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Options Types</source>
