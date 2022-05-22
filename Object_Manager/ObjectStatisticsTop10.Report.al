@@ -31,7 +31,7 @@ report 50101 "Object Statistics Top 10"
                 Number += 1;
                 Progress.Update();
                 ObjectDetailsRef.GetTable(ObjectDetails);
-                FRef := ObjectDetailsRef.Field(GetFieldNoFromOptionsType(OptionTypes));
+                FRef := ObjectDetailsRef.Field(GetFieldNoFromOptionType());
                 FRef.CalcField();
                 Evaluate(FieldCount, Format(FRef));
 
@@ -74,6 +74,15 @@ report 50101 "Object Statistics Top 10"
             column(Filters; Filters)
             {
             }
+            column(ChartTitle; ChartTitle)
+            {
+            }
+            column(ChartType; ChartType)
+            {
+            }
+            column(OptionTypes; OptionTypes)
+            {
+            }
             column(ObjectType_ObjectDetails; ObjectDetails."Object Type")
             {
             }
@@ -87,9 +96,6 @@ report 50101 "Object Statistics Top 10"
             {
             }
             column(TotalCount; TotalCount)
-            {
-            }
-            column(ChartType; ChartType)
             {
             }
 
@@ -113,7 +119,7 @@ report 50101 "Object Statistics Top 10"
                 if ObjectDetails.Get(ObjectDetailsAmount."Object Type", ObjectDetailsAmount.ObjectNo) then begin
                     ObjectDetails.CalcFields(Name);
                     ObjectDetailsRef.GetTable(ObjectDetails);
-                    FRef := ObjectDetailsRef.Field(GetFieldNoFromOptionsType(OptionTypes));
+                    FRef := ObjectDetailsRef.Field(GetFieldNoFromOptionType());
                     FRef.CalcField();
                     Evaluate(FieldCount, Format(FRef));
                 end;
@@ -134,12 +140,12 @@ report 50101 "Object Statistics Top 10"
                     Caption = 'Options';
                     field(OptionTypes; OptionTypes)
                     {
-                        Caption = 'Options Types';
+                        Caption = 'Option Types';
                         ApplicationArea = All;
 
                         trigger OnValidate()
                         var
-                            ErrorNotEmptyLbl: Label 'Options Type cannot be empty!';
+                            ErrorNotEmptyLbl: Label 'Option Type cannot be empty!';
                         begin
                             case OptionTypes of
                                 OptionTypes::" ":
@@ -210,11 +216,22 @@ report 50101 "Object Statistics Top 10"
         TotalLbl = 'Total';
         TotalDatabase = 'Total database';
         TotalDatabasePercent = 'Total database %';
+        InternalRelationsLbl = '*relations from other objects';
+        ExternalRelationsLbl = '*relations to other objects';
+        InternalObjectsLbl = '*most objects used in one object';
+        ExternalObjectsLbl = '*objects used in most other objects';
+        ObjectsUsedLbl = '*objects most often used in other objects';
+        RelationsFromLbl = 'Relations From';
+        RelationsToLbl = 'Relations To';
+        NoObjectsUsedInLbl = 'No. of Objects Used in';
+        UsedInNoObjectsLbl = 'Used in No. of Objects';
+        NoTimesUsedLbl = 'No. of Times Used';
     }
 
     trigger OnPreReport()
     begin
         Filters := GetFilters();
+        ChartTitle := StrSubstNo(ChartTitleTxt, NoOfRecordsToPrint, GetTextFromOptionType());
     end;
 
     var
@@ -222,8 +239,10 @@ report 50101 "Object Statistics Top 10"
         OptionTypes: Option " ","Key","Field","Integration Event","Business Event","Global Method","Local Method","Global Variable","Total Variable","Parameter","Return Value","Relations From","Relations To","No. of Objects Used in","Used in No. of Objects","No. of Times Used";
         ChartType: Option "Column chart","Line chart","Pie chart","Bar chart","Area chart","Range chart","Scatter chart","Polar chart";
         Filters: Text;
+        ChartTitle: Text;
         Progress: Dialog;
-        SortingObjectsTxt: Label 'Sorting the objects...#1';
+        SortingObjectsTxt: Label 'Sorting the objects... #1';
+        ChartTitleTxt: Label 'Top %1 objects from database with most %2';
         NoOfRecordsToPrint: Integer;
         TotalCount: Integer;
         FieldCount: Integer;
@@ -239,15 +258,19 @@ report 50101 "Object Statistics Top 10"
         OptionsLbl: Label 'Options: ';
         TypeLbl: Label 'Type: ';
         UsedLbl: Label 'Used: ';
+        NoObjectsLbl: Label 'Number of Objects: ';
+        ChartTypeLbl: Label 'Chart Type: ';
     begin
         Filters += OptionsLbl;
         Filters += TypeLbl + Format(OptionTypes) + ', ';
-        Filters += UsedLbl + Format(Used);
+        Filters += UsedLbl + Format(Used) + ', ';
+        Filters += NoObjectsLbl + Format(NoOfRecordsToPrint) + ', ';
+        Filters += ChartTypeLbl + Format(ChartType);
 
         exit(Filters);
     end;
 
-    local procedure GetFieldNoFromOptionsType(OptionTypes: Option " ","Key","Field","Integration Event","Business Event","Global Method","Local Method","Global Variable","Total Variable","Parameter","Return Value","Relations From","Relations To","No. of Objects Used in","Used in No. of Objects","No. of Times Used"): Integer
+    local procedure GetFieldNoFromOptionType(): Integer
     var
         ObjectDetails: Record "Object Details";
     begin
@@ -282,6 +305,78 @@ report 50101 "Object Statistics Top 10"
                 exit(ObjectDetails.FieldNo(UsedInNoObjects));
             OptionTypes::"No. of Times Used":
                 exit(ObjectDetails.FieldNo(NoObjectsUsedIn));
+        end;
+    end;
+
+    local procedure GetTextFromOptionType(): Text
+    var
+        KeysLbl: Label 'keys';
+        FieldsLbl: Label 'fields';
+        IntegrationEventsLbl: Label 'integration events';
+        BusinessEventsLbl: Label 'business events';
+        GlobalMethodsLbl: Label 'global methods';
+        UnusedGlobalMethodsLbl: Label 'unused global methods';
+        LocalMethodsLbl: Label 'local methods';
+        UnusedLocalMethodsLbl: Label 'unused local methods';
+        UnusedParametersLbl: Label 'unused parameters';
+        UnusedReturnValuesLbl: Label 'unused return values';
+        GlobalVariablesLbl: Label 'global variables';
+        UnusedGlobalVariablesLbl: Label 'unused global variables';
+        TotalVariablesLbl: Label 'variables';
+        UnusedTotalVariablesLbl: Label 'unused variables';
+        RelationsFromLbl: Label 'external relations*';
+        RelationsToLbl: Label 'internal relations*';
+        NoObjectsUsedInLbl: Label 'internal objects*';
+        UsedInNoObjectsLbl: Label 'external objects*';
+        NoTimesUsedLbl: Label 'objects used*';
+    begin
+        case OptionTypes of
+            OptionTypes::"Key":
+                exit(KeysLbl);
+            OptionTypes::Field:
+                exit(FieldsLbl);
+            OptionTypes::"Integration Event":
+                exit(IntegrationEventsLbl);
+            OptionTypes::"Business Event":
+                exit(BusinessEventsLbl);
+            OptionTypes::"Global Method":
+                begin
+                    if Used then
+                        exit(GlobalMethodsLbl);
+                    exit(UnusedGlobalMethodsLbl);
+                end;
+            OptionTypes::"Local Method":
+                begin
+                    if Used then
+                        exit(LocalMethodsLbl);
+                    exit(UnusedLocalMethodsLbl);
+                end;
+            OptionTypes::Parameter:
+                exit(UnusedParametersLbl);
+            OptionTypes::"Return Value":
+                exit(UnusedReturnValuesLbl);
+            OptionTypes::"Global Variable":
+                begin
+                    if Used then
+                        exit(GlobalVariablesLbl);
+                    exit(UnusedGlobalVariablesLbl);
+                end;
+            OptionTypes::"Total Variable":
+                begin
+                    if Used then
+                        exit(TotalVariablesLbl);
+                    exit(UnusedTotalVariablesLbl);
+                end;
+            OptionTypes::"Relations From":
+                exit(RelationsFromLbl);
+            OptionTypes::"Relations To":
+                exit(RelationsToLbl);
+            OptionTypes::"No. of Objects Used in":
+                exit(NoObjectsUsedInLbl);
+            OptionTypes::"Used in No. of Objects":
+                exit(UsedInNoObjectsLbl);
+            OptionTypes::"No. of Times Used":
+                exit(NoTimesUsedLbl);
         end;
     end;
 }

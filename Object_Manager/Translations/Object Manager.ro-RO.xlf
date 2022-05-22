@@ -309,6 +309,30 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field UsedInNoObjects - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 2656185541 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Object Details Amount</source>
+          <target state="Obiect Detalii Suma"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Object Details Amount - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2656185541 - Field 681475195 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Total Count</source>
+          <target state="Număr total"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Object Details Amount - Field FieldCount - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2656185541 - Field 1085746399 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Object Type</source>
+          <target state="Tip obiect"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Object Details Amount - Field Object Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2656185541 - Field 1292293280 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Object No.</source>
+          <target state="Obiect Nr."/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Object Details Amount - Field ObjectNo - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 2044131987 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object Details Line</source>
           <target state="Detalii Obiect Linie"/>
@@ -844,7 +868,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Train Employee Leavee - Method Train - NamedType TrainModelLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 3609114144 - Method 3685264004 - NamedType 2818680536" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The model is trained. The quality is %1%</source>
+          <source>The model is trained. The quality is %1.</source>
           <target state="Modelul este antrenat. Calitatea este de %1%."/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Train Employee Leavee - Method Train - NamedType ModelTrainedLbl</note>
@@ -868,7 +892,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page Employee Leave History - Control LastEvaluation - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2260039069 - Control 3206779141 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies if the employee left or not.</source>
+          <source>Specifies if the employee left or not</source>
           <target state="Specifică dacă angajatul a plecat sau nu."/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Employee Leave History - Control Left - Property ToolTip</note>
@@ -947,7 +971,7 @@
         </trans-unit>
         <trans-unit id="Page 898723146 - Control 1951792025 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the API key</source>
-          <target state="needs-translation"/>
+          <target state="Specifica cheia API"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Employee Leave Setup - Control APIKey - Property ToolTip</note>
         </trans-unit>
@@ -1313,7 +1337,7 @@
         </trans-unit>
         <trans-unit id="Page 683374773 - Action 1271013808 - Method 1377591017 - NamedType 2810089971" size-unit="char" translate="yes" xml:space="preserve">
           <source>Variables already updated!</source>
-          <target state="needs-translation"/>
+          <target state="Variabilele sunt deja actualizate!"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateVariables - Method OnAction - NamedType AlreadyUpdatedLbl</note>
         </trans-unit>
@@ -1322,6 +1346,18 @@
           <target state="Variabilele sunt deja actualizate!"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateVariables - Method OnAction - NamedType SuccessfullyUpdatedLbl</note>
+        </trans-unit>
+        <trans-unit id="Page 683374773 - Action 539311483 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer view</source>
+          <target state="Vizualizare client"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action CustomerView - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 683374773 - Action 539311483 - Method 1377591017 - NamedType 2334713109" size-unit="char" translate="yes" xml:space="preserve">
+          <source>&lt;?xml version="1.0" standalone="yes"?&gt;&lt;ReportParameters name="Object Details Customer View" id="50100"&gt;&lt;Options&gt;&lt;Field name="ObjType"&gt;%1&lt;/Field&gt;&lt;Field name="ObjNo"&gt;%2&lt;/Field&gt;&lt;/Options&gt;&lt;DataItems&gt;&lt;DataItem name="Header"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;DataItem name="ObjectFields"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;DataItem name="ObjectKeys"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;DataItem name="ObjectEvents"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;DataItem name="ObjectMethods"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;DataItem name="ObjectUnusedMethods"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;DataItem name="ObjectUnusedReturnValues"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;DataItem name="ObjectUnusedParameters"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;DataItem name="ObjectVariables"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;DataItem name="ObjectUnusedVariables"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;DataItem name="ObjectRelations"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;DataItem name="NoObjectsUsedIn"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;DataItem name="UsedInNoObjects"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;DataItem name="NoOfTimesUsed"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;/DataItems&gt;&lt;/ReportParameters&gt;</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action CustomerView - Method OnAction - NamedType XmlParameters</note>
         </trans-unit>
         <trans-unit id="Page 3625123773 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object Details Line List</source>
@@ -1348,7 +1384,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Control Name - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3625123773 - Control 4116426244 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the number of times the object was used.</source>
+          <source>Specified the number of times the object was used</source>
           <target state="Specifică de câte ori a fost utilizat obiectul."/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Control NoTimesUsed - Property ToolTip</note>
@@ -1695,6 +1731,12 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Action UpdateVariables - Method OnAction - NamedType VariablesSuccessfullyUpdated</note>
         </trans-unit>
+        <trans-unit id="Page 2172956895 - Action 539311483 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer view</source>
+          <target state="Vizualizare client"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Action CustomerView - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 2096197876 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object Details Subpage</source>
           <target state="Detalii Object Subpagina"/>
@@ -1743,11 +1785,89 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Report 2752833042 - NamedType 2985443577" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Events</source>
+          <target state="Evenimente"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - NamedType EventsTxt</note>
+        </trans-unit>
+        <trans-unit id="Report 2752833042 - NamedType 400823947" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Fields</source>
+          <target state="Campuri"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - NamedType FieldsTxt</note>
+        </trans-unit>
+        <trans-unit id="Report 2752833042 - NamedType 1530047184" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Keys</source>
+          <target state="Chei"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - NamedType KeysTxt</note>
+        </trans-unit>
+        <trans-unit id="Report 2752833042 - NamedType 2917820552" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Methods</source>
+          <target state="Metode"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - NamedType MethodsTxt</note>
+        </trans-unit>
+        <trans-unit id="Report 2752833042 - NamedType 2494615809" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No of Objects Used In</source>
+          <target state="Nr. obiecte folosite in"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - NamedType NoObjectsUsedInTxt</note>
+        </trans-unit>
+        <trans-unit id="Report 2752833042 - NamedType 4062480804" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No of times used</source>
+          <target state="Nr. de ori folosit"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - NamedType NoTimesUsedTxt</note>
+        </trans-unit>
+        <trans-unit id="Report 2752833042 - NamedType 3451549983" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Relations</source>
+          <target state="Relatii"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - NamedType RelationsTxt</note>
+        </trans-unit>
         <trans-unit id="Report 2752833042 - NamedType 3260529299" size-unit="char" translate="yes" xml:space="preserve">
           <source>Customer view: %1 %2 "%3"</source>
           <target state="Vizualizare client: %1 %2 %3"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - NamedType ReportNameTxt</note>
+        </trans-unit>
+        <trans-unit id="Report 2752833042 - NamedType 3380582908" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Unused Methods</source>
+          <target state="Metode nefolosite"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - NamedType UnusedMethodsTxt</note>
+        </trans-unit>
+        <trans-unit id="Report 2752833042 - NamedType 4036819314" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Unused Parameters</source>
+          <target state="Parametrii nefolositi"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - NamedType UnusedParametersTxt</note>
+        </trans-unit>
+        <trans-unit id="Report 2752833042 - NamedType 162497658" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Unused Return Values</source>
+          <target state="Valori de returnare nefolosite"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - NamedType UnusedReturnValuesTxt</note>
+        </trans-unit>
+        <trans-unit id="Report 2752833042 - NamedType 1614453859" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Unused Variables</source>
+          <target state="Variabile nefolosite"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - NamedType UnusedVariablesTxt</note>
+        </trans-unit>
+        <trans-unit id="Report 2752833042 - NamedType 1637714513" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Used In No of Objects</source>
+          <target state="Utilizat in nr. de obiecte"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - NamedType UsedInNoObjectsTxt</note>
+        </trans-unit>
+        <trans-unit id="Report 2752833042 - NamedType 1979324175" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Variables</source>
+          <target state="Variabile"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - NamedType VariablesTxt</note>
         </trans-unit>
         <trans-unit id="Report 2752833042 - ReportLabel 3071622107" size-unit="char" translate="yes" xml:space="preserve">
           <source>Count</source>
@@ -1761,83 +1881,47 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel DetailsLbl</note>
         </trans-unit>
-        <trans-unit id="Report 2752833042 - ReportLabel 3356734079" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Events</source>
-          <target state="Evenimente"/>
+        <trans-unit id="Report 2752833042 - ReportLabel 2837938697" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ID</source>
+          <target state="ID"/>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel EventsLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel IDLbl</note>
         </trans-unit>
-        <trans-unit id="Report 2752833042 - ReportLabel 2713365493" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Fields</source>
-          <target state="Campuri"/>
+        <trans-unit id="Report 2752833042 - ReportLabel 1981706351" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Name</source>
+          <target state="Nume"/>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel FieldsLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel NameLbl</note>
         </trans-unit>
-        <trans-unit id="Report 2752833042 - ReportLabel 3724190090" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Keys</source>
-          <target state="Chei"/>
+        <trans-unit id="Report 2752833042 - ReportLabel 217683198" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No. Times Used</source>
+          <target state="Numar de ori folosit"/>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel KeysLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel NoTimesUsedLbl</note>
         </trans-unit>
-        <trans-unit id="Report 2752833042 - ReportLabel 3624994578" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Methods</source>
-          <target state="Metode"/>
+        <trans-unit id="Report 2752833042 - ReportLabel 534296058" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Object No.</source>
+          <target state="Nr. obiect"/>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel MethodsLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel ObjectNoLbl</note>
         </trans-unit>
-        <trans-unit id="Report 2752833042 - ReportLabel 2411955063" size-unit="char" translate="yes" xml:space="preserve">
-          <source>No of Objects Used In</source>
-          <target state="Nr. de obiecte utilizate în"/>
+        <trans-unit id="Report 2752833042 - ReportLabel 3850977377" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Object Type</source>
+          <target state="Tip obiect"/>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel NoObjectsUsedInLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel ObjectTypeLbl</note>
         </trans-unit>
-        <trans-unit id="Report 2752833042 - ReportLabel 2515511117" size-unit="char" translate="yes" xml:space="preserve">
-          <source>No of times used</source>
-          <target state="Nr. de ori utilizat"/>
+        <trans-unit id="Report 2752833042 - ReportLabel 961827798" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Type</source>
+          <target state="Tip"/>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel NoTimesUsedURL</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel TypeLbl</note>
         </trans-unit>
-        <trans-unit id="Report 2752833042 - ReportLabel 4112328345" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Relations</source>
-          <target state="Relatii"/>
+        <trans-unit id="Report 2752833042 - ReportLabel 3565295079" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Type Name</source>
+          <target state="Nume tip"/>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel RelationsLbl</note>
-        </trans-unit>
-        <trans-unit id="Report 2752833042 - ReportLabel 2178989414" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Unused Methods</source>
-          <target state="Metode nefolosite"/>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel UnusedMethodsLbl</note>
-        </trans-unit>
-        <trans-unit id="Report 2752833042 - ReportLabel 4030399208" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Unused Parameters</source>
-          <target state="Parametrii nefolositi"/>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel UnusedParametersLbl</note>
-        </trans-unit>
-        <trans-unit id="Report 2752833042 - ReportLabel 4007295264" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Unused Return Values</source>
-          <target state="Valori returnate nefolosite"/>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel UnusedReturnValuesLbl</note>
-        </trans-unit>
-        <trans-unit id="Report 2752833042 - ReportLabel 2275232221" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Unused Variables</source>
-          <target state="Variabile Nefolosite"/>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel UnusedVariablesLbl</note>
-        </trans-unit>
-        <trans-unit id="Report 2752833042 - ReportLabel 1001199064" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Used In No of Objects</source>
-          <target state="Folosit în Nr. de obiecte"/>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel UsedInNoObjectsURL</note>
-        </trans-unit>
-        <trans-unit id="Report 2752833042 - ReportLabel 2889212841" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Variables</source>
-          <target state="Variabile"/>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel VariablesLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - ReportLabel TypeNameLbl</note>
         </trans-unit>
         <trans-unit id="Report 2752833042 - Control 1085746399 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object Type</source>
@@ -1850,6 +1934,336 @@
           <target state="Nr. Obiect"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Report Object Details Customer View - Control ObjectNo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Object Statistics Top 10</source>
+          <target state="Statistici obiect Top 10"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - NamedType 748672224" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Top %1 objects from database with most %2</source>
+          <target state="Top %1 obiecte din baza de date cu cele mai multe %2"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - NamedType ChartTitleTxt</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - NamedType 3890247928" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sorting the objects... #1</source>
+          <target state="Sortarea obiectelor... #1"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - NamedType SortingObjectsTxt</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 3816575399 - NamedType 3203928494" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Options: </source>
+          <target state="Optiuni: "/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetFilters - NamedType OptionsLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 3816575399 - NamedType 961827798" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Type: </source>
+          <target state="Tip: "/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetFilters - NamedType TypeLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 3816575399 - NamedType 828691623" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Used: </source>
+          <target state="Utilizat: "/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetFilters - NamedType UsedLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 3816575399 - NamedType 793465151" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Number of Objects: </source>
+          <target state="Numar obiecte"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetFilters - NamedType NoObjectsLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 3816575399 - NamedType 2003988546" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Chart Type: </source>
+          <target state="Tip chart"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetFilters - NamedType ChartTypeLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 32751242 - NamedType 3724190090" size-unit="char" translate="yes" xml:space="preserve">
+          <source>keys</source>
+          <target state="chei"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetTextFromOptionType - NamedType KeysLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 32751242 - NamedType 2713365493" size-unit="char" translate="yes" xml:space="preserve">
+          <source>fields</source>
+          <target state="campuri"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetTextFromOptionType - NamedType FieldsLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 32751242 - NamedType 2149395349" size-unit="char" translate="yes" xml:space="preserve">
+          <source>integration events</source>
+          <target state="evenimente integrare"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetTextFromOptionType - NamedType IntegrationEventsLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 32751242 - NamedType 3804433093" size-unit="char" translate="yes" xml:space="preserve">
+          <source>business events</source>
+          <target state="evenimente business"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetTextFromOptionType - NamedType BusinessEventsLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 32751242 - NamedType 3841281911" size-unit="char" translate="yes" xml:space="preserve">
+          <source>global methods</source>
+          <target state="metode globale"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetTextFromOptionType - NamedType GlobalMethodsLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 32751242 - NamedType 3501645067" size-unit="char" translate="yes" xml:space="preserve">
+          <source>unused global methods</source>
+          <target state="metode globale nefolosite"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetTextFromOptionType - NamedType UnusedGlobalMethodsLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 32751242 - NamedType 2672208877" size-unit="char" translate="yes" xml:space="preserve">
+          <source>local methods</source>
+          <target state="metode locale"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetTextFromOptionType - NamedType LocalMethodsLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 32751242 - NamedType 119998745" size-unit="char" translate="yes" xml:space="preserve">
+          <source>unused local methods</source>
+          <target state="metode locale nefolosite"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetTextFromOptionType - NamedType UnusedLocalMethodsLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 32751242 - NamedType 4030399208" size-unit="char" translate="yes" xml:space="preserve">
+          <source>unused parameters</source>
+          <target state="parametrii nefolositi"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetTextFromOptionType - NamedType UnusedParametersLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 32751242 - NamedType 4007295264" size-unit="char" translate="yes" xml:space="preserve">
+          <source>unused return values</source>
+          <target state="valori de returnare nefolosite"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetTextFromOptionType - NamedType UnusedReturnValuesLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 32751242 - NamedType 2951488336" size-unit="char" translate="yes" xml:space="preserve">
+          <source>global variables</source>
+          <target state="variabile nefolosite"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetTextFromOptionType - NamedType GlobalVariablesLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 32751242 - NamedType 4249654788" size-unit="char" translate="yes" xml:space="preserve">
+          <source>unused global variables</source>
+          <target state="variabile globale nefolosite"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetTextFromOptionType - NamedType UnusedGlobalVariablesLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 32751242 - NamedType 2866805295" size-unit="char" translate="yes" xml:space="preserve">
+          <source>variables</source>
+          <target state="variabile"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetTextFromOptionType - NamedType TotalVariablesLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 32751242 - NamedType 2813183107" size-unit="char" translate="yes" xml:space="preserve">
+          <source>unused variables</source>
+          <target state="variabile nefolosite"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetTextFromOptionType - NamedType UnusedTotalVariablesLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 32751242 - NamedType 1492037251" size-unit="char" translate="yes" xml:space="preserve">
+          <source>external relations*</source>
+          <target state="relatii externe*"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetTextFromOptionType - NamedType RelationsFromLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 32751242 - NamedType 2359595616" size-unit="char" translate="yes" xml:space="preserve">
+          <source>internal relations*</source>
+          <target state="relatii interne*"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetTextFromOptionType - NamedType RelationsToLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 32751242 - NamedType 2411955063" size-unit="char" translate="yes" xml:space="preserve">
+          <source>internal objects*</source>
+          <target state="obiecte interne*"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetTextFromOptionType - NamedType NoObjectsUsedInLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 32751242 - NamedType 1141149159" size-unit="char" translate="yes" xml:space="preserve">
+          <source>external objects*</source>
+          <target state="obiecte externe*"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetTextFromOptionType - NamedType UsedInNoObjectsLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 32751242 - NamedType 217683198" size-unit="char" translate="yes" xml:space="preserve">
+          <source>objects used*</source>
+          <target state="obiecte utilizate*"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetTextFromOptionType - NamedType NoTimesUsedLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - ReportLabel 3071622107" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Count</source>
+          <target state="Numărătoare"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel CountLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - ReportLabel 162990859" size-unit="char" translate="yes" xml:space="preserve">
+          <source>*objects used in most other objects</source>
+          <target state="*obiecte utilizate în majoritatea celorlalte obiecte"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel ExternalObjectsLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - ReportLabel 1939796766" size-unit="char" translate="yes" xml:space="preserve">
+          <source>*relations to other objects</source>
+          <target state="*relații cu alte obiecte"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel ExternalRelationsLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - ReportLabel 1067743589" size-unit="char" translate="yes" xml:space="preserve">
+          <source>*most objects used in one object</source>
+          <target state="*cele mai multe obiecte utilizate într-un singur obiect"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel InternalObjectsLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - ReportLabel 229739956" size-unit="char" translate="yes" xml:space="preserve">
+          <source>*relations from other objects</source>
+          <target state="*relații de la alte obiecte"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel InternalRelationsLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - ReportLabel 1981706351" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Name</source>
+          <target state="Nume"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel NameLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - ReportLabel 2411955063" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No. of Objects Used in</source>
+          <target state="Nr. obiecte folosite in"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel NoObjectsUsedInLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - ReportLabel 217683198" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No. of Times Used</source>
+          <target state="Nr. de ori folosit"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel NoTimesUsedLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - ReportLabel 534296058" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Object No.</source>
+          <target state="Nr. obiect"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel ObjectNoLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - ReportLabel 2966758701" size-unit="char" translate="yes" xml:space="preserve">
+          <source>*objects most often used in other objects</source>
+          <target state="*obiecte utilizate cel mai des în alte obiecte"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel ObjectsUsedLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - ReportLabel 3850977377" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Object Type</source>
+          <target state="Tip obiect"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel ObjectTypeLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - ReportLabel 1492037251" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Relations From</source>
+          <target state="Relatii de la"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel RelationsFromLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - ReportLabel 2359595616" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Relations To</source>
+          <target state="Relatii catre"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel RelationsToLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - ReportLabel 617781293" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Object Statistics Top 10</source>
+          <target state="Statistici obiect Top 10"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel ReportNameLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - ReportLabel 2497946921" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Total database</source>
+          <target state="Total bază de date"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel TotalDatabase</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - ReportLabel 816026312" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Total database %</source>
+          <target state="Total bază de date %"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel TotalDatabasePercent</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - ReportLabel 2410138484" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Total</source>
+          <target state="Total"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel TotalLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - ReportLabel 1141149159" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Used in No. of Objects</source>
+          <target state="Folosit in nr. obiecte"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel UsedInNoObjectsLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Control 2346885236 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Options</source>
+          <target state="Opțiuni"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Control Options - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Control 2130841768 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the chart type.</source>
+          <target state="Specifică tipul graficului."/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Control ChartType - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Control 2130841768 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Chart Type</source>
+          <target state="Tip grafic"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Control ChartType - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Control 2130841768 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Column chart,Line chart,Pie chart,Bar chart,Area chart,Range chart,Scatter chart,Polar chart</source>
+          <target state="Column chart,Line chart,Pie chart,Bar chart,Area chart,Range chart,Scatter chart,Polar chart"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Control ChartType - Property OptionCaption</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Control 246488296 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the number of objects that will be included in the report.</source>
+          <target state="Specifică numărul de obiecte care vor fi incluse în raport."/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Control NoOfRecordsToPrint - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Control 246488296 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Number of Objects</source>
+          <target state="Numar obiecte"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Control NoOfRecordsToPrint - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Control 246488296 - Method 2126772001 - NamedType 2318461883" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The value must be a positive number.</source>
+          <target state="Valoarea trebuie să fie un număr pozitiv."/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Control NoOfRecordsToPrint - Method OnValidate - NamedType NoOfRecordsToPrintErr</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Control 3909007884 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Option Types</source>
+          <target state="Tipuri optiune"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Control OptionTypes - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Control 3909007884 - Method 2126772001 - NamedType 254198846" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Option Type cannot be empty!</source>
+          <target state="Tipuri optiune nu poate fi gol!"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Control OptionTypes - Method OnValidate - NamedType ErrorNotEmptyLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Control 3220827225 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Used</source>
+          <target state="Utilizat"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Control Used - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 713152267 - Property 2019332006" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 272934828">
           <source>New,Process,Report,Leave</source>
@@ -2128,7 +2542,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Enum Types - EnumValue Integration Event - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 2388510493 - EnumValue 2313884476 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Internal Method</source>
+          <source>Interna; Method</source>
           <target state="Metoda Interna"/>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Types - EnumValue Internal Method - Property Caption</note>

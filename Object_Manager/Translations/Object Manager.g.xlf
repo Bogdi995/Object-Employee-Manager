@@ -1618,8 +1618,13 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Report 2805527838 - NamedType 748672224" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Top %1 objects from database with most %2</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - NamedType ChartTitleTxt</note>
+        </trans-unit>
         <trans-unit id="Report 2805527838 - NamedType 3890247928" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Sorting the objects...#1</source>
+          <source>Sorting the objects... #1</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - NamedType SortingObjectsTxt</note>
         </trans-unit>
@@ -1638,25 +1643,175 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetFilters - NamedType UsedLbl</note>
         </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 3816575399 - NamedType 793465151" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Number of Objects: </source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetFilters - NamedType NoObjectsLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 3816575399 - NamedType 2003988546" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Chart Type: </source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetFilters - NamedType ChartTypeLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 32751242 - NamedType 3724190090" size-unit="char" translate="yes" xml:space="preserve">
+          <source>keys</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetTextFromOptionType - NamedType KeysLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 32751242 - NamedType 2713365493" size-unit="char" translate="yes" xml:space="preserve">
+          <source>fields</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetTextFromOptionType - NamedType FieldsLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 32751242 - NamedType 2149395349" size-unit="char" translate="yes" xml:space="preserve">
+          <source>integration events</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetTextFromOptionType - NamedType IntegrationEventsLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 32751242 - NamedType 3804433093" size-unit="char" translate="yes" xml:space="preserve">
+          <source>business events</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetTextFromOptionType - NamedType BusinessEventsLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 32751242 - NamedType 3841281911" size-unit="char" translate="yes" xml:space="preserve">
+          <source>global methods</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetTextFromOptionType - NamedType GlobalMethodsLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 32751242 - NamedType 3501645067" size-unit="char" translate="yes" xml:space="preserve">
+          <source>unused global methods</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetTextFromOptionType - NamedType UnusedGlobalMethodsLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 32751242 - NamedType 2672208877" size-unit="char" translate="yes" xml:space="preserve">
+          <source>local methods</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetTextFromOptionType - NamedType LocalMethodsLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 32751242 - NamedType 119998745" size-unit="char" translate="yes" xml:space="preserve">
+          <source>unused local methods</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetTextFromOptionType - NamedType UnusedLocalMethodsLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 32751242 - NamedType 4030399208" size-unit="char" translate="yes" xml:space="preserve">
+          <source>unused parameters</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetTextFromOptionType - NamedType UnusedParametersLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 32751242 - NamedType 4007295264" size-unit="char" translate="yes" xml:space="preserve">
+          <source>unused return values</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetTextFromOptionType - NamedType UnusedReturnValuesLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 32751242 - NamedType 2951488336" size-unit="char" translate="yes" xml:space="preserve">
+          <source>global variables</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetTextFromOptionType - NamedType GlobalVariablesLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 32751242 - NamedType 4249654788" size-unit="char" translate="yes" xml:space="preserve">
+          <source>unused global variables</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetTextFromOptionType - NamedType UnusedGlobalVariablesLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 32751242 - NamedType 2866805295" size-unit="char" translate="yes" xml:space="preserve">
+          <source>variables</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetTextFromOptionType - NamedType TotalVariablesLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 32751242 - NamedType 2813183107" size-unit="char" translate="yes" xml:space="preserve">
+          <source>unused variables</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetTextFromOptionType - NamedType UnusedTotalVariablesLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 32751242 - NamedType 1492037251" size-unit="char" translate="yes" xml:space="preserve">
+          <source>external relations*</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetTextFromOptionType - NamedType RelationsFromLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 32751242 - NamedType 2359595616" size-unit="char" translate="yes" xml:space="preserve">
+          <source>internal relations*</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetTextFromOptionType - NamedType RelationsToLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 32751242 - NamedType 2411955063" size-unit="char" translate="yes" xml:space="preserve">
+          <source>internal objects*</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetTextFromOptionType - NamedType NoObjectsUsedInLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 32751242 - NamedType 1141149159" size-unit="char" translate="yes" xml:space="preserve">
+          <source>external objects*</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetTextFromOptionType - NamedType UsedInNoObjectsLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Method 32751242 - NamedType 217683198" size-unit="char" translate="yes" xml:space="preserve">
+          <source>objects used*</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Method GetTextFromOptionType - NamedType NoTimesUsedLbl</note>
+        </trans-unit>
         <trans-unit id="Report 2805527838 - ReportLabel 3071622107" size-unit="char" translate="yes" xml:space="preserve">
           <source>Count</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel CountLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - ReportLabel 162990859" size-unit="char" translate="yes" xml:space="preserve">
+          <source>*objects used in most other objects</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel ExternalObjectsLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - ReportLabel 1939796766" size-unit="char" translate="yes" xml:space="preserve">
+          <source>*relations to other objects</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel ExternalRelationsLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - ReportLabel 1067743589" size-unit="char" translate="yes" xml:space="preserve">
+          <source>*most objects used in one object</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel InternalObjectsLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - ReportLabel 229739956" size-unit="char" translate="yes" xml:space="preserve">
+          <source>*relations from other objects</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel InternalRelationsLbl</note>
         </trans-unit>
         <trans-unit id="Report 2805527838 - ReportLabel 1981706351" size-unit="char" translate="yes" xml:space="preserve">
           <source>Name</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel NameLbl</note>
         </trans-unit>
+        <trans-unit id="Report 2805527838 - ReportLabel 2411955063" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No. of Objects Used in</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel NoObjectsUsedInLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - ReportLabel 217683198" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No. of Times Used</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel NoTimesUsedLbl</note>
+        </trans-unit>
         <trans-unit id="Report 2805527838 - ReportLabel 534296058" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object No.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel ObjectNoLbl</note>
         </trans-unit>
+        <trans-unit id="Report 2805527838 - ReportLabel 2966758701" size-unit="char" translate="yes" xml:space="preserve">
+          <source>*objects most often used in other objects</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel ObjectsUsedLbl</note>
+        </trans-unit>
         <trans-unit id="Report 2805527838 - ReportLabel 3850977377" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object Type</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel ObjectTypeLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - ReportLabel 1492037251" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Relations From</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel RelationsFromLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - ReportLabel 2359595616" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Relations To</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel RelationsToLbl</note>
         </trans-unit>
         <trans-unit id="Report 2805527838 - ReportLabel 617781293" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object Statistics Top 10</source>
@@ -1677,6 +1832,11 @@
           <source>Total</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel TotalLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - ReportLabel 1141149159" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Used in No. of Objects</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - ReportLabel UsedInNoObjectsLbl</note>
         </trans-unit>
         <trans-unit id="Report 2805527838 - Control 2346885236 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Options</source>
@@ -1714,12 +1874,12 @@
           <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Control NoOfRecordsToPrint - Method OnValidate - NamedType NoOfRecordsToPrintErr</note>
         </trans-unit>
         <trans-unit id="Report 2805527838 - Control 3909007884 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Options Types</source>
+          <source>Option Types</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Control OptionTypes - Property Caption</note>
         </trans-unit>
         <trans-unit id="Report 2805527838 - Control 3909007884 - Method 2126772001 - NamedType 254198846" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Options Type cannot be empty!</source>
+          <source>Option Type cannot be empty!</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Control OptionTypes - Method OnValidate - NamedType ErrorNotEmptyLbl</note>
         </trans-unit>
