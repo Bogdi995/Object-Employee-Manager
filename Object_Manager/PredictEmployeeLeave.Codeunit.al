@@ -75,6 +75,7 @@ codeunit 50107 "Predict Employee Leave"
                 EmployeeLeaveHistory.Setrange(Sales, ManagementLbl);
         end;
 
+        if EmployeeLeaveHistory.FindLast() then;
         InsertTempEmployeeLeaveHistory(EmployeeLeaveHistory, TempEmployeeleaveHistory, Employee);
     end;
 
@@ -96,6 +97,7 @@ codeunit 50107 "Predict Employee Leave"
 
     local procedure SavePredictionResult(var EmployeeLeaveHistory: Record "Employee Leave History" temporary; var Employee: Record Employee)
     begin
+        if EmployeeLeaveHistory.Find() then;
         Employee.LeavePrediction := GetEmployeeLeavePrediction(EmployeeLeaveHistory);
         Employee."PredictionAccuracy%" := Round(EmployeeLeaveHistory.Accuracy * 100, 1);
         Employee.PredictionAccuracy := GetPredictionAccuracy(EmployeeLeaveHistory.Accuracy);
@@ -120,6 +122,9 @@ codeunit 50107 "Predict Employee Leave"
 
         if (Accuracy >= 0.8) then
             exit("Prediction Accuracy"::Medium);
+
+        if (Accuracy = 0) then
+            exit("Prediction Accuracy"::" ");
 
         exit("Prediction Accuracy"::Low);
     end;

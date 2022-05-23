@@ -12,7 +12,7 @@ codeunit 50105 "Employee Leave History Mgt"
         JToken: JsonToken;
         JText: Text;
         Progress: Dialog;
-        UpdateEmployeeLeaveHistory: Label 'The employee leave history is being updated...#1';
+        UpdateEmployeeLeaveHistory: Label 'The employee leave history is being updated... #1';
         UserAgentLbl: Label 'User-Agent';
         BusinessCentralLbl: Label 'Business Central';
         WebServiceFailedLbl: Label 'The call to the web service failed.';

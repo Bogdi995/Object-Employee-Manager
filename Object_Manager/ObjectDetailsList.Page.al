@@ -298,11 +298,18 @@ page 50100 "Object Details List"
                 Promoted = true;
                 PromotedOnly = true;
                 PromotedCategory = Report;
+                RunObject = report "Object Details Customer View";
+            }
 
-                trigger OnAction()
-                begin
-                    Report.Run(Report::"Object Details Customer View");
-                end;
+            action(Top10Objects)
+            {
+                Caption = 'Top 10 objects';
+                ApplicationArea = All;
+                Image = Report;
+                Promoted = true;
+                PromotedOnly = true;
+                PromotedCategory = Report;
+                RunObject = report "Object Statistics Top 10";
             }
         }
     }

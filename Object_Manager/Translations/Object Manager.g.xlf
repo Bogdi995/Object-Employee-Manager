@@ -389,7 +389,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Employee Leave History Mgt - Method InsertEmployeeLeaveHistoryData - NamedType SalaryLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 4249140647 - Method 2972397565 - NamedType 294324486" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The employee leave history is being updated...#1</source>
+          <source>The employee leave history is being updated... #1</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Employee Leave History Mgt - Method UpdateHistory - NamedType UpdateEmployeeLeaveHistory</note>
         </trans-unit>
@@ -1447,6 +1447,11 @@
           <source>Customer view</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Action CustomerView - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2172956895 - Action 1198684624 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Top 10 objects</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Action Top10Objects - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 2096197876 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object Details Subpage</source>
