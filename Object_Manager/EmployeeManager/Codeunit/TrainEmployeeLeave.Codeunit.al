@@ -1,4 +1,4 @@
-codeunit 50106 "Train Employee Leavee"
+codeunit 50106 "Train Employee Leave"
 {
     procedure Train();
     var
@@ -46,13 +46,13 @@ codeunit 50106 "Train Employee Leavee"
 
     procedure DownloadPlotOfTheModel()
     var
-        MLPrediction: Codeunit "ML Prediction Management";
+        MLPredictionManagement: Codeunit "ML Prediction Management";
         PlotBase64: Text;
-        Setup: Record "Employee Leave Setup";
+        EmployeeLeaveSetup: Record "Employee Leave Setup";
     begin
-        Setup.Get();
-        MLPrediction.Initialize(Setup.EndpointURI, Setup.APIKey, 0);
-        PlotBase64 := MLPrediction.PlotModel(Setup.GetEmployeeLeaveModel(), Setup.Features, Setup.Label);
-        MLPrediction.DownloadPlot(PlotBase64, 'EmployeeLeavePrediction');
+        EmployeeLeaveSetup.Get();
+        MLPredictionManagement.Initialize(EmployeeLeaveSetup.EndpointURI, EmployeeLeaveSetup.APIKey, 0);
+        PlotBase64 := MLPredictionManagement.PlotModel(EmployeeLeaveSetup.GetEmployeeLeaveModel(), EmployeeLeaveSetup.Features, EmployeeLeaveSetup.Label);
+        MLPredictionManagement.DownloadPlot(PlotBase64, 'EmployeeLeavePrediction');
     end;
 }

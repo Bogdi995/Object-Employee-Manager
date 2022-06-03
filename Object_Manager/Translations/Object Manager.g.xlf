@@ -838,6 +838,21 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control Caption - Property ToolTip</note>
         </trans-unit>
+        <trans-unit id="Page 683374773 - Control 3389534604 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the number of fields the object has.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control NoFields - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 683374773 - Control 2577746007 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the number of keys the object has.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control NoKeys - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 683374773 - Control 2333076789 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the primary key of the object.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control PrimaryKey - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 683374773 - Control 1571018173 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Methods and Events</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -888,16 +903,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control Name - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 683374773 - Control 3389534604 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the number of fields the object has.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control NoFields - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 683374773 - Control 2577746007 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the number of keys the object has.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control NoKeys - Property ToolTip</note>
-        </trans-unit>
         <trans-unit id="Page 683374773 - Control 1292293280 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of the object.</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -907,11 +912,6 @@
           <source>Specifies the type of the object.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control ObjectType - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 683374773 - Control 2333076789 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the primary key of the object.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control PrimaryKey - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Control 963562025 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of objects used in the object.</source>
@@ -1243,11 +1243,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Control NoBusinessEvents - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 2172956895 - Control 3389534604 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the number of fields the object has.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Control NoFields - Property ToolTip</note>
-        </trans-unit>
         <trans-unit id="Page 2172956895 - Control 1588700698 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of global methods.</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1262,11 +1257,6 @@
           <source>Specifies the number of integration events.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Control NoIntegrationEvents - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 2172956895 - Control 2577746007 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the number of keys the object has.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Control NoKeys - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2172956895 - Control 562526676 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of local methods.</source>
@@ -1327,11 +1317,6 @@
           <source>Specifies the type of the object.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Control ObjectType - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 2172956895 - Control 2333076789 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the primary key of the object.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details List - Control PrimaryKey - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2172956895 - Control 2175232469 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of relations the object has from other objects.</source>

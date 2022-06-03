@@ -101,9 +101,9 @@ page 50105 "Employee Leave History"
 
                 trigger OnAction()
                 var
-                    RestForecastTrain: Codeunit "Train Employee Leavee";
+                    TrainEmployeeLeave: Codeunit "Train Employee Leave";
                 begin
-                    RestForecastTrain.Train();
+                    TrainEmployeeLeave.Train();
                 end;
             }
         }

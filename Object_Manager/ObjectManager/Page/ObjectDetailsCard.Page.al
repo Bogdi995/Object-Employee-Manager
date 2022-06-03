@@ -48,20 +48,26 @@ page 50101 "Object Details Card"
                         ApplicationArea = All;
                     }
                 }
-                field(PrimaryKey; Rec.PrimaryKey)
+                group(FieldsKeys)
                 {
-                    ToolTip = 'Specifies the primary key of the object.';
-                    ApplicationArea = All;
-                }
-                field(NoKeys; Rec.NoKeys)
-                {
-                    ToolTip = 'Specifies the number of keys the object has.';
-                    ApplicationArea = All;
-                }
-                field(NoFields; Rec.NoFields)
-                {
-                    ToolTip = 'Specifies the number of fields the object has.';
-                    ApplicationArea = All;
+                    ShowCaption = false;
+                    Visible = ShowFieldsKeys;
+
+                    field(PrimaryKey; Rec.PrimaryKey)
+                    {
+                        ToolTip = 'Specifies the primary key of the object.';
+                        ApplicationArea = All;
+                    }
+                    field(NoKeys; Rec.NoKeys)
+                    {
+                        ToolTip = 'Specifies the number of keys the object has.';
+                        ApplicationArea = All;
+                    }
+                    field(NoFields; Rec.NoFields)
+                    {
+                        ToolTip = 'Specifies the number of fields the object has.';
+                        ApplicationArea = All;
+                    }
                 }
                 group(Relations)
                 {
@@ -438,7 +444,7 @@ page 50101 "Object Details Card"
 
     var
         [InDataSet]
-        ShowSubtypeSingleInstance, ShowNoUnusedTotalVariables, ShowNoUnusedGlobalVariables, ShowNoUnusedGlobalMethods, ShowNoUnusedLocalMethods, ShowRelations : Boolean;
+        ShowFieldsKeys, ShowSubtypeSingleInstance, ShowNoUnusedTotalVariables, ShowNoUnusedGlobalVariables, ShowNoUnusedGlobalMethods, ShowNoUnusedLocalMethods, ShowRelations : Boolean;
         [InDataSet]
         IsEnabled: Boolean;
 
@@ -453,13 +459,14 @@ page 50101 "Object Details Card"
     var
         ObjectDetailsManagement: Codeunit "Object Details Management";
     begin
-        ShowSubtypeSingleInstance := ObjectDetailsManagement.GetShowSubtypeSingleInstance(Rec."Object Type");
-        ShowRelations := ObjectDetailsManagement.GetShowRelations(Rec."Object Type");
-        ShowNoUnusedGlobalMethods := ObjectDetailsManagement.GetShowNoUnused(Rec.NoGlobalMethods);
-        ShowNoUnusedLocalMethods := ObjectDetailsManagement.GetShowNoUnused(Rec.NoLocalMethods);
-        ShowNoUnusedTotalVariables := ObjectDetailsManagement.GetShowNoUnused(Rec.NoTotalVariables);
-        ShowNoUnusedGlobalVariables := ObjectDetailsManagement.GetShowNoUnused(Rec.NoGlobalVariables);
-        IsEnabled := ObjectDetailsManagement.GetIsEnabled(Rec);
+        ShowFieldsKeys := (Rec."Object Type" = Rec."Object Type"::Table);
+        ShowSubtypeSingleInstance := (Rec."Object Type" = Rec."Object Type"::Codeunit);
+        ShowRelations := (Rec."Object Type" = Rec."Object Type"::Table);
+        ShowNoUnusedGlobalMethods := (Rec.NoGlobalMethods <> 0);
+        ShowNoUnusedLocalMethods := (Rec.NoLocalMethods <> 0);
+        ShowNoUnusedTotalVariables := (Rec.NoTotalVariables <> 0);
+        ShowNoUnusedGlobalVariables := (Rec.NoGlobalVariables <> 0);
+        IsEnabled := (Rec."Object Type" in [Rec."Object Type"::Table, Rec."Object Type"::"TableExtension"]);
         Rec.NoTimesUsed := ObjectDetailsManagement.GetNoTimesUsed(Rec);
     end;
 

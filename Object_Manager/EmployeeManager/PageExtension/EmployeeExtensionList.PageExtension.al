@@ -65,7 +65,7 @@ pageextension 50105 "Employee Extension List" extends "Employee List"
 
                 trigger OnAction()
                 var
-                    TrainEmployeeLeaveML: Codeunit "Train Employee Leavee";
+                    TrainEmployeeLeaveML: Codeunit "Train Employee Leave";
                 begin
                     TrainEmployeeLeaveML.DownloadPlotOfTheModel();
                 end;

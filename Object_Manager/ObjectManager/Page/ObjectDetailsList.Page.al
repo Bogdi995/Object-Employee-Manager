@@ -34,21 +34,6 @@ page 50100 "Object Details List"
                     ToolTip = 'Specifies the caption of the object.';
                     ApplicationArea = All;
                 }
-                field(PrimaryKey; Rec.PrimaryKey)
-                {
-                    ToolTip = 'Specifies the primary key of the object.';
-                    ApplicationArea = All;
-                }
-                field(NoKeys; Rec.NoKeys)
-                {
-                    ToolTip = 'Specifies the number of keys the object has.';
-                    ApplicationArea = All;
-                }
-                field(NoFields; Rec.NoFields)
-                {
-                    ToolTip = 'Specifies the number of fields the object has.';
-                    ApplicationArea = All;
-                }
                 field(RelationsFrom; Rec.RelationsFrom)
                 {
                     ToolTip = 'Specifies the number of relations the object has from other objects.';

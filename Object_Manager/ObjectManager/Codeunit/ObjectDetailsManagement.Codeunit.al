@@ -111,34 +111,6 @@ codeunit 50100 "Object Details Management"
         ObjectDetails.Validate(ObjectNo, AllObj."Object ID");
         ObjectDetails.Insert(true);
     end;
-
-    procedure GetShowSubtypeSingleInstance(ObjectType: Enum "Object Type"): Boolean
-    begin
-        if ObjectType = ObjectType::Codeunit then
-            exit(true);
-        exit(false);
-    end;
-
-    procedure GetShowRelations(ObjectType: Enum "Object Type"): Boolean
-    begin
-        if ObjectType = ObjectType::Table then
-            exit(true);
-        exit(false);
-    end;
-
-    procedure GetShowNoUnused(No: Integer): Boolean
-    begin
-        if No <> 0 then
-            exit(true);
-        exit(false);
-    end;
-
-    procedure GetIsEnabled(ObjectDetails: Record "Object Details"): Boolean
-    begin
-        if ObjectDetails."Object Type" in ["Object Type"::Table, "Object Type"::"TableExtension"] then
-            exit(true);
-        exit(false);
-    end;
     //  -------- Object Details --------> END
 
 
