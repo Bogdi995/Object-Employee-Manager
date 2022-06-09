@@ -30,7 +30,7 @@ codeunit 50107 "Predict Employee Leave"
 
         AddFeatures(MLPredictionManagement, EmployeeLeaveHistory);
         MLPredictionManagement.SetLabel(EmployeeLeaveHistory.FieldNo(left));
-        MLPredictionManagement.SetConfidence(EmployeeLeaveHistory.FieldNo(Accuracy));
+        MLPredictionManagement.SetConfidence(EmployeeLeaveHistory.FieldNo(Confidence));
         MLPredictionManagement.Predict(EmployeeLeaveSetup.GetEmployeeLeaveModel());
         SavePredictionResult(EmployeeLeaveHistory, Employee);
     end;
@@ -99,8 +99,8 @@ codeunit 50107 "Predict Employee Leave"
     begin
         if EmployeeLeaveHistory.Find() then;
         Employee.LeavePrediction := GetEmployeeLeavePrediction(EmployeeLeaveHistory);
-        Employee."PredictionAccuracy%" := Round(EmployeeLeaveHistory.Accuracy * 100, 1);
-        Employee.PredictionAccuracy := GetPredictionAccuracy(EmployeeLeaveHistory.Accuracy);
+        Employee."PredictionConfidence%" := Round(EmployeeLeaveHistory.Confidence * 100, 1);
+        Employee.PredictionConfidence := GetPredictionConfidence(EmployeeLeaveHistory.Confidence);
         Employee.Modify(true);
     end;
 
@@ -109,23 +109,23 @@ codeunit 50107 "Predict Employee Leave"
         if EmployeeLeaveHistory.Left then
             exit("Leave Prediction"::Leave);
 
-        if EmployeeLeaveHistory.Accuracy >= 0.8 then
+        if EmployeeLeaveHistory.Confidence >= 0.8 then
             exit("Leave Prediction"::ChanceLeave);
 
         exit("Leave Prediction"::Stay);
     end;
 
-    local procedure GetPredictionAccuracy(Accuracy: Decimal): Enum "Prediction Accuracy"
+    local procedure GetPredictionConfidence(Confidence: Decimal): Enum "Prediction Confidence"
     begin
-        if (Accuracy >= 0.9) then
-            exit("Prediction Accuracy"::High);
+        if (Confidence >= 0.9) then
+            exit("Prediction Confidence"::High);
 
-        if (Accuracy >= 0.8) then
-            exit("Prediction Accuracy"::Medium);
+        if (Confidence >= 0.8) then
+            exit("Prediction Confidence"::Medium);
 
-        if (Accuracy = 0) then
-            exit("Prediction Accuracy"::" ");
+        if (Confidence = 0) then
+            exit("Prediction Confidence"::" ");
 
-        exit("Prediction Accuracy"::Low);
+        exit("Prediction Confidence"::Low);
     end;
 }

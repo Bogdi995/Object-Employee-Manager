@@ -1,6 +1,6 @@
-enum 50106 "Prediction Accuracy"
+enum 50106 "Prediction Confidence"
 {
-    Caption = 'Prediction Accuracy';
+    Caption = 'Prediction Confidence';
     Extensible = true;
 
     value(0; " ")

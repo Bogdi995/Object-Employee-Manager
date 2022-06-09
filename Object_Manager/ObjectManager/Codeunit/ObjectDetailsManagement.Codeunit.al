@@ -152,16 +152,6 @@ codeunit 50100 "Object Details Management"
         exit(true);
     end;
 
-    // local procedure GetTypeText(Type: Enum Types): Text
-    // var
-    //     FieldsLbl: Label 'fields';
-    //     KeysLbl: Label 'keys';
-    // begin
-    //     if Type = Types::Field then
-    //         exit(FieldsLbl);
-    //     exit(KeysLbl);
-    // end;
-
     procedure GetTypeTable(Type: Enum Types): Integer
     begin
         if Type = Type::Field then

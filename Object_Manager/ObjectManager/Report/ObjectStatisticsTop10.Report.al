@@ -44,7 +44,7 @@ report 50101 "Object Statistics Top 10"
                 ObjectDetailsAmount.FieldCount := FieldCount;
                 ObjectDetailsAmount.Insert();
 
-                if (NoOfRecordsToPrint = 0) or (Index < NoOfRecordsToPrint) then
+                if Index < NoOfRecordsToPrint then
                     Index := Index + 1
                 else begin
                     if ObjectDetailsAmount.FindFirst() then

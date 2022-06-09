@@ -61,9 +61,9 @@ table 50105 "Employee Leave History"
             Caption = 'Salary';
             DataClassification = CustomerContent;
         }
-        field(110; Accuracy; Decimal)
+        field(110; Confidence; Decimal)
         {
-            Caption = 'Accuracy';
+            Caption = 'Confidence';
             DataClassification = CustomerContent;
         }
     }

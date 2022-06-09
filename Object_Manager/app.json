@@ -48,5 +48,6 @@
   "showMyCode": true,
   "runtime": "7.0",
   "target": "OnPrem",
-  "features": ["TranslationFile"]
+  "features": ["TranslationFile", "GenerateCaptions"],
+  "supportedLocales": ["en-US", "de-DE", "ro-RO"]
 }

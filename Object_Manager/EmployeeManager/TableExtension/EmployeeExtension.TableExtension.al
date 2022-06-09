@@ -9,14 +9,14 @@ tableextension 50105 "Employee Extension" extends Employee
             Caption = 'Leave Prediction';
             DataClassification = CustomerContent;
         }
-        field(50010; PredictionAccuracy; Enum "Prediction Accuracy")
+        field(50010; PredictionConfidence; Enum "Prediction Confidence")
         {
-            Caption = 'Prediction Accuracy';
+            Caption = 'Prediction Confidence';
             DataClassification = CustomerContent;
         }
-        field(50020; "PredictionAccuracy%"; Decimal)
+        field(50020; "PredictionConfidence%"; Decimal)
         {
-            Caption = 'Prediction Accuracy %';
+            Caption = 'Prediction Confidence %';
             DataClassification = CustomerContent;
         }
 
@@ -24,7 +24,7 @@ tableextension 50105 "Employee Extension" extends Employee
 
     fieldgroups
     {
-        addlast(Brick; LeavePrediction, PredictionAccuracy)
+        addlast(Brick; LeavePrediction, PredictionConfidence)
         {
         }
     }

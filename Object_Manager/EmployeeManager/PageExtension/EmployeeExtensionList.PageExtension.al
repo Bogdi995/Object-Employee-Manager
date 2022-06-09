@@ -14,14 +14,14 @@ pageextension 50105 "Employee Extension List" extends "Employee List"
                 ApplicationArea = All;
                 StyleExpr = Style;
             }
-            field(PredictionAccuracy; Rec.PredictionAccuracy)
+            field(PredictionAccuracy; Rec.PredictionConfidence)
             {
                 Caption = 'Prediction Accuracy';
                 ToolTip = 'Specifies the accuracy of the leave prediction. "Low" is less than 80%, "Medium" is between 80% and 90% and "High" is above 90%.';
                 ApplicationArea = All;
                 StyleExpr = Style;
             }
-            field("PredictionAccuracy%"; Rec."PredictionAccuracy%")
+            field("PredictionAccuracy%"; Rec."PredictionConfidence%")
             {
                 Caption = 'Prediction Accuracy %';
                 ToolTip = 'Specifies the percentage of the prediction accuracy.';

@@ -8,15 +8,15 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Employee Leave History - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Table 2260039069 - Field 2990466407 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Accuracy</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table Employee Leave History - Field Accuracy - Property Caption</note>
-        </trans-unit>
         <trans-unit id="Table 2260039069 - Field 3042984175 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Average Monthly Hours</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Employee Leave History - Field AverageMonthlyHours - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2260039069 - Field 3865998304 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Confidence</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Employee Leave History - Field Confidence - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2260039069 - Field 4228702944 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Last Evaluation</source>
@@ -232,6 +232,11 @@
           <source>ObjectTypeCopy</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field ObjectTypeCopy - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3526115305 - Field 2467211492 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>TableData,Table,,Report,,Codeunit,XMLport,MenuSuite,Page,Query,System,FieldNumber,,,PageExtension,TableExtension,Enum,EnumExtension,Profile,ProfileExtension</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Object Details - Field ObjectTypeCopy - Property OptionCaption</note>
         </trans-unit>
         <trans-unit id="Table 3526115305 - Field 2333076789 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Primary Key</source>
@@ -718,15 +723,15 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Predict Employee Leave - Method PrepareData - NamedType ManagementLbl</note>
         </trans-unit>
-        <trans-unit id="Codeunit 3609114144 - Method 3685264004 - NamedType 2491614119" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Codeunit 844609179 - Method 3685264004 - NamedType 2491614119" size-unit="char" translate="yes" xml:space="preserve">
           <source>The model is being trained...</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Train Employee Leavee - Method Train - NamedType TrainModelLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Train Employee Leave - Method Train - NamedType TrainModelLbl</note>
         </trans-unit>
-        <trans-unit id="Codeunit 3609114144 - Method 3685264004 - NamedType 2818680536" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Codeunit 844609179 - Method 3685264004 - NamedType 2818680536" size-unit="char" translate="yes" xml:space="preserve">
           <source>The model is trained. The quality is %1.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Train Employee Leavee - Method Train - NamedType ModelTrainedLbl</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Train Employee Leave - Method Train - NamedType ModelTrainedLbl</note>
         </trans-unit>
         <trans-unit id="Page 2260039069 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Employee Leave History</source>
@@ -1958,15 +1963,15 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension Employee Extension - Field LeavePrediction - Property Caption</note>
         </trans-unit>
-        <trans-unit id="TableExtension 4245112373 - Field 2548090092 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1498446062">
-          <source>Prediction Accuracy</source>
+        <trans-unit id="TableExtension 4245112373 - Field 158504323 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1498446062">
+          <source>Prediction Confidence</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">TableExtension Employee Extension - Field PredictionAccuracy - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension Employee Extension - Field PredictionConfidence - Property Caption</note>
         </trans-unit>
-        <trans-unit id="TableExtension 4245112373 - Field 2726823431 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1498446062">
-          <source>Prediction Accuracy %</source>
+        <trans-unit id="TableExtension 4245112373 - Field 2358253832 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1498446062">
+          <source>Prediction Confidence %</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">TableExtension Employee Extension - Field PredictionAccuracy% - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension Employee Extension - Field PredictionConfidence% - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 2637097570 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Leave Prediction</source>
@@ -2053,30 +2058,30 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Object Type - EnumValue XMLPort - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Enum 997826188 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Prediction Accuracy</source>
+        <trans-unit id="Enum 1165529379 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Prediction Confidence</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Enum Prediction Accuracy - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Prediction Confidence - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Enum 997826188 - EnumValue 1371923692 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Enum 1165529379 - EnumValue 1371923692 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source> </source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Enum Prediction Accuracy - EnumValue   - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Prediction Confidence - EnumValue   - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Enum 997826188 - EnumValue 3116416530 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Enum 1165529379 - EnumValue 3116416530 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>High</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Enum Prediction Accuracy - EnumValue High - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Prediction Confidence - EnumValue High - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Enum 997826188 - EnumValue 3592530208 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Enum 1165529379 - EnumValue 3592530208 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Low</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Enum Prediction Accuracy - EnumValue Low - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Prediction Confidence - EnumValue Low - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Enum 997826188 - EnumValue 432767615 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Enum 1165529379 - EnumValue 432767615 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Medium</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Enum Prediction Accuracy - EnumValue Medium - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Prediction Confidence - EnumValue Medium - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 2388510493 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Type</source>
