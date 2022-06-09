@@ -1,2 +1,2 @@
-# ObjectManager-BusinessCentral
-Object Manager in Microsoft Dynamics 365 Business Central
+# Object and Employee Manager
+Object and Employee Manager in Dynamics 365 Business Central
