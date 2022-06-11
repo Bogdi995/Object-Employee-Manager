@@ -13,8 +13,8 @@ codeunit 50105 "Employee Leave History Mgt"
         JText: Text;
         Progress: Dialog;
         UpdateEmployeeLeaveHistory: Label 'The employee leave history is being updated... #1';
-        UserAgentLbl: Label 'User-Agent';
-        BusinessCentralLbl: Label 'Business Central';
+        UserAgentLbl: Label 'User-Agent', Locked = true;
+        BusinessCentralLbl: Label 'Business Central', Locked = true;
         WebServiceFailedLbl: Label 'The call to the web service failed.';
         WebServiceErrorLbl: Label 'The web service returned an error message:\ Status code: %1 \ Description: %2';
         DataRefreshedSuccessfullyLbl: Label 'History updated successfully!';

@@ -736,9 +736,9 @@ codeunit 50100 "Object Details Management"
 
     local procedure GetObjectTypeText(ObjectDetails: Record "Object Details"): Text
     var
-        RecordLbl: Label 'Record';
-        PageLbl: Label 'Page';
-        CodeunitLbl: Label 'Codeunit';
+        RecordLbl: Label 'Record', Locked = true;
+        PageLbl: Label 'Page', Locked = true;
+        CodeunitLbl: Label 'Codeunit', Locked = true;
     begin
         case ObjectDetails."Object Type" of
             "Object Type"::Table, "Object Type"::TableExtension:

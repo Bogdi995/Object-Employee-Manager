@@ -66,66 +66,6 @@ page 50102 "Object Details Line List"
         }
     }
 
-    actions
-    {
-        area(Processing)
-        {
-            action(UpdateFields)
-            {
-                Caption = 'Update Fields';
-                ApplicationArea = All;
-                Image = UpdateXML;
-                Promoted = true;
-                PromotedOnly = true;
-                PromotedCategory = Process;
-
-                trigger OnAction()
-                var
-                    ObjectDetailsManagement: Codeunit "Object Details Management";
-                    UpdateFieldsLbl: Label 'Do you want to update the fields?';
-                    AlreadyUpdatedLbl: Label 'Fields already updated!';
-                    SuccessfullyUpdatedLbl: Label 'Fields successfully updated!';
-                    NeedsUpdate: Boolean;
-                begin
-                    if Confirm(UpdateFieldsLbl, true) then begin
-                        ObjectDetailsManagement.UpdateTypeObjectDetailsLine(Types::Field, NeedsUpdate);
-                        if NeedsUpdate then
-                            Message(SuccessfullyUpdatedLbl)
-                        else
-                            Message(AlreadyUpdatedLbl);
-                    end;
-                end;
-            }
-
-            action(UpdateKeys)
-            {
-                Caption = 'Update Keys';
-                ApplicationArea = All;
-                Image = UpdateXML;
-                Promoted = true;
-                PromotedOnly = true;
-                PromotedCategory = Process;
-
-                trigger OnAction()
-                var
-                    ObjectDetailsManagement: Codeunit "Object Details Management";
-                    UpdateFieldsLbl: Label 'Do you want to update the keys?';
-                    AlreadyUpdatedLbl: Label 'Keys already updated!';
-                    SuccessfullyUpdatedLbl: Label 'Keys successfully updated!';
-                    NeedsUpdate: Boolean;
-                begin
-                    if Confirm(UpdateFieldsLbl, true) then begin
-                        ObjectDetailsManagement.UpdateTypeObjectDetailsLine(Types::"Key", NeedsUpdate);
-                        if NeedsUpdate then
-                            Message(SuccessfullyUpdatedLbl)
-                        else
-                            Message(AlreadyUpdatedLbl);
-                    end;
-                end;
-            }
-        }
-    }
-
     local procedure GetName(): Text[250]
     var
         Field: Record Field;

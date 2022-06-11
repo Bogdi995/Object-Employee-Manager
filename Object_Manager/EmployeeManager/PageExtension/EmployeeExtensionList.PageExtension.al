@@ -14,17 +14,17 @@ pageextension 50105 "Employee Extension List" extends "Employee List"
                 ApplicationArea = All;
                 StyleExpr = Style;
             }
-            field(PredictionAccuracy; Rec.PredictionConfidence)
+            field(PredictionConfidence; Rec.PredictionConfidence)
             {
-                Caption = 'Prediction Accuracy';
-                ToolTip = 'Specifies the accuracy of the leave prediction. "Low" is less than 80%, "Medium" is between 80% and 90% and "High" is above 90%.';
+                Caption = 'Prediction Confidence';
+                ToolTip = 'Specifies the confidence of the leave prediction. "Low" is less than 80%, "Medium" is between 80% and 90% and "High" is above 90%.';
                 ApplicationArea = All;
                 StyleExpr = Style;
             }
-            field("PredictionAccuracy%"; Rec."PredictionConfidence%")
+            field("PredictionConfidence%"; Rec."PredictionConfidence%")
             {
-                Caption = 'Prediction Accuracy %';
-                ToolTip = 'Specifies the percentage of the prediction accuracy.';
+                Caption = 'Prediction Confidence %';
+                ToolTip = 'Specifies the percentage of the prediction confidence.';
                 ApplicationArea = All;
                 StyleExpr = Style;
                 BlankZero = true;
@@ -86,6 +86,17 @@ pageextension 50105 "Employee Extension List" extends "Employee List"
 
     var
         Style: Text;
+
+    // trigger OnOpenPage()
+    // begin
+    //     if Rec.FindFirst() then
+    //         repeat
+    //             Rec.LeavePrediction := "Leave Prediction"::" ";
+    //             Rec.PredictionConfidence := "Prediction Confidence"::" ";
+    //             Rec."PredictionConfidence%" := 0;
+    //             Rec.Modify();
+    //         until Rec.Next() = 0;
+    // end;
 
     trigger OnAfterGetRecord()
     begin

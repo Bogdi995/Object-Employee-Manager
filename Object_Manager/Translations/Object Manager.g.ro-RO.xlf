@@ -9,17 +9,17 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Employee Leave History - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Table 2260039069 - Field 2990466407 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Accuracy</source>
-          <target>Precizie</target>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Table Employee Leave History - Field Accuracy - Property Caption</note>
-        </trans-unit>
         <trans-unit id="Table 2260039069 - Field 3042984175 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Average Monthly Hours</source>
           <target>Orele medii lunare</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Employee Leave History - Field AverageMonthlyHours - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2260039069 - Field 3865998304 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Confidence</source>
+          <target>Incredere</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Employee Leave History - Field Confidence - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2260039069 - Field 4228702944 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Last Evaluation</source>
@@ -477,18 +477,6 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Employee Leave History Mgt - Method UpdateHistory - NamedType UpdateEmployeeLeaveHistory</note>
         </trans-unit>
-        <trans-unit id="Codeunit 4249140647 - Method 2972397565 - NamedType 3515535966" size-unit="char" translate="yes" xml:space="preserve">
-          <source>User-Agent</source>
-          <target>Agent utilizator</target>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Employee Leave History Mgt - Method UpdateHistory - NamedType UserAgentLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 4249140647 - Method 2972397565 - NamedType 3637614977" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Business Central</source>
-          <target>Business Central</target>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Employee Leave History Mgt - Method UpdateHistory - NamedType BusinessCentralLbl</note>
-        </trans-unit>
         <trans-unit id="Codeunit 4249140647 - Method 2972397565 - NamedType 3436807880" size-unit="char" translate="yes" xml:space="preserve">
           <source>The call to the web service failed.</source>
           <target>Apelul către serviciul web a eșuat.</target>
@@ -695,13 +683,13 @@
         </trans-unit>
         <trans-unit id="Codeunit 1029530680 - Method 3429003653 - NamedType 3550368624" size-unit="char" translate="yes" xml:space="preserve">
           <source>Table</source>
-          <target>Table</target>
+          <target>Tabel</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetObjectTypeEnumFromText - NamedType TableLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 1029530680 - Method 3429003653 - NamedType 1877187315" size-unit="char" translate="yes" xml:space="preserve">
           <source>Page</source>
-          <target>Page</target>
+          <target>Pagina</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetObjectTypeEnumFromText - NamedType PageLbl</note>
         </trans-unit>
@@ -713,27 +701,9 @@
         </trans-unit>
         <trans-unit id="Codeunit 1029530680 - Method 3429003653 - NamedType 1687279216" size-unit="char" translate="yes" xml:space="preserve">
           <source>Report</source>
-          <target>Report</target>
+          <target>Raport</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetObjectTypeEnumFromText - NamedType ReportLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - Method 2008638802 - NamedType 672541161" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Record</source>
-          <target>Record</target>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetObjectTypeText - NamedType RecordLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - Method 2008638802 - NamedType 1877187315" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Page</source>
-          <target>Page</target>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetObjectTypeText - NamedType PageLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - Method 2008638802 - NamedType 1453859403" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Codeunit</source>
-          <target>Codeunit</target>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetObjectTypeText - NamedType CodeunitLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 1029530680 - Method 1179762933 - NamedType 672541161" size-unit="char" translate="yes" xml:space="preserve">
           <source>: Record </source>
@@ -875,7 +845,7 @@
         </trans-unit>
         <trans-unit id="Codeunit 844609179 - Method 3685264004 - NamedType 2818680536" size-unit="char" translate="yes" xml:space="preserve">
           <source>The model is trained. The quality is %1.</source>
-          <target>Modelul este antrenat. Calitatea este %1</target>
+          <target>Modelul este antrenat. Calitatea este %1.</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Train Employee Leave - Method Train - NamedType ModelTrainedLbl</note>
         </trans-unit>
@@ -953,7 +923,7 @@
         </trans-unit>
         <trans-unit id="Page 2260039069 - Action 257643353 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Train Model</source>
-          <target>Model de antrenare</target>
+          <target>Antrenare model</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Employee Leave History - Action TrainModel - Property Caption</note>
         </trans-unit>
@@ -971,7 +941,7 @@
         </trans-unit>
         <trans-unit id="Page 898723146 - Control 846657449 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Web Service Details</source>
-          <target>"Detalii Serviciu Web"</target>
+          <target>Detalii Serviciu Web</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Employee Leave Setup - Control WebServiceDetails - Property Caption</note>
         </trans-unit>
@@ -1004,6 +974,12 @@
           <target>Detalii Obiect Card</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 683374773 - Control 318613646 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Details</source>
+          <target>Detalii</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control Details - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Control 2879900210 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the caption of the object.</source>
@@ -1173,6 +1149,12 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control NoUnusedTotalVariables - Property ToolTip</note>
         </trans-unit>
+        <trans-unit id="Page 683374773 - Control 3471137671 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Lines</source>
+          <target>Linii</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control Lines - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 683374773 - Action 215494501 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Update Details</source>
           <target>Actualizeaza Detalii</target>
@@ -1235,7 +1217,7 @@
         </trans-unit>
         <trans-unit id="Page 683374773 - Action 3450744784 - Method 1377591017 - NamedType 1494617514" size-unit="char" translate="yes" xml:space="preserve">
           <source>Fields and keys successfully updated!</source>
-          <target>Câmpurile și cheile au fost actualizate cu succes!</target>
+          <target>Câmpuri și chei actualizate cu succes!</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateFieldsKeys - Method OnAction - NamedType SuccessfullyUpdatedLbl</note>
         </trans-unit>
@@ -1337,7 +1319,7 @@
         </trans-unit>
         <trans-unit id="Page 683374773 - Action 1271013808 - Method 1377591017 - NamedType 3848544714" size-unit="char" translate="yes" xml:space="preserve">
           <source>Do you want to update the variables for: %1 %2 - "%3"?</source>
-          <target>Do you want to update the variables for: %1 %2 - %3?</target>
+          <target>Doriți să actualizați variabilele pentru: %1 %2 - %3?</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateVariables - Method OnAction - NamedType UpdateVariablesLbl</note>
         </trans-unit>
@@ -1349,7 +1331,7 @@
         </trans-unit>
         <trans-unit id="Page 683374773 - Action 1271013808 - Method 1377591017 - NamedType 1494617514" size-unit="char" translate="yes" xml:space="preserve">
           <source>Variables successfully updated!</source>
-          <target>Variabilele sunt deja actualizate!</target>
+          <target>Variabile actualizate cu succes!</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action UpdateVariables - Method OnAction - NamedType SuccessfullyUpdatedLbl</note>
         </trans-unit>
@@ -1358,6 +1340,12 @@
           <target>Vizualizare client</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action CustomerView - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 683374773 - Action 539311483 - Method 1377591017 - NamedType 2334713109" size-unit="char" translate="yes" xml:space="preserve">
+          <source>&lt;?xml version="1.0" standalone="yes"?&gt;&lt;ReportParameters name="Object Details Customer View" id="50100"&gt;&lt;Options&gt;&lt;Field name="ObjType"&gt;%1&lt;/Field&gt;&lt;Field name="ObjNo"&gt;%2&lt;/Field&gt;&lt;/Options&gt;&lt;DataItems&gt;&lt;DataItem name="Header"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;DataItem name="ObjectFields"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;DataItem name="ObjectKeys"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;DataItem name="ObjectEvents"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;DataItem name="ObjectMethods"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;DataItem name="ObjectUnusedMethods"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;DataItem name="ObjectUnusedReturnValues"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;DataItem name="ObjectUnusedParameters"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;DataItem name="ObjectVariables"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;DataItem name="ObjectUnusedVariables"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;DataItem name="ObjectRelations"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;DataItem name="NoObjectsUsedIn"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;DataItem name="UsedInNoObjects"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;DataItem name="NoOfTimesUsed"&gt;VERSION(1) SORTING(Field1)&lt;/DataItem&gt;&lt;/DataItems&gt;&lt;/ReportParameters&gt;</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Action CustomerView - Method OnAction - NamedType XmlParameters</note>
         </trans-unit>
         <trans-unit id="Page 3625123773 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object Details Line List</source>
@@ -1412,54 +1400,6 @@
           <target>Specifică tipul de date și lungimea acestora."</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Control TypeName - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 3625123773 - Action 544469732 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Update Fields</source>
-          <target>Actualizare Campuri</target>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Action UpdateFields - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 3625123773 - Action 544469732 - Method 1377591017 - NamedType 534634590" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Do you want to update the fields?</source>
-          <target>Doriți să actualizați câmpurile?</target>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Action UpdateFields - Method OnAction - NamedType UpdateFieldsLbl</note>
-        </trans-unit>
-        <trans-unit id="Page 3625123773 - Action 544469732 - Method 1377591017 - NamedType 2810089971" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Fields already updated!</source>
-          <target>Câmpuri deja actualizate!</target>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Action UpdateFields - Method OnAction - NamedType AlreadyUpdatedLbl</note>
-        </trans-unit>
-        <trans-unit id="Page 3625123773 - Action 544469732 - Method 1377591017 - NamedType 1494617514" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Fields successfully updated!</source>
-          <target>Câmpurile au fost actualizate cu succes!</target>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Action UpdateFields - Method OnAction - NamedType SuccessfullyUpdatedLbl</note>
-        </trans-unit>
-        <trans-unit id="Page 3625123773 - Action 3473419439 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Update Keys</source>
-          <target>Actualizare chei</target>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Action UpdateKeys - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 3625123773 - Action 3473419439 - Method 1377591017 - NamedType 534634590" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Do you want to update the keys?</source>
-          <target>Doriți să actualizați cheile?</target>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Action UpdateKeys - Method OnAction - NamedType UpdateFieldsLbl</note>
-        </trans-unit>
-        <trans-unit id="Page 3625123773 - Action 3473419439 - Method 1377591017 - NamedType 2810089971" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Keys already updated!</source>
-          <target>Chei deja actualizate!</target>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Action UpdateKeys - Method OnAction - NamedType AlreadyUpdatedLbl</note>
-        </trans-unit>
-        <trans-unit id="Page 3625123773 - Action 3473419439 - Method 1377591017 - NamedType 1494617514" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Keys successfully updated!</source>
-          <target>Cheile au fost actualizate cu succes!</target>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Action UpdateKeys - Method OnAction - NamedType SuccessfullyUpdatedLbl</note>
         </trans-unit>
         <trans-unit id="Page 2172956895 - Property 2019332006" size-unit="char" translate="yes" xml:space="preserve">
           <source>New,Process,Report,Update</source>
@@ -2313,29 +2253,29 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Employee Extension List - Control LeavePrediction - Property Caption</note>
         </trans-unit>
-        <trans-unit id="PageExtension 713152267 - Control 2548090092 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 272934828">
-          <source>Specifies the accuracy of the leave prediction. "Low" is less than 80%, "Medium" is between 80% and 90% and "High" is above 90%.</source>
-          <target>Precizează precizia predicției de ieșire. Low este mai mică de 80%, Medium este între 80% și 90%, iar High este peste 90%.</target>
+        <trans-unit id="PageExtension 713152267 - Control 158504323 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 272934828">
+          <source>Specifies the confidence of the leave prediction. "Low" is less than 80%, "Medium" is between 80% and 90% and "High" is above 90%.</source>
+          <target>Precizează gradul de încredere al predicției de plecare. "Low" este mai mic de 80%, "Medium" este între 80% și 90%, iar "High" este peste 90%.</target>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Employee Extension List - Control PredictionAccuracy - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Employee Extension List - Control PredictionConfidence - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="PageExtension 713152267 - Control 2548090092 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 272934828">
-          <source>Prediction Accuracy</source>
-          <target>Acuratete predictie</target>
+        <trans-unit id="PageExtension 713152267 - Control 158504323 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 272934828">
+          <source>Prediction Confidence</source>
+          <target>Încredere în predicție</target>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Employee Extension List - Control PredictionAccuracy - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Employee Extension List - Control PredictionConfidence - Property Caption</note>
         </trans-unit>
-        <trans-unit id="PageExtension 713152267 - Control 2726823431 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 272934828">
-          <source>Specifies the percentage of the prediction accuracy.</source>
-          <target>Specifică procentul de precizie a predicției.</target>
+        <trans-unit id="PageExtension 713152267 - Control 2358253832 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 272934828">
+          <source>Specifies the percentage of the prediction confidence.</source>
+          <target>Specifică procentul de încredere al predicției.</target>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Employee Extension List - Control PredictionAccuracy% - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Employee Extension List - Control PredictionConfidence% - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="PageExtension 713152267 - Control 2726823431 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 272934828">
-          <source>Prediction Accuracy %</source>
-          <target>Acuratete predictie %</target>
+        <trans-unit id="PageExtension 713152267 - Control 2358253832 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 272934828">
+          <source>Prediction Confidence %</source>
+          <target>Încredere în predicție %</target>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Employee Extension List - Control PredictionAccuracy% - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Employee Extension List - Control PredictionConfidence% - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 4245112373 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1498446062">
           <source>Employee Extension</source>
@@ -2349,17 +2289,17 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension Employee Extension - Field LeavePrediction - Property Caption</note>
         </trans-unit>
-        <trans-unit id="TableExtension 4245112373 - Field 2548090092 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1498446062">
-          <source>Prediction Accuracy</source>
-          <target>Acuratete predictie</target>
+        <trans-unit id="TableExtension 4245112373 - Field 158504323 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1498446062">
+          <source>Prediction Confidence</source>
+          <target>Incredere predictie</target>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">TableExtension Employee Extension - Field PredictionAccuracy - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension Employee Extension - Field PredictionConfidence - Property Caption</note>
         </trans-unit>
-        <trans-unit id="TableExtension 4245112373 - Field 2726823431 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1498446062">
-          <source>Prediction Accuracy %</source>
-          <target>Acuratete predictie %</target>
+        <trans-unit id="TableExtension 4245112373 - Field 2358253832 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1498446062">
+          <source>Prediction Confidence %</source>
+          <target>Incredere predictie %</target>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">TableExtension Employee Extension - Field PredictionAccuracy% - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension Employee Extension - Field PredictionConfidence% - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 2637097570 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Leave Prediction</source>
@@ -2463,35 +2403,35 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Object Type - EnumValue XMLPort - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Enum 997826188 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Prediction Accuracy</source>
-          <target>Acuratete Predictie</target>
+        <trans-unit id="Enum 1165529379 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Prediction Confidence</source>
+          <target>Incredere predictie</target>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Enum Prediction Accuracy - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Prediction Confidence - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Enum 997826188 - EnumValue 1371923692 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Enum 1165529379 - EnumValue 1371923692 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source> </source>
           <target> </target>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Enum Prediction Accuracy - EnumValue   - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Prediction Confidence - EnumValue   - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Enum 997826188 - EnumValue 3116416530 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Enum 1165529379 - EnumValue 3116416530 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>High</source>
-          <target>Ridicat</target>
+          <target>Ridicata</target>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Enum Prediction Accuracy - EnumValue High - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Prediction Confidence - EnumValue High - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Enum 997826188 - EnumValue 3592530208 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Enum 1165529379 - EnumValue 3592530208 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Low</source>
           <target>Scazut</target>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Enum Prediction Accuracy - EnumValue Low - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Prediction Confidence - EnumValue Low - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Enum 997826188 - EnumValue 432767615 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Enum 1165529379 - EnumValue 432767615 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Medium</source>
-          <target>Mediu</target>
+          <target>Medie</target>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Enum Prediction Accuracy - EnumValue Medium - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Prediction Confidence - EnumValue Medium - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 2388510493 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Type</source>

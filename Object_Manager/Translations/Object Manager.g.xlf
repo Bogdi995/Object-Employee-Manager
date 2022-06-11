@@ -398,16 +398,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Employee Leave History Mgt - Method UpdateHistory - NamedType UpdateEmployeeLeaveHistory</note>
         </trans-unit>
-        <trans-unit id="Codeunit 4249140647 - Method 2972397565 - NamedType 3515535966" size-unit="char" translate="yes" xml:space="preserve">
-          <source>User-Agent</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Employee Leave History Mgt - Method UpdateHistory - NamedType UserAgentLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 4249140647 - Method 2972397565 - NamedType 3637614977" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Business Central</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Employee Leave History Mgt - Method UpdateHistory - NamedType BusinessCentralLbl</note>
-        </trans-unit>
         <trans-unit id="Codeunit 4249140647 - Method 2972397565 - NamedType 3436807880" size-unit="char" translate="yes" xml:space="preserve">
           <source>The call to the web service failed.</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -597,21 +587,6 @@
           <source>Report</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetObjectTypeEnumFromText - NamedType ReportLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - Method 2008638802 - NamedType 672541161" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Record</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetObjectTypeText - NamedType RecordLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - Method 2008638802 - NamedType 1877187315" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Page</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetObjectTypeText - NamedType PageLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 1029530680 - Method 2008638802 - NamedType 1453859403" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Codeunit</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Object Details Management - Method GetObjectTypeText - NamedType CodeunitLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 1029530680 - Method 1179762933 - NamedType 672541161" size-unit="char" translate="yes" xml:space="preserve">
           <source>: Record </source>
@@ -838,6 +813,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 683374773 - Control 318613646 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Details</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control Details - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 683374773 - Control 2879900210 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the caption of the object.</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -977,6 +957,11 @@
           <source>This field is visible only if the total number of variables is different than 0.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control NoUnusedTotalVariables - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 683374773 - Control 3471137671 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Lines</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Card - Control Lines - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 683374773 - Action 215494501 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Update Details</source>
@@ -1182,46 +1167,6 @@
           <source>Specifies the data type and its length.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Control TypeName - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 3625123773 - Action 544469732 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Update Fields</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Action UpdateFields - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 3625123773 - Action 544469732 - Method 1377591017 - NamedType 534634590" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Do you want to update the fields?</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Action UpdateFields - Method OnAction - NamedType UpdateFieldsLbl</note>
-        </trans-unit>
-        <trans-unit id="Page 3625123773 - Action 544469732 - Method 1377591017 - NamedType 2810089971" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Fields already updated!</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Action UpdateFields - Method OnAction - NamedType AlreadyUpdatedLbl</note>
-        </trans-unit>
-        <trans-unit id="Page 3625123773 - Action 544469732 - Method 1377591017 - NamedType 1494617514" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Fields successfully updated!</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Action UpdateFields - Method OnAction - NamedType SuccessfullyUpdatedLbl</note>
-        </trans-unit>
-        <trans-unit id="Page 3625123773 - Action 3473419439 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Update Keys</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Action UpdateKeys - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 3625123773 - Action 3473419439 - Method 1377591017 - NamedType 534634590" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Do you want to update the keys?</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Action UpdateKeys - Method OnAction - NamedType UpdateFieldsLbl</note>
-        </trans-unit>
-        <trans-unit id="Page 3625123773 - Action 3473419439 - Method 1377591017 - NamedType 2810089971" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Keys already updated!</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Action UpdateKeys - Method OnAction - NamedType AlreadyUpdatedLbl</note>
-        </trans-unit>
-        <trans-unit id="Page 3625123773 - Action 3473419439 - Method 1377591017 - NamedType 1494617514" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Keys successfully updated!</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Object Details Line List - Action UpdateKeys - Method OnAction - NamedType SuccessfullyUpdatedLbl</note>
         </trans-unit>
         <trans-unit id="Page 2172956895 - Property 2019332006" size-unit="char" translate="yes" xml:space="preserve">
           <source>New,Process,Report,Update</source>
@@ -1933,25 +1878,25 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Employee Extension List - Control LeavePrediction - Property Caption</note>
         </trans-unit>
-        <trans-unit id="PageExtension 713152267 - Control 2548090092 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 272934828">
-          <source>Specifies the accuracy of the leave prediction. "Low" is less than 80%, "Medium" is between 80% and 90% and "High" is above 90%.</source>
+        <trans-unit id="PageExtension 713152267 - Control 158504323 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 272934828">
+          <source>Specifies the confidence of the leave prediction. "Low" is less than 80%, "Medium" is between 80% and 90% and "High" is above 90%.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Employee Extension List - Control PredictionAccuracy - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Employee Extension List - Control PredictionConfidence - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="PageExtension 713152267 - Control 2548090092 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 272934828">
-          <source>Prediction Accuracy</source>
+        <trans-unit id="PageExtension 713152267 - Control 158504323 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 272934828">
+          <source>Prediction Confidence</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Employee Extension List - Control PredictionAccuracy - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Employee Extension List - Control PredictionConfidence - Property Caption</note>
         </trans-unit>
-        <trans-unit id="PageExtension 713152267 - Control 2726823431 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 272934828">
-          <source>Specifies the percentage of the prediction accuracy.</source>
+        <trans-unit id="PageExtension 713152267 - Control 2358253832 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 272934828">
+          <source>Specifies the percentage of the prediction confidence.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Employee Extension List - Control PredictionAccuracy% - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Employee Extension List - Control PredictionConfidence% - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="PageExtension 713152267 - Control 2726823431 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 272934828">
-          <source>Prediction Accuracy %</source>
+        <trans-unit id="PageExtension 713152267 - Control 2358253832 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 272934828">
+          <source>Prediction Confidence %</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Employee Extension List - Control PredictionAccuracy% - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Employee Extension List - Control PredictionConfidence% - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 4245112373 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1498446062">
           <source>Employee Extension</source>

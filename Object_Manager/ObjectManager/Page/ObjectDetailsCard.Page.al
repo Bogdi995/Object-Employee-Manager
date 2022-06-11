@@ -13,6 +13,7 @@ page 50101 "Object Details Card"
         {
             group(Details)
             {
+                Caption = 'Details';
                 field(ObjectType; Rec."Object Type")
                 {
                     ToolTip = 'Specifies the type of the object.';
@@ -199,6 +200,7 @@ page 50101 "Object Details Card"
             }
             group(Lines)
             {
+                Caption = 'Lines';
                 part("Object Details Subpage"; "Object Details Subpage")
                 {
                     SubPageLink = "Object Type" = field("Object Type"), ObjectNo = field(ObjectNo);
