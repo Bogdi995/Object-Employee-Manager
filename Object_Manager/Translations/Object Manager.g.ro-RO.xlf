@@ -2153,7 +2153,7 @@
         </trans-unit>
         <trans-unit id="Report 2805527838 - Control 2130841768 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
           <source>Column chart,Line chart,Pie chart,Bar chart,Area chart,Range chart,Scatter chart,Polar chart</source>
-          <target>Column chart,Line chart,Pie chart,Bar chart,Area chart,Range chart,Scatter chart,Polar chart</target>
+          <target>Diagrama coloana,Diagrama linie,Diagrama circulara,Diagrama cu bara,Diagrama de suprafata,Diagrama de gama,Diagrama de dispersie,Diagrama polara</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Control ChartType - Property OptionCaption</note>
         </trans-unit>
@@ -2180,6 +2180,12 @@
           <target>Tipuri optiune</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Control OptionTypes - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2805527838 - Control 3909007884 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source> ,Key,Field,Integration Event,Business Event,Global Method,Local Method,Global Variable,Total Variable,Parameter,Return Value,Relations From,Relations To,No. of Objects Used in,Used in No. of Objects,No. of Times Used</source>
+          <target> ,Cheie,Camp,Metoda de integrare,Metoda Business,Metoda globala,Metoda locala,Variabila globala,Variabila totala,Parametru,Valoare de returnare,Relatii de la,Relatii catre,Nr. obiecte folosite in,Utilizat in nr. de obiecte,Nr. de ori folosit</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Control OptionTypes - Property OptionCaption</note>
         </trans-unit>
         <trans-unit id="Report 2805527838 - Control 3909007884 - Method 2126772001 - NamedType 254198846" size-unit="char" translate="yes" xml:space="preserve">
           <source>Option Type cannot be empty!</source>
@@ -2225,7 +2231,7 @@
         </trans-unit>
         <trans-unit id="PageExtension 713152267 - Action 1817795259 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 272934828">
           <source>Leave History</source>
-          <target>Istorice plecare</target>
+          <target>Istoric Plecare</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Employee Extension List - Action LeaveHistory - Property Caption</note>
         </trans-unit>
@@ -2255,7 +2261,7 @@
         </trans-unit>
         <trans-unit id="PageExtension 713152267 - Control 158504323 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 272934828">
           <source>Specifies the confidence of the leave prediction. "Low" is less than 80%, "Medium" is between 80% and 90% and "High" is above 90%.</source>
-          <target>Precizează gradul de încredere al predicției de plecare. "Low" este mai mic de 80%, "Medium" este între 80% și 90%, iar "High" este peste 90%.</target>
+          <target>Precizează gradul de încredere al predicției de plecare. "Scazuta" este mai mic de 80%, "Medie" este între 80% și 90%, iar "Ridicata" este peste 90%.</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension Employee Extension List - Control PredictionConfidence - Property ToolTip</note>
         </trans-unit>
@@ -2423,7 +2429,7 @@
         </trans-unit>
         <trans-unit id="Enum 1165529379 - EnumValue 3592530208 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Low</source>
-          <target>Scazut</target>
+          <target>Scazuta</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Enum Prediction Confidence - EnumValue Low - Property Caption</note>
         </trans-unit>

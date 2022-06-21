@@ -2181,6 +2181,12 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Control OptionTypes - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Report 2805527838 - Control 3909007884 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source> ,Key,Field,Integration Event,Business Event,Global Method,Local Method,Global Variable,Total Variable,Parameter,Return Value,Relations From,Relations To,No. of Objects Used in,Used in No. of Objects,No. of Times Used</source>
+          <target state="needs-translation"/>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Object Statistics Top 10 - Control OptionTypes - Property OptionCaption</note>
+        </trans-unit>
         <trans-unit id="Report 2805527838 - Control 3909007884 - Method 2126772001 - NamedType 254198846" size-unit="char" translate="yes" xml:space="preserve">
           <source>Option Type cannot be empty!</source>
           <target>Option Typ kann nicht leer sein!</target>

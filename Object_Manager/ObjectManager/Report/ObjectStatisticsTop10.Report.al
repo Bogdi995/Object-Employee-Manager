@@ -141,6 +141,7 @@ report 50101 "Object Statistics Top 10"
                     field(OptionTypes; OptionTypes)
                     {
                         Caption = 'Option Types';
+                        OptionCaption = ' ,Key,Field,Integration Event,Business Event,Global Method,Local Method,Global Variable,Total Variable,Parameter,Return Value,Relations From,Relations To,No. of Objects Used in,Used in No. of Objects,No. of Times Used';
                         ApplicationArea = All;
 
                         trigger OnValidate()
