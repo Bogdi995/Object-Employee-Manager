@@ -2040,16 +2040,17 @@ codeunit 50100 "Object Details Management"
     begin
         SearchText := GetSearchText(ObjectDetails);
         ObjectType := CopyStr(ObjectDetailsLine.TypeName, 1, StrPos(ObjectDetailsLine.TypeName, ' ') - 1);
-        if ObjDetails.Get(GetObjectTypeEnumFromText(ObjectType), ObjectDetailsLine.ID) then
+        if ObjDetails.Get(GetObjectTypeEnumFromText(ObjectType), ObjectDetailsLine.ID) then begin
             GetObjectALCode(ObjDetails, ObjectALCode);
+            ObjectNames := GetObjectNames(ObjectALCode, SearchText);
 
-        ObjectNames := GetObjectNames(ObjectALCode, SearchText);
-        foreach Object in ObjectNames do begin
-            Index := ObjectALCode.IndexOf(Object, StringComparison.OrdinalIgnoreCase);
-            while (Index <> -1) do begin
-                NoTimesUsed += 1;
-                ObjectALCode := ObjectALCode.Remove(Index, StrLen(Object));
+            foreach Object in ObjectNames do begin
                 Index := ObjectALCode.IndexOf(Object, StringComparison.OrdinalIgnoreCase);
+                while (Index <> -1) do begin
+                    NoTimesUsed += 1;
+                    ObjectALCode := ObjectALCode.Remove(Index, StrLen(Object));
+                    Index := ObjectALCode.IndexOf(Object, StringComparison.OrdinalIgnoreCase);
+                end;
             end;
         end;
 
