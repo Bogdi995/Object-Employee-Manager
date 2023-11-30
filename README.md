@@ -22,7 +22,8 @@ This project combines two modules: Object Manager and Employee Manager for Micro
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/business-central-object-employee-manager.git
+   git clone https://github.com/Bogdi995/ObjectEmployeeManager_BusinessCentral.git
+   
 2. Open the project in your preferred development environment (e.g., Visual Studio Code).
 3. Deploy the project containing both the Object Manager and Employee Manager to your Business Central instance.
 4. Access both modules through the Business Central interface.
